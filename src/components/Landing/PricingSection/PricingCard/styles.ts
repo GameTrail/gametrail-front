@@ -5,8 +5,8 @@ export const Container = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 750px;
-    width: 550px;
+    height: 80vh;
+    width: 30vw;
 
     border-radius: 9px;
     border: 2px solid ${({ theme }) => theme.nord.gray3};
@@ -80,11 +80,12 @@ export const List = styled.ul`
 `;
 
 export const ListItem = styled.li`
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     text-align: center;
     font-weight: 600;
     color: ${({ theme }) => theme.nord.gray3};
     margin-bottom: 1rem;
+
     @media (max-width: 768px) {
         font-size: 1rem;
     }

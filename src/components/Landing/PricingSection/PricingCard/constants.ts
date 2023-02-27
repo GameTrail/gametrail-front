@@ -12,7 +12,7 @@ export const Benefits = {
     '✅ Encuentra jugadores afines',
     '✅ Filtra por jugadores',
     '✅ Recomendaciones de Trails',
-    '✅ Búsuqeda de Trails por personalizada',
+    '✅ Búsqueda de Trails por personalizada',
     '✅ Conecta tu cuenta de Steam',
     '✅ Conecta tu cuenta de Xbox Live',
   ],

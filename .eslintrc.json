@@ -1,0 +1,74 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": [
+    "next/core-web-vitals",
+    "airbnb",
+    "airbnb-typescript"
+  ],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 12,
+    "sourceType": "module",
+    "project": "./tsconfig.json"
+  },
+  "plugins": [
+    "react"
+  ],
+  "rules": {
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-props-no-spreading": "off",
+    "import/no-extraneous-dependencies": "off" ,
+    "import/prefer-default-export": "off",
+    "max-len": "off",
+    "react/function-component-definition": [
+      "error",
+      {
+        "namedComponents": "arrow-function",
+        "unnamedComponents": "arrow-function"
+      }
+    ],
+    "arrow-body-style": ["error"],
+    "react/prop-types": 0,
+    "eslint-comments/no-unlimited-disable": 0,
+    "eslint-comments/no-unused-disable": 0,
+    "@typescript-eslint/consistent-type-imports": 2,
+    "@typescript-eslint/prefer-ts-expect-error": 2,
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "external",
+          "internal",
+          "parent",
+          "sibling",
+          "index",
+          "unknown"
+        ],
+        "pathGroups": [
+          {
+            "pattern": "styled-components",
+            "patternOptions": { "matchBase": true },
+            "group": "external",
+            "position": "before"
+          },
+          {
+            "pattern": "react",
+            "patternOptions": { "matchBase": true },
+            "group": "external",
+            "position": "before"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": ["react"],
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
+      }
+    ]
+  }   
+}

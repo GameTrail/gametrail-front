@@ -1,6 +1,6 @@
 export const Benefits = {
   Standard: [
-    '✅ Listas de juegos ilimitadas',
+    '✅ Lista de juegos ilimitadas',
     '✅ Hasta 4 personas por Trail',
     '✅ 1 Trail simultáneo',
     '✅ Hasta 3 juegos por cada Trail',
@@ -12,7 +12,7 @@ export const Benefits = {
     '✅ Encuentra jugadores afines',
     '✅ Filtra por jugadores',
     '✅ Recomendaciones de Trails',
-    '✅ Búsqueda de Trails por personalizada',
+    '✅ Búsqueda de Trails personalizada',
     '✅ Conecta tu cuenta de Steam',
     '✅ Conecta tu cuenta de Xbox Live',
   ],

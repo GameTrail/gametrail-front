@@ -1,7 +1,5 @@
 import { Landing } from '@/containers';
 
-const Home = () => (
-  <Landing />
-);
+const Home = () => <Landing />;
 
 export default Home;

@@ -1,26 +1,15 @@
 import type { FC } from 'react';
 import React from 'react';
 
-import type { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from 'next';
+import type { GetServerSideProps, GetServerSidePropsContext } from 'next';
+import Layout from '@/components/Layout';
 import type { UserDetails as UserDetailProps } from '@/models/User/types';
 
 interface Props {
   data: UserDetailProps;
 }
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const users = [
-    { username: 'jvegax' },
-  ];
-
-  const paths = users.map((user) => ({
-    params: { username: user.username },
-  }));
-
-  return { paths, fallback: false };
-};
-
-export const getStaticProps: GetStaticProps<Props> = async (context: GetStaticPropsContext) => {
+export const getServerSideProps: GetServerSideProps<Props> = async (context: GetServerSidePropsContext) => {
   const username = context.params?.username as string;
   const response = await fetch(`http://127.0.0.1:3000/api/user/${username}`);
   const data = await response.json();
@@ -33,7 +22,7 @@ export const getStaticProps: GetStaticProps<Props> = async (context: GetStaticPr
 };
 
 const UserDetails: FC<Props> = ({ data }) => (
-  <div>
+  <Layout>
     <h1>{data.username}</h1>
     <h1>
       {data.rating[0].rating}
@@ -42,7 +31,7 @@ const UserDetails: FC<Props> = ({ data }) => (
       {' '}
       {data.rating[0].ratingType}
     </h1>
-  </div>
+  </Layout>
 );
 
 export default UserDetails;

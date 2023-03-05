@@ -4,9 +4,9 @@ import React from 'react';
 import type { GetServerSideProps, GetServerSidePropsContext } from 'next';
 import type { UserDetails as UserDetailProps } from '@/models/User/types';
 
-interface Props {
-  data: UserDetailProps;
-}
+export type Props = {
+  userDetails: UserDetailProps;
+};
 
 export const getServerSideProps: GetServerSideProps<Props> = async (context: GetServerSidePropsContext) => {
   const username = context.params?.username as string;
@@ -15,22 +15,23 @@ export const getServerSideProps: GetServerSideProps<Props> = async (context: Get
 
   return {
     props: {
-      data,
+      userDetails: data,
     },
   };
 };
 
-const UserDetails: FC<Props> = ({ data }) => (
-  <div>
-    <h1>{data.username}</h1>
-    <h1>
-      {data.rating[0].rating}
-      {' '}
-      -
-      {' '}
-      {data.rating[0].ratingType}
-    </h1>
+const User: FC<Props> = ({ userDetails }) => (
+  <div
+    style={{
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      height: '80vh',
+    }}
+  >
+    <h1>{userDetails.username}</h1>
   </div>
 );
 
-export default UserDetails;
+export default User;

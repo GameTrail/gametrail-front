@@ -2,7 +2,6 @@ import type { FC } from 'react';
 import React from 'react';
 
 import type { GetServerSideProps, GetServerSidePropsContext } from 'next';
-import Layout from '@/components/Layout';
 import type { UserDetails as UserDetailProps } from '@/models/User/types';
 
 interface Props {
@@ -22,7 +21,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async (context: Get
 };
 
 const UserDetails: FC<Props> = ({ data }) => (
-  <Layout>
+  <div>
     <h1>{data.username}</h1>
     <h1>
       {data.rating[0].rating}
@@ -31,7 +30,7 @@ const UserDetails: FC<Props> = ({ data }) => (
       {' '}
       {data.rating[0].ratingType}
     </h1>
-  </Layout>
+  </div>
 );
 
 export default UserDetails;

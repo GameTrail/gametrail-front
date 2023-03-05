@@ -18,7 +18,7 @@ export const Container = styled.div`
 export const Left = styled.div`
     display: flex;
     flex: 1;
-    height: 80vh;
+    height: 70vh;
     
     flex-wrap: wrap;
     flex-direction: column;
@@ -53,7 +53,7 @@ export const Bottom = styled.div`
     flex-direction: row;
     flex-wrap: wrap;
     width: 100vw;
-    height: 20vh;
+    height: 30vh;
     gap: 3rem;
     @media (max-width: 768px) {
         height: 10vh;

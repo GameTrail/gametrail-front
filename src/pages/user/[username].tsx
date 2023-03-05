@@ -2,10 +2,11 @@ import type { FC } from 'react';
 import React from 'react';
 
 import type { GetServerSideProps, GetServerSidePropsContext } from 'next';
-import type { UserDetails as UserDetailProps } from '@/models/User/types';
+import { UserDetails } from '@/containers';
+import type { UserDetails as UserDetailsProps } from '@/models/User/types';
 
 export type Props = {
-  userDetails: UserDetailProps;
+  data: UserDetailsProps;
 };
 
 export const getServerSideProps: GetServerSideProps<Props> = async (context: GetServerSidePropsContext) => {
@@ -15,23 +16,11 @@ export const getServerSideProps: GetServerSideProps<Props> = async (context: Get
 
   return {
     props: {
-      userDetails: data,
+      data,
     },
   };
 };
 
-const User: FC<Props> = ({ userDetails }) => (
-  <div
-    style={{
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'center',
-      height: '80vh',
-    }}
-  >
-    <h1>{userDetails.username}</h1>
-  </div>
-);
+const User: FC<Props> = ({ data }) => <UserDetails userData={data} />;
 
 export default User;

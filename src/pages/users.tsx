@@ -1,7 +1,7 @@
 import React from 'react';
 
 const UserList = () => (
-  <div>user</div>
+  <h1>user</h1>
 );
 
 export default UserList;

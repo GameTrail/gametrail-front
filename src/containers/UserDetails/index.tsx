@@ -4,7 +4,7 @@ import type { UserDetails as UserDetailsProps } from '@/models/User/types';
 import { Container } from './styles';
 
 export type Props = {
-  userData?: UserDetailsProps;
+  userData: UserDetailsProps;
 };
 
 const UserDetails: FC<Props> = () => (

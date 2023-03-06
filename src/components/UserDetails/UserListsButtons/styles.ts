@@ -15,6 +15,7 @@ export const Container = styled.div`
     button {
         font-size: 1.2rem;
         font-weight: 400;
+        cursor: pointer;
         padding: 10px 20px;
         color: ${({ theme }) => theme.nord.white0};
         border-radius: 8px;
@@ -23,7 +24,7 @@ export const Container = styled.div`
 
         &:hover {
             transition: all 0.3s ease-in-out;
-            box-shadow: 0 0 10px 0 ${({ theme }) => theme.nord.gray3};
+            box-shadow: 0 0 10px 0;
             background-color: ${({ theme }) => theme.nord.gray1};
         }
 

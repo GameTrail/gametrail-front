@@ -33,18 +33,19 @@ const COLORS = [{
 },
 ];
 
-const UserStats:FC<Props> = ({userRating}) => (
+const UserStats:FC<Props> = ({ userRating }) => (
   <Container>
-   
-    {userRating.map((rating)=> {
-    return <div> 
-      <span>
-          <FontAwesomeIcon icon={faCircle as IconProp} color={COLORS.filter((item)=> item.ratingType === rating.ratingType).at(0).color} />
-      </span>
-       {rating.rating} {rating.ratingType}
-      </div>;
 
-  })} 
+    {userRating.map((rating) => (
+      <div key={rating.ratingType}>
+        <span>
+          <FontAwesomeIcon icon={faCircle as IconProp} color={COLORS.filter((item) => item?.ratingType === rating?.ratingType).at(0).color} />
+        </span>
+        {rating.rating}
+        {' '}
+        {rating.ratingType}
+      </div>
+    ))}
   </Container>
 );
 

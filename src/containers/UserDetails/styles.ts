@@ -26,10 +26,10 @@ export const InfoDetails = styled.div<ContainerProps>`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: ${({ darkMode, theme }) => (!darkMode ? theme.nord.white2 : theme.nord.gray0)};
     border-radius: 10px;
+    color: ${({ darkMode, theme }) => (darkMode ? theme.nord.white0 : theme.nord.gray1)};
     margin-top:10px;
-    width: 60%;
+    width: 50%;
     height: 100%;
     padding: 0 20px;
 `;
@@ -43,7 +43,7 @@ export const StatsDetails = styled.div`
     color: ${({ theme }) => theme.nord.white0};
     box-shadow: 0 0 10px 0 ${({ theme }) => theme.nord.gray3};
     border-radius: 10px;
-    width: 3%;
+    width: 30%;
     height: 100%;
     padding: 0 20px;
     @media (max-width: 768px) {

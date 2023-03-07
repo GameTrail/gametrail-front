@@ -39,7 +39,7 @@ const UserStats:FC<Props> = ({ userRating }) => (
     {userRating.map((rating) => (
       <div key={rating.ratingType}>
         <span>
-          <FontAwesomeIcon icon={faCircle as IconProp} color={COLORS.filter((item) => item?.ratingType === rating?.ratingType).at(0).color} />
+          <FontAwesomeIcon icon={faCircle as IconProp} color={COLORS.filter((item) => item?.ratingType === rating?.ratingType).at(0)?.color} />
         </span>
         {rating.rating}
         {' '}

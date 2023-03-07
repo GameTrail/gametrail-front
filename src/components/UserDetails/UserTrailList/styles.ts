@@ -44,6 +44,13 @@ export const Item = styled.div`
             font-size: 0.50rem;
             font-weight: 400;
     };
+
+     @media (max-width: 391px) {
+        span{
+            font-size: 0.4rem;
+            padding:0.25rem;
+            font-weight: 200;
+    };
 `;
 
 export const Container = styled.div`

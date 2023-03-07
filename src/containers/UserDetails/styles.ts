@@ -46,9 +46,9 @@ export const StatsDetails = styled.div`
     width: 30%;
     height: 100%;
     padding: 0 20px;
-    @media (max-width: 768px) {
+    @media (max-width: 1030px) {
         flex-direction: column;
-        width: 100%;
+        width: 70%;
         height: 100%;
         padding-top: 10px;
     };

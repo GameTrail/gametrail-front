@@ -18,6 +18,7 @@ const UserData: FC<Props> = ({ userName, userAvatar }) => (
       <FontAwesomeIcon icon={faCircleCheck} color="#31A4F1" size="xs" />
     </h1>
   </Container>
+  
 );
 
 export default UserData;

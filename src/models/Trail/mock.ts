@@ -4,8 +4,8 @@ import type { TrailGang } from './types';
 
 export const MOCK_TRAIL_GANG: TrailGang = {
   id: 1,
-  image: 'lotties/Home/AtomicHeart.json',
+  image: '/images/MGS.jpg',
   players: MOCK_USERS,
   games: MOCK_GAMES,
-  startDate: '10/10/2010',
+  startDate: '07/03/2023',
 };

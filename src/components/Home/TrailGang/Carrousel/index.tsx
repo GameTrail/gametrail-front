@@ -1,9 +1,14 @@
+import type { FC } from 'react';
 import React from 'react';
 import Image from 'next/image';
-import Imagen1 from 'src/assets/AtomicHeart.jpg';
+import type { TrailGang as TrailGangProps } from '@/models/Trail/types';
 
-const Carrousel = () => (
-  <Image src={Imagen1} alt="Atomic Heart" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
+export type Props = {
+  trailGang: TrailGangProps;
+};
+
+const Carrousel:FC<Props> = ({ trailGang }) => (
+  <Image src={trailGang.image} alt="none" width={50} height={50} />
 );
 
 export default Carrousel;

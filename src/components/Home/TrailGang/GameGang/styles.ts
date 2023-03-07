@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const UsersContainer = styled.div`
 float: left;
-width: 65%;
+width: 60%;
 height: 35%;
 padding: 2% 2% 2% 2%;
 margin-top: 2%;

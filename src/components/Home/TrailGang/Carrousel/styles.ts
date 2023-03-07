@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const GameFlow = styled.div`
 float: right;
-width: 50%;
+width: 30%;
 height: 35%;
 padding: 2% 2% 2% 2%;
 margin-top: 2%;
@@ -15,4 +15,9 @@ border-color: ${({ theme }) => theme.nord.gray1};
 
 export const DataText = styled.h3`
 color: ${({ theme }) => theme.nord.gray1};
+`;
+
+export const Image = styled.image`
+width: auto;
+height: auto;
 `;

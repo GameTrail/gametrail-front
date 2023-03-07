@@ -1,12 +1,12 @@
 import React from 'react';
-import { TG, UD } from '@/components/Home';
+import { TrailGang, UnkownData, RecentGames } from '@/components/Home';
 
 const Home = () => (
   <>
-    <TG />
-    <UD />
+    <TrailGang />
+    <UnkownData />
+    <RecentGames />
   </>
-
 );
 
 export default Home;

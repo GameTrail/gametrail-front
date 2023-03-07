@@ -1,2 +1,3 @@
-export { default as TG } from './TrailGang';
-export { default as UD } from './UnkownData';
+export { default as TrailGang } from './TrailGang';
+export { default as UnkownData } from './UnkownData';
+export { default as RecentGames } from './RecentGames';

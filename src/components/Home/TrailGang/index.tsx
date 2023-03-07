@@ -1,5 +1,5 @@
 import React from 'react';
-import GameFlow from './GameFlow';
+import Carrousel from './Carrousel';
 import GameGang from './GameGang';
 import {
   Container, Title, ContainerAux,
@@ -9,8 +9,8 @@ const trailgang = () => (
   <Container>
     <Title>TrailGang de la semana</Title>
     <ContainerAux>
+      <Carrousel />
       <GameGang />
-      <GameFlow />
     </ContainerAux>
   </Container>
 );

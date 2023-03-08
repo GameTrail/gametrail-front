@@ -35,7 +35,8 @@ export const ContainerAux = styled.div`
   height: auto;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
+  
   align-items: center;
   padding-top: 3%;
   padding-bottom: 6%;

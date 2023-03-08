@@ -18,7 +18,8 @@ const MainSection = () => (
       </AuthButtons>
     </Left>
     <Right>
-      <GamerLottie />
+      <GamerLottie 
+      />
     </Right>
     <Bottom>
       <BrandSection />

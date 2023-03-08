@@ -19,25 +19,30 @@ const GameGang:FC<Props> = ({ trailGang }) => (
       Esta vez aparecemos en la pantalla de inicio!!
     </Title>
     <UsersContainer>
-      {trailGang.players[0].username}
       <ImgContainer>
-        <Image src={trailGang.players[0].profilePicture} alt="none" width={50} height={50} />
+        <Image src={trailGang.players[0].profilePicture} alt="joscacgom profile picture" width={50} height={50} />
       </ImgContainer>
+      <PlayerData>
+        {trailGang.players[0].username}
+      </PlayerData>
     </UsersContainer>
-    <UsersContainer>
-      {trailGang.players[1].username}
-      {' '}
-      <ImgContainer>
-        <Image src={trailGang.players[1].profilePicture} alt="none" width={50} height={50} />
-      </ImgContainer>
-    </UsersContainer>
+
     <UsersContainer>
       <ImgContainer>
-        <Image src={trailGang.players[2].profilePicture} alt="none" width={50} height={50} />
-        <PlayerData>
-          {trailGang.players[2].username}
-        </PlayerData>
+        <Image src={trailGang.players[1].profilePicture} alt="joscacgom profile picture" width={50} height={50} />
       </ImgContainer>
+      <PlayerData>
+        {trailGang.players[1].username}
+      </PlayerData>
+    </UsersContainer>
+
+    <UsersContainer>
+      <ImgContainer>
+        <Image src={trailGang.players[2].profilePicture} alt="joscacgom profile picture" width={50} height={50} />
+      </ImgContainer>
+      <PlayerData>
+        {trailGang.players[2].username}
+      </PlayerData>
     </UsersContainer>
 
     <AuxContainer>

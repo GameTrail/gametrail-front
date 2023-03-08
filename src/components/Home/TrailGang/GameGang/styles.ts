@@ -19,7 +19,7 @@ display: flex;
 flex-direction: row;
 width: 100%;
 height: auto;
-margin-top: 0%;
+justify-items: center;
 background-color: ${({ theme }) => theme.nord.gray0};
 border-radius: 12px;
 `;
@@ -27,7 +27,7 @@ border-radius: 12px;
 export const DataContainer = styled.div`
 flex-direction: row;
 text-align: center;
-width: 30%;
+width: 50%;
 height: auto;
 padding: 2% 2% 2% 2%;
 margin: 2%;
@@ -42,8 +42,8 @@ flex-direction: row;
 justify-content: center;
 text-align: center;
 width: 50%;
-height: 35%;
-padding: 2% 2% 2% 2%;
+height: auto;
+padding: 1% 1% 1% 1%;
 margin-top: 2%;
 border-width: 5px;
 border-style: solid;
@@ -88,4 +88,5 @@ img{
 export const PlayerData = styled.h3`
 justify-items: center;
 text-align: center;
+padding: 3% 5% 3% 5%;
 `;

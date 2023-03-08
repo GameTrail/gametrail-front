@@ -18,7 +18,6 @@ export const Container = styled.div`
   height: auto;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
   align-items: center;
   padding-top: 3%;
   padding-bottom: 6%;
@@ -36,7 +35,8 @@ export const ContainerAux = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: center;
+  text-align: center;
+  
   padding-top: 3%;
   padding-bottom: 6%;
   padding-inline-end: 10%;
@@ -44,6 +44,8 @@ export const ContainerAux = styled.div`
   overflow: visible;
   position: relative;
   align-content: center;
-  flex-wrap: nowrap;
   gap: 40;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 `;

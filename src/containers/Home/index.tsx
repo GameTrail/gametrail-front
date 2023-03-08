@@ -10,7 +10,7 @@ export type Props = {
 const Home:FC<Props> = ({ trailGang }) => (
   <>
     <TrailGang trailGang={trailGang} />
-    <RecentGames />
+    <RecentGames trailGang={trailGang} />
     <UnkownData />
   </>
 );

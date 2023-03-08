@@ -21,7 +21,7 @@ export const Container = styled.div`
   justify-content: flex-start;
   align-items: center;
   padding-top: 3%;
-  padding-bottom: 6%;
+  padding-bottom: 3%;
   background: linear-gradient(180deg, #2e3440 0%, #4c566a 100%);
   overflow: visible;
   position: relative;

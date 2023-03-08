@@ -48,13 +48,8 @@
   "resolutions": {
     "styled-components": "^5"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
+    "*.{ts,tsx}": [
       "eslint --cache --fix"
     ],
     "*.{js,html,md,json}": [

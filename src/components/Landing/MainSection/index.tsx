@@ -14,16 +14,18 @@ const MainSection = () => (
       </Subtitle>
       <AuthButtons>
         <Button primary>Iniciar sesión</Button>
-        <Button animated>Registrarse</Button>
+        <Button animated>
+          Registrarse
+        </Button>
       </AuthButtons>
     </Left>
     <Right>
-      <GamerLottie 
-      />
+      <GamerLottie />
     </Right>
     <Bottom>
       <BrandSection />
     </Bottom>
+
   </Container>
 );
 

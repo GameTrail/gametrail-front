@@ -7,15 +7,16 @@ export type Props = {
 };
 
 const UserGameList:FC<Props> = ({ gameList }) => (
-  <div>{
-    gameList.map(()=>{
-    return (
+  <div>
+    {
+    gameList.map(() => (
       <div>
         <p>Game Name</p>
         <p>Game Description</p>
       </div>
-    )
-  })}</div>
+    ))
+}
+  </div>
 );
 
 export default UserGameList;

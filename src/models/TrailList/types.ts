@@ -1,5 +1,3 @@
-import type { UserDetails } from "../User/types";
-
 export type TrailList = {
   id: number;
   name: string;

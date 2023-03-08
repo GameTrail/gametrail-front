@@ -1,9 +1,18 @@
 import type { GameList } from '../GameList/types';
-import type { Rating } from '../Rating/type';
+import type { Rating } from '../Rating/types';
 
-export type UserDetails = {
-  id: number;
-  username: string;
-  rating: Rating[];
-  gameList: GameList[];
+export enum Plan {
+  Standard = 'STANDARD',
+  Premium = 'PREMIUM',
+}
+
+export type User = {
+  id: number,
+  username: string,
+  email: string,
+  avatar: string,
+  password: string,
+  rating: Rating[],
+  gameList: GameList[],
+  plan: Plan
 };

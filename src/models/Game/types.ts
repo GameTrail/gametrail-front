@@ -1,3 +1,5 @@
+import { Comment } from "../Comment/types";
+
 export type Game = {
   id: number
   name: string
@@ -5,4 +7,5 @@ export type Game = {
   platform: string
   release: string
   image: string
+  comments: Comment[]
 };

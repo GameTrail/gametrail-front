@@ -1,25 +1,21 @@
-import type { Comments } from './types';
+// eslint-disable-next-line import/no-cycle
+import { MOCK_GAMES } from '../Game/mock';
+import { MOCK_USERS } from '../User/mock';
+import type { Comment } from './types';
 
-export const MOCK_USER_COMMENTS: Comments[] = [
+export const MOCK_USER_COMMENTS: Comment[] = [
   {
     id: 1,
-    avatar: 'https://i.pravatar.cc/150?img=1',
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-    commentedUser: 'John Doe',
-    userWhoComments: 'John Doe',
+    text: 'Este juego es una pasada, ¡lo recomiendo!',
+    commentedUser: MOCK_USERS[1],
+    userWhoComments: MOCK_USERS[0],
+    game: MOCK_GAMES[0],
   },
   {
     id: 2,
-    avatar: 'https://i.pravatar.cc/150?img=1',
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-    commentedUser: 'John Doe',
-    userWhoComments: 'John Doe',
-  },
-  {
-    id: 3,
-    avatar: 'https://i.pravatar.cc/150?img=1',
-    text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-    commentedUser: 'John Doe',
-    userWhoComments: 'John Doe',
+    text: 'La gente tiene este juego como su fuera una obra maestra, menudo tostón',
+    commentedUser: MOCK_USERS[0],
+    userWhoComments: MOCK_USERS[1],
+    game: MOCK_GAMES[0],
   },
 ];

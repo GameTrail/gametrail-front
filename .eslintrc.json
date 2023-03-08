@@ -20,6 +20,8 @@
     "react"
   ],
   "rules": {
+    "linebreak-style": 0,
+    "import/no-cycle": "off",
     "react/react-in-jsx-scope": "off",
     "react/jsx-props-no-spreading": "off",
     "import/no-extraneous-dependencies": "off" ,

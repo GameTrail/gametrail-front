@@ -1,4 +1,3 @@
-import { MOCK_USERS } from '../User/mock';
 import type { Rating } from './types';
 import { RatingType } from './types';
 

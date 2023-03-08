@@ -8,8 +8,8 @@ export type Props = {
 };
 
 export const getServerSideProps: GetServerSideProps<Props> = async (context: GetServerSidePropsContext) => {
-  const name = context.params?.game as string;
-  const response = await fetch(`http://127.0.0.1:3000/api/games/${name}`);
+  const id = context.params?.id as string;
+  const response = await fetch(`http://127.0.0.1:3000/api/games/${id}`);
   const data = await response.json();
 
   return {

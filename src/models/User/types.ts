@@ -11,7 +11,6 @@ export type User = {
   username: string,
   email: string,
   avatar: string,
-  password: string,
   rating: Rating[],
   gameList: GameList[],
   plan: Plan

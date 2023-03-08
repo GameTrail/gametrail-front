@@ -5,12 +5,12 @@ import CommentComponent from './CommentComponent';
 import { Container } from './styles';
 
 export type Props = {
-  comments: Comment[]
+  comments: Comment[] | undefined
 };
 
 const CommentsSection: FC<Props> = ({ comments }) => (
   <Container>
-    {comments.map((comment) => <CommentComponent key={comment.id} comment={comment} />)}
+    {comments?.map((comment) => <CommentComponent key={comment.id} comment={comment} />)}
   </Container>
 );
 

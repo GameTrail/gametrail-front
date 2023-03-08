@@ -1,5 +1,3 @@
-import { User } from "../User/types";
-
 export enum RatingType {
   Kindness = 'Kindness',
   Funny = 'Funny',
@@ -11,6 +9,6 @@ export enum RatingType {
 export type Rating = {
   ratingType: RatingType;
   rating: number;
-  ratedUser: string,
-  userWhoRates: string
+  ratedUser?: string,
+  userWhoRates?: string
 };

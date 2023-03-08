@@ -15,5 +15,12 @@ border-color: ${({ theme }) => theme.nord.gray1};
 `;
 
 export const DataText = styled.h3`
-color: ${({ theme }) => theme.nord.gray1};
+  color: ${({ theme }) => theme.nord.gray1};
+  line-height: 1.2;
+  text-align: justify;
+  font-size: 1rem;
+  @media (max-width: 768px) {
+    font-size: 0.7rem;
+    text-align: center;
+  };
 `;

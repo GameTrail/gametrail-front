@@ -1,9 +1,10 @@
 import type { FC } from 'react';
-import Image from 'next/image';
-import { Carousel } from 'react-bootstrap';
-
+import { Carousel } from 'react-responsive-carousel';
+import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
 import type { TrailGang as TrailGangProps } from '@/models/Trail/types';
-import { Container, ContainerAux, Title } from './styles';
+import {
+  CarouselContainer, Container, Title, CarouselImage,
+} from './styles';
 
 export type Props = {
   trailGang: TrailGangProps;
@@ -12,52 +13,28 @@ export type Props = {
 const RecentGames: FC<Props> = ({ trailGang }) => (
   <Container>
     <Title>Juegos recientemente añadidos</Title>
-    <ContainerAux>
-      <Carousel interval={null} slide indicators={false}>
-        <Image
+    <CarouselContainer>
+      <Carousel axis="horizontal" autoPlay swipeable centerMode infiniteLoop showStatus={false} showIndicators={false} showArrows={false}>
+        <CarouselImage
           src={trailGang.image}
           alt="Imagen 1"
           width={200}
           height={300}
         />
-        <Image
-          src={trailGang.image}
-          alt="Imagen 2"
-          width={200}
-          height={300}
-        />
-        <Image
+        <CarouselImage
           src={trailGang.image}
           alt="Imagen 1"
           width={200}
           height={300}
         />
-        <Image
-          src={trailGang.image}
-          alt="Imagen 2"
-          width={200}
-          height={300}
-        />
-        <Image
-          src={trailGang.image}
-          alt="Imagen 1"
-          width={200}
-          height={300}
-        />
-        <Image
-          src={trailGang.image}
-          alt="Imagen 2"
-          width={200}
-          height={300}
-        />
-        <Image
+        <CarouselImage
           src={trailGang.image}
           alt="Imagen 1"
           width={200}
           height={300}
         />
       </Carousel>
-    </ContainerAux>
+    </CarouselContainer>
   </Container>
 );
 

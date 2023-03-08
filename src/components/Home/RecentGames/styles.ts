@@ -1,16 +1,14 @@
 import styled from 'styled-components';
+import Image from 'next/image';
 
 export const Title = styled.h1`
-  flex-shrink: 0;
-  width: auto; /* 724px */
-  height: auto; /* 68px */
-  white-space: pre;
-  overflow: visible;
-  z-index: 0;
-  position: relative;
-  color: #ffffff;
+  color: ${({ theme }) => theme.nord.white2};
   line-height: 1.2;
-  text-align: left;
+  text-align: center;
+  font-size: 1.6rem;
+  @media (max-width: 768px) {
+    font-size: 1.2rem;
+  };
 `;
 
 export const Container = styled.div` 
@@ -26,26 +24,24 @@ export const Container = styled.div`
   position: relative;
   align-content: center;
   flex-wrap: nowrap;
-  gap: 40;
 `;
 
-export const ContainerAux = styled.div` 
-  width: 100%;
-  height: auto;
+export const CarouselContainer = styled.div` 
   display: flex;
-  flex-direction: row;
   justify-content: center;
-  text-align: center;
-  
-  padding-top: 3%;
-  padding-bottom: 6%;
-  padding-inline-end: 10%;
-  padding-inline-start: 10%;
-  overflow: visible;
-  position: relative;
   align-content: center;
-  gap: 40;
   flex-wrap: nowrap;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
+  margin-top: 3%;
+  width: 20vw;
+  height: 30vh;
+  @media (max-width: 768px) {
+    width: 70vw;
+    height: 40vh;
+  };
+`;
+
+export const CarouselImage = styled(Image)`
+  border-radius: 9px;
+  box-shadow: 0 0 10px 0 ${({ theme }) => theme.nord.gray3};
+  padding: 3%;
 `;

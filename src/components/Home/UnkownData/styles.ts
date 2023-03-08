@@ -1,16 +1,13 @@
 import styled from 'styled-components';
 
 export const Title = styled.h1`
-  flex-shrink: 0;
-  width: auto; /* 724px */
-  height: auto; /* 68px */
-  white-space: pre;
-  overflow: visible;
-  z-index: 0;
-  position: relative;
-  color: #ffffff;
+  color: ${({ theme }) => theme.nord.white2};
   line-height: 1.2;
-  text-align: left;
+  text-align: center;
+  font-size: 1.6rem;
+  @media (max-width: 768px) {
+    font-size: 1.2rem;
+  };
 `;
 
 export const Container = styled.div` 

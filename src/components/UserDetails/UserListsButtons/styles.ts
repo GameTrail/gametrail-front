@@ -38,7 +38,7 @@ export const Button = styled.button<ButtonProps>`
     &:hover {
         transition: all 0.3s ease-in-out;
         box-shadow: 0 0 10px 0;
-        background-color: ${({ theme }) => theme.nord.gray1};
+        background-color: ${({ theme, active }) => (active ? theme.nord.white0 : theme.nord.gray3)};
     }
 
     @media (max-width: 768px) {

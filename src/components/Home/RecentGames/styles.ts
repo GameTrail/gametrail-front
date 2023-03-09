@@ -18,9 +18,7 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   padding-top: 3%;
-  padding-bottom: 6%;
   background: #4c566a;
-  overflow: visible;
   position: relative;
   align-content: center;
   flex-wrap: nowrap;
@@ -32,10 +30,14 @@ export const CarouselContainer = styled.div`
   align-content: center;
   flex-wrap: nowrap;
   margin-top: 3%;
-  width: 20vw;
-  height: 30vh;
+  padding-top: 3px;
+  width: 25vw;
+  height: 50vh;
   @media (max-width: 768px) {
-    width: 70vw;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    width: 80vw;
     height: 40vh;
   };
 `;
@@ -43,5 +45,15 @@ export const CarouselContainer = styled.div`
 export const CarouselImage = styled(Image)`
   border-radius: 9px;
   box-shadow: 0 0 10px 0 ${({ theme }) => theme.nord.gray3};
-  padding: 3%;
+  padding-left: 3%;
+  padding-right: 3%;
+  width: auto;
+  height: auto;
+  @media (max-width: 768px) {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    width: 80vw;
+    height: 40vh;
+  };
 `;

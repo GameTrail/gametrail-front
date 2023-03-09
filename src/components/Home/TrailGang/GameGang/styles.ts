@@ -19,7 +19,7 @@ export const GangContainer = styled.div`
       height: 100%;
       justify-content: center;
       padding-top: 10px;     
-    };
+  };
 `;
 
 export const Title = styled.h2`
@@ -28,7 +28,7 @@ export const Title = styled.h2`
   text-align: center;
   font-size: 1.6rem;
   @media (max-width: 768px) {
-    font-size: 1.2rem;
+    font-size: 1rem;
   };
 `;
 

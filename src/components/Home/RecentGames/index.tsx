@@ -14,7 +14,7 @@ const RecentGames: FC<Props> = ({ trailGang }) => (
   <Container>
     <Title>Juegos recientemente añadidos</Title>
     <CarouselContainer>
-      <Carousel axis="horizontal" autoPlay swipeable centerMode infiniteLoop showStatus={false} showIndicators={false} showArrows={false}>
+      <Carousel axis="horizontal" autoPlay swipeable centerMode infiniteLoop showThumbs={false} showStatus={false} showIndicators={false} showArrows={false}>
         <CarouselImage
           src={trailGang.image}
           alt="Imagen 1"

@@ -5,7 +5,7 @@ const Navbar = () => (
   <Nav>
     <h1>GAMETRAIL</h1>
     <Menu>
-      <MenuItem href="/">
+      <MenuItem href="/home">
         <h4>Home</h4>
       </MenuItem>
       <MenuItem href="/">

@@ -1,9 +1,9 @@
 import type { FC } from 'react';
 import React from 'react';
+import type { User as UserDetailsProps } from '@/models/User/types';
 import {
   UserData, UserStats, UserGameList, UserTrailList, UserAverageRating, UserListsButtons,
 } from '@/components/UserDetails';
-import type { UserDetails as UserDetailsProps } from '@/models/User/types';
 import {
   Container, InfoDetails, StatsDetails, ListsDetails,
 } from './styles';
@@ -12,7 +12,7 @@ export type Props = {
   userData: UserDetailsProps;
 };
 
-const UserDetails: FC<Props> = ({ userData }) => (
+const User: FC<Props> = () => (
   <Container darkMode={false}>
     <InfoDetails darkMode={false}>
       <UserData userName={userData.username} userAvatar={userData.avatar} />
@@ -33,4 +33,4 @@ const UserDetails: FC<Props> = ({ userData }) => (
   </Container>
 );
 
-export default UserDetails;
+export default User;

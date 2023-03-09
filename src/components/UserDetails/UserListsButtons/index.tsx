@@ -1,11 +1,14 @@
+import type { FC } from 'react';
 import React from 'react';
-import { Container } from './styles';
+import { ButtonType } from '@/containers/UserDetails/types';
+import { Button, Container } from './styles';
+import type { Props } from './types';
 
-const UserListsButtons = () => (
+const UserListsButtons: FC<Props> = ({ onUpdateButton }) => (
   <Container>
-    <button type="button">Games</button>
-    <button type="button">Trails</button>
-    <button type="button">Comments</button>
+    <Button type="button" onClick={() => onUpdateButton(ButtonType.Games)}>Games</Button>
+    <Button type="button" onClick={() => onUpdateButton(ButtonType.Trail)}>Trails</Button>
+    <Button type="button" onClick={() => onUpdateButton(ButtonType.Comments)}>Comments</Button>
   </Container>
 );
 

@@ -10,7 +10,7 @@ export const Container = styled.div<ContainerProps>`
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 80vh;
+    height: 75vh;
     padding: 0 20px;
 
     background-color: ${({ darkMode, theme }) => (darkMode ? theme.nord.gray0 : theme.nord.white2)};
@@ -18,6 +18,10 @@ export const Container = styled.div<ContainerProps>`
     h2 {
         color: ${({ darkMode, theme }) => (darkMode ? theme.nord.white0 : theme.nord.gray1)};
         margin-bottom: 1rem;
+    }
+
+    @media(max-width: 768px) {
+        height: 100vh;
     }
 `;
 

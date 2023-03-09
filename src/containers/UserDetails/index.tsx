@@ -1,5 +1,5 @@
 import type { FC } from 'react';
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import {
   UserData, UserStats, UserTrailList, UserAverageRating, UserListsButtons,
 } from '@/components/UserDetails';
@@ -12,13 +12,13 @@ import { ButtonType } from './types';
 const User: FC<Props> = ({ userData }) => {
   const [selectedButton, setSelectedButton] = useState<ButtonType>(ButtonType.Trail);
 
-  const onUpdateButton = useCallback((button: ButtonType) => {
+  const onUpdateButton = (button: ButtonType) => {
     setSelectedButton(button);
-  }, []);
+  };
 
   const handleRenderList = useMemo(() => {
     if (selectedButton === ButtonType.Trail) return <UserTrailList trailList={userData?.trailList} />;
-    if (selectedButton === ButtonType.Games) return <UserTrailList trailList={userData?.trailList} />;
+    if (selectedButton === ButtonType.Games) return null;
     if (selectedButton === ButtonType.Comments) return null; // TODO: Call comment section here
     return null;
   }, [selectedButton, userData]);
@@ -34,7 +34,7 @@ const User: FC<Props> = ({ userData }) => {
         <UserStats userRating={userData.rating} />
       </StatsDetails>
 
-      <UserListsButtons onUpdateButton={onUpdateButton} />
+      <UserListsButtons onUpdateButton={onUpdateButton} selectedButton={selectedButton} />
       <ListsDetails>
         {handleRenderList}
       </ListsDetails>

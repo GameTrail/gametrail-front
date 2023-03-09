@@ -11,7 +11,6 @@ export const Container = styled.div`
     gap: 0.5rem;
     margin-top: 1em;
     margin-bottom: 1em;
-    border: 1px solid red;
     
     @media (max-width: 768px) {
         flex-direction: row;
@@ -29,10 +28,12 @@ export const Button = styled.button<ButtonProps>`
     font-weight: 400;
     cursor: pointer;
     padding: 10px 20px;
-    color: ${({ theme }) => theme.nord.white0};
     border-radius: 8px;
-    border: none;
-    background-color: ${({ theme }) => theme.nord.gray3};
+    border: ${({ theme, active }) => (active ? `1px solid ${theme.nord.gray3};` : 'none;')}
+    width: 167px;
+
+    background-color: ${({ theme, active }) => (active ? theme.nord.white0 : theme.nord.gray3)};
+    color: ${({ theme, active }) => (active ? theme.nord.gray3 : theme.nord.white0)};
 
     &:hover {
         transition: all 0.3s ease-in-out;
@@ -41,9 +42,10 @@ export const Button = styled.button<ButtonProps>`
     }
 
     @media (max-width: 768px) {
+        width: 105px;
         font-size: 1rem;
-            font-weight: 400;
-            padding: 10px 20px;
-            border-radius: 8px;
+        font-weight: 400;
+        padding: 10px 20px;
+        border-radius: 8px;
     }
 `;

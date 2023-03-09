@@ -1,16 +1,29 @@
 import styled from 'styled-components';
 
+export const Container = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 560px;
+    padding: 0 20px;
+    @media (max-width: 768px) {
+        width: 360px;
+    };
+
+`;
 export const Item = styled.div`
     display: flex;
     cursor:pointer;
     flex-direction: row;
-    font-size: 0.75rem;
+    font-size: 1rem;
     justify-content: space-between;
     background-color: ${({ theme }) => theme.nord.gray3};
     border-radius: 10px;
     margin-bottom:10px;
     color: ${({ theme }) => theme.nord.white0};
     width: 100%;
+    height: 60px;
     padding: 10px 10px;
     box-shadow: 0 0 10px 0 ${({ theme }) => theme.nord.gray3};
     transition: all 0.3s ease-in-out;
@@ -25,16 +38,17 @@ export const Item = styled.div`
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
-        border-radius: 10px;
+        border-radius: 20px;
         box-shadow: 0 0 10px 0 ${({ theme }) => theme.nord.gray3}; 
     }
     p{
-        margin:0.5rem
+        margin:0.5rem;
+    }
 
-    }
     &:hover {
-        box-shadow: 0 0 10px 0 ;
+        box-shadow: 0 0 10px 0;
     }
+
     @media (max-width: 768px) {
         flex-direction: row;
         align-items: center;
@@ -50,18 +64,6 @@ export const Item = styled.div`
             font-size: 0.4rem;
             padding:0.25rem;
             font-weight: 200;
-    };
-`;
-
-export const Container = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 60%;
-    padding: 0 20px;
-    @media (max-width: 768px) {
-        width: 100%;
-    };
-
+        };
+     };
 `;

@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import { GamerLottie } from '@/components/Lotties';
 import BrandSection from '../BrandSection';
 import {
@@ -13,7 +14,9 @@ const MainSection = () => (
         Descubre una nueva manera de jugar en comunidad y guardar el progreso de tus juegos.
       </Subtitle>
       <AuthButtons>
-        <Button primary>Iniciar sesión</Button>
+        <Link href="/login">
+          <Button primary>Iniciar sesión</Button>
+        </Link>
         <Button animated>
           Registrarse
         </Button>

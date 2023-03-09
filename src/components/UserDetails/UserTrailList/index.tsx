@@ -5,12 +5,12 @@ import type { TrailList } from '@/models/TrailList/types';
 import { Item, Container } from './styles';
 
 export type Props = {
-  trailList : TrailList[]
+  trailList : TrailList[] | undefined;
 };
 
 const UserTrailList:FC<Props> = ({ trailList }) => (
   <Container>
-    {trailList.map((trail) => (
+    {trailList?.map((trail) => (
       <Item key={trail.id}>
         <Image alt="jvegax" src="https://cdnb.artstation.com/p/assets/images/images/035/213/423/large/mcashe-titanzekeef-dev.jpg?1614374087" height={30} width={30} />
         <p>{trail.name}</p>

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Title = styled.h1`
-  color: ${({ theme }) => theme.nord.white2};
+  color: ${({ theme }) => theme.nord.gray1};
   line-height: 1.2;
   text-align: center;
   font-size: 1.6rem;
@@ -17,7 +17,6 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   padding-top: 3%;
-  background: linear-gradient(180deg, #2e3440 0%, #4c566a 100%);
   @media (max-width: 768px) {
     width: 100%;
     height: 100%;

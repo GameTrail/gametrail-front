@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Title = styled.h1`
-  color: ${({ theme }) => theme.nord.white2};
+  color : ${({ theme }) => theme.nord.gray1};
   line-height: 1.2;
   text-align: center;
   font-size: 1.6rem;
@@ -11,7 +11,7 @@ export const Title = styled.h1`
 `;
 
 export const Container = styled.div` 
-box-sizing: border-box;
+  box-sizing: border-box;
   width: auto;
   height: auto;
   display: flex;
@@ -20,7 +20,6 @@ box-sizing: border-box;
   align-items: center;
   padding-top: 3%;
   padding-bottom: 6%;
-  background: linear-gradient(360deg, #2e3440 0%, #4c566a 100%);
   overflow: visible;
   position: relative;
   align-content: center;

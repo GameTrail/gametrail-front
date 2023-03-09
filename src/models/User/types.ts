@@ -8,5 +8,5 @@ export type User = {
   profilePicture: string;
   rating: Rating[];
   gameList: GameList[];
-  trailList: TrailList[];
+  trailList?: TrailList[];
 };

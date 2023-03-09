@@ -1,9 +1,9 @@
 import type { FC } from 'react';
 import React from 'react';
-import type { User as UserDetailsProps } from '@/models/User/types';
 import {
   UserData, UserStats, UserTrailList, UserAverageRating, UserListsButtons,
 } from '@/components/UserDetails';
+import type { User as UserDetailsProps } from '@/models/User/types';
 import {
   Container, InfoDetails, StatsDetails, ListsDetails,
 } from './styles';
@@ -12,10 +12,10 @@ export type Props = {
   userData: UserDetailsProps;
 };
 
-const User: FC<Props> = () => (
+const User: FC<Props> = ({ userData }) => (
   <Container darkMode={false}>
     <InfoDetails darkMode={false}>
-      <UserData userName={userData.username} userAvatar={userData.avatar} />
+      <UserData userName={userData.username} userAvatar={userData.profilePicture} />
     </InfoDetails>
 
     <h2>Stats</h2>
@@ -26,8 +26,7 @@ const User: FC<Props> = () => (
 
     <UserListsButtons />
     <ListsDetails>
-      {/* <UserGameList gameList={userData.gameList} /> */}
-      <UserTrailList trailList={userData.trailList} />
+      <UserTrailList trailList={userData?.trailList} />
     </ListsDetails>
 
   </Container>

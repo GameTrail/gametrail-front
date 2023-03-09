@@ -1,6 +1,6 @@
 import type { GameList } from '../GameList/types';
-import type { TrailList } from '../TrailList/types';
 import type { Rating } from '../Rating/type';
+import type { TrailList } from '../TrailList/types';
 
 export type User = {
   id: number;

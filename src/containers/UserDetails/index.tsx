@@ -2,7 +2,7 @@ import type { FC } from 'react';
 import React from 'react';
 import type { User as UserDetailsProps } from '@/models/User/types';
 import {
-  UserData, UserStats, UserGameList, UserTrailList, UserAverageRating, UserListsButtons,
+  UserData, UserStats, UserTrailList, UserAverageRating, UserListsButtons,
 } from '@/components/UserDetails';
 import {
   Container, InfoDetails, StatsDetails, ListsDetails,

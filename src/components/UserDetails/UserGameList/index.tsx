@@ -1,22 +1,32 @@
 import React from 'react';
 import type { FC } from 'react';
 import type { GameList } from '@/models/GameList/types';
+import {
+  Container, Game, GameImage, LastModified, Name, State,
+} from './styles';
 
 export type Props = {
   gameList: GameList[];
 };
 
-const UserGameList:FC<Props> = ({ gameList }) => (
-  <div>
-    {
-    gameList.map(() => (
+const UserGameList:FC<Props> = ({ gameList }) => {
+  const handleRenderGames = () => gameList.map((game) => (
+    <Game>
       <div>
-        <p>Game Name</p>
-        <p>Game Description</p>
+        <GameImage src={game.image} alt="image" width={120} height={120} />
       </div>
-    ))
-}
-  </div>
-);
+      <div>
+        <Name>{game.name}</Name>
+        <LastModified>{game.lastModified}</LastModified>
+        <State state={game.state}>{game.state}</State>
+      </div>
+    </Game>
+  ));
+  return (
+    <Container>
+      {handleRenderGames()}
+    </Container>
+  );
+};
 
 export default UserGameList;

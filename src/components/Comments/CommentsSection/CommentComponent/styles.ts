@@ -1,49 +1,46 @@
 import styled from 'styled-components';
 
-export const Container = styled.div` 
+export const CommentContainer = styled.div` 
     display: flex;
-    flex-direction: column;
     flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    overflow-x: hidden;
-    background-color: ${({ theme }) => theme.nord.gray3};
-`;
-
-export const About = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
+    justify-content: space-between;
+    background-color: ${({ theme }) => theme.nord.gray1};
     margin-top: 2rem;
-    margin-left: 10rem;
-    margin-right: 10rem;
-    @media (max-width: 768px) {
-        flex: 1;
-        flex-direction: column;
-        padding: 0 1rem;
-        margin-left: 0;
-        margin-right: 0;
+    margin-bottom: 2rem;
+`;
+
+export const AvatarContainer = styled.div`
+    flex-basis: 10%;
+    aling-items: center;
+    background-color: ${({ theme }) => theme.nord.gray1};
+    padding-left: 1rem;
+    img {
+        border-radius: 50%;
+        margin-left: 0.5rem;
     }
 `;
 
-export const Title = styled.h1`
-    font-size: 2.4rem;
+export const CommentContentContainer = styled.div`
+    flex-basis: 90%;
+    color: ${({ theme }) => theme.nord.white1};
+    font-size: 2rem;
+    background-color: ${({ theme }) => theme.nord.gray1};
+`;
+
+export const CommentUsernameContainer = styled.div`
+    flex-basis: 90%;
+    color: ${({ theme }) => theme.nord.white1};
+    background-color: ${({ theme }) => theme.nord.gray1};
+    font-size: 2rem;
     margin-bottom: 1rem;
-    color: ${({ theme }) => theme.nord.green};
-
     @media (max-width: 768px) {
-        font-size: 2rem;
-        text-align: center;
-    }
+        font-size: 1rem;
+    };
 `;
 
-export const Description = styled.p`
-    font-size: 1.6rem;
-    color: ${({ theme }) => theme.nord.white2};
-
-    @media (max-width: 768px) {
-        font-size: 1.2rem;
-        text-align: center;
-    }
+export const CommentTextContainer = styled.div`
+    flex-basis: 90%;
+    color: ${({ theme }) => theme.nord.white1};
+    background-color: ${({ theme }) => theme.nord.gray1};
+    font-size: 2rem;
 `;

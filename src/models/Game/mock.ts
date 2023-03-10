@@ -1,4 +1,4 @@
-import { MOCK_USER_COMMENTS } from '../Comment/mock';
+import { MOCK_GAME_COMMENTS } from '../Comment/mock';
 import type { Game } from './types';
 
 export const MOCK_GAMES: Game[] = [
@@ -9,7 +9,7 @@ export const MOCK_GAMES: Game[] = [
     platform: 'NES',
     release: '1985',
     image: 'https://upload.wikimedia.org/wikipedia/en/5/56/Super_Mario_Bros._box_art.png',
-    comments: MOCK_USER_COMMENTS,
+    comments: MOCK_GAME_COMMENTS,
   },
   {
     id: 2,
@@ -18,7 +18,7 @@ export const MOCK_GAMES: Game[] = [
     platform: 'NES',
     release: '1985',
     image: 'https://upload.wikimedia.org/wikipedia/en/5/56/Super_Mario_Bros._box_art.png',
-    comments: MOCK_USER_COMMENTS,
+    comments: MOCK_GAME_COMMENTS,
   },
   {
     id: 3,
@@ -27,7 +27,7 @@ export const MOCK_GAMES: Game[] = [
     platform: 'NES',
     release: '1985',
     image: 'https://upload.wikimedia.org/wikipedia/en/5/56/Super_Mario_Bros._box_art.png',
-    comments: MOCK_USER_COMMENTS,
+    comments: MOCK_GAME_COMMENTS,
   },
   {
     id: 4,
@@ -36,7 +36,7 @@ export const MOCK_GAMES: Game[] = [
     platform: 'NES',
     release: '1985',
     image: 'https://upload.wikimedia.org/wikipedia/en/5/56/Super_Mario_Bros._box_art.png',
-    comments: MOCK_USER_COMMENTS,
+    comments: MOCK_GAME_COMMENTS,
   },
 
 ];
@@ -48,5 +48,5 @@ export const MOCK_GAME: Game = {
   platform: 'NES',
   release: '1985',
   image: 'https://upload.wikimedia.org/wikipedia/en/5/56/Super_Mario_Bros._box_art.png',
-  comments: MOCK_USER_COMMENTS,
+  comments: MOCK_GAME_COMMENTS,
 };

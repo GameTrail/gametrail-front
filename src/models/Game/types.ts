@@ -7,5 +7,5 @@ export type Game = {
   platform: string
   release: string
   image: string
-  comments?: Comment[]
+  comments: Comment[]
 };

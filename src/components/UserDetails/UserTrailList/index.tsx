@@ -12,7 +12,7 @@ const UserTrailList:FC<Props> = ({ trailList }) => {
   const handleRenderStatus = (trail: TrailList) => {
     const status = Date.parse(trail.endDate) > new Date().getTime();
     return status
-      ? <span style={{ backgroundColor: '#a3be8c' }}>In progress</span>
+      ? <span style={{ backgroundColor: '#5e81ac' }}>In progress</span>
       : <span style={{ backgroundColor: '#a3be8c' }}>Completed</span>;
   };
 

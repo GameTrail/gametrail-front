@@ -1,166 +1,37 @@
-import { GameListState } from '../GameList/types';
-import { RatingType } from '../Rating/types';
-import { Plan } from './types';
+import { MOCK_USER_GAME_LIST } from '../GameList/mock';
+import { MOCK_USER_RATING } from '../Rating/mock';
+import { MOCK_USER_TRAIL_LIST } from '../TrailList/mock';
 import type { User } from './types';
+
+export const MOCK_USER: User = {
+  id: 1,
+  username: 'jvegax',
+  profilePicture: 'https://cdnb.artstation.com/p/assets/images/images/035/213/423/large/mcashe-titanzekeef-dev.jpg?1614374087',
+  rating: MOCK_USER_RATING,
+  gameList: MOCK_USER_GAME_LIST,
+  trailList: MOCK_USER_TRAIL_LIST,
+};
 
 export const MOCK_USERS: User[] = [
   {
     id: 1,
-    username: 'LuisUsrDev',
-    email: 'luisUsrDev@gmail.com',
-    avatar: 'https://img.lovepik.com/free-png/20211208/lovepik-male-avatar-silhouette-png-image_401422660_wh1200.png',
-    rating: [
-      {
-        ratingType: RatingType.Kindness,
-        rating: 5,
-      },
-      {
-        ratingType: RatingType.Ability,
-        rating: 2,
-      },
-      {
-        ratingType: RatingType.Availability,
-        rating: 3,
-      },
-      {
-        ratingType: RatingType.Funny,
-        rating: 4,
-      },
-      {
-        ratingType: RatingType.Teamwork,
-        rating: 3,
-      },
-    ],
-    gameList: [
-      {
-        id: 1,
-        name: 'My Favorite Games',
-        image: 'https://upload.wikimedia.org/wikipedia/en/5/56/Super_Mario_Bros._box_art.png',
-        lastModified: '2021-08-01',
-        state: GameListState.FINISHED,
-      },
-      {
-        id: 2,
-        name: 'My Favorite Games',
-        image: 'https://upload.wikimedia.org/wikipedia/en/5/56/Super_Mario_Bros._box_art.png',
-        lastModified: '2021-08-01',
-        state: GameListState.PENDING,
-      },
-      {
-        id: 3,
-        name: 'My Favorite Games',
-        image: 'https://upload.wikimedia.org/wikipedia/en/5/56/Super_Mario_Bros._box_art.png',
-        lastModified: '2021-08-01',
-        state: GameListState.PENDING,
-      },
-    ],
-    plan: Plan.Premium,
+    username: 'jvegax',
+    profilePicture: '/images/Prf.jpg',
+    rating: MOCK_USER_RATING,
+    gameList: MOCK_USER_GAME_LIST,
   },
   {
     id: 2,
-    username: 'jvegax',
-    email: 'jvegax@gmail.com',
-    avatar: 'https://img.lovepik.com/free-png/20211208/lovepik-male-avatar-silhouette-png-image_401422660_wh1200.png',
-    rating: [
-      {
-        ratingType: RatingType.Kindness,
-        rating: 5,
-      },
-      {
-        ratingType: RatingType.Ability,
-        rating: 2,
-      },
-      {
-        ratingType: RatingType.Availability,
-        rating: 3,
-      },
-      {
-        ratingType: RatingType.Funny,
-        rating: 4,
-      },
-      {
-        ratingType: RatingType.Teamwork,
-        rating: 3,
-      },
-    ],
-    gameList: [
-      {
-        id: 1,
-        name: 'My Favorite Games',
-        image: 'https://upload.wikimedia.org/wikipedia/en/5/56/Super_Mario_Bros._box_art.png',
-        lastModified: '2021-08-01',
-        state: GameListState.FINISHED,
-      },
-      {
-        id: 2,
-        name: 'My Favorite Games',
-        image: 'https://upload.wikimedia.org/wikipedia/en/5/56/Super_Mario_Bros._box_art.png',
-        lastModified: '2021-08-01',
-        state: GameListState.PENDING,
-      },
-      {
-        id: 3,
-        name: 'My Favorite Games',
-        image: 'https://upload.wikimedia.org/wikipedia/en/5/56/Super_Mario_Bros._box_art.png',
-        lastModified: '2021-08-01',
-        state: GameListState.PENDING,
-      },
-    ],
-    plan: Plan.Premium,
+    username: 'josmarlop',
+    profilePicture: '/images/Prf.jpg',
+    rating: MOCK_USER_RATING,
+    gameList: MOCK_USER_GAME_LIST,
+  },
+  {
+    id: 3,
+    username: 'joscacgom',
+    profilePicture: '/images/Prf.jpg',
+    rating: MOCK_USER_RATING,
+    gameList: MOCK_USER_GAME_LIST,
   },
 ];
-
-export const MOCK_USER: User = {
-  id: 1,
-  username: 'LuisUsrDev',
-  email: 'luisUsrDev@gmail.com',
-  avatar: 'https://img.lovepik.com/free-png/20211208/lovepik-male-avatar-silhouette-png-image_401422660_wh1200.png',
-  rating: [
-    {
-      ratingType: RatingType.Kindness,
-      rating: 5,
-
-    },
-    {
-      ratingType: RatingType.Ability,
-      rating: 2,
-    },
-    {
-      ratingType: RatingType.Availability,
-      rating: 3,
-    },
-    {
-      ratingType: RatingType.Funny,
-      rating: 4,
-    },
-    {
-      ratingType: RatingType.Teamwork,
-      rating: 3,
-    },
-  ],
-
-  gameList: [
-    {
-      id: 1,
-      name: 'My Favorite Games',
-      image: 'https://upload.wikimedia.org/wikipedia/en/5/56/Super_Mario_Bros._box_art.png',
-      lastModified: '2021-08-01',
-      state: GameListState.FINISHED,
-    },
-    {
-      id: 2,
-      name: 'My Favorite Games',
-      image: 'https://upload.wikimedia.org/wikipedia/en/5/56/Super_Mario_Bros._box_art.png',
-      lastModified: '2021-08-01',
-      state: GameListState.PENDING,
-    },
-    {
-      id: 3,
-      name: 'My Favorite Games',
-      image: 'https://upload.wikimedia.org/wikipedia/en/5/56/Super_Mario_Bros._box_art.png',
-      lastModified: '2021-08-01',
-      state: GameListState.PENDING,
-    },
-  ],
-  plan: Plan.Premium,
-};

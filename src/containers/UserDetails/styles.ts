@@ -10,7 +10,7 @@ export const Container = styled.div<ContainerProps>`
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 80vh;
+    height: auto;
     padding: 0 20px;
 
     background-color: ${({ darkMode, theme }) => (darkMode ? theme.nord.gray0 : theme.nord.white2)};
@@ -18,6 +18,10 @@ export const Container = styled.div<ContainerProps>`
     h2 {
         color: ${({ darkMode, theme }) => (darkMode ? theme.nord.white0 : theme.nord.gray1)};
         margin-bottom: 1rem;
+    }
+
+    @media(max-width: 768px) {
+        height: auto;
     }
 `;
 
@@ -43,12 +47,12 @@ export const StatsDetails = styled.div`
     color: ${({ theme }) => theme.nord.white0};
     box-shadow: 0 0 10px 0 ${({ theme }) => theme.nord.gray3};
     border-radius: 10px;
-    width: 30%;
+    width: 520px;
     height: 100%;
     padding: 0 20px;
     @media (max-width: 1030px) {
         flex-direction: column;
-        width: 70%;
+        width: 330px;
         height: 100%;
         padding-top: 10px;
     };
@@ -61,7 +65,5 @@ export const ListsDetails = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    width: 100%;
-    height: 100%;
     padding: 0 20px;
 `;

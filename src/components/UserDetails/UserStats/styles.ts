@@ -23,7 +23,5 @@ export const Container = styled.div`
         color: var(--Red_Light, #fff4f0);
         letter-spacing: 0px;
         line-height: 1.2;
-
-    };
-   
+    }; 
 `;

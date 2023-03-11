@@ -1,7 +1,7 @@
 import Lottie from '../../Lottie';
 
-const GamerLottie = () => (
+const LoginLottie = () => (
   <Lottie path="/lotties/Login/login.json" />
 );
 
-export default GamerLottie;
+export default LoginLottie;

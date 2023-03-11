@@ -1,3 +1,6 @@
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Unbounded&display=swap');
+
 :root {
   --max-width: 1100px;
   --border-radius: 12px;

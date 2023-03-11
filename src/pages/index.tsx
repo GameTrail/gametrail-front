@@ -1,7 +1,5 @@
 import { Landing } from '@/containers';
 
-const Home = () => (
-  <Landing />
-);
+const index = () => <Landing />;
 
-export default Home;
+export default index;

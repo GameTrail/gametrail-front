@@ -1,18 +1,45 @@
 import type { FC } from 'react';
-import React from 'react';
-import type { UserDetails as UserDetailsProps } from '@/models/User/types';
-import { Container } from './styles';
+import React, { useMemo, useState } from 'react';
+import {
+  UserData, UserStats, UserTrailList, UserAverageRating, UserListsButtons, UserGameList,
+} from '@/components/UserDetails';
+import {
+  Container, InfoDetails, StatsDetails, ListsDetails,
+} from './styles';
+import type { Props } from './types';
+import { ButtonType } from './types';
 
-export type Props = {
-  userData: UserDetailsProps;
+const User: FC<Props> = ({ userData }) => {
+  const [selectedButton, setSelectedButton] = useState<ButtonType>(ButtonType.Trail);
+
+  const onClickButton = (button: ButtonType) => {
+    setSelectedButton(button);
+  };
+
+  const handleRenderList = useMemo(() => {
+    if (selectedButton === ButtonType.Trail) return <UserTrailList trailList={userData?.trailList} />;
+    if (selectedButton === ButtonType.Games) return <UserGameList gameList={userData?.gameList} />;
+    if (selectedButton === ButtonType.Comments) return null; // TODO: Call comment section here
+    return null;
+  }, [selectedButton, userData]);
+
+  return (
+    <Container darkMode={false}>
+      <InfoDetails darkMode={false}>
+        <UserData userName={userData.username} userAvatar={userData.profilePicture} />
+      </InfoDetails>
+      <h2>Stats</h2>
+      <StatsDetails>
+        <UserAverageRating userRating={userData.rating} />
+        <UserStats userRating={userData.rating} />
+      </StatsDetails>
+
+      <UserListsButtons onClickButton={onClickButton} selectedButton={selectedButton} />
+      <ListsDetails>
+        {handleRenderList}
+      </ListsDetails>
+    </Container>
+  );
 };
 
-const UserDetails: FC<Props> = () => (
-  <Container darkMode={false}>
-    {/* <UserData userName={userData.username} />
-    <UserStats />
-    <UserGameList gameList={userData.gameList} /> */}
-  </Container>
-);
-
-export default UserDetails;
+export default User;

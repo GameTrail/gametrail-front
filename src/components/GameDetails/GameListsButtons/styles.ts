@@ -22,44 +22,45 @@ export const ContainerButtons = styled.div`
     justify-content: center;
     color: ${({ theme }) => theme.nord.white0};
     border-radius: 8px;
-    margin-top: 1rem;
-    padding-top: 0.25rem;
-    padding-bottom: 0.25rem;
-    width: 20%;
+
     gap: 0.5rem;
-    button {
-        font-size: 1.2rem;
-        font-weight: 400;
-        cursor: pointer;
-        padding: 10px 20px;
-        color: ${({ theme }) => theme.nord.white0};
-        border-radius: 8px;
-        border: none;
-        background-color: ${({ theme }) => theme.nord.gray3};
-        &:hover {
-            transition: all 0.3s ease-in-out;
-            box-shadow: 0 0 10px 0;
-            background-color: ${({ theme }) => theme.nord.gray1};
-        }
-        &:active {
-            background-color: ${({ theme }) => theme.nord.gray1};
-        }
-        
-    }
+    margin-top: 1em;
+    margin-bottom: 1em;
+    
     @media (max-width: 768px) {
         flex-direction: row;
         align-items: center;
         justify-content: center;
-        width: 80%;
-        height: 100%;
-        padding-top: 0.5rem;
-        button {
-            font-size: 1rem;
-            font-weight: 400;
-            padding: 10px 20px;
-            border-radius: 8px;
-        }
-          
-        
+    };
+`;
+
+export type ButtonProps = {
+  active: boolean;
 };
+
+export const Button = styled.button<ButtonProps>`
+    font-size: 1.2rem;
+    font-weight: 400;
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: ${({ theme, active }) => (active ? `1px solid ${theme.nord.gray3};` : 'none;')}
+    width: 167px;
+
+    background-color: ${({ theme, active }) => (active ? theme.nord.white0 : theme.nord.gray3)};
+    color: ${({ theme, active }) => (active ? theme.nord.gray3 : theme.nord.white0)};
+
+    &:hover {
+        transition: all 0.3s ease-in-out;
+        box-shadow: 0 0 10px 0;
+        background-color: ${({ theme, active }) => (active ? theme.nord.white0 : theme.nord.gray3)};
+    }
+
+    @media (max-width: 768px) {
+        width: 105px;
+        font-size: 1rem;
+        font-weight: 400;
+        padding: 10px 20px;
+        border-radius: 8px;
+    }
 `;

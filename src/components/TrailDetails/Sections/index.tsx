@@ -3,20 +3,20 @@ import React from 'react';
 import Chat from '@/components/TrailDetails/Sections/Chat';
 import PlayersList from '@/components/TrailDetails/Sections/PlayersList';
 import { Button, Container, SectionContainer } from '@/components/TrailDetails/Sections/styles';
-import type { Trail as TrailData } from '@/models/Trail/types';
+import type { UserDetails } from '@/models/User/types';
 
 export type Props = {
-  trailData: TrailData;
+  usersData: UserDetails [];
 };
 
-const Sections:FC<Props> = ({ trailData }) => {
+const Sections:FC<Props> = ({ usersData }) => {
   const [selectedSection, setSelectedSection] = React.useState(3);
 
-  let section = <PlayersList trailData={trailData} />;
+  let section = <PlayersList usersData={usersData} />;
   if (selectedSection === 2) {
     section = <Chat />;
   } else if (selectedSection === 3) {
-    section = <PlayersList trailData={trailData} />;
+    section = <PlayersList usersData={usersData} />;
   }
 
   return (

@@ -7,16 +7,16 @@ export type ContainerProps = {
 export const Container = styled.div<ContainerProps>`
   flex-shrink: 0;
   width: 100%;
-  height: 114%;
+  height: 120%;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
   overflow: visible;
   position: relative;
   align-content: center;
   flex-wrap: nowrap;
-  padding: 5%;
+  padding: 5% 0 5% 0;
   color: ${({ darkMode, theme }) => (darkMode ? theme.nord.white0 : theme.nord.gray0)};
 
   background-color: ${({ darkMode, theme }) => (darkMode ? theme.nord.gray0 : theme.nord.white0)};
@@ -31,3 +31,8 @@ export const TrailDescription = styled.p`
     font-size: 1.5rem;
     padding-top:1rem;
 `;
+
+export const AdjustedContainer = styled.div`
+    width: 90%;
+    height: 100%;
+    `;

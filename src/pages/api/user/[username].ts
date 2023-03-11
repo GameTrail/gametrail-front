@@ -4,7 +4,7 @@ import type { UserDetails } from '@/models/User/types';
 
 export default function handler(
   req: NextApiRequest,
-  res: NextApiResponse<UserDetails>,
+  res: NextApiResponse<UserDetails[]>,
 ) {
   res.status(200).json(MOCK_USER_DETAILS);
 }

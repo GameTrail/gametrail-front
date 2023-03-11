@@ -1,10 +1,10 @@
+import type { UserDetails } from '@/models/User/types';
+
 export type TrailUser = {
   id: number;
-  trail: {
-    id: number;
-  };
-  user: {
-    id: number;
-  };
+  trail: number;
+
+  user: UserDetails;
+
   owner: boolean;
 };

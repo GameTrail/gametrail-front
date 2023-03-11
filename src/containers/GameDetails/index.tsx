@@ -3,6 +3,7 @@ import React, { useMemo, useState } from 'react';
 import { GameData, GameImages, GameTrailList } from '@/components/GameDetails';
 import GameListsButtons from '@/components/GameDetails/GameListsButtons';
 import type { Game } from '@/models/Game/types';
+import CommentsContainer from '../CommentsContainer';
 import { Container, ListsDetails } from './style';
 import { ButtonType } from './types';
 
@@ -18,7 +19,7 @@ const GameDetails:FC<Props> = ({ gameDetails }) => {
 
   const handleRenderList = useMemo(() => {
     if (selectedButton === ButtonType.Trail) return <GameTrailList trailList={gameDetails?.trailList} />;
-    if (selectedButton === ButtonType.Comments) return null; // TODO: Call comment section here
+    if (selectedButton === ButtonType.Comments) return <CommentsContainer comments={gameDetails.comments} />;
     return null;
   }, [selectedButton, gameDetails]);
   return (

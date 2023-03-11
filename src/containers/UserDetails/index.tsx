@@ -3,6 +3,7 @@ import React, { useMemo, useState } from 'react';
 import {
   UserData, UserStats, UserTrailList, UserAverageRating, UserListsButtons, UserGameList,
 } from '@/components/UserDetails';
+import CommentsContainer from '../CommentsContainer';
 import {
   Container, InfoDetails, StatsDetails, ListsDetails,
 } from './styles';
@@ -19,7 +20,7 @@ const User: FC<Props> = ({ userData }) => {
   const handleRenderList = useMemo(() => {
     if (selectedButton === ButtonType.Trail) return <UserTrailList trailList={userData?.trailList} />;
     if (selectedButton === ButtonType.Games) return <UserGameList gameList={userData?.gameList} />;
-    if (selectedButton === ButtonType.Comments) return null; // TODO: Call comment section here
+    if (selectedButton === ButtonType.Comments) return <CommentsContainer comments={userData.comments} />; // TODO: Call comment section here
     return null;
   }, [selectedButton, userData]);
 

@@ -1,6 +1,5 @@
 import type { FC } from 'react';
 import React from 'react';
-
 import type { GetServerSideProps, GetServerSidePropsContext } from 'next';
 import { GameDetails } from '@/containers';
 import type { Game as GameProps } from '@/models/Game/types';

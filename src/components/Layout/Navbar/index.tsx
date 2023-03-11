@@ -13,7 +13,7 @@ const Navbar = () => (
       <MenuItem href="/">
         <h4>About</h4>
       </MenuItem>
-      <MenuItem href="/logout">
+      <MenuItem href="/auth/logout">
         <FontAwesomeIcon icon={faArrowRightFromBracket} />
       </MenuItem>
     </Menu>

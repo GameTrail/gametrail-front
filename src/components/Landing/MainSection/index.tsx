@@ -14,7 +14,7 @@ const MainSection = () => (
         Descubre una nueva manera de jugar en comunidad y guardar el progreso de tus juegos.
       </Subtitle>
       <AuthButtons>
-        <Link href="/login">
+        <Link href="/auth/login">
           <Button primary>Iniciar sesión</Button>
         </Link>
         <Button animated>

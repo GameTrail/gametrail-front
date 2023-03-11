@@ -22,7 +22,7 @@ const Login = () => {
   const [message, setMessage] = useState<string>('');
 
   const handleLogin = (gametrailUsername: string, gametrailPassword: string) => {
-    const API_URL = 'http://127.0.0.1:/api/login/';
+    const API_URL = 'http://127.0.0.1:/api/auth/login/';
 
     const options = {
       method: 'POST',
@@ -57,7 +57,7 @@ const Login = () => {
       const data = {
         token,
       };
-      const API_URL_USER = 'http://127.0.0.1:3000/api/getuser/';
+      const API_URL_USER = 'http://127.0.0.1:3000/api/user/';
       const optionsUser = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

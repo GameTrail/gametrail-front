@@ -1,7 +1,7 @@
-import useDecide from './useGameTrail';
+import useGameTrail from './useGameTrail';
 
 const useAuth = () => {
-  const { user } = useDecide();
+  const { user } = useGameTrail();
   const authenticated = user !== null;
   return { authenticated };
 };

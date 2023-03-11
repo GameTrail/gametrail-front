@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import GameTrailContext from '@/contexts/GameTrailContext';
 
-const useDecide = () => useContext(GameTrailContext);
+const useGameTrail = () => useContext(GameTrailContext);
 
-export default useDecide;
+export default useGameTrail;

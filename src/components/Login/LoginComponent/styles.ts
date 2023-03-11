@@ -77,3 +77,13 @@ export const Input = styled.input`
     font-size: 0.7rem;
   };
 `;
+
+export const ErrorContainer = styled.div`
+  text-align: center;
+  border-radius: 8px;
+  background-color: #ff7373;
+  border-color: black;
+  width: 80%;
+  height: auto;
+  margin: auto;
+`;

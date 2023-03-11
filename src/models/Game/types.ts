@@ -2,7 +2,9 @@ export type Game = {
   id: number
   name: string
   genre: string
-  platform: string
-  release: string
+  platforms: string[]
+  releaseDate: string
   image: string
+  photos: string[]
+  description: string
 };

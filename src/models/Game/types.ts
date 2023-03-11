@@ -1,3 +1,5 @@
+import type { TrailList } from '../TrailList/types';
+
 export type Game = {
   id: number
   name: string
@@ -7,4 +9,5 @@ export type Game = {
   image: string
   photos: string[]
   description: string
+  trailList: TrailList[];
 };

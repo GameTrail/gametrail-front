@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const DateDiv = styled.div`
   flex-shrink: 0;
-  width: 162px;
+  width: 100%;
   height: 55px;
   display: flex;
   align-content: center;
@@ -17,6 +17,7 @@ export const DateDiv = styled.div`
 
 export const DateContainer = styled.div`
     display: flex;
+  width: 10em;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;

@@ -10,6 +10,11 @@ export const InfoRow = styled.div`
     align-items: center;
     align-content: center;
     flex-wrap: nowrap;
+  //flex changes to column on mobile
+    @media (max-width: 892px) {
+        flex-direction: column;
+      
+    }
     `;
 
 export const JoinButton = styled.div`
@@ -47,6 +52,7 @@ export const JoinContainer = styled.div`
     align-items: center;
     align-content: center;
     flex-wrap: nowrap;
+  padding-top: 1rem;
     `;
 
 export const JoinPlayersCount = styled.div`

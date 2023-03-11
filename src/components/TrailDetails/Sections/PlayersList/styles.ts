@@ -10,7 +10,7 @@ export const PlayerListElement = styled.li`
     align-items: center;
     align-content: center;
     flex-wrap: nowrap;
-    font-size: 1.5rem;
+    font-size: 1.5em;
     `;
 
 export const PlayerListContainer = styled.ul`
@@ -30,8 +30,8 @@ export const PlayerListHeader = styled.div`
     align-items: center;
     align-content: center;
     flex-wrap: nowrap;
-    font-size: 1.5rem;
-    padding: 4% 10% 1% 12%;
+    font-size: 80%;
+    padding: 4% 16% 1% 12%;
     `;
 
 export const Container = styled.div`
@@ -43,10 +43,14 @@ export const Container = styled.div`
 `;
 
 export const ProfilePicture = styled.img`
-    width: 6rem;
-    height: 6rem;
+    width: 3em;
+    height: 3em;
     border-radius: 50%;
     margin-right: 1rem;
+   @media (max-width: 892px) {
+    width: 2em;
+    height: 2em;
+   }
 `;
 
 export const PlayerName = styled.span`
@@ -56,6 +60,9 @@ export const PlayerName = styled.span`
     display: flex;
     align-items:  flex-start;
     justify-content: flex-start;
+  @media (max-width: 892px) {
+    width: 70%;
+  }
 `;
 
 export const PlayerValue = styled.span`
@@ -64,4 +71,7 @@ export const PlayerValue = styled.span`
   width: 20%;
     display: flex;
     flex-direction: row;
+  @media (max-width: 892px) {
+    font-size: 1rem;
+  }
     `;

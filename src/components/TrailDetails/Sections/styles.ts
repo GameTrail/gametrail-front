@@ -3,18 +3,18 @@ import styled from 'styled-components';
 export const Button = styled.button`
   display: flex;
   flex-direction: row;
-  width: 20%;
-  height: 3rem;
+  width: 100%;
+  height: 3em;
   justify-content: center;
   align-items: center;
   align-content: center;
   flex-wrap: nowrap;
-  border-radius: 1.2rem;
+  border-radius: 1.2em;
   border: 0;
       background-color: ${({ theme }) => (theme.nord.gray3)};
     color: ${({ theme }) => theme.nord.white0};
     font-weight: 500;
-    font-size: 1.6rem;
+    font-size: 1.2em;
     cursor: pointer;
     transition: all 0.2s ease-in-out;
     &:hover {

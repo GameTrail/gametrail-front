@@ -57,7 +57,7 @@ export const Button = styled.button<ButtonProps>`
     }
 
     @media (max-width: 768px) {
-        width: 105px;
+        width: 125px;
         font-size: 1rem;
         font-weight: 400;
         padding: 10px 20px;

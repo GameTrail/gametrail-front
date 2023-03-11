@@ -45,7 +45,7 @@ const GameTrailProvider = (props: GameTrailProviderProps) => {
       localStorage.removeItem('token');
       localStorage.removeItem('user');
 
-      const API_URL = 'http://127.0.0.1:3000/api/logout/';
+      const API_URL = 'https://gametrail.vercel.app/api/logout/';
       const options = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

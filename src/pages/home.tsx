@@ -8,7 +8,7 @@ export type Props = {
 };
 
 export const getServerSideProps: GetServerSideProps<Props> = async () => {
-  const response = await fetch('http://127.0.0.1:3000/api/trailgang/');
+  const response = await fetch('https://gametrail.vercel.app/api/trailgang/');
   const data = await response.json();
 
   return {

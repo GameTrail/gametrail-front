@@ -1,5 +1,6 @@
+import type { Comment } from '../Comment/types';
 import type { GameList } from '../GameList/types';
-import type { Rating } from '../Rating/type';
+import type { Rating } from '../Rating/types';
 import type { TrailList } from '../TrailList/types';
 
 export type User = {
@@ -9,4 +10,5 @@ export type User = {
   rating: Rating[];
   gameList: GameList[];
   trailList?: TrailList[];
+  comments: Comment[];
 };

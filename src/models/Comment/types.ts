@@ -1,10 +1,10 @@
 import type { Game } from '../Game/types';
-import type { User } from '../User/types';
+import type { CommentUser } from './mock';
 
 export type Comment = {
   id: number,
   text: string,
-  commentedUser: User,
-  userWhoComments: User,
+  commentedUser: CommentUser,
+  userWhoComments: CommentUser,
   game: Game
 };

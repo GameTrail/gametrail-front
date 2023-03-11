@@ -1,3 +1,4 @@
+import { MOCK_USER_COMMENTS } from '../Comment/mock';
 import { MOCK_USER_GAME_LIST } from '../GameList/mock';
 import { MOCK_USER_RATING } from '../Rating/mock';
 import { MOCK_USER_TRAIL_LIST } from '../TrailList/mock';
@@ -10,6 +11,7 @@ export const MOCK_USER: User = {
   rating: MOCK_USER_RATING,
   gameList: MOCK_USER_GAME_LIST,
   trailList: MOCK_USER_TRAIL_LIST,
+  comments: MOCK_USER_COMMENTS,
 };
 
 export const MOCK_USERS: User[] = [
@@ -19,6 +21,8 @@ export const MOCK_USERS: User[] = [
     profilePicture: '/images/Prf.jpg',
     rating: MOCK_USER_RATING,
     gameList: MOCK_USER_GAME_LIST,
+    trailList: MOCK_USER_TRAIL_LIST,
+    comments: MOCK_USER_COMMENTS,
   },
   {
     id: 2,
@@ -26,6 +30,8 @@ export const MOCK_USERS: User[] = [
     profilePicture: '/images/Prf.jpg',
     rating: MOCK_USER_RATING,
     gameList: MOCK_USER_GAME_LIST,
+    trailList: MOCK_USER_TRAIL_LIST,
+    comments: MOCK_USER_COMMENTS,
   },
   {
     id: 3,
@@ -33,5 +39,7 @@ export const MOCK_USERS: User[] = [
     profilePicture: '/images/Prf.jpg',
     rating: MOCK_USER_RATING,
     gameList: MOCK_USER_GAME_LIST,
+    trailList: MOCK_USER_TRAIL_LIST,
+    comments: MOCK_USER_COMMENTS,
   },
 ];

@@ -1,5 +1,3 @@
-import type { GameDetails } from "../Game/types";
-
 export type TrailList = {
   id: number;
   name: string;

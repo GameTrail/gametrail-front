@@ -1,23 +1,22 @@
 import type { FC } from 'react';
-import type { GetServerSideProps } from 'next';
+import useSWR from 'swr';
+import Error from '@/components/Error';
+import LoadingSpinner from '@/components/LoadingSpinner';
 import { Home as HomeComponent } from '@/containers';
 import type { TrailGang } from '@/models/Trail/types';
+import { fetcher } from '@/utils/fetcher';
 
 export type Props = {
   data: TrailGang;
 };
 
-export const getServerSideProps: GetServerSideProps<Props> = async () => {
-  const response = await fetch('http://127.0.0.1:3000/api/trailgang/');
-  const data = await response.json();
+const Home: FC<Props> = () => {
+  const { data, error } = useSWR('https://gametrail.vercel.app/api/trailgang', fetcher);
 
-  return {
-    props: {
-      data,
-    },
-  };
+  if (error) return <Error />;
+  if (!data) return <LoadingSpinner />;
+
+  return <HomeComponent trailGang={data} />;
 };
-
-const Home: FC<Props> = ({ data }) => <HomeComponent trailGang={data} />;
 
 export default Home;

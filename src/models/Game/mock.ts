@@ -116,3 +116,4 @@ export const MOCK_GAME: Game = {
   trailList: MOCK_GAME_TRAIL_LIST,
   comments: MOCK_GAME_COMMENTS,
 };
+

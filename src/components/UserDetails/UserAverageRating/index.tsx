@@ -1,6 +1,6 @@
 import React from 'react';
 import type { FC } from 'react';
-import type { Rating } from '@/models/Rating/type';
+import type { Rating } from '@/models/Rating/types';
 import { Container } from './styles';
 
 export type Props = {

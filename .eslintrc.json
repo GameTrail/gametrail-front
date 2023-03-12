@@ -24,8 +24,8 @@
     "react/jsx-props-no-spreading": "off",
     "import/no-extraneous-dependencies": "off" ,
     "import/prefer-default-export": "off",
+    "linebreak-style": "off",
     "max-len": "off",
-    "import/no-cycle": "off",
     "react/function-component-definition": [
       "error",
       {

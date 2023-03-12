@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 import type { FC } from 'react';
 import React from 'react';
 

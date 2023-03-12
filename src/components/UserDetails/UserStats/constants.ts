@@ -1,4 +1,4 @@
-import { RatingType } from '@/models/Rating/type';
+import { RatingType } from '@/models/Rating/types';
 import theme from '@/theme';
 
 export const COLOR_MAP = {

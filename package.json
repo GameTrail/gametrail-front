@@ -11,7 +11,7 @@
     "build": "next build",
     "start": "next start",
     "tsc": "tsc --noEmit",
-    "lint": "tsc --noEmit && eslint --cache 'src/**/*.ts?(x)'",
+    "lint": "tsc --noEmit && eslint --cache \"src/**/*.ts?(x)\"",
     "fix": "yarn lint --fix",
     "prepare": "husky install"
   },
@@ -26,7 +26,7 @@
     "@types/node": "18.11.18",
     "@types/react": "18.0.27",
     "@types/react-dom": "18.0.10",
-    "@types/styled-components": "5.1.26",
+    "@types/styled-components": "^5.1.26",
     "eslint": "8.33.0",
     "eslint-config-next": "13.1.6",
     "lottie-web": "5.10.2",

@@ -9,20 +9,16 @@ import {
 } from './styles';
 
 const Login = () => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [username, setUsername] = useState('');
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [password, setPassword] = useState('');
 
   const { handleSetUser, handleSetToken } = useGameTrail();
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [userLoading, setUserLoading] = useState<boolean>(true);
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [message, setMessage] = useState<string>('');
 
   const handleLogin = (gametrailUsername: string, gametrailPassword: string) => {
-    const API_URL = 'https://gametrail.vercel.app/api/auth/login/';
+    const API_URL = 'http://127.0.0.1:/api/auth/login/';
 
     const options = {
       method: 'POST',
@@ -30,7 +26,6 @@ const Login = () => {
       body: JSON.stringify({ gametrailUsername, gametrailPassword }),
     };
 
-    // 1 - Get user auth token to verify login
     const getToken = async () => {
       try {
         const response = await fetch(API_URL, options);
@@ -43,21 +38,18 @@ const Login = () => {
         setUserLoading(false);
         setMessage('No se puede iniciar sesión con estas credenciales');
       } catch (error) {
-      // eslint-disable-next-line no-console
-        console.log({ error });
         setUserLoading(false);
         setMessage('No se puede iniciar sesión con estas credenciales');
       }
       return null;
     };
 
-    // 2 - Get user data
     const getUser = async () => {
       const token = await getToken();
       const data = {
         token,
       };
-      const API_URL_USER = 'https://gametrail.vercel.app/api/user/';
+      const API_URL_USER = 'http://127.0.0.1:3000/api/user/';
       const optionsUser = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -67,8 +59,6 @@ const Login = () => {
         const response = await fetch(API_URL_USER, optionsUser);
         if (response.ok) {
           const dataUser = await response.json();
-          // eslint-disable-next-line no-console
-          console.log({ dataUser });
           const user = normalizeUser(dataUser, token);
           handleSetUser(user);
           setMessage('');

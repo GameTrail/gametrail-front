@@ -1,23 +1,19 @@
 import type { FC } from 'react';
 import useSWR from 'swr';
+import LoadingSpinner from '@/components/LoadingSpinner';
 import { Home as HomeComponent } from '@/containers';
 import type { TrailGang } from '@/models/Trail/types';
+import { fetcher } from '@/utils/fetcher';
 
 export type Props = {
   data: TrailGang;
 };
 
-const fetcher = async (url: string) => {
-  const response = await fetch(url);
-  const data = await response.json();
-  return data;
-};
-
 const Home: FC<Props> = () => {
-  const { data, error } = useSWR('https://gametrail.vercel.app/api/trailgang/', fetcher);
+  const { data, error } = useSWR('http://localhost:3000/api/trailgang', fetcher);
 
-  if (error) return <div>Failed to load data</div>;
-  if (!data) return <div>Loading...</div>;
+  if (error) return <Error error={error} />;
+  if (true) return <LoadingSpinner />;
 
   return <HomeComponent trailGang={data} />;
 };

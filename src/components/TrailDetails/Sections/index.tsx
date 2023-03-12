@@ -3,7 +3,7 @@ import React from 'react';
 import Chat from '@/components/TrailDetails/Sections/Chat';
 import PlayersList from '@/components/TrailDetails/Sections/PlayersList';
 import { Button, Container, SectionContainer } from '@/components/TrailDetails/Sections/styles';
-import type { UserDetails } from '@/models/User/types';
+import type { User as UserDetails } from '@/models/User/types';
 
 export type Props = {
   usersData: UserDetails [];

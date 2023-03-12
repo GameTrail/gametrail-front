@@ -1,4 +1,4 @@
-import type { UserDetails } from '@/models/User/types';
+import type { User as UserDetails } from '@/models/User/types';
 
 export type TrailUser = {
   id: number;

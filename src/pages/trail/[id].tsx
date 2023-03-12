@@ -5,7 +5,7 @@ import type { GetServerSideProps, GetServerSidePropsContext } from 'next';
 import TrailDetails from '@/containers/TrailDetails';
 import type { Trail as TrailData } from '@/models/Trail/types';
 import type { TrailUser } from '@/models/TrailUser/types';
-import type { UserDetails as UserData } from '@/models/User/types';
+import type { User as UserData } from '@/models/User/types';
 
 export type Props = {
   data: TrailData;

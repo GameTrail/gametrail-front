@@ -3,7 +3,7 @@ import React from 'react';
 
 import type { GetServerSideProps, GetServerSidePropsContext } from 'next';
 import { UserDetails } from '@/containers';
-import type { UserDetails as UserDetailsProps } from '@/models/User/types';
+import type { User as UserDetailsProps } from '@/models/User/types';
 
 export type Props = {
   data: UserDetailsProps;

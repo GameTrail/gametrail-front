@@ -3,7 +3,7 @@ import React from 'react';
 import PlusInfoRow from '@/components/TrailDetails/InfoRow/indext';
 import Sections from '@/components/TrailDetails/Sections';
 import type { Trail as TrailData } from '@/models/Trail/types';
-import type { UserDetails } from '@/models/User/types';
+import type { User as UserDetails } from '@/models/User/types';
 import {
   Container, TrailTitle, TrailDescription, AdjustedContainer,
 } from './styles';

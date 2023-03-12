@@ -6,7 +6,7 @@ import {
   PlayerListContainer,
   PlayerListElement, PlayerListHeader, PlayerName, PlayerValue, ProfilePicture,
 } from '@/components/TrailDetails/Sections/PlayersList/styles';
-import type { UserDetails as UserData } from '@/models/User/types';
+import type { User as UserData } from '@/models/User/types';
 
 export type Props = {
   usersData: UserData[];

@@ -1,5 +1,6 @@
 import type { FC } from 'react';
 import useSWR from 'swr';
+import Error from '@/components/Error';
 import LoadingSpinner from '@/components/LoadingSpinner';
 import { Home as HomeComponent } from '@/containers';
 import type { TrailGang } from '@/models/Trail/types';
@@ -10,10 +11,10 @@ export type Props = {
 };
 
 const Home: FC<Props> = () => {
-  const { data, error } = useSWR('http://localhost:3000/api/trailgang', fetcher);
+  const { data, error } = useSWR('https://gametrail.vercel.app/api/trailgang', fetcher);
 
-  if (error) return <Error error={error} />;
-  if (true) return <LoadingSpinner />;
+  if (error) return <Error />;
+  if (!data) return <LoadingSpinner />;
 
   return <HomeComponent trailGang={data} />;
 };

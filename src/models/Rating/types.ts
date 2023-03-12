@@ -9,4 +9,6 @@ export enum RatingType {
 export type Rating = {
   ratingType: RatingType;
   rating: number;
+  ratedUser?: string,
+  userWhoRates?: string
 };

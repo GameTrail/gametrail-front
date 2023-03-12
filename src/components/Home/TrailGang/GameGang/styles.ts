@@ -23,7 +23,7 @@ export const GangContainer = styled.div`
 `;
 
 export const Title = styled.h2`
-  color: ${({ theme }) => theme.nord.white2};
+  color: ${({ theme }) => theme.nord.white1};
   line-height: 1.2;
   text-align: center;
   font-size: 1.6rem;
@@ -68,7 +68,7 @@ export const DataContainer = styled.div`
 `;
 
 export const DataText = styled.text`
-  color: ${({ theme }) => theme.nord.white2};
+  color: ${({ theme }) => theme.nord.white0};
 `;
 
 export const UsersContainer = styled.div`

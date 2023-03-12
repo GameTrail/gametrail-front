@@ -20,5 +20,4 @@ export const CarouselContainer = styled.div`
 
 export const CarouselImage = styled(Image)`
   border-radius: 9px;
-  box-shadow: 0 0 10px 0 ${({ theme }) => theme.nord.gray3};
 `;

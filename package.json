@@ -26,7 +26,7 @@
     "@types/node": "18.11.18",
     "@types/react": "18.0.27",
     "@types/react-dom": "18.0.10",
-    "@types/styled-components": "5.1.26",
+    "@types/styled-components": "^5.1.26",
     "eslint": "8.33.0",
     "eslint-config-next": "13.1.6",
     "framer-motion": "^10.2.4",
@@ -48,7 +48,7 @@
     "@typescript-eslint/parser": "5.50.0",
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-airbnb-typescript": "17.0.0",
-    "husky": "^8.0.3",
+    "husky": "8.0.3",
     "lint-staged": "13.1.0",
     "prettier": "2.8.3"
   },

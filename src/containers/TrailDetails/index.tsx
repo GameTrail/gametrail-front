@@ -1,5 +1,6 @@
 import type { FC } from 'react';
 import React from 'react';
+import { motion } from 'framer-motion';
 import PlusInfoRow from '@/components/TrailDetails/InfoRow/indext';
 import Sections from '@/components/TrailDetails/Sections';
 import type { Trail as TrailData } from '@/models/Trail/types';
@@ -16,12 +17,18 @@ export type Props = {
 const TrailDetails: FC<Props> = ({ trailData, usersData }) => (
   <Container darkMode={false}>
     <AdjustedContainer>
-      <TrailTitle>{trailData.name}</TrailTitle>
-
-      <TrailDescription>{trailData.description}</TrailDescription>
-
-      <PlusInfoRow trailData={trailData} />
-      <Sections usersData={usersData} />
+      <motion.div animate={{ x: 0, opacity: 1 }} initial={{ x: 100, opacity: 0 }} transition={{ type: 'easeOut', bounce: 0, duration: 0.8 }}>
+        <TrailTitle>{trailData.name}</TrailTitle>
+      </motion.div>
+      <motion.div animate={{ x: 0, opacity: 1 }} initial={{ x: 100, opacity: 0 }} transition={{ type: 'easeOut', bounce: 0, duration: 1 }}>
+        <TrailDescription>{trailData.description}</TrailDescription>
+      </motion.div>
+      <motion.div animate={{ x: 0, opacity: 1 }} initial={{ x: 100, opacity: 0 }} transition={{ type: 'easeOut', bounce: 0, duration: 1.2 }}>
+        <PlusInfoRow trailData={trailData} />
+      </motion.div>
+      <motion.div animate={{ x: 0, opacity: 1 }} initial={{ x: 100, opacity: 0 }} transition={{ type: 'easeOut', bounce: 0, duration: 1.4 }}>
+        <Sections usersData={usersData} />
+      </motion.div>
     </AdjustedContainer>
 
   </Container>

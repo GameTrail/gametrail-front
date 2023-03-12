@@ -6,6 +6,7 @@ import {
   PlayerListContainer,
   PlayerListElement, PlayerListHeader, PlayerName, PlayerValue, ProfilePicture,
 } from '@/components/TrailDetails/Sections/PlayersList/styles';
+import type { Rating } from '@/models/Rating/types';
 import type { User as UserData } from '@/models/User/types';
 
 export type Props = {
@@ -34,8 +35,9 @@ const PlayersList: FC<Props> = ({ usersData }) => (
             </PlayerName>
             <PlayerValue>
               {// We need to average all ratings for this user
-                                user.rating.reduce((a, b, c) => a + c, 0) / user.rating.length
-                            }
+                                user.rating.map((rating: Rating) => rating.rating).reduce((a: number, b: number) => a + b, 0) / user.rating.length
+}
+
               /5 ⭐
             </PlayerValue>
 

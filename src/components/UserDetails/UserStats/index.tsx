@@ -4,49 +4,31 @@ import type { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { faCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import type { Rating } from '@/models/Rating/type';
+import type { Rating } from '@/models/Rating/types';
+import { COLOR_MAP } from './constants';
 import { Container } from './styles';
 
 export type Props = {
   userRating: Rating[];
 };
 
-const COLORS = [{
-  ratingType: 'Kindness',
-  color: '#ff9b05',
-},
-{
-  ratingType: 'Ability',
-  color: '#ebcb8b',
-},
-{
-  ratingType: 'Availability',
-  color: '#a3be8c',
-},
-{
-  ratingType: 'Funny',
-  color: '#b48ead',
-},
-{
-  ratingType: 'Teamwork',
-  color: '#bf616a',
-},
-];
+const UserStats:FC<Props> = ({ userRating }) => {
+  const handleRenderStats = () => userRating.map((rating) => (
+    <div key={rating.ratingType}>
+      <span>
+        <FontAwesomeIcon icon={faCircle as IconProp} color={COLOR_MAP[rating.ratingType]} />
+      </span>
+      {rating.rating}
+      {' '}
+      {rating.ratingType}
+    </div>
+  ));
 
-const UserStats:FC<Props> = ({ userRating }) => (
-  <Container>
-
-    {userRating.map((rating) => (
-      <div key={rating.ratingType}>
-        <span>
-          <FontAwesomeIcon icon={faCircle as IconProp} color={COLORS.filter((item) => item?.ratingType === rating?.ratingType).at(0)?.color} />
-        </span>
-        {rating.rating}
-        {' '}
-        {rating.ratingType}
-      </div>
-    ))}
-  </Container>
-);
+  return (
+    <Container>
+      {handleRenderStats()}
+    </Container>
+  );
+};
 
 export default UserStats;

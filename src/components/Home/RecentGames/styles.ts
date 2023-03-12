@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import Image from 'next/image';
 
 export const Title = styled.h1`
-  color: ${({ theme }) => theme.nord.white2};
+  color: ${({ theme }) => theme.nord.gray2};
   line-height: 1.2;
   text-align: center;
   font-size: 1.6rem;
@@ -18,7 +18,6 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   padding-top: 3%;
-  background: #4c566a;
   position: relative;
   align-content: center;
   flex-wrap: nowrap;

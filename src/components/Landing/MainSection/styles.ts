@@ -106,7 +106,7 @@ export const Button = styled.button<ButtonProps>`
         }
     `}
 
-    @media; (max-width: 768px) {
+    @media (max-width: 768px) {
         width: 90%;
     }
     &:hover {

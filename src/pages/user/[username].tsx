@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 import type { FC } from 'react';
 import React from 'react';
 
@@ -11,7 +12,7 @@ export type Props = {
 
 export const getServerSideProps: GetServerSideProps<Props> = async (context: GetServerSidePropsContext) => {
   const username = context.params?.username as string;
-  const response = await fetch(`http://127.0.0.1:3000/api/user/${username}`);
+  const response = await fetch(`https://gametrail.vercel.app/api/user/${username}`);
   const data = await response.json();
 
   return {

@@ -20,7 +20,7 @@ const User: FC<Props> = ({ userData }) => {
   const handleRenderList = useMemo(() => {
     if (selectedButton === ButtonType.Trail) return <UserTrailList trailList={userData?.trailList} />;
     if (selectedButton === ButtonType.Games) return <UserGameList gameList={userData?.gameList} />;
-    if (selectedButton === ButtonType.Comments) return <CommentsContainer comments={userData.comments} />; // TODO: Call comment section here
+    if (selectedButton === ButtonType.Comments) return <CommentsContainer comments={userData.comments} />;
     return null;
   }, [selectedButton, userData]);
 

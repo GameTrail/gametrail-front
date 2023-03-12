@@ -1,8 +1,8 @@
 import type { FC } from 'react';
 import React from 'react';
 import Image from 'next/image';
+import type { CommentUser } from '@/models/Comment/mock';
 import type { Game } from '@/models/Game/types';
-import type { User } from '@/models/User/types';
 import {
   AvatarContainer,
   CommentContainer,
@@ -15,8 +15,8 @@ export type Props = {
   comment: {
     id: number,
     text: string,
-    commentedUser: User,
-    userWhoComments: User,
+    commentedUser: CommentUser,
+    userWhoComments: CommentUser,
     game: Game
   }
 };

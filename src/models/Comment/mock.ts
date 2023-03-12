@@ -71,7 +71,7 @@ export const MOCK_GAME_COMMENTS: Comment[] = [
     userWhoComments: {
       id: 1,
       username: 'LuisUsrDev',
-      profilePicture: 'https://img.lovepik.com/free-png/20211208/lovepik-male-avatar-silhouette-png-image_401422660_wh1200.png',
+      profilePicture: 'https://cdn.pixabay.com/photo/2017/12/25/22/52/tiger-3039280_1280.jpg',
     },
     game: {
       id: 4,
@@ -90,7 +90,7 @@ export const MOCK_GAME_COMMENTS: Comment[] = [
   },
   {
     id: 2,
-    text: 'La gente tiene este juego como su fuera una obra maestra, menudo tostón',
+    text: 'La gente tiene este juego como si fuera una obra maestra, menudo tostón',
     commentedUser: {
       id: 1,
       username: 'LuisUsrDev',
@@ -98,8 +98,8 @@ export const MOCK_GAME_COMMENTS: Comment[] = [
     },
     userWhoComments: {
       id: 2,
-      username: 'jvegax',
-      profilePicture: 'https://img.lovepik.com/free-png/20211208/lovepik-male-avatar-silhouette-png-image_401422660_wh1200.png',
+      username: 'wolf223',
+      profilePicture: 'https://cdn.pixabay.com/photo/2017/10/22/17/54/wolf-2878633_1280.jpg',
     },
     game: {
       id: 4,

@@ -14,7 +14,7 @@ const CommentsContainer: FC<Props> = ({ comments }) => {
   const [commentsArray, setCommentsArray] = useState(comments);
   const [input, setInput] = useState('');
 
-  const handleNewComment = () => {
+  const onClickNewComment = () => {
     if (input !== '' && input.length > 0) {
       const text = input;
       const commentToAdd = {
@@ -38,7 +38,7 @@ const CommentsContainer: FC<Props> = ({ comments }) => {
 
   return (
     <Container>
-      <InputFieldSection input={input} handleNewComment={handleNewComment} handleInput={handleInput} />
+      <InputFieldSection input={input} onClickNewComment={onClickNewComment} handleInput={handleInput} />
       <CommentsSection comments={commentsArray} />
     </Container>
   );

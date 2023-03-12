@@ -8,10 +8,14 @@ export type Props = {
   comments: Comment[] | undefined
 };
 
-const CommentsSection: FC<Props> = ({ comments }) => (
-  <CommentsContainer>
-    {comments?.reverse().map((comment) => <CommentComponent key={comment.id} comment={comment} />)}
-  </CommentsContainer>
-);
+const CommentsSection: FC<Props> = ({ comments }) => {
+  const handleRenderComments = () => comments?.reverse().map((comment) => <CommentComponent key={comment.id} comment={comment} />);
+
+  return (
+    <CommentsContainer>
+      {handleRenderComments()}
+    </CommentsContainer>
+  );
+};
 
 export default CommentsSection;

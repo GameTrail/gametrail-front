@@ -8,18 +8,19 @@ export type User = {
   username: string;
   auth_token: string;
   profilePicture: string;
-  rating: Rating[];
-  gameList: GameList[];
-  trailList?: TrailList[];
-  comments: Comment[];
+  rating: Rating[] | [];
+  gameList: GameList[] | [];
+  trailList: TrailList[] | [];
+  comments: Comment[] | [];
 };
 
 export const normalizeUser = (user: any, token: string | null): User => ({
-  id: user?.id || 0,
-  username: user?.username || '',
+  id: user?.id ?? 0,
+  username: user?.username ?? '',
   auth_token: token ?? '',
-  profilePicture: user?.profilePicture || '',
-  rating: user?.rating || '',
-  gameList: user?.gameList || '',
-  trailList: user?.trailList || '',
+  profilePicture: user?.profilePicture ?? '',
+  rating: user?.rating ?? [],
+  gameList: user?.gameList ?? [],
+  trailList: user?.trailList ?? [],
+  comments: user?.comments ?? [],
 });

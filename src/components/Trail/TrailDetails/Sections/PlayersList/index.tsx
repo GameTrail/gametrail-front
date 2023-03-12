@@ -5,7 +5,7 @@ import {
   Container,
   PlayerListContainer,
   PlayerListElement, PlayerListHeader, PlayerName, PlayerValue, ProfilePicture,
-} from '@/components/TrailDetails/Sections/PlayersList/styles';
+} from '@/components/Trail/TrailDetails/Sections/PlayersList/styles';
 import type { Rating } from '@/models/Rating/types';
 import type { User as UserData } from '@/models/User/types';
 

@@ -1,8 +1,8 @@
 import type { FC } from 'react';
 import React from 'react';
-import Chat from '@/components/TrailDetails/Sections/Chat';
-import PlayersList from '@/components/TrailDetails/Sections/PlayersList';
-import { Button, Container, SectionContainer } from '@/components/TrailDetails/Sections/styles';
+import Chat from '@/components/Trail/TrailDetails/Sections/Chat';
+import PlayersList from '@/components/Trail/TrailDetails/Sections/PlayersList';
+import { Button, Container, SectionContainer } from '@/components/Trail/TrailDetails/Sections/styles';
 import type { User as UserDetails } from '@/models/User/types';
 
 export type Props = {

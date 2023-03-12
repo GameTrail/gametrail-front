@@ -1,5 +1,5 @@
 import type { FC } from 'react';
-import { Container } from '@/containers/TrailDetails/styles';
+import { Container } from '@/containers/Trail/TrailDetails/styles';
 
 const Chat: FC = () => (
   <Container darkMode>

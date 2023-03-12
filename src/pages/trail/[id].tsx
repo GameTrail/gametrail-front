@@ -2,7 +2,7 @@ import type { FC } from 'react';
 import React from 'react';
 
 import type { GetServerSideProps, GetServerSidePropsContext } from 'next';
-import TrailDetails from '@/containers/TrailDetails';
+import TrailDetails from '@/containers/Trail/TrailDetails';
 import type { Trail as TrailData } from '@/models/Trail/types';
 import type { TrailUser } from '@/models/TrailUser/types';
 import type { User as UserData } from '@/models/User/types';

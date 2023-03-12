@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 import React from 'react';
-import DateInfo from '@/components/TrailDetails/InfoRow/DateInfo';
+import DateInfo from '@/components/Trail/TrailDetails/InfoRow/DateInfo';
 import type { Trail as TrailData } from '@/models/Trail/types';
 import {
   InfoRow, JoinButton, JoinContainer, JoinPlayersCount,

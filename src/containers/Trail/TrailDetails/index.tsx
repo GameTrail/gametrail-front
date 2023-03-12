@@ -1,8 +1,8 @@
 import type { FC } from 'react';
 import React from 'react';
 import { motion } from 'framer-motion';
-import PlusInfoRow from '@/components/TrailDetails/InfoRow/indext';
-import Sections from '@/components/TrailDetails/Sections';
+import PlusInfoRow from '@/components/Trail/TrailDetails/InfoRow/indext';
+import Sections from '@/components/Trail/TrailDetails/Sections';
 import type { Trail as TrailData } from '@/models/Trail/types';
 import type { User as UserDetails } from '@/models/User/types';
 import {

@@ -10,6 +10,7 @@ export const DateDiv = styled.div`
     align-items: center;
     flex-wrap: nowrap;
   background-color: ${({ theme }) => theme.nord.blue3};
+  color: ${({ theme }) => theme.nord.white0};
   overflow: hidden;
   position: relative;
   border-radius: 15px;

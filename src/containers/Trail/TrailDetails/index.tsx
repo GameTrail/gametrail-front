@@ -24,7 +24,7 @@ const TrailDetails: FC<Props> = ({ trailData, usersData }) => (
         <TrailDescription>{trailData.description}</TrailDescription>
       </motion.div>
       <motion.div animate={{ x: 0, opacity: 1 }} initial={{ x: 100, opacity: 0 }} transition={{ type: 'easeOut', bounce: 0, duration: 1.2 }}>
-        <PlusInfoRow trailData={trailData} />
+        <PlusInfoRow trailData={trailData} usersData={usersData} />
       </motion.div>
       <motion.div animate={{ x: 0, opacity: 1 }} initial={{ x: 100, opacity: 0 }} transition={{ type: 'easeOut', bounce: 0, duration: 1.4 }}>
         <Sections usersData={usersData} />

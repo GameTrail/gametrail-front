@@ -19,7 +19,6 @@ export const Container = styled.div<ContainerProps>`
   padding: 5% 0 5% 0;
   color: ${({ darkMode, theme }) => (darkMode ? theme.nord.white0 : theme.nord.gray0)};
 
-  background-color: ${({ darkMode, theme }) => (darkMode ? theme.nord.gray0 : theme.nord.white0)};
     `;
 
 export const TrailTitle = styled.h1`

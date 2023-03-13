@@ -26,7 +26,9 @@ width: 80%;
 margin: 0 auto;
 flex-flow: row wrap;
 justify-content: space-between;
-
+h3{
+    color: ${({ theme }) => theme.nord.gray0};
+}
 
 @media (max-width: 750px) {
     justify-content: space-evenly;

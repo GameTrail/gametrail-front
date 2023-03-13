@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import type { Game } from '@/models/Game/types';
 import {
-  Container, Input, Row, Titulo, Titulo2, Cajas, Cuerpo, Cuerpo2, Fila, Mascara, P, Buscador, CabezaTabla, Tabla, Boton,
+  Container, Input, Row, Titulo, Titulo2, Cajas, Cuerpo, Cuerpo2, Fila, Mascara, Button, Buscador, CabezaTabla, Tabla, Boton,
 } from './styles';
 
 export type Props = {
@@ -58,9 +58,9 @@ const GameList: FC<Props> = ({ games }) => {
                 </Mascara>
                 <h2>{game.name}</h2>
 
-                <P>
+                <Button>
                   Añadir
-                </P>
+                </Button>
 
               </Cajas>
             ))

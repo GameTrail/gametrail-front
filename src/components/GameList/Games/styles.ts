@@ -4,7 +4,6 @@ export const Container = styled.div`
 
 width: 100%;
 heigth: auto;
-background-color: ${({ theme }) => theme.nord.white0};
 
     
 `;
@@ -19,7 +18,6 @@ margin-left: 10%;
 
 export const Cuerpo = styled.div` 
 
-background-color: ${({ theme }) => theme.nord.white0};
 
 padding: 20px;
 display: flex;
@@ -48,7 +46,8 @@ export const Cajas = styled.section`
 
 background-color: ${({ theme }) => theme.nord.gray0};
 
-
+box-shadow: 0 0 10px 0 ${({ theme }) => theme.nord.gray3};
+transition: all 0.3s ease-in-out;
 color: white;
 font-weight: lighter;
 align-items: flex-end;
@@ -57,7 +56,7 @@ text-align: center;
 margin: 5px;
 flex-grow: 0.5;
 flex-basis: 20%;
-
+cursor: pointer;
 border-radius: 20px;
 
 &:hover {
@@ -85,6 +84,10 @@ overflow: hidden;
 margin-bottom: 20px;
 border-top-left-radius: 20px;
 border-top-right-radius: 20px;
+img{
+    width: 100%;
+    height: 100%;
+}
 @media (max-width: 668px) {
     height: 350px;
     
@@ -165,7 +168,7 @@ font-size: 20px;
 
 `;
 
-export const P = styled.p`
+export const Button = styled.p`
 
 
 margin: 15px;
@@ -174,12 +177,13 @@ background-color: ${({ theme }) => theme.nord.gray3};
 font-size: 17px;
 border-radius: 7px;
 bottom: 0;
+cursor: pointer;
 text-align: center;
 &:hover {
-    background-color: ${({ theme }) => theme.nord.gray1};
-    color: ${({ theme }) => theme.nord.white1};
-    border: 2px solid ${({ theme }) => theme.nord.white1};
-    transition: all 300ms;
+    background-color: ${({ theme }) => theme.nord.white0};
+    color: ${({ theme }) => theme.nord.gray3};
+     transition: all 0.3s ease-in-out;
+        box-shadow: 0 0 10px 0;
 }
 
 `;
@@ -217,6 +221,9 @@ export const Fila = styled.td`
 text-align: center;
 color: ${({ theme }) => theme.nord.white0};
 padding: 20px;
+img{
+    border-radius: 8px;
+}
 
 
 
@@ -261,7 +268,7 @@ margin-bottom: 15px;
 
 export const Boton = styled.button`
 
-border-radius: 15px;
+border-radius: 10px;
 width: 220px;
 height: 60px;
 cursor: pointer;

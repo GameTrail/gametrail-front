@@ -1,44 +1,100 @@
 import type { FC } from 'react';
-import React, { useState } from 'react';
-
+import React, { useState, useEffect } from 'react';
 import { CommentsSection, InputFieldSection } from '@/components/Comments';
-import { MOCK_GAME_COMMENTS, MOCK_USER_COMMENTS } from '@/models/Comment/mock';
-import type { Comment } from '@/models/Comment/types';
+import type { CommentsGame, CommentsUser } from '@/models/Comment/types';
+import { useLogic } from './logic';
 import { Container } from './styles';
 
-export type Props = {
-  comments: Comment[]
+export type CommentToPostUser = {
+  auth_token: string;
+  userId: number;
+  commentedUserId: number;
+  text: string;
 };
 
-const CommentsContainer: FC<Props> = ({ comments }) => {
-  const [commentsArray, setCommentsArray] = useState(comments);
-  const [input, setInput] = useState('');
+export type CommentToPostGame = {
+  auth_token: string;
+  userId: number;
+  gameId: number;
+  text: string;
+};
 
-  const onClickNewComment = () => {
-    if (input !== '' && input.length > 0) {
+export type Props = {
+  auth_token: string;
+  id: number;
+  type: string;
+};
+
+const CommentsContainer: FC<Props> = ({ auth_token, id, type }) => {
+  const { useSWRGetComments, postComment } = useLogic();
+  const nameProp = type === 'user' ? 'commentsUser' : 'commentsGame';
+  const [commentsArray, setCommentsArray] = useState<(CommentsUser | CommentsGame)[]>([]);
+  const data = useSWRGetComments(id, type);
+
+  useEffect(() => {
+    // Controlamos aquí que mientras que SWR no devuelva la petición, no actualice el estado
+    if (data !== undefined) {
+      setCommentsArray(data[nameProp]);
+    }
+  }, [data, nameProp]);
+
+  const onClickNewComment = (input: string) => {
+    if (input !== '' && input !== undefined) {
       const text = input;
-      const commentToAdd = {
-        id: commentsArray.length + 1,
-        text,
-        commentedUser: MOCK_USER_COMMENTS[0].commentedUser,
-        userWhoComments: MOCK_USER_COMMENTS[0].userWhoComments,
-        game: MOCK_GAME_COMMENTS[0].game,
-      };
+      let commentToPost: CommentToPostUser | CommentToPostGame;
+      let newComment;
+      if (type === 'user') {
+        commentToPost = {
+          auth_token,
+          userId: 2,
+          commentedUserId: id,
+          text,
+        };
+
+        newComment = {
+          id: commentsArray.length + 1,
+          text,
+          userWhoComments: {
+            id: 2,
+            username: 'LuisUsrDev',
+            profilePicture: 'https://cdn.pixabay.com/photo/2017/12/25/22/52/tiger-3039280_1280.jpg',
+          },
+          commentedUser: {
+            id: 1,
+            username: 'jvegax',
+            profilePicture: 'https://cdn.pixabay.com/photo/2017/10/22/17/54/wolf-2878633_1280.jpg',
+          },
+        };
+      } else {
+        commentToPost = {
+          auth_token,
+          userId: 2,
+          gameId: id,
+          text,
+        };
+
+        newComment = {
+          id: commentsArray.length + 1,
+          text,
+          gameId: 1,
+          userWhoComments: {
+            id: 1,
+            username: 'LuisUsrDev',
+            profilePicture: 'https://cdn.pixabay.com/photo/2017/12/25/22/52/tiger-3039280_1280.jpg',
+          },
+        };
+      }
       const updatedCommentedArray = [...commentsArray];
-      updatedCommentedArray.splice(0, 0, commentToAdd);
+      updatedCommentedArray.splice(0, 0, newComment);
+      postComment(type, commentToPost);
       setCommentsArray(updatedCommentedArray);
-      setInput('');
     }
   };
 
-  const handleInput = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const text = event.target.value;
-    setInput(text);
-  };
-
+  if (commentsArray === undefined) return <div>Loading...</div>;
   return (
     <Container>
-      <InputFieldSection input={input} onClickNewComment={onClickNewComment} handleInput={handleInput} />
+      <InputFieldSection onClickNewComment={onClickNewComment} />
       <CommentsSection comments={commentsArray} />
     </Container>
   );

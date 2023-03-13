@@ -104,9 +104,9 @@ export const ProfilePicture = styled(Image)`
 export const PlayerData = styled.h3`
   color: ${({ theme }) => theme.nord.gray0};
   font-size: 1.2rem;
-  padding: 2% 0% 2% 30%;
+  padding: 2% 0 2% 30%;
   @media (max-width: 768px) {
     font-size: 1rem;
-    padding: 6% 0% 6% 18%;
+    padding: 6% 0 6% 18%;
   };
 `;

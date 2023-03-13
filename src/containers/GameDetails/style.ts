@@ -3,7 +3,6 @@ import styled from 'styled-components';
 export const Container = styled.div`
   display: flex;
   align-items: center;
-  align-items: center;
   flex-direction: column;
   width: 100vw;
   height: auto;
@@ -21,6 +20,6 @@ export const ListsDetails = styled.div`
     padding: 0 20px;
 
     @media (max-width: 768px) {
-        padding: 0%;
+        padding: 0;
     };
 `;

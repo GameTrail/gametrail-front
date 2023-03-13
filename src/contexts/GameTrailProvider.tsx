@@ -19,10 +19,10 @@ const GameTrailProvider = (props: GameTrailProviderProps) => {
   );
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [message, setMessage] = useState<string>('');
+  const [message] = useState<string>('');
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [userLoading, setUserLoading] = useState<boolean>(false);
+  const [userLoading] = useState<boolean>(false);
 
   const handleSetUser = useCallback(
     (gametrailUser: User) => {

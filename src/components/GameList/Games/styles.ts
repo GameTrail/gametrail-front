@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Container = styled.div` 
 
 width: 100%;
-heigth: auto;
+height: auto;
 
     
 `;
@@ -11,7 +11,7 @@ heigth: auto;
 export const Buscador = styled.div` 
 
 width: 80%;
-heigth: auto;
+height: auto;
 margin-left: 10%;
     
 `;

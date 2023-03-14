@@ -4,10 +4,10 @@ export type Game = {
   id: number
   name: string
   genre: string
-  platforms: string[]
+  platforms?: string[]
   releaseDate: string
   image: string
-  photos: string[]
+  photos: string
   description: string
   trailList: TrailList[];
 };

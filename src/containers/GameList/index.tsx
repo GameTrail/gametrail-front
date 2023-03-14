@@ -7,7 +7,6 @@ export type Props = {
 };
 
 const GameList:FC<Props> = ({ games }) => (
-
   <Games games={games} />
 );
 

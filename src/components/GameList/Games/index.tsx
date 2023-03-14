@@ -1,6 +1,7 @@
 import type { FC } from 'react';
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import type { Game } from '@/models/Game/types';
 import { normalizeImage } from '@/utils/normalizeImage';
 import {
@@ -14,6 +15,9 @@ export type Props = {
 const GameList: FC<Props> = ({ games }) => {
   const [busqueda, setbusqueda] = useState('');
   const [resultados, setresultados] = useState<Game[]>([]);
+  const [showDiv2, setShowDiv2] = useState(true);
+  const [buttonText, setButtonText] = useState('Desactivado');
+  const router = useRouter();
 
   useEffect(() => {
     const resultadoFinal = games.filter((game) => Object.values(game).some((value) => typeof value === 'string'
@@ -25,9 +29,6 @@ const GameList: FC<Props> = ({ games }) => {
     setbusqueda(event.target.value);
   };
 
-  const [showDiv2, setShowDiv2] = useState(true);
-  const [buttonText, setButtonText] = useState('Desactivado');
-
   const toggleDiv = () => {
     setShowDiv2(!showDiv2);
     if (showDiv2) {
@@ -36,8 +37,12 @@ const GameList: FC<Props> = ({ games }) => {
       setButtonText('Desactivado');
     }
   };
-  return (
 
+  const handleClickGameDetails: any = (id: number) => {
+    router.push(`/game/${id}`);
+  };
+
+  return (
     <Container>
       <Buscador>
         <Input type="text" value={busqueda} onChange={evento} placeholder="Buscar..." />
@@ -51,7 +56,7 @@ const GameList: FC<Props> = ({ games }) => {
           {resultados.length > 0 && (
 
             resultados.map((game) => (
-              <Cajas key={game.id}>
+              <Cajas key={game.id} onClick={() => handleClickGameDetails(game.id)}>
                 <Mascara>
                   <Image src={normalizeImage(game.image)} width={450} height={600} alt="nu" />
                 </Mascara>
@@ -80,19 +85,14 @@ const GameList: FC<Props> = ({ games }) => {
               {resultados.length === 0 && <h3>No hemos encontrado ningún resultado</h3>}
               {resultados.length > 0 && (
 
-                resultados.map((game) => {
-                  const image = `https://${game.image.substring(2)}`;
-                  return (
-                    <Row key={game.id}>
-                      <Fila><Image src={image} width={80} height={100} alt="nu" /></Fila>
-                      <Fila><h2>{game.name}</h2></Fila>
-                      <Fila><h2>{game.releaseDate}</h2></Fila>
-                      <Fila>+</Fila>
-                    </Row>
-
-                  );
-                })
-
+                resultados.map((game) => (
+                  <Row key={game.id} onClick={() => handleClickGameDetails(game.id)}>
+                    <Fila><Image src={normalizeImage(game.image)} width={80} height={100} alt="nu" /></Fila>
+                    <Fila><h2>{game.name}</h2></Fila>
+                    <Fila><h2>{game.releaseDate}</h2></Fila>
+                    <Fila>+</Fila>
+                  </Row>
+                ))
               )}
 
             </tbody>

@@ -31,7 +31,7 @@ const TrailCreationForm = () => {
     console.log({ requestData });
 
     try {
-      const res = await fetch('https://gametrail-backend-production.up.railway.app/api/trail', {
+      const res = await fetch('https://gametrail-backend-production.up.railway.app/api/trail/', {
         method: 'POST',
         body: JSON.stringify(requestData),
         headers: {

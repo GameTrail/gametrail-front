@@ -8,10 +8,10 @@ const Navbar = () => (
     <h1>GAMETRAIL</h1>
     <Menu>
       <MenuItem href="/home">
-        <h4>Home</h4>
+        <h4>Inicio</h4>
       </MenuItem>
-      <MenuItem href="/">
-        <h4>About</h4>
+      <MenuItem href="/games">
+        <h4>Juegos</h4>
       </MenuItem>
       <MenuItem href="/auth/logout">
         <FontAwesomeIcon icon={faArrowRightFromBracket} />

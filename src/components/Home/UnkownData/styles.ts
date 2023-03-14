@@ -24,5 +24,5 @@ export const Container = styled.div`
   position: relative;
   align-content: center;
   flex-wrap: nowrap;
-  gap: 40;
+  gap: 40px;
 `;

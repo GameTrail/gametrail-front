@@ -11,7 +11,6 @@ export const Container = styled.div`
     span {
         font-size: 1rem;
         font-weight: 600;
-        color: #fff;
         margin-right: 10px;
         white-space: pre-wrap;
         word-wrap: break-word;
@@ -21,7 +20,7 @@ export const Container = styled.div`
         font-style: normal;
         font-family: "Outfit", sans-serif;
         color: var(--Red_Light, #fff4f0);
-        letter-spacing: 0px;
+        letter-spacing: 0;
         line-height: 1.2;
     }; 
 `;

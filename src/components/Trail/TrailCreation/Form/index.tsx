@@ -1,6 +1,8 @@
 'use client';
 
+import type { FC } from 'react';
 import { useCallback } from 'react';
+import { useRouter } from 'next/router';
 import {
   Button,
   ButtonRow,
@@ -12,8 +14,14 @@ import {
   Label,
 } from '@/components/Trail/TrailCreation/Form/styles';
 
-const TrailCreationForm = () => {
+export type Props = {
+  handleSetLoading: (value: boolean) => void
+};
+
+const TrailCreationForm: FC<Props> = ({ handleSetLoading }) => {
+  const router = useRouter();
   const handleSubmit = useCallback(async (event: React.FormEvent<HTMLFormElement>) => {
+    handleSetLoading(true);
     event.preventDefault();
 
     const form = event.currentTarget;
@@ -27,9 +35,6 @@ const TrailCreationForm = () => {
       maxPlayers: formData.get('max-players'),
       owner: '1',
     };
-
-    console.log({ requestData });
-
     try {
       const res = await fetch('https://gametrail-backend-production.up.railway.app/api/trail/', {
         method: 'POST',
@@ -43,8 +48,14 @@ const TrailCreationForm = () => {
       }
     } catch (error) {
       console.log({ corchuelo: error });
+    } finally {
+      handleSetLoading(false);
+      const res = await fetch('https://gametrail-backend-production.up.railway.app/api/trail/');
+      const data: [] = await res.json();
+      const size = data.length - 1;
+      router.push(`/trail/${size}`);
     }
-  }, []);
+  }, [handleSetLoading, router]);
 
   return (
     <Form onSubmit={handleSubmit}>

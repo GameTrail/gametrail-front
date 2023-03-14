@@ -49,12 +49,12 @@ const TrailCreationForm: FC<Props> = ({ handleSetLoading }) => {
     } catch (error) {
       console.log({ corchuelo: error });
     } finally {
-      handleSetLoading(false);
       const res = await fetch('https://gametrail-backend-production.up.railway.app/api/trail/');
       const data: [] = await res.json();
-      const size = data.length - 1;
-      router.push(`/trail/${size}`);
+      const size = data.length;
+      router.push(`/trail/${size}/`);
     }
+    handleSetLoading(false);
   }, [handleSetLoading, router]);
 
   return (

@@ -1,8 +1,8 @@
 import type { FC } from 'react';
 import React from 'react';
 import Image from 'next/image';
-import type { CommentUser } from '@/models/Comment/mock';
-import type { Game } from '@/models/Game/types';
+import type { Comment } from '@/models/Comment/types';
+
 import {
   AvatarContainer,
   CommentContainer,
@@ -12,13 +12,7 @@ import {
 } from './styles';
 
 export type Props = {
-  comment: {
-    id: number,
-    text: string,
-    commentedUser: CommentUser,
-    userWhoComments: CommentUser,
-    game: Game
-  }
+  comment: Comment;
 };
 
 const CommentComponent: FC<Props> = ({ comment }) => (

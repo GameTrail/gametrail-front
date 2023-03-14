@@ -1,4 +1,3 @@
-import type { Comment } from '../Comment/types';
 import type { TrailList } from '../TrailList/types';
 
 export type Game = {
@@ -11,5 +10,4 @@ export type Game = {
   photos: string[]
   description: string
   trailList: TrailList[];
-  comments: Comment[]
 };

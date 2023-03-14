@@ -12,7 +12,7 @@ import { ButtonType } from './types';
 
 const User: FC<Props> = ({ userData }) => {
   const [selectedButton, setSelectedButton] = useState<ButtonType>(ButtonType.Trail);
-
+  const authToken = '12345xcvxcb';
   const onClickButton = (button: ButtonType) => {
     setSelectedButton(button);
   };
@@ -20,7 +20,7 @@ const User: FC<Props> = ({ userData }) => {
   const handleRenderList = useMemo(() => {
     if (selectedButton === ButtonType.Trail) return <UserTrailList trailList={userData?.trailList} />;
     if (selectedButton === ButtonType.Games) return <UserGameList gameList={userData?.gameList} />;
-    if (selectedButton === ButtonType.Comments) return <CommentsContainer comments={userData.comments} />;
+    if (selectedButton === ButtonType.Comments) return <CommentsContainer auth_token={authToken} id={userData.id} type="user" key="userCommentsContainer" />;
     return null;
   }, [selectedButton, userData]);
 

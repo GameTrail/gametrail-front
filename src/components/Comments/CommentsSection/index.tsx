@@ -1,11 +1,11 @@
 import type { FC } from 'react';
 import React from 'react';
-import type { Comment } from '@/models/Comment/types';
+import type { CommentsGame, CommentsUser } from '@/models/Comment/types';
 import CommentComponent from './CommentComponent';
 import { CommentsContainer } from './styles';
 
 export type Props = {
-  comments: Comment[] | undefined
+  comments: (CommentsUser | CommentsGame)[];
 };
 
 const CommentsSection: FC<Props> = ({ comments }) => {

@@ -9,5 +9,5 @@ export type Game = {
   image: string
   photos: string[]
   description: string
-  trailList: TrailList[]
+  trailList: TrailList[];
 };

@@ -57,7 +57,7 @@ export const GameDescription = styled.p`
     font-style: normal;
     font-family: "Outfit", sans-serif;
     font-size: 20px;
-    letter-spacing: 0px;
+    letter-spacing: 0;
     line-height: 1.2;
     text-align: justify;
     color: ${({ theme }) => (theme.nord.gray1)};
@@ -128,7 +128,6 @@ export const GameButtons = styled.div`
 
   width: auto;
   height: auto;
-  display: flex;
   gap: 2em;
 
   @media (max-width: 768px) {

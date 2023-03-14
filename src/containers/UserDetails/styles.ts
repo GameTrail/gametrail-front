@@ -13,9 +13,8 @@ export const Container = styled.div<ContainerProps>`
     height: auto;
     padding: 0 20px;
 
-    background-color: ${({ darkMode, theme }) => (darkMode ? theme.nord.gray0 : theme.nord.white2)};
+    // background-color: ${({ darkMode, theme }) => (darkMode ? theme.nord.gray0 : '#fff')};
 
-    h2 {
         color: ${({ darkMode, theme }) => (darkMode ? theme.nord.white0 : theme.nord.gray1)};
         margin-bottom: 1rem;
     }

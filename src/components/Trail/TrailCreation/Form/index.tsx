@@ -2,7 +2,6 @@
 
 import type { FC } from 'react';
 import { useCallback } from 'react';
-import { useRouter } from 'next/router';
 import {
   Button,
   ButtonRow,
@@ -19,7 +18,6 @@ export type Props = {
 };
 
 const TrailCreationForm: FC<Props> = ({ handleSetLoading }) => {
-  const router = useRouter();
   const handleSubmit = useCallback(async (event: React.FormEvent<HTMLFormElement>) => {
     handleSetLoading(true);
     event.preventDefault();
@@ -49,13 +47,9 @@ const TrailCreationForm: FC<Props> = ({ handleSetLoading }) => {
     } catch (error) {
       console.log({ corchuelo: error });
     } finally {
-      const res = await fetch('https://gametrail-backend-production.up.railway.app/api/trail/');
-      const data: [] = await res.json();
-      const size = data.length;
-      router.push(`/trail/${size}/`);
+      handleSetLoading(false);
     }
-    handleSetLoading(false);
-  }, [handleSetLoading, router]);
+  }, [handleSetLoading]);
 
   return (
     <Form onSubmit={handleSubmit}>

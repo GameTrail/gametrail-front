@@ -2,6 +2,7 @@ import type { FC } from 'react';
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import type { Game } from '@/models/Game/types';
+import { normalizeImage } from '@/utils/normalizeImage';
 import {
   Container, Input, Row, Titulo, Titulo2, Cajas, Cuerpo, Cuerpo2, Fila, Mascara, Button, Buscador, CabezaTabla, Tabla, Boton,
 } from './styles';
@@ -35,7 +36,6 @@ const GameList: FC<Props> = ({ games }) => {
       setButtonText('Desactivado');
     }
   };
-
   return (
 
     <Container>
@@ -47,24 +47,21 @@ const GameList: FC<Props> = ({ games }) => {
       </Buscador>
       {showDiv2 ? (
         <Cuerpo>
-
           {resultados.length === 0 && <h3>No hemos encontrado ningún resultado</h3>}
           {resultados.length > 0 && (
 
             resultados.map((game) => (
               <Cajas key={game.id}>
                 <Mascara>
-                  <Image src={game.image} width={450} height={600} alt="nu" />
+                  <Image src={normalizeImage(game.image)} width={450} height={600} alt="nu" />
                 </Mascara>
                 <h2>{game.name}</h2>
-
                 <Button>
                   Añadir
                 </Button>
-
               </Cajas>
-            ))
 
+            ))
           )}
         </Cuerpo>
       ) : (
@@ -83,16 +80,18 @@ const GameList: FC<Props> = ({ games }) => {
               {resultados.length === 0 && <h3>No hemos encontrado ningún resultado</h3>}
               {resultados.length > 0 && (
 
-                resultados.map((game) => (
+                resultados.map((game) => {
+                  const image = `https://${game.image.substring(2)}`;
+                  return (
+                    <Row key={game.id}>
+                      <Fila><Image src={image} width={80} height={100} alt="nu" /></Fila>
+                      <Fila><h2>{game.name}</h2></Fila>
+                      <Fila><h2>{game.releaseDate}</h2></Fila>
+                      <Fila>+</Fila>
+                    </Row>
 
-                  <Row key={game.id}>
-                    <Fila><Image src={game.image} width={80} height={100} alt="nu" /></Fila>
-                    <Fila><h2>{game.name}</h2></Fila>
-                    <Fila><h2>{game.releaseDate}</h2></Fila>
-                    <Fila>+</Fila>
-                  </Row>
-
-                ))
+                  );
+                })
 
               )}
 

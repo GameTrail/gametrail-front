@@ -14,11 +14,11 @@ const USER_DATA_URL = 'http://localhost:3000/api/user/';
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-
   const { handleSetUser, handleSetToken } = useGameTrail();
   const [userLoading, setUserLoading] = useState<boolean>(true);
-
   const [message, setMessage] = useState<string>('');
+
+  const router = useRouter();
 
   const handleLogin = (gametrailUsername: string, gametrailPassword: string) => {
     const options = {
@@ -70,21 +70,17 @@ const Login = () => {
       } catch (error) {
         setUserLoading(false);
         setMessage('No se puede iniciar sesión con estas credenciales');
+      } finally {
+        setUserLoading(false);
+        router.push('/');
       }
     };
     getUser();
   };
 
-  const router = useRouter();
-
   const onPressLogin = (e: any) => {
     e.preventDefault();
     handleLogin(username, password);
-    if (!userLoading && !!message) {
-      router.push('/home');
-    } else {
-      setMessage(message);
-    }
   };
 
   return (

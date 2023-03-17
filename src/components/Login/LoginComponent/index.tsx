@@ -8,6 +8,9 @@ import {
   LoginContainer, Container, Title, LoginForm, Label, Input, ErrorContainer,
 } from './styles';
 
+const LOGIN_AUTH_URL = 'http://localhost:3000/api/auth/login/';
+const USER_DATA_URL = 'http://localhost:3000/api/user/';
+
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -18,8 +21,6 @@ const Login = () => {
   const [message, setMessage] = useState<string>('');
 
   const handleLogin = (gametrailUsername: string, gametrailPassword: string) => {
-    const API_URL = 'http://127.0.0.1:/api/auth/login/';
-
     const options = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -28,7 +29,7 @@ const Login = () => {
 
     const getToken = async () => {
       try {
-        const response = await fetch(API_URL, options);
+        const response = await fetch(LOGIN_AUTH_URL, options);
         if (response.ok) {
           const data = await response.json();
           handleSetToken(data.token);
@@ -49,14 +50,13 @@ const Login = () => {
       const data = {
         token,
       };
-      const API_URL_USER = 'http://127.0.0.1:3000/api/user/';
       const optionsUser = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
       };
       try {
-        const response = await fetch(API_URL_USER, optionsUser);
+        const response = await fetch(USER_DATA_URL, optionsUser);
         if (response.ok) {
           const dataUser = await response.json();
           const user = normalizeUser(dataUser, token);

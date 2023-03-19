@@ -6,12 +6,11 @@ export const Nav = styled.nav`
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  height: 60px;
+  height: 70px;
   padding: 0 135px;
   background-color: ${({ theme }) => theme.nord.gray1};
   color: ${({ theme }) => theme.nord.white0};
   box-shadow: 0 0 10px ${({ theme }) => theme.nord.gray2};
-
   @media (max-width: 768px) {
     padding: 0 20px;
     flex-direction: column;
@@ -20,16 +19,23 @@ export const Nav = styled.nav`
   }
 `;
 
+export const ResponsiveNavbar = styled.div`
+  @media (max-width: 768px) {
+      padding: 0 20px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      height: auto;
+    }
+`;
+
 export const Menu = styled.div`
   display: flex;
   align-items: center;
-
   @media (max-width: 768px) {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     width: 100%;
-    margin-top: 20px;
-    padding: 0;
     background-color: ${({ theme }) => theme.nord.gray1};
     color: ${({ theme }) => theme.nord.white0};
   }
@@ -43,12 +49,10 @@ export const MenuItem = styled(Link)`
   height: 100%;
   padding: 0 10px;
   cursor: pointer;
-
   &:hover {
     background-color: ${({ theme }) => theme.nord.gray3};
-    height: 60px;
+    height: 70px;
   }
-
   @media (max-width: 768px) {
     width: auto;
     height: auto;
@@ -59,9 +63,12 @@ export const MenuItem = styled(Link)`
   }
 `;
 
-export const MobileMenuIcon = styled.div`
-  display: flex;
+interface MobileMenuIconProps {
+  showMenu: boolean;
+}
 
+export const MobileMenuIcon = styled.div<MobileMenuIconProps>`
+  display: flex;
   @media (max-width: 768px) {
     float: right;
     align-items: center;
@@ -70,7 +77,8 @@ export const MobileMenuIcon = styled.div`
     height: 40px;
     cursor: pointer;
     margin-left: auto;
-
+    transition: transform 0.3s ease-in-out;
+    transform: ${(props) => (props.showMenu ? 'rotate(90deg)' : 'rotate(0)')};
     svg {
       font-size: 1.5rem;
     }

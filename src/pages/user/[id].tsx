@@ -11,8 +11,9 @@ export type Props = {
 };
 
 export const getServerSideProps: GetServerSideProps<Props> = async (context: GetServerSidePropsContext) => {
-  const username = context.params?.username as string;
-  const response = await fetch(`https://gametrail.vercel.app/api/user/${username}`);
+  const id = context.params?.id as string;
+  const response = await fetch(`https://gametrail-backend-production.up.railway.app/api/user/${id}/`);
+  console.log(response);
   const data = await response.json();
 
   return {

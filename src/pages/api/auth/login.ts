@@ -5,7 +5,7 @@ export default function handler(
   res: NextApiResponse,
 ) {
   res.status(200).json({
-    token: 'a460bb32ed776deb7ea18c25a0fba21e8fe5ea60',
-    id: 1,
+    token: '0835f889272adb3aceb051bf399cc31406c291a4',
+    id: 7,
   });
 }

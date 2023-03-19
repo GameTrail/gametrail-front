@@ -5,82 +5,72 @@ import { LoginLottie } from '@/components/Lotties';
 import { useGameTrail } from '@/hooks';
 import { normalizeUser } from '@/models/User/types';
 import {
-  LoginContainer, Container, Title, LoginForm, Label, Input, ErrorContainer,
+  LoginContainer,
+  Container,
+  Title,
+  LoginForm,
+  Label,
+  Input,
+  ErrorContainer,
 } from './styles';
 
-const LOGIN_AUTH_URL = 'http://localhost:3000/api/auth/login/';
-const USER_DATA_URL = 'http://localhost:3000/api/user/';
+const LOGIN_AUTH_URL = 'https://gametrail-backend-production.up.railway.app/api/auth/login';
+const USER_DATA_URL = 'https://gametrail-backend-production.up.railway.app/api/user';
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const { handleSetUser, handleSetToken } = useGameTrail();
-  const [userLoading, setUserLoading] = useState<boolean>(true);
   const [message, setMessage] = useState<string>('');
+  const { handleSetUser, handleSetToken } = useGameTrail();
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const router = useRouter();
 
-  const handleLogin = (gametrailUsername: string, gametrailPassword: string) => {
+  const handleLogin = async () => {
+    setIsLoading(true);
     const options = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ gametrailUsername, gametrailPassword }),
+      body: JSON.stringify({ password, username }),
     };
 
-    const getToken = async () => {
-      try {
-        const response = await fetch(LOGIN_AUTH_URL, options);
-        if (response.ok) {
-          const data = await response.json();
-          handleSetToken(data.token);
-          localStorage.setItem('token', data.token);
-          return data.token;
-        }
-        setUserLoading(false);
-        setMessage('No se puede iniciar sesión con estas credenciales');
-      } catch (error) {
-        setUserLoading(false);
-        setMessage('No se puede iniciar sesión con estas credenciales');
-      }
-      return null;
-    };
+    try {
+      const response = await fetch(LOGIN_AUTH_URL, options);
+      if (response.ok) {
+        const data = await response.json();
+        handleSetToken(data.token);
+        localStorage.setItem('token', data.token);
 
-    const getUser = async () => {
-      const token = await getToken();
-      const data = {
-        token,
-      };
-      const optionsUser = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-      };
-      try {
-        const response = await fetch(USER_DATA_URL, optionsUser);
-        if (response.ok) {
-          const dataUser = await response.json();
-          const user = normalizeUser(dataUser, token);
+        const userOptions = {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ token: data.token }),
+        };
+        const userResponse = await fetch(USER_DATA_URL, userOptions);
+
+        if (userResponse.ok) {
+          const userData = await userResponse.json();
+          const user = normalizeUser(userData, data.token);
           handleSetUser(user);
-          setMessage('');
           localStorage.setItem('user', JSON.stringify(user));
+          router.push('/');
         } else {
           setMessage('No se puede iniciar sesión con estas credenciales');
         }
-        setUserLoading(false);
-      } catch (error) {
-        setUserLoading(false);
+      } else {
         setMessage('No se puede iniciar sesión con estas credenciales');
-      } finally {
-        setUserLoading(false);
-        router.push('/');
       }
-    };
-    getUser();
+    } catch (error) {
+      setMessage('No se puede iniciar sesión con estas credenciales');
+    }
+
+    setIsLoading(false);
   };
 
-  const onPressLogin = (e: any) => {
+  const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    handleLogin(username, password);
+    handleLogin();
   };
 
   return (
@@ -115,7 +105,7 @@ const Login = () => {
             />
           </Label>
         </Container>
-        <Button primary onClick={onPressLogin}>Iniciar sesión</Button>
+        <Button primary onClick={onSubmit}>Iniciar sesión</Button>
       </LoginForm>
     </LoginContainer>
   );

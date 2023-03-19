@@ -8,4 +8,6 @@ export enum ButtonType {
   Trail = 'Trails',
   Games = 'Games',
   Comments = 'Comments',
+  Players = 'Players',
+  Chat = 'Chat',
 }

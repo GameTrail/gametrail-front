@@ -42,7 +42,7 @@ export const Container = styled.div`
 export const SectionContainer = styled.div`
     display: flex;
     width: 100%;
-    height: 100%;
+    height: auto;
     flex-direction: column;
     justify-content: center;
     align-items: center;

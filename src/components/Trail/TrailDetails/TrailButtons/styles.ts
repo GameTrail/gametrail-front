@@ -4,18 +4,20 @@ export const Container = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
-    color: ${({ theme }) => theme.nord.white0};
+    justify-content: space-between;
+    
+    width: 55%;
     border-radius: 8px;
-
+    
     gap: 0.5rem;
     margin-top: 1em;
     margin-bottom: 1em;
     
+    color: ${({ theme }) => theme.nord.white0};
     @media (max-width: 768px) {
-        flex-direction: row;
+        width: 100%;
         align-items: center;
-        justify-content: center;
+        justify-content: space-between;
     };
 `;
 
@@ -30,7 +32,7 @@ export const Button = styled.button<ButtonProps>`
     padding: 10px 20px;
     border-radius: 8px;
     border: ${({ theme, active }) => (active ? `1px solid ${theme.nord.gray3};` : 'none;')};
-    width: 167px;
+    width: 220px;
 
     background-color: ${({ theme, active }) => (active ? theme.nord.white0 : theme.nord.gray3)};
     color: ${({ theme, active }) => (active ? theme.nord.gray3 : theme.nord.white0)};

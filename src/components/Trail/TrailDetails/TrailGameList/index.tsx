@@ -13,7 +13,7 @@ const TrailGameList:FC<Props> = ({ games }) => {
   const handleRenderGames = () => games.map((game) => (
     <Game>
       <div>
-        <GameImage src={game.image} alt="image" width={120} height={120} />
+        <GameImage src={game.image} alt="image" width={160} height={160} />
       </div>
       <div>
         <Name>{game.name}</Name>

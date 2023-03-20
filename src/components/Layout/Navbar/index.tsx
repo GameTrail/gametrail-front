@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { faArrowRightFromBracket, faBars } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -39,9 +39,11 @@ const Navbar = () => {
     setShowMenu(!showMenu);
   };
 
-  const clickPremium = () => {
-    window.location.href = 'https://buy.stripe.com/test_5kAdQYdU059Des06oo';
-  };
+  const STRIPE_PRODUCT_URL = 'https://buy.stripe.com/test_5kAdQYdU059Des06oo';
+  const handleStripeCheckout = useCallback((event: any) => {
+    event.preventDefault();
+    window.location.href = STRIPE_PRODUCT_URL;
+  }, []);
 
   return (
     <Nav>
@@ -64,7 +66,7 @@ const Navbar = () => {
           <MenuItem href="/trail/create">
             <h4>Crear Trail</h4>
           </MenuItem>
-          <Premium onClick={clickPremium}>
+          <Premium onClick={handleStripeCheckout}>
             <h4>Premium</h4>
           </Premium>
           <MenuItem href="/auth/logout">
@@ -83,7 +85,7 @@ const Navbar = () => {
             <MenuItem href="/trail/create">
               <h4>Crear Trail</h4>
             </MenuItem>
-            <Premium>
+            <Premium onClick={handleStripeCheckout}>
               <h4>Premium</h4>
             </Premium>
             <MenuItem href="/auth/logout">

@@ -14,7 +14,7 @@ export type Props = {
 
 const PlusInfoRow: FC<Props> = ({ trailData, usersData }) => (
   <InfoRow>
-    <DateInfo dateStart={trailData.startDate} dateEnd={trailData.endDate} />
+    <DateInfo dateStart={trailData.startDate} dateEnd={trailData.finishDate} />
     <JoinContainer>
       <JoinButton>
         <p>UNIRSE</p>

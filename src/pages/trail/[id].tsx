@@ -14,10 +14,10 @@ export type Props = {
 
 export const getServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext) => {
   const trail = context.params?.id as string;
-  const response = await fetch(`http://127.0.0.1:3000/api/trail/${trail}`);
+  const response = await fetch(`https://gametrail-backend-production.up.railway.app/api/trail/${trail}`);
   const data = await response.json();
 
-  const responsePlayers = await fetch(`http://127.0.0.1:3000/api/trail/users/${trail}`);
+  const responsePlayers = await fetch(`https://gametrail.vercel.app/api/trail/users/${trail}`);
   const dataPlayers = await responsePlayers.json();
   const users: UserData[] = dataPlayers.map((trailUser: TrailUser) => trailUser.user);
 

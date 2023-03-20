@@ -1,19 +1,21 @@
-import type { FC } from 'react';
+import { useState } from 'react';
+import LoadingSpinner from '@/components/LoadingSpinner';
 import TrailCreationForm from '@/components/Trail/TrailCreation/Form';
 import {
   Container,
 } from '@/containers/Trail/TrailCreation/styles';
-import type { User } from '@/models/User/types';
 
-export type Props = {
-  userData: User;
+const TrailCreation = () => {
+  const [loading, setLoading] = useState(false);
+  const handleSetLoading = (value: boolean) => {
+    setLoading(value);
+  };
+  return (
+    <Container>
+      {loading ? <LoadingSpinner /> : <TrailCreationForm handleSetLoading={handleSetLoading} />}
+    </Container>
+
+  );
 };
-
-const TrailCreation: FC<Props> = () => (
-  <Container>
-    <TrailCreationForm />
-  </Container>
-
-);
 
 export default TrailCreation;

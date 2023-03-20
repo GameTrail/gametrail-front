@@ -1,20 +1,22 @@
 import type { FC } from 'react';
 import React from 'react';
-import Chat from '@/components/Trail/TrailDetails/Sections/Chat';
 import PlayersList from '@/components/Trail/TrailDetails/Sections/PlayersList';
 import { Button, Container, SectionContainer } from '@/components/Trail/TrailDetails/Sections/styles';
+import ChatContainer from '@/containers/ChatContainer';
+import type { Trail } from '@/models/Trail/types';
 import type { User as UserDetails } from '@/models/User/types';
 
 export type Props = {
+  trailData: Trail;
   usersData: UserDetails [];
 };
 
-const Sections:FC<Props> = ({ usersData }) => {
+const Sections:FC<Props> = ({ trailData, usersData }) => {
   const [selectedSection, setSelectedSection] = React.useState(3);
 
   let section = <PlayersList usersData={usersData} />;
   if (selectedSection === 2) {
-    section = <Chat />;
+    section = <ChatContainer trailData={trailData} />;
   } else if (selectedSection === 3) {
     section = <PlayersList usersData={usersData} />;
   }

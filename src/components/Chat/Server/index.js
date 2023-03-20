@@ -9,19 +9,19 @@ app.use(cors());
 const server = http.createServer(app);
 const io = new Server(server,{
     cors: {
-        origin: "*",
+        origin: "*", // Cualquier servidor pueda conectarse, sino, debes poner el dominio
         methods: ["GET", "POST"]
     }
 
 });
 
 io.on('connection', (socket) => {
-    console.log('a user connected');
+    console.log('a user connected with id: ', socket.id);
 
 
-    socket.on('send_message', (msg) => {
-        console.log('message: ' + msg)
-        socket.emit('receive_message', msg);
+    socket.on('send_message', (message) => { // Cuando reciba el mensaje, muestralo por consola, y devuelvelo al cliente
+        console.log('message: ' + message)
+        socket.broadcast.emit('receive_message', message);
     });
 
 

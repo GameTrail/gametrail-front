@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { faArrowRightFromBracket, faBars } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  Menu, MenuItem, MobileMenuIcon, Nav, ResponsiveNavbar,
+  Menu, MenuItem, MobileMenuIcon, Nav, Premium, ResponsiveNavbar,
 } from './styles';
 
 const Navbar = () => {
@@ -39,6 +39,10 @@ const Navbar = () => {
     setShowMenu(!showMenu);
   };
 
+  const clickPremium = () => {
+    window.location.href = 'https://buy.stripe.com/test_5kAdQYdU059Des06oo';
+  };
+
   return (
     <Nav>
       <ResponsiveNavbar>
@@ -60,6 +64,9 @@ const Navbar = () => {
           <MenuItem href="/trail/create">
             <h4>Crear Trail</h4>
           </MenuItem>
+          <Premium onClick={clickPremium}>
+            <h4>Premium</h4>
+          </Premium>
           <MenuItem href="/auth/logout">
             <FontAwesomeIcon icon={faArrowRightFromBracket} />
           </MenuItem>
@@ -76,6 +83,9 @@ const Navbar = () => {
             <MenuItem href="/trail/create">
               <h4>Crear Trail</h4>
             </MenuItem>
+            <Premium>
+              <h4>Premium</h4>
+            </Premium>
             <MenuItem href="/auth/logout">
               <FontAwesomeIcon icon={faArrowRightFromBracket} />
             </MenuItem>

@@ -17,9 +17,9 @@ const MainSection = () => (
         <Link href="/auth/login">
           <Button primary>Iniciar sesión</Button>
         </Link>
-        <Button animated>
-          Registrarse
-        </Button>
+        <Link href="/auth/register">
+          <Button animated>Registrarse</Button>
+        </Link>
       </AuthButtons>
     </Left>
     <Right>

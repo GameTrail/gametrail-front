@@ -4,7 +4,8 @@ export const Title = styled.h1`
   color : ${({ theme }) => theme.nord.gray1};
   line-height: 1.2;
   text-align: center;
-  font-size: 1.6rem;
+  margin-top: 2%;
+  font-size: 1.8rem;
   @media (max-width: 768px) {
     font-size: 1.2rem;
   };

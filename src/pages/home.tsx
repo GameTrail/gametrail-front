@@ -1,22 +1,17 @@
-import type { FC } from 'react';
 import useSWR from 'swr';
 import Error from '@/components/Error';
 import LoadingSpinner from '@/components/LoadingSpinner';
 import { Home as HomeComponent } from '@/containers';
-import type { TrailGang } from '@/models/Trail/types';
 import { fetcher } from '@/utils/fetcher';
 
-export type Props = {
-  data: TrailGang;
-};
+const Home = () => {
+  const { data: trailGangData, error: trailGangError } = useSWR('http://localhost:3000/api/trailgang', fetcher);
+  const { data: randomTips, error: randomTipsError } = useSWR('https://gametrail-backend-production.up.railway.app/api/sabiasque/', fetcher);
 
-const Home: FC<Props> = () => {
-  const { data, error } = useSWR('https://gametrail.vercel.app/api/trailgang', fetcher);
+  if (trailGangError || randomTipsError) return <Error />;
+  if (!trailGangData || !randomTips) return <LoadingSpinner />;
 
-  if (error) return <Error />;
-  if (!data) return <LoadingSpinner />;
-
-  return <HomeComponent trailGang={data} />;
+  return <HomeComponent trailGangData={trailGangData} randomTips={randomTips} />;
 };
 
 export default Home;

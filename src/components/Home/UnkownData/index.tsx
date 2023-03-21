@@ -1,14 +1,26 @@
+import type { FC } from 'react';
 import React from 'react';
+import type { RandomTip } from '@/models/RandomTip/types';
 import DataCard from './DataCard';
 import {
   Container, Title,
 } from './styles';
 
-const unkowndata = () => (
-  <Container>
-    <Title>¿Sabías que ... ?</Title>
-    <DataCard />
-  </Container>
-);
+export type Props = {
+  randomTips: RandomTip[];
+};
 
-export default unkowndata;
+const Unkowndata: FC<Props> = ({ randomTips }) => {
+  const sizeTips = randomTips.length;
+  const randomIndex = Math.floor(Math.random() * (sizeTips + 1));
+  const randomTip = randomTips[randomIndex];
+
+  return (
+    <Container>
+      <Title>¿Sabías que ... ?</Title>
+      <DataCard randomTip={randomTip} />
+    </Container>
+  );
+};
+
+export default Unkowndata;

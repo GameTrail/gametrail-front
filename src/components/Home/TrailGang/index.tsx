@@ -8,15 +8,15 @@ import {
 } from './styles';
 
 export type Props = {
-  trailGang: TrailGangProps;
+  trailGangData: TrailGangProps;
 };
 
-const TrailGang:FC<Props> = ({ trailGang }) => (
+const TrailGang:FC<Props> = ({ trailGangData }) => (
   <Container>
     <Title>La TrailGang de la semana es ... 🥁🍾</Title>
     <ContainerAux>
-      <Carrousel trailGang={trailGang} />
-      <GameGang trailGang={trailGang} />
+      <Carrousel trailGangData={trailGangData} />
+      <GameGang trailGangData={trailGangData} />
     </ContainerAux>
   </Container>
 );

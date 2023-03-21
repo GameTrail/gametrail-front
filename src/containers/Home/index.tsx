@@ -1,18 +1,20 @@
 import type { FC } from 'react';
 import React from 'react';
 import { TrailGang, UnkownData, RecentGames } from '@/components/Home';
+import type { RandomTip } from '@/models/RandomTip/types';
 import type { TrailGang as TrailGangProps } from '@/models/Trail/types';
 import { Container } from './styled';
 
 export type Props = {
-  trailGang: TrailGangProps;
+  trailGangData: TrailGangProps;
+  randomTips: RandomTip[];
 };
 
-const Home:FC<Props> = ({ trailGang }) => (
+const Home:FC<Props> = ({ trailGangData, randomTips }) => (
   <Container>
-    <TrailGang trailGang={trailGang} />
-    <RecentGames trailGang={trailGang} />
-    <UnkownData />
+    <TrailGang trailGangData={trailGangData} />
+    <RecentGames trailGangData={trailGangData} />
+    <UnkownData randomTips={randomTips} />
   </Container>
 );
 

@@ -7,28 +7,28 @@ import {
 } from './styles';
 
 export type Props = {
-  trailGang: TrailGangProps;
+  trailGangData: TrailGangProps;
 };
 
-const RecentGames: FC<Props> = ({ trailGang }) => (
+const RecentGames: FC<Props> = ({ trailGangData }) => (
   <Container>
     <Title>Juegos recientemente añadidos</Title>
     <CarouselContainer>
       <Carousel axis="horizontal" autoPlay swipeable centerMode infiniteLoop showThumbs={false} showStatus={false} showIndicators={false} showArrows={false}>
         <CarouselImage
-          src={trailGang.image}
+          src={trailGangData.image}
           alt="Imagen 1"
           width={200}
           height={300}
         />
         <CarouselImage
-          src={trailGang.image}
+          src={trailGangData.image}
           alt="Imagen 1"
           width={200}
           height={300}
         />
         <CarouselImage
-          src={trailGang.image}
+          src={trailGangData.image}
           alt="Imagen 1"
           width={200}
           height={300}

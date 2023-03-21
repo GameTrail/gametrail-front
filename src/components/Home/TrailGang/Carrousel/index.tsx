@@ -5,26 +5,26 @@ import type { TrailGang as TrailGangProps } from '@/models/Trail/types';
 import { CarouselImage, CarouselContainer } from './styles';
 
 export type Props = {
-  trailGang: TrailGangProps;
+  trailGangData: TrailGangProps;
 };
 
-const Carrousel:FC<Props> = ({ trailGang }) => (
+const Carrousel:FC<Props> = ({ trailGangData }) => (
   <CarouselContainer>
     <Carousel axis="vertical" autoPlay swipeable infiniteLoop showStatus={false} showIndicators={false} showArrows={false}>
       <CarouselImage
-        src={trailGang.image}
+        src={trailGangData.image}
         alt="Imagen 1"
         width={200}
         height={300}
       />
       <CarouselImage
-        src={trailGang.image}
+        src={trailGangData.image}
         alt="Imagen 1"
         width={200}
         height={300}
       />
       <CarouselImage
-        src={trailGang.image}
+        src={trailGangData.image}
         alt="Imagen 1"
         width={200}
         height={300}

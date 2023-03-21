@@ -13,35 +13,35 @@ import {
 } from './styles';
 
 export type Props = {
-  trailGang: TrailGangProps;
+  trailGangData: TrailGangProps;
 };
 
-const GameGang:FC<Props> = ({ trailGang }) => (
+const GameGang:FC<Props> = ({ trailGangData }) => (
   <GangContainer>
     <Title> Esta vez aparecemos en la pantalla de inicio!! </Title>
     <UsersContainer>
-      <ProfilePicture src={trailGang.players[0].profilePicture} alt="jvegax profile picture" width={50} height={50} />
+      <ProfilePicture src={trailGangData.players[0].profilePicture} alt="jvegax profile picture" width={50} height={50} />
       <PlayerData>
-        {trailGang.players[0].username}
+        {trailGangData.players[0].username}
       </PlayerData>
     </UsersContainer>
     <UsersContainer>
-      <ProfilePicture src={trailGang.players[1].profilePicture} alt="josmarlop profile picture" width={50} height={50} />
+      <ProfilePicture src={trailGangData.players[1].profilePicture} alt="josmarlop profile picture" width={50} height={50} />
       <PlayerData>
-        {trailGang.players[1].username}
+        {trailGangData.players[1].username}
       </PlayerData>
     </UsersContainer>
     <UsersContainer>
-      <ProfilePicture src={trailGang.players[2].profilePicture} alt="joscacgom profile picture" width={50} height={50} />
+      <ProfilePicture src={trailGangData.players[2].profilePicture} alt="joscacgom profile picture" width={50} height={50} />
       <PlayerData>
-        {trailGang.players[2].username}
+        {trailGangData.players[2].username}
       </PlayerData>
     </UsersContainer>
 
     <AuxContainer>
       <DataContainer>
         <DataText>
-          {trailGang.games.length}
+          {trailGangData.games.length}
           {' '}
           Juegos 🎮
         </DataText>
@@ -50,7 +50,7 @@ const GameGang:FC<Props> = ({ trailGang }) => (
         <DataText>
           📆
           {' '}
-          {trailGang.startDate}
+          {trailGangData.startDate}
         </DataText>
       </DataContainer>
     </AuxContainer>

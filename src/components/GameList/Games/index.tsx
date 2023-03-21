@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import type { Game } from '@/models/Game/types';
 import { normalizeImage } from '@/utils/normalizeImage';
 import {
-  Container, Input, StyledReactPaginate, Row, Titulo, Titulo2, Cajas, Cuerpo, Cuerpo2, Fila, Mascara, P, Buscador, CabezaTabla, Tabla, Boton,
+  Container, Input, StyledReactPaginate, Row, Titulo, Titulo2, Cajas, Cuerpo, Cuerpo2, Fila, Mascara, Button, Buscador, CabezaTabla, Tabla, Boton,
 } from './styles';
 
 export type Props = {
@@ -15,6 +15,9 @@ export type Props = {
 const GameList: FC<Props> = ({ games }) => {
   const [busqueda, setbusqueda] = useState('');
   const [resultados, setresultados] = useState<Game[]>([]);
+  const [showDiv2, setShowDiv2] = useState(true);
+  const [buttonText, setButtonText] = useState('Desactivado');
+  const router = useRouter();
 
   const [currentPage, setCurrentPage] = useState(0);
   const PER_PAGE = 12;
@@ -30,10 +33,6 @@ const GameList: FC<Props> = ({ games }) => {
   const evento = (event: React.ChangeEvent<HTMLInputElement>) => {
     setbusqueda(event.target.value);
   };
-
-  const [showDiv2, setShowDiv2] = useState(true);
-  const [buttonText, setButtonText] = useState('Desactivado');
-  const router = useRouter();
 
   const toggleDiv = () => {
     setShowDiv2(!showDiv2);
@@ -80,9 +79,9 @@ const GameList: FC<Props> = ({ games }) => {
                   </Mascara>
                   <h2>{game.name}</h2>
 
-                  <P>
+                  <Button>
                     Añadir
-                  </P>
+                  </Button>
 
                 </Cajas>
               ))

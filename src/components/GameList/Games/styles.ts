@@ -4,7 +4,7 @@ import ReactPaginate from 'react-paginate';
 export const Container = styled.div` 
 
 width: 100%;
-heigth: auto;
+height: auto;
 background-color: ${({ theme }) => theme.nord.white0};
 ul{
     list-style: none;
@@ -14,7 +14,7 @@ ul{
 export const Buscador = styled.div` 
 
 width: 80%;
-heigth: auto;
+height: auto;
 margin-left: 10%;
     
 `;
@@ -167,7 +167,7 @@ font-size: 20px;
 
 `;
 
-export const P = styled.p`
+export const Button = styled.p`
 
 
 margin: 15px;
@@ -178,10 +178,10 @@ border-radius: 7px;
 bottom: 0;
 text-align: center;
 &:hover {
-    background-color: ${({ theme }) => theme.nord.gray1};
-    color: ${({ theme }) => theme.nord.white1};
-    border: 2px solid ${({ theme }) => theme.nord.white1};
-    transition: all 300ms;
+  background-color: ${({ theme }) => theme.nord.white0};
+    color: ${({ theme }) => theme.nord.gray3};
+     transition: all 0.3s ease-in-out;
+        box-shadow: 0 0 10px 0;
 }
 
 `;

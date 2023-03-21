@@ -6,6 +6,6 @@ export type Props = {
 
 export enum ButtonType {
   Trail = 'Trails',
-  Games = 'Games',
-  Comments = 'Comments',
+  Games = 'Juegos',
+  Comments = 'Comentarios',
 }

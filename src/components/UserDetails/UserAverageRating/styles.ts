@@ -12,7 +12,14 @@ export const Container = styled.div`
   justify-content: center;
   border-radius: 10px;
   height: 60%;
+  padding: 1rem;
   width: 50%;
   font-style: normal;
   font-family: "Outfit", sans-serif;
+  @media (max-width: 768px) {
+    width: 60%;
+¡  }
+  svg {
+    margin-left: 0.5rem;
+  }
 `;

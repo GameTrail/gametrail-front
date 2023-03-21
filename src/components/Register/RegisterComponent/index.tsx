@@ -12,7 +12,7 @@ const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [password2, setPassword2] = useState('');
-  const [avatar, setAvatar] = useState('');
+  const [avatarURL, setAvatar] = useState('');
 
   const { handleSetToken } = useGameTrail();
   const router = useRouter();
@@ -22,16 +22,18 @@ const Register = () => {
     e.preventDefault();
 
     const defaultAvatar = './public/images/Prf.jpg';
-    const avatarURL = avatar || defaultAvatar;
+    const avatar = avatarURL || defaultAvatar;
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    const password_confirmation = password2;
 
     const credentials = {
-      username, email, password, avatarURL,
+      username, email, password, password_confirmation, avatar,
     };
 
     const options = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ credentials }),
+      body: JSON.stringify(credentials),
     };
 
     const API_URL = 'https://gametrail-backend-production.up.railway.app/api/auth/register/';
@@ -121,7 +123,7 @@ const Register = () => {
               type="text"
               name="Avatar"
               placeholder="URL del avatar"
-              value={avatar}
+              value={avatarURL}
               onChange={(e) => setAvatar(e.target.value)}
             />
           </Label>

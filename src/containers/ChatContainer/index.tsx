@@ -6,7 +6,7 @@ import type { Message } from '@/models/Message/types';
 import type { Trail } from '@/models/Trail/types';
 // import { useLogic } from './logic';
 import {
-  Button, Container, DivContainer, InputField,
+  Button, Container, DivContainer, InputField, MessagesContainer,
 } from './styles';
 
 export type MessageToPost = {
@@ -61,16 +61,20 @@ const ChatContainer: FC<Props> = ({ trailData }) => {
 
   // if (messagesArray === undefined) return <div>Loading...</div>;
   return (
-    <Container>
-      <ChatSection messages={messages} />
-      <DivContainer>
-        {/* Ponemos un form para que envíe con un enter */}
-        <form onSubmit={(e) => handleSendMessage(e)}>
-          <InputField type="text" placeholder="Escribe un comentario" value={message} onChange={(e) => { setMessage(e.target.value); }} />
-          <Button>Enviar</Button>
-        </form>
-      </DivContainer>
-    </Container>
+    <>
+      <MessagesContainer>
+        <ChatSection messages={messages} />
+      </MessagesContainer>
+      <Container>
+        <DivContainer>
+          {/* Ponemos un form para que envíe con un enter */}
+          <form onSubmit={(e) => handleSendMessage(e)}>
+            <InputField type="text" placeholder="Escribe un comentario" value={message} onChange={(e) => { setMessage(e.target.value); }} />
+            <Button>Enviar</Button>
+          </form>
+        </DivContainer>
+      </Container>
+    </>
   );
 };
 export default ChatContainer;

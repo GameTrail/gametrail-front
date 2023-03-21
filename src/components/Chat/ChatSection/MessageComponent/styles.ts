@@ -6,20 +6,22 @@ export const CommentContainer = styled.div`
     background-color: ${({ theme }) => theme.nord.gray1};
     margin-top: 2rem;
     margin-bottom: 2rem;
+    word-wrap: break-word;
 `;
 
 export const AvatarContainer = styled.div`
-    flex-basis: 10%;
     aling-items: center;
     background-color: ${({ theme }) => theme.nord.gray1};
     img {
         border-radius: 50%;
         margin-left: 0.5rem;
     }
+
 `;
 
 export const CommentContentContainer = styled.div`
     flex-basis: 90%;
+    max-width: 90%;
     color: ${({ theme }) => theme.nord.white1};
     font-size: 2rem;
     background-color: ${({ theme }) => theme.nord.gray1};

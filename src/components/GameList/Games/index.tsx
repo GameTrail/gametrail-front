@@ -1,7 +1,9 @@
 import type { FC } from 'react';
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import type { Game } from '@/models/Game/types';
+import { normalizeImage } from '@/utils/normalizeImage';
 import {
   Container, Input, StyledReactPaginate, Row, Titulo, Titulo2, Cajas, Cuerpo, Cuerpo2, Fila, Mascara, P, Buscador, CabezaTabla, Tabla, Boton,
 } from './styles';
@@ -15,7 +17,7 @@ const GameList: FC<Props> = ({ games }) => {
   const [resultados, setresultados] = useState<Game[]>([]);
 
   const [currentPage, setCurrentPage] = useState(0);
-  const PER_PAGE = 3;
+  const PER_PAGE = 12;
   const offset = currentPage * PER_PAGE;
   const pageCount = Math.ceil(games.length / PER_PAGE);
 
@@ -31,6 +33,7 @@ const GameList: FC<Props> = ({ games }) => {
 
   const [showDiv2, setShowDiv2] = useState(true);
   const [buttonText, setButtonText] = useState('Desactivado');
+  const router = useRouter();
 
   const toggleDiv = () => {
     setShowDiv2(!showDiv2);
@@ -41,8 +44,17 @@ const GameList: FC<Props> = ({ games }) => {
     }
   };
 
+  const handleClickGameDetails: any = (id: number) => {
+    router.push(`/game/${id}`);
+  };
+
   function handlePageClick({ selected: selectedPage }: { selected: number }) {
     setCurrentPage(selectedPage);
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
   }
 
   return (
@@ -62,9 +74,9 @@ const GameList: FC<Props> = ({ games }) => {
             {resultados.length > 0 && (
 
               resultados.slice(offset, offset + PER_PAGE).map((game) => (
-                <Cajas key={game.id}>
+                <Cajas key={game.id} onClick={() => handleClickGameDetails(game.id)}>
                   <Mascara>
-                    <Image src={game.image} width={450} height={600} alt="nu" />
+                    <Image src={normalizeImage(game.image)} width={450} height={600} alt="nu" />
                   </Mascara>
                   <h2>{game.name}</h2>
 
@@ -111,8 +123,8 @@ const GameList: FC<Props> = ({ games }) => {
 
                   resultados.slice(offset, offset + PER_PAGE).map((game) => (
 
-                    <Row key={game.id}>
-                      <Fila><Image src={game.image} width={80} height={100} alt="nu" /></Fila>
+                    <Row key={game.id} onClick={() => handleClickGameDetails(game.id)}>
+                      <Fila><Image src={normalizeImage(game.image)} width={80} height={100} alt="nu" /></Fila>
                       <Fila><h2>{game.name}</h2></Fila>
                       <Fila><h2>{game.releaseDate}</h2></Fila>
                       <Fila>+</Fila>

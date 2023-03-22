@@ -1,5 +1,7 @@
 export { default as GamerLottie } from './Landing/GamerLottie';
 export { default as GameGangLottie } from './Landing/GameGangLottie';
+export { default as ControllerLottie } from './Landing/ControllerLottie';
+export { default as TimeLottie } from './Landing/TimeLottie';
 export { default as TodoListLottie } from './Landing/TodoList';
 export { default as PlayersLottie } from './Landing/PlayersLottie';
 export { default as SteamLottie } from './Landing/SteamLottie';

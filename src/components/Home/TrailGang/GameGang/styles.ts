@@ -1,10 +1,10 @@
 import styled from 'styled-components';
-import Image from 'next/image';
 
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
   float: right;
+  justify-content: center;
   width: 50vw;
   height: 50vh;
   padding: 1%;
@@ -13,7 +13,7 @@ export const Container = styled.div`
       width: 100vw;         
       height: 100%;
       justify-content: center;
-      padding-top: 10px;     
+      padding: 1%;     
   };
 `;
 
@@ -27,97 +27,42 @@ export const Title = styled.h2`
   };
 `;
 
+export const GameGangContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  @media (max-width: 768px) {
+      display: flex;
+      flex-direction: column;   
+      justify-content: center;
+      width: 100%;
+  };
+`;
+
 export const CrewContainer = styled.div`
   display: flex;
   flex-direction: column;
-  float: right;
-  width: 50vw;
-  height: 50vh;
-  padding: 1%;
+  float: left;
+  width: 100vw;
+  height: 100%;
   @media (max-width: 768px) {
       flex-direction: column;         
-      width: 100vw;         
+      width: 100%;         
       height: 100%;
       justify-content: center;
-      padding-top: 10px;     
+      padding-top: 1%;     
   };
 `;
 
 export const AuxContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
-  height: 20%;
-  background-color: ${({ theme }) => theme.nord.gray0};
-  border-radius: 12px;
+  float: right;
+  width: 10vw;
+  height: 40vh;
   @media (max-width: 768px) {
-      flex-direction: row;         
+      flex-direction: column;         
       width: 100%;         
-      height: 100%;
+      height: 50vh;
       justify-content: center;
-      padding-top: 10px;     
-    };
-`;
-
-export const DataContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  height: 20%;
-  border-width: 5px;
-  border-radius: 12px;
-  border-style: solid;
-  padding: 2% 2% 2% 2%;
-  justify-content: center;
-  border-color: ${({ theme }) => theme.nord.gray0};
-  background-color: ${({ theme }) => theme.nord.gray2};
-  @media (max-width: 768px) {
-      flex-direction: row;
-      width: 100%;         
-      height: 20%;   
-    };
-`;
-
-export const DataText = styled.text`
-  color: ${({ theme }) => theme.nord.white0};
-`;
-
-export const UsersContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  height: 20%;
-  border-width: 5px;
-  border-radius: 50px;
-  border-style: solid;
-  border-color: ${({ theme }) => theme.nord.gray1};
-  background-color: ${({ theme }) => theme.nord.white0};
-  @media (max-width: 768px) {
-      flex-direction: row;
-      width: 100%;         
-      height: 20%;   
-    };
-`;
-
-export const ProfilePicture = styled(Image)`
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  border-radius: 30px;
-  box-shadow: 0 0 10px 0 ${({ theme }) => theme.nord.gray3}; 
-  @media (max-width: 768px) {         
-    width: 20%;         
-    height: 20%;
-    border-radius: 40px;
-  };
-`;
-
-export const PlayerData = styled.h3`
-  color: ${({ theme }) => theme.nord.gray0};
-  font-size: 1.2rem;
-  padding: 2% 0 2% 30%;
-  @media (max-width: 768px) {
-    font-size: 1rem;
-    padding: 6% 0 6% 18%;
   };
 `;

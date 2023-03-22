@@ -1,26 +1,14 @@
 import styled from 'styled-components';
-import Image from 'next/image';
 
 export const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 1em;
-    width: 100%;
-    @media (max-width: 768px) {
-        width: 94vw;
-        flex-wrap: nowrap;
-    }
-`;
-export const Player = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 1em;
-    border-radius: 9px;
-    width: 100%;
-    height: auto;
+    width: 80%;
+    height: 30%;
+    margin-bottom: 5em;
+    margin-left: 1em;
     cursor: pointer;
     background-color: ${({ theme }) => theme.nord.gray3};
     box-shadow: 0 0 10px 0 ${({ theme }) => theme.nord.gray3};
@@ -29,16 +17,20 @@ export const Player = styled.div`
         box-shadow: 0 0 10px 0;
         background-color: ${({ theme }) => theme.nord.gray2};
     }
+    svg {
+        max-height: 20vh;
+        max-width: 20vw;
+    }
+    @media (max-width: 768px) {
+        display: flex;
+        flex-direction: column;
+        width: 90%;
+        margin: 1em;
+    }
 `;
 
-export const UserName = styled.p`
+export const Data = styled.p`
     font-size: 1em;
     font-weight: 600;
     color: ${({ theme }) => theme.nord.white2};
-    margin-bottom: 0.5em;
-`;
-
-export const ProfilePicture = styled(Image)`
-    border-radius: 9px;
-    height: auto;
 `;

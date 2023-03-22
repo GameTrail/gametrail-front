@@ -4,12 +4,12 @@ import Crew from '@/components/Home/TrailGang/GameGang/Crew';
 import type { Trail as TrailGangProps } from '@/models/Trail/types';
 import {
   AuxContainer,
-  DataContainer,
-  DataText,
   Container,
   Title,
   CrewContainer,
+  GameGangContainer,
 } from './styles';
+import TrailData from './TrailData';
 
 export type Props = {
   trailGang: TrailGangProps;
@@ -18,25 +18,14 @@ export type Props = {
 const GameGang:FC<Props> = ({ trailGang }) => (
   <Container>
     <Title>TrailGang de la semana</Title>
-    <CrewContainer>
-      <Crew trailGang={trailGang} />
-    </CrewContainer>
-    <AuxContainer>
-      <DataContainer>
-        <DataText>
-          {trailGang.games.length}
-          {' '}
-          Juegos 🎮
-        </DataText>
-      </DataContainer>
-      <DataContainer>
-        <DataText>
-          📆
-          {' '}
-          {trailGang.startDate}
-        </DataText>
-      </DataContainer>
-    </AuxContainer>
+    <GameGangContainer>
+      <CrewContainer>
+        <Crew trailGang={trailGang} />
+      </CrewContainer>
+      <AuxContainer>
+        <TrailData trailGang={trailGang} />
+      </AuxContainer>
+    </GameGangContainer>
   </Container>
 );
 

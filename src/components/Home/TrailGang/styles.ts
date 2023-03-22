@@ -3,13 +3,12 @@ import styled from 'styled-components';
 export const Container = styled.div` 
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     align-items: center;
     justify-content: space-evenly;
     width: 100vw;
-    height: 80vh;
-    overflow-x: hidden;
-    background-color: ${({ theme }) => theme.nord.gray1};
+    height: 90vh;
+    background-color: ${({ theme }) => theme.nord.gray2};
     svg {
       min-width: 25vw;
     }
@@ -31,23 +30,26 @@ export const About = styled.div`
     justify-items: center;
     text-align: center;
     padding-bottom: 10vh;
-    background-color: ${({ theme }) => theme.nord.gray1};
+    background-color: ${({ theme }) => theme.nord.gray2};
     @media (max-width: 768px) {
-        flex: 1;
+        display: flex;
         flex-direction: column;
-        padding: 0 1rem;
-        margin-left: 0;
-        margin-right: 0;
     }
 `;
 
-export const Description = styled.p`
+export const Description = styled.h3`
+    display: flex;
+    flex-direction: column;
     font-size: 1.6rem;
     padding: 3%;
     color: ${({ theme }) => theme.nord.white2};
     @media (max-width: 768px) {
-        font-size: 1.2rem;
+        padding-left: 33.33%;
+        font-size: 0.9rem;
+        display: flex;
+        flex-direction: column;
         text-align: center;
+        width: 70%;
     }
 `;
 
@@ -58,7 +60,7 @@ type ButtonProps = {
 
 export const Button = styled.button<ButtonProps>`
     height: 60px;
-    width: 200px;
+    width: 20%;
     border-radius: 9px;
     padding: 0 10px;
     font-size: 1.4rem;
@@ -86,7 +88,7 @@ export const Button = styled.button<ButtonProps>`
     `}
 
     @media (max-width: 768px) {
-        width: 90%;
+        width: 60vw;
     }
     &:hover {
         transform: ${({ primary }) => (primary ? 'scale(1.05)' : 'none')};

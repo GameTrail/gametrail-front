@@ -28,7 +28,6 @@ const MainSection = () => (
     <Bottom>
       <BrandSection />
     </Bottom>
-
   </Container>
 );
 

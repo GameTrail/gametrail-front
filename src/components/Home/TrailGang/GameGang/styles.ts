@@ -1,18 +1,13 @@
 import styled from 'styled-components';
 import Image from 'next/image';
 
-export const GangContainer = styled.div`
+export const Container = styled.div`
   display: flex;
   flex-direction: column;
   float: right;
-  width: 60%;
-  height: 50%;
+  width: 50vw;
+  height: 50vh;
   padding: 1%;
-  border-width: 5px;
-  border-style: solid;
-  background-color: ${({ theme }) => theme.nord.gray0};
-  border-radius: 12px;
-  border-color: ${({ theme }) => theme.nord.gray1};
   @media (max-width: 768px) {
       flex-direction: column;         
       width: 100vw;         
@@ -26,9 +21,25 @@ export const Title = styled.h2`
   color: ${({ theme }) => theme.nord.white1};
   line-height: 1.2;
   text-align: center;
-  font-size: 1.6rem;
+  font-size: 4rem;
   @media (max-width: 768px) {
     font-size: 1rem;
+  };
+`;
+
+export const CrewContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  float: right;
+  width: 50vw;
+  height: 50vh;
+  padding: 1%;
+  @media (max-width: 768px) {
+      flex-direction: column;         
+      width: 100vw;         
+      height: 100%;
+      justify-content: center;
+      padding-top: 10px;     
   };
 `;
 

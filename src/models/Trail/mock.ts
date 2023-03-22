@@ -1,6 +1,6 @@
 import { MOCK_GAMES } from '../Game/mock';
 import { MOCK_USERS } from '../User/mock';
-import type { Trail, TrailGang } from './types';
+import type { Trail } from './types';
 
 export const MOCK_TRAIL: Trail = {
   id: 1,
@@ -9,12 +9,8 @@ export const MOCK_TRAIL: Trail = {
   startDate: '2021/08/01',
   finishDate: '2021/08/01',
   maxPlayers: 4,
-};
-
-export const MOCK_TRAIL_GANG: TrailGang = {
-  id: 1,
-  image: '/images/MGS.jpg',
-  players: MOCK_USERS,
+  owner: 1,
+  platforms: [],
   games: MOCK_GAMES,
-  startDate: '07/03/2023',
+  users: MOCK_USERS,
 };

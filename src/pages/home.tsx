@@ -1,22 +1,28 @@
 import type { FC } from 'react';
-import useSWR from 'swr';
-import Error from '@/components/Error';
-import LoadingSpinner from '@/components/LoadingSpinner';
+import type { GetServerSideProps } from 'next';
 import { Home as HomeComponent } from '@/containers';
-import type { TrailGang } from '@/models/Trail/types';
-import { fetcher } from '@/utils/fetcher';
+import type { Game } from '@/models/Game/types';
+import type { Trail } from '@/models/Trail/types';
 
 export type Props = {
-  data: TrailGang;
+  dataTrail: Trail;
+  dataGames: Game;
 };
 
-const Home: FC<Props> = () => {
-  const { data, error } = useSWR('https://gametrail.vercel.app/api/trailgang', fetcher);
+export const getServerSideProps: GetServerSideProps<Props> = async () => {
+  const response1 = await fetch('http://127.0.0.1:3000/api/trailgang');
+  const response2 = await fetch('http://127.0.0.1:3000/api/games/1');
+  const dataTrail = await response1.json();
+  const dataGames = await response2.json();
 
-  if (error) return <Error />;
-  if (!data) return <LoadingSpinner />;
-
-  return <HomeComponent trailGang={data} />;
+  return {
+    props: {
+      dataTrail,
+      dataGames,
+    },
+  };
 };
+
+const Home: FC<Props> = ({ dataTrail, dataGames }) => <HomeComponent trailGang={dataTrail} recentGames={dataGames} />;
 
 export default Home;

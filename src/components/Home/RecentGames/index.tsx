@@ -1,41 +1,38 @@
 import type { FC } from 'react';
-import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
-import type { Game as GamesProps } from '@/models/Game/types';
+import { Carousel } from 'react-responsive-carousel';
+import type { GameList as GameLists } from '@/models/GameList/types';
 import {
-  CarouselContainer, Container, Title, CarouselImage,
+  CarouselContainer, Container, Title, CarouselImage, Description,
 } from './styles';
 
 export type Props = {
-  recentGames: GamesProps;
+  recentGames: GameLists[];
 };
 
-const RecentGames: FC<Props> = ({ recentGames }) => (
-  <Container>
-    <Title>Juegos recientemente añadidos</Title>
-    <CarouselContainer>
-      <Carousel axis="horizontal" autoPlay swipeable centerMode infiniteLoop showThumbs={false} showStatus={false} showIndicators={false} showArrows={false}>
-        <CarouselImage
-          src={recentGames.image}
-          alt="Imagen 1"
-          width={200}
-          height={300}
-        />
-        <CarouselImage
-          src={recentGames.image}
-          alt="Imagen 2"
-          width={200}
-          height={300}
-        />
-        <CarouselImage
-          src={recentGames.image}
-          alt="Imagen 3"
-          width={200}
-          height={300}
-        />
-      </Carousel>
-    </CarouselContainer>
-  </Container>
-);
+const RecentGames:FC<Props> = ({ recentGames }) => {
+  const handleRenderGames = () => recentGames.map((game) => (
+    <CarouselImage
+      src={game.image}
+      alt={game.name}
+      width={200}
+      height={300}
+    />
+  ));
+  return (
+    <Container>
+      <Title>Juegos recientemente añadidos</Title>
+      <CarouselContainer>
+        <Carousel axis="horizontal" autoPlay swipeable centerMode infiniteLoop showStatus={false} showIndicators={false} showArrows={false}>
+          {handleRenderGames()}
+        </Carousel>
+      </CarouselContainer>
+      <Description>
+        Estos son los ultimos juegos añadidos a GameTrail.
+        Si quieres acceder a todos ellos y añadirlos a tus Trails o listas usa nuestro buscador!!
+      </Description>
+    </Container>
+  );
+};
 
 export default RecentGames;

@@ -1,7 +1,7 @@
 import type { FC } from 'react';
 import React from 'react';
 import { TrailGang, UnkownData, RecentGames } from '@/components/Home';
-import type { Game as GamesProps } from '@/models/Game/types';
+import type { GameList as GamesProps } from '@/models/GameList/types';
 import type { Trail as TrailGangProps } from '@/models/Trail/types';
 import { Container } from './styled';
 

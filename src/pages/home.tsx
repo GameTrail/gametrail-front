@@ -11,7 +11,7 @@ export type Props = {
 
 export const getServerSideProps: GetServerSideProps<Props> = async () => {
   const response1 = await fetch('http://127.0.0.1:3000/api/trailgang');
-  const response2 = await fetch('http://127.0.0.1:3000/api/games/1');
+  const response2 = await fetch('http://127.0.0.1:3000/api/games');
   const dataTrail = await response1.json();
   const dataGames = await response2.json();
 

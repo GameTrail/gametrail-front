@@ -3,7 +3,6 @@ import { useRouter } from 'next/router';
 import { Button } from '@/components/Landing/MainSection/styles';
 import { LoginLottie } from '@/components/Lotties';
 import { useGameTrail } from '@/hooks';
-import { normalizeUser } from '@/models/User/types';
 import {
   LoginContainer,
   Container,
@@ -15,26 +14,20 @@ import {
 } from './styles';
 
 const LOGIN_AUTH_URL = 'https://gametrail-backend-production.up.railway.app/api/auth/login';
-const USER_DATA_URL = 'https://gametrail-backend-production.up.railway.app/api/user';
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState<string>('');
   const { handleSetUser, handleSetToken } = useGameTrail();
-
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [isLoading, setIsLoading] = useState<boolean>(false);
   const router = useRouter();
 
   const handleLogin = async () => {
-    setIsLoading(true);
     const options = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ password, username }),
     };
-
     try {
       const response = await fetch(LOGIN_AUTH_URL, options);
       if (response.ok) {
@@ -42,30 +35,26 @@ const Login = () => {
         handleSetToken(data.token);
         localStorage.setItem('token', data.token);
 
-        const userOptions = {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ token: data.token }),
-        };
-        const userResponse = await fetch(USER_DATA_URL, userOptions);
+        const userResponse = await fetch(`https://gametrail-backend-production.up.railway.app/api/user/${data.user_id}`, {
+          headers: { Authorization: `Bearer ${data.token}` },
+        });
 
         if (userResponse.ok) {
-          const userData = await userResponse.json();
-          const user = normalizeUser(userData, data.token);
+          const user = await userResponse.json();
           handleSetUser(user);
           localStorage.setItem('user', JSON.stringify(user));
           router.push('/');
         } else {
-          setMessage('No se puede iniciar sesión con estas credenciales');
+          throw new Error('Error al obtener los datos del usuario');
         }
+      } else if (response.status === 401) {
+        setMessage('Las credenciales son inválidas');
       } else {
-        setMessage('No se puede iniciar sesión con estas credenciales');
+        throw new Error('Error al iniciar sesión');
       }
     } catch (error) {
-      setMessage('No se puede iniciar sesión con estas credenciales');
+      setMessage('Error en el inicio de sesión');
     }
-
-    setIsLoading(false);
   };
 
   const onSubmit = (e: React.FormEvent) => {

@@ -17,6 +17,7 @@ const Logout = () => {
     handleSetToken(null);
     localStorage.removeItem('token');
     localStorage.removeItem('user');
+    localStorage.removeItem('user_id');
 
     router.push('/');
   };

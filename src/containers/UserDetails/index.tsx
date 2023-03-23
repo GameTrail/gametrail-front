@@ -27,7 +27,7 @@ const User: FC<Props> = ({ userData }) => {
   return (
     <Container darkMode={false}>
       <InfoDetails darkMode={false}>
-        <UserData userName={userData.username} userAvatar={userData.profilePicture} />
+        <UserData userName={userData.username} userAvatar={userData.avatar} />
       </InfoDetails>
       <h2>Stats</h2>
       <StatsDetails>

@@ -20,19 +20,19 @@ const GameGang:FC<Props> = ({ trailGang }) => (
   <GangContainer>
     <Title> Esta vez aparecemos en la pantalla de inicio!! </Title>
     <UsersContainer>
-      <ProfilePicture src={trailGang.players[0].profilePicture} alt="jvegax profile picture" width={50} height={50} />
+      <ProfilePicture src={trailGang.players[0].avatar} alt="jvegax profile picture" width={50} height={50} />
       <PlayerData>
         {trailGang.players[0].username}
       </PlayerData>
     </UsersContainer>
     <UsersContainer>
-      <ProfilePicture src={trailGang.players[1].profilePicture} alt="josmarlop profile picture" width={50} height={50} />
+      <ProfilePicture src={trailGang.players[1].avatar} alt="josmarlop profile picture" width={50} height={50} />
       <PlayerData>
         {trailGang.players[1].username}
       </PlayerData>
     </UsersContainer>
     <UsersContainer>
-      <ProfilePicture src={trailGang.players[2].profilePicture} alt="joscacgom profile picture" width={50} height={50} />
+      <ProfilePicture src={trailGang.players[2].avatar} alt="joscacgom profile picture" width={50} height={50} />
       <PlayerData>
         {trailGang.players[2].username}
       </PlayerData>

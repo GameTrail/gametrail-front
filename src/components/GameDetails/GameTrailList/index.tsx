@@ -20,7 +20,7 @@ const GameTrailList:FC<Props> = ({ trailList }) => {
     <Item key={trail.id}>
       <Image
         alt={trail.owner.username}
-        src={trail.owner.username}
+        src={trail.owner.avatar}
         height={30}
         width={30}
       />

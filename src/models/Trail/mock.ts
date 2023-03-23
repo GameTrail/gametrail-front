@@ -9,6 +9,10 @@ export const MOCK_TRAIL: Trail = {
   startDate: '2021/08/01',
   finishDate: '2021/08/01',
   maxPlayers: 4,
+  owner: MOCK_USERS[0],
+  platforms: ['PC', 'PS4', 'XBOX'],
+  games: MOCK_GAMES,
+  users: MOCK_USERS,
 };
 
 export const MOCK_TRAIL_GANG: TrailGang = {

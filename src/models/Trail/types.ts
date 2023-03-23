@@ -8,6 +8,11 @@ export type Trail = {
   startDate: string;
   finishDate: string;
   maxPlayers: number;
+
+  owner: User;
+  platforms: string[];
+  games: Game[];
+  users: User[];
 };
 
 export type TrailGang = {

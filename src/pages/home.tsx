@@ -6,7 +6,7 @@ import type { Trail } from '@/models/Trail/types';
 
 export type Props = {
   dataTrail: Trail;
-  dataGames: Game;
+  dataGames: Game[];
 };
 
 export const getServerSideProps: GetServerSideProps<Props> = async () => {

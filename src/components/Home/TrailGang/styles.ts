@@ -67,7 +67,7 @@ export const Button = styled.button<ButtonProps>`
     border: none;
     cursor: pointer;
     color: ${({ theme, primary }) => (primary ? theme.nord.gray1 : theme.nord.white2)};
-    background: ${({ theme, primary }) => (primary ? theme.nord.blue0 : theme.nord.blue0)};
+    background: ${({ theme, primary }) => (primary ? theme.nord.blue0 : theme.nord.blue1)};
 
     ${({ animated }) => animated
         && `

@@ -1,60 +1,32 @@
 import type { FC } from 'react';
 import React from 'react';
-import type { TrailGang as TrailGangProps } from '@/models/Trail/types';
+import Crew from '@/components/Home/TrailGang/GameGang/Crew';
+import type { Trail as TrailGangProps } from '@/models/Trail/types';
 import {
   AuxContainer,
-  DataContainer,
-  DataText,
-  GangContainer,
-  PlayerData,
+  Container,
   Title,
-  UsersContainer,
-  ProfilePicture,
+  CrewContainer,
+  GameGangContainer,
 } from './styles';
+import TrailData from './TrailData';
 
 export type Props = {
   trailGang: TrailGangProps;
 };
 
 const GameGang:FC<Props> = ({ trailGang }) => (
-  <GangContainer>
-    <Title> Esta vez aparecemos en la pantalla de inicio!! </Title>
-    <UsersContainer>
-      <ProfilePicture src={trailGang.players[0].profilePicture} alt="jvegax profile picture" width={50} height={50} />
-      <PlayerData>
-        {trailGang.players[0].username}
-      </PlayerData>
-    </UsersContainer>
-    <UsersContainer>
-      <ProfilePicture src={trailGang.players[1].profilePicture} alt="josmarlop profile picture" width={50} height={50} />
-      <PlayerData>
-        {trailGang.players[1].username}
-      </PlayerData>
-    </UsersContainer>
-    <UsersContainer>
-      <ProfilePicture src={trailGang.players[2].profilePicture} alt="joscacgom profile picture" width={50} height={50} />
-      <PlayerData>
-        {trailGang.players[2].username}
-      </PlayerData>
-    </UsersContainer>
-
-    <AuxContainer>
-      <DataContainer>
-        <DataText>
-          {trailGang.games.length}
-          {' '}
-          Juegos 🎮
-        </DataText>
-      </DataContainer>
-      <DataContainer>
-        <DataText>
-          📆
-          {' '}
-          {trailGang.startDate}
-        </DataText>
-      </DataContainer>
-    </AuxContainer>
-  </GangContainer>
+  <Container>
+    <Title>TrailGang de la semana</Title>
+    <GameGangContainer>
+      <CrewContainer>
+        <Crew trailGang={trailGang} />
+      </CrewContainer>
+      <AuxContainer>
+        <TrailData trailGang={trailGang} />
+      </AuxContainer>
+    </GameGangContainer>
+  </Container>
 );
 
 export default GameGang;

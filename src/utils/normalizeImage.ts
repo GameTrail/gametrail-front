@@ -1,1 +1,1 @@
-export const normalizeImage = (url: string) => `https://${url.substring(2)}`;
+export const normalizeImage = (url: string) => `https:/${url.substring(1)}`;

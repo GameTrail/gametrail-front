@@ -13,11 +13,8 @@ export const Container = styled.div<ContainerProps>`
     height: auto;
     padding: 0 20px;
 
-    // background-color: ${({ darkMode, theme }) => (darkMode ? theme.nord.gray0 : '#fff')};
-
-        color: ${({ darkMode, theme }) => (darkMode ? theme.nord.white0 : theme.nord.gray1)};
-        margin-bottom: 1rem;
-    }
+    color: ${({ darkMode, theme }) => (darkMode ? theme.nord.white0 : theme.nord.gray1)};
+    margin-bottom: 1rem;
 
     @media(max-width: 768px) {
         height: auto;

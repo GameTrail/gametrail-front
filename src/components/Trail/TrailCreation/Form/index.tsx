@@ -47,7 +47,7 @@ const TrailCreationForm: FC<Props> = ({ handleSetLoading }) => {
         throw new Error(res.statusText);
       }
     } catch (error) {
-      console.log({ corchuelo: error });
+      throw new Error();
     } finally {
       const res = await fetch('https://gametrail-backend-production.up.railway.app/api/trail/');
       const data: [] = await res.json();

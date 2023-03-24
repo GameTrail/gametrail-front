@@ -25,16 +25,21 @@ export const CarouselContainer = styled.div`
 
 export const Photo = styled.div`
 
-  width: 130px;
+  width: 95px;
   height: 450px;
 
+  @media (max-width: 1024px) {
+    width: 65px;
+    height: 450px;
+  }
+
   @media (max-width: 768px) {
-    width: 80px;
-    height: 280px;
+    width: 50px;
+    height: 300px;
   }
 
   @media (max-width: 426px) {
-    width: 45px;
+    width: 25px;
     height: 220px;
   }
 

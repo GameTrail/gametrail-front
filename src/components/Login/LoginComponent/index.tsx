@@ -43,7 +43,7 @@ const Login = () => {
           const user = await userResponse.json();
           handleSetUser(user);
           localStorage.setItem('user', JSON.stringify(user));
-          router.push('/');
+          router.push('/home');
         } else {
           throw new Error('Error al obtener los datos del usuario');
         }

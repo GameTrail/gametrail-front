@@ -5,13 +5,17 @@ display: flex;
 flex-direction: column;
 width: 70%;
 height: 35%;
-padding: 2% 2% 2% 2%;
-margin-top: 2%;
+padding: 2%;
 border-width: 5px;
 border-style: solid;
 background-color: ${({ theme }) => theme.nord.white0};
 border-radius: 12px;
 border-color: ${({ theme }) => theme.nord.gray1};
+@media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    width: 80vw;
+  };
 `;
 
 export const DataText = styled.h3`

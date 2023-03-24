@@ -9,12 +9,17 @@ import {
 } from './styles';
 
 const Logout = () => {
-  const { handleLogout } = useGameTrail();
+  const { handleSetUser, handleSetToken } = useGameTrail();
   const router = useRouter();
 
   const onPressLogout = () => {
-    handleLogout();
-    router.push('/home');
+    handleSetUser(null);
+    handleSetToken(null);
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    localStorage.removeItem('user_id');
+
+    router.push('/');
   };
 
   return (

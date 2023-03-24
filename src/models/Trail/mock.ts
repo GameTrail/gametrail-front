@@ -11,6 +11,15 @@ export const MOCK_TRAIL: Trail = {
   maxPlayers: 4,
 };
 
+export const MOCK_TRAIL2: Trail = {
+  id: 2,
+  name: 'Trail 2',
+  description: 'Vamos a crear este trail 2 para probar el chat',
+  startDate: '2021/08/01',
+  finishDate: '2021/08/01',
+  maxPlayers: 4,
+};
+
 export const MOCK_TRAIL_GANG: TrailGang = {
   id: 1,
   image: '/images/MGS.jpg',

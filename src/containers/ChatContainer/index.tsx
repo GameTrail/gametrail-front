@@ -27,6 +27,11 @@ const ChatContainer: FC<Props> = ({ trailData }) => {
   const [message, setMessage] = useState<string>();
 
   useEffect(() => {
+    socket.emit('join', trailData.id);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
     const handleReceiveMessage = (msg: Message) => {
       setMessages([...messages, msg]);
     };
@@ -59,7 +64,6 @@ const ChatContainer: FC<Props> = ({ trailData }) => {
     setMessage('');
   };
 
-  // if (messagesArray === undefined) return <div>Loading...</div>;
   return (
     <>
       <MessagesContainer>
@@ -67,7 +71,6 @@ const ChatContainer: FC<Props> = ({ trailData }) => {
       </MessagesContainer>
       <Container>
         <DivContainer>
-          {/* Ponemos un form para que envíe con un enter */}
           <form onSubmit={(e) => handleSendMessage(e)}>
             <InputField type="text" placeholder="Escribe un comentario" value={message} onChange={(e) => { setMessage(e.target.value); }} />
             <Button>Enviar</Button>

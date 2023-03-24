@@ -19,7 +19,11 @@ export const Container = styled.div`
   @media (max-width: 768px) {
     width: 60%;
     font-size: 1.8rem;
-¡  }
+  }
+  @media (max-width: 1050px) {
+    width: 80%;
+    font-size: 1.8rem;
+  }
   svg {
     margin-left: 0.5rem;
   }

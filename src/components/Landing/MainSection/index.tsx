@@ -1,5 +1,5 @@
 import React from 'react';
-import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { GamerLottie } from '@/components/Lotties';
 import BrandSection from '../BrandSection';
 import {
@@ -28,8 +28,8 @@ const MainSection = () => (
     <Bottom>
       <BrandSection />
     </Bottom>
-
-  </Container>
-);
+    </Container>
+  );
+};
 
 export default MainSection;

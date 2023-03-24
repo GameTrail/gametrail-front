@@ -10,6 +10,9 @@ export const Container = styled.div`
     padding: 10px 30px;   
     white-space: pre;
     font-weight: 600;
+    svg{
+        color: ${({ theme }) => theme.nord.yellow};
+    }
     
 
     img{

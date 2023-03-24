@@ -1,5 +1,5 @@
 import type { FC } from 'react';
-import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';
+import { faCrown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Image from 'next/image';
 import { Container } from './styles';
@@ -15,7 +15,7 @@ const UserData: FC<Props> = ({ userName, userAvatar }) => (
       @
       {userName}
       {' '}
-      <FontAwesomeIcon icon={faCircleCheck} color="#31A4F1" size="xs" />
+      <FontAwesomeIcon icon={faCrown} size="xs" />
     </h1>
   </Container>
 

@@ -1,13 +1,12 @@
 import React from 'react';
 import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import useGameTrail from '@/hooks/useGameTrail';
 import {
-  Menu, MenuItem, Nav, User, Username,
+  Menu, MenuItem, Nav, Username,
 } from './styles';
 
 const Navbar = () => {
-  const { user, token } = useGameTrail();
+  const storedUser = JSON.parse(localStorage.getItem('user') || '{}');
 
   return (
     <Nav>
@@ -19,21 +18,17 @@ const Navbar = () => {
         <MenuItem href="/games">
           <h4>Juegos</h4>
         </MenuItem>
-        {token && (
-        <>
-          <MenuItem href="/trail/create">
-            <h4>Crear Trail</h4>
+        <MenuItem href="/trail/create">
+          <h4>Crear Trail</h4>
+        </MenuItem>
+        {storedUser && (
+          <MenuItem href={`/api/user/${storedUser.id}`}>
+            <Username>{storedUser.username}</Username>
           </MenuItem>
-          <User>
-            <Username>
-              {user?.avatar}
-            </Username>
-          </User>
-          <MenuItem href="/auth/logout">
-            <FontAwesomeIcon icon={faArrowRightFromBracket} />
-          </MenuItem>
-        </>
         )}
+        <MenuItem href="/auth/logout">
+          <FontAwesomeIcon icon={faArrowRightFromBracket} />
+        </MenuItem>
       </Menu>
     </Nav>
   );

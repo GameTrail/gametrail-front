@@ -29,7 +29,7 @@ const User: FC<Props> = ({ userData }) => {
       <InfoDetails darkMode={false}>
         <UserData userName={userData.username} userAvatar={userData.avatar} />
       </InfoDetails>
-      <h2>Stats</h2>
+      <h2>Estadísticas</h2>
       <StatsDetails>
         <UserAverageRating userRating={userData.rating} />
         <UserStats userRating={userData.rating} />

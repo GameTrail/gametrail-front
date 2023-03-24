@@ -1,3 +1,5 @@
+import type { GameList } from '../GameList/types';
+import { GameListState } from '../GameList/types';
 import { MOCK_GAME_TRAIL_LIST } from '../TrailList/mock';
 import type { Game, Platform } from './types';
 
@@ -12,7 +14,7 @@ export const MOCK_GAMES: Game[] = [
     genre: 'Platformer',
     platforms: [MOCK_PLATFORM],
     releaseDate: '1985',
-    image: 'https://vignette4.wikia.nocookie.net/nintendo/images/c/c4/Super_Mario_bros_3_Portada.png/revision/latest?cb=20130704181702&path-prefix=es',
+    image: 'https://www.empireposter.de/bilder/bilder_l/544070.jpg',
     photos: '',
     description: '',
     trailList: MOCK_GAME_TRAIL_LIST,
@@ -34,7 +36,7 @@ export const MOCK_GAMES: Game[] = [
     genre: 'Sandbox',
     platforms: [MOCK_PLATFORM],
     releaseDate: '2016',
-    image: 'https://i1.wp.com/www.anim-arte.com/wp-content/uploads/2013/04/grand-theft-auto-v.jpg?fit=640%2C783',
+    image: 'https://www.empireposter.de/bilder/bilder_l/544070.jpg',
     photos: '',
     description: '',
     trailList: MOCK_GAME_TRAIL_LIST,
@@ -45,12 +47,51 @@ export const MOCK_GAMES: Game[] = [
     genre: 'Sports',
     platforms: [MOCK_PLATFORM],
     releaseDate: '2010',
-    image: 'https://i.ytimg.com/vi/fHdDRQuCRn0/maxresdefault.jpg',
+    image: 'https://www.empireposter.de/bilder/bilder_l/544070.jpg',
     photos: '',
     description: '',
     trailList: MOCK_GAME_TRAIL_LIST,
   },
+];
+
+export const MOCK_TRAIL_GAMES: GameList[] = [
   {
+
+    id: 1,
+    name: 'Super Mario Bros 3',
+    state: GameListState.PENDING,
+    image: 'https://www.empireposter.de/bilder/bilder_l/544070.jpg',
+    lastModified: '2021-08-01',
+  },
+  {
+    id: 2,
+    name: 'Super Mario Bros 3',
+    state: GameListState.FINISHED,
+    image: 'https://www.empireposter.de/bilder/bilder_l/544070.jpg',
+    lastModified: '2021-08-01',
+  },
+  {
+    id: 3,
+    name: 'Super Mario Bros 3',
+    state: GameListState.FINISHED,
+    image: 'https://www.empireposter.de/bilder/bilder_l/544070.jpg',
+    lastModified: '2021-08-01',
+  },
+  {
+    id: 3,
+    name: 'Super Mario Bros 3',
+    state: GameListState.FINISHED,
+    image: 'https://www.empireposter.de/bilder/bilder_l/544070.jpg',
+    lastModified: '2021-08-01',
+  },
+  {
+    id: 4,
+    name: 'Super Mario Bros 3',
+    state: GameListState.FINISHED,
+    image: 'https://www.empireposter.de/bilder/bilder_l/544070.jpg',
+    lastModified: '2021-08-01',
+   },
+   {
     id: 6,
     name: 'The Legend of Zelda: Breath of the Wild',
     genre: 'Sandbox',

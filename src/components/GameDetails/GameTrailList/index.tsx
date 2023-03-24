@@ -19,8 +19,8 @@ const GameTrailList:FC<Props> = ({ trailList }) => {
   const handleRenderList = () => trailList?.map((trail) => (
     <Item key={trail.id}>
       <Image
-        alt="jvegax"
-        src="https://cdnb.artstation.com/p/assets/images/images/035/213/423/large/mcashe-titanzekeef-dev.jpg?1614374087"
+        alt={trail.owner.username}
+        src={trail.owner.avatar}
         height={30}
         width={30}
       />

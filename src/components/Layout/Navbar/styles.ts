@@ -8,10 +8,11 @@ export const Nav = styled.nav`
   justify-content: space-between;
   width: 100%;
   height: 70px;
-  padding: 0 135px;
+  padding: 0 20px;
   background-color: ${({ theme }) => theme.nord.gray1};
   color: ${({ theme }) => theme.nord.white0};
   box-shadow: 0 0 10px ${({ theme }) => theme.nord.gray2};
+
   @media (max-width: 768px) {
     padding: 0 20px;
     flex-direction: column;
@@ -33,6 +34,10 @@ export const ResponsiveNavbar = styled.div`
 export const Menu = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 50%;
+
   @media (max-width: 768px) {
     flex-direction: column;
     align-items: center;
@@ -46,14 +51,13 @@ export const MenuItem = styled(Link)`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  width: 120px;
   height: 100%;
-  padding: 0 10px;
   cursor: pointer;
   &:hover {
     background-color: ${({ theme }) => theme.nord.gray3};
-    height: 70px;
   }
+
   @media (max-width: 768px) {
     width: auto;
     height: auto;
@@ -85,6 +89,40 @@ export const MobileMenuIcon = styled.div<MobileMenuIconProps>`
     }
   }
 `;
+
+export const Premium = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 200% 200%;
+  animation: gradient 5s ease infinite;
+  border-radius: 8px;
+  padding: 1em;
+  margin-left: 1.2em;
+  text-align: center;
+  cursor: pointer;
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+&:hover {
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1), 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+  margin-left: 0;
+}
 
 export const User = styled.div`
     display: flex;

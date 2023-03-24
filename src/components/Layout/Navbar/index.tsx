@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { faArrowRightFromBracket, faBars } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useGameTrail } from '@/hooks';
 import {
-  Menu, MenuItem, Nav, MobileMenuIcon, ResponsiveNavbar, Username,
+  Menu, MenuItem, Nav, MobileMenuIcon, ResponsiveNavbar, Username, Premium,
 } from './styles';
 
 const Navbar = () => {
@@ -41,6 +41,12 @@ const Navbar = () => {
     setShowMenu(!showMenu);
   };
 
+  const STRIPE_PRODUCT_URL = 'https://buy.stripe.com/test_5kAdQYdU059Des06oo';
+  const handleStripeCheckout = useCallback((event: any) => {
+    event.preventDefault();
+    window.location.href = STRIPE_PRODUCT_URL;
+  }, []);
+
   return (
     <Nav>
       <ResponsiveNavbar>
@@ -59,7 +65,6 @@ const Navbar = () => {
           <MenuItem href="/games">
             <h4>Juegos</h4>
           </MenuItem>
-
           {token && (
           <>
             <MenuItem href="/trail/create">
@@ -72,6 +77,9 @@ const Navbar = () => {
                 {user?.username}
               </Username>
             </MenuItem>
+            <Premium onClick={handleStripeCheckout}>
+              <h4>Premium</h4>
+            </Premium>
             <MenuItem href="/auth/logout">
               <FontAwesomeIcon icon={faArrowRightFromBracket} />
             </MenuItem>
@@ -88,7 +96,13 @@ const Navbar = () => {
             <MenuItem href="/games">
               <h4>Juegos</h4>
             </MenuItem>
-
+            <MenuItem href="/trail/create">
+              <h4>Crear Trail</h4>
+            </MenuItem>
+            
+            <MenuItem href="/auth/logout">
+              <FontAwesomeIcon icon={faArrowRightFromBracket} />
+            </MenuItem>
             {token && (
             <>
               <MenuItem href="/trail/create">
@@ -101,6 +115,9 @@ const Navbar = () => {
                   {user?.username}
                 </Username>
               </MenuItem>
+              <Premium onClick={handleStripeCheckout}>
+                <h4>Premium</h4>
+              </Premium>
               <MenuItem href="/auth/logout">
                 <FontAwesomeIcon icon={faArrowRightFromBracket} />
               </MenuItem>

@@ -10,7 +10,7 @@ export const Container = styled.div`
     justify-content: center;
     height: auto;
     gap: 1em;
-    width: 520px;
+    width: 1720px;
     margin-bottom: 25px;
 
 

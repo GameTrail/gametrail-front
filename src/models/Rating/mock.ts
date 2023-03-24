@@ -4,14 +4,14 @@ import { RatingType } from './types';
 export const MOCK_USER_RATING: Rating[] = [
   {
     ratingType: RatingType.Kindness,
-    rating: 5,
+    rating: 3,
     ratedUser: 'MOCK_USERS[0]',
     userWhoRates: 'MOCK_USERS[1]',
 
   },
   {
     ratingType: RatingType.Ability,
-    rating: 2,
+    rating: 3,
     ratedUser: 'MOCK_USERS[1]',
     userWhoRates: 'MOCK_USERS[0]',
   },
@@ -23,7 +23,7 @@ export const MOCK_USER_RATING: Rating[] = [
   },
   {
     ratingType: RatingType.Funny,
-    rating: 4,
+    rating: 3,
     ratedUser: 'MOCK_USERS[0]',
     userWhoRates: 'MOCK_USERS[1]',
   },

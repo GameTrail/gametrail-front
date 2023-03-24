@@ -8,15 +8,29 @@ import { Container } from './styles';
 export type Props = {
   userRating: Rating[];
 };
-const UserAverageRating:FC<Props> = ({ userRating }) => (
-  <Container>
-    {userRating.map((rating) => rating.rating)
-      .reduce((a, b) => a + b, 0) / userRating.length}
-    {' '}
-    / 5
-    {' '}
-    <FontAwesomeIcon icon={faMeteor} color="#31A4F1" size="lg" />
-  </Container>
-);
+const UserAverageRating:FC<Props> = ({ userRating }) => {
+  if (userRating.length !== 0) {
+    return (
+      <Container>
+        {userRating.map((rating) => rating.rating)
+          .reduce((a, b) => a + b, 0) / userRating.length}
+        {' '}
+        / 5
+        {' '}
+        <FontAwesomeIcon icon={faMeteor} color="#31A4F1" size="lg" />
+      </Container>
+    );
+  }
+
+  return (
+    <Container>
+      3
+      {' '}
+      / 5
+      {' '}
+      <FontAwesomeIcon icon={faMeteor} color="#31A4F1" size="lg" />
+    </Container>
+  );
+};
 
 export default UserAverageRating;

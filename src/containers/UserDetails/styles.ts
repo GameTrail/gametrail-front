@@ -32,7 +32,7 @@ export const InfoDetails = styled.div<ContainerProps>`
     border-radius: 10px;
     color: ${({ darkMode, theme }) => (darkMode ? theme.nord.white0 : theme.nord.gray1)};
     margin-top:10px;
-    width: 50%;
+    width: 100%;
     height: 100%;
     padding: 0 20px;
 `;
@@ -46,8 +46,8 @@ export const StatsDetails = styled.div`
     color: ${({ theme }) => theme.nord.white0};
     box-shadow: 0 0 10px 0 ${({ theme }) => theme.nord.gray3};
     border-radius: 10px;
-    width: 520px;
-    height: 100%;
+    width: 840px;
+    height: 200px;
     padding: 0 20px;
     @media (max-width: 1030px) {
         flex-direction: column;

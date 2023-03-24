@@ -21,8 +21,8 @@ const User: FC<Props> = ({ userData }) => {
   };
 
   const handleRenderList = useMemo(() => {
-    if (selectedButton === ButtonType.Trail) return <UserTrailList trailList={userData?.trailList} />;
-    if (selectedButton === ButtonType.Games) return <UserGameList gameList={userData?.gameList} />;
+    if (selectedButton === ButtonType.Trail) return <UserTrailList trailList={userData?.trails || []} />;
+    if (selectedButton === ButtonType.Games) return <UserGameList gameList={userData?.games || []} />;
     if (selectedButton === ButtonType.Comments) return <CommentsContainer auth_token={authToken} id={userData.id} type="user" key="userCommentsContainer" />;
     return null;
   }, [selectedButton, userData]);
@@ -73,7 +73,7 @@ const User: FC<Props> = ({ userData }) => {
   return (
     <Container darkMode={false}>
       <InfoDetails darkMode={false}>
-        <UserData userName={userData.username} userAvatar={userData.profilePicture} />
+        <UserData userName={userData.username} userAvatar={userData.avatar} />
       </InfoDetails>
       {handleRenderKarmaInfo}
       <KarmaInfo>
@@ -83,8 +83,8 @@ const User: FC<Props> = ({ userData }) => {
         <h2>Karma</h2>
       </KarmaInfo>
       <StatsDetails>
-        <UserAverageRating userRating={userData.rating} />
-        <UserStats userRating={userData.rating} />
+        <UserAverageRating userRating={userData.rate_recieved} />
+        <UserStats userRating={userData.rate_recieved} />
       </StatsDetails>
 
       <UserListsButtons onClickButton={onClickButton} selectedButton={selectedButton} />

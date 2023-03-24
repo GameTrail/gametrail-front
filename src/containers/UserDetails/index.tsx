@@ -75,6 +75,7 @@ const User: FC<Props> = ({ userData }) => {
       <InfoDetails darkMode={false}>
         <UserData userName={userData.username} userAvatar={userData.avatar} />
       </InfoDetails>
+
       {handleRenderKarmaInfo}
       <KarmaInfo>
         <button type="button" onClick={handleKarmaInfo}>

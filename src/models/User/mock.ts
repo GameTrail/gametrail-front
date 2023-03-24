@@ -28,7 +28,6 @@ export const MOCK_USERS: User[] = [
     games: MOCK_USER_GAME_LIST,
     trails: MOCK_USER_TRAIL_LIST,
     comments_received: [],
-
   },
   {
     id: 2,
@@ -41,7 +40,6 @@ export const MOCK_USERS: User[] = [
     games: MOCK_USER_GAME_LIST,
     trails: MOCK_USER_TRAIL_LIST,
     comments_received: [],
-
   },
   {
     id: 3,
@@ -54,6 +52,5 @@ export const MOCK_USERS: User[] = [
     games: MOCK_USER_GAME_LIST,
     trails: MOCK_USER_TRAIL_LIST,
     comments_received: [],
-
   },
 ];

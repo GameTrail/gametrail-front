@@ -57,12 +57,12 @@ const CommentsContainer: FC<Props> = ({ auth_token, id, type }) => {
           userWhoComments: {
             id: 2,
             username: 'LuisUsrDev',
-            profilePicture: 'https://cdn.pixabay.com/photo/2017/12/25/22/52/tiger-3039280_1280.jpg',
+            avatar: 'https://cdn.pixabay.com/photo/2017/12/25/22/52/tiger-3039280_1280.jpg',
           },
           commentedUser: {
             id: 1,
             username: 'jvegax',
-            profilePicture: 'https://cdn.pixabay.com/photo/2017/10/22/17/54/wolf-2878633_1280.jpg',
+            avatar: 'https://cdn.pixabay.com/photo/2017/10/22/17/54/wolf-2878633_1280.jpg',
           },
         };
       } else {
@@ -80,7 +80,7 @@ const CommentsContainer: FC<Props> = ({ auth_token, id, type }) => {
           userWhoComments: {
             id: 1,
             username: 'LuisUsrDev',
-            profilePicture: 'https://cdn.pixabay.com/photo/2017/12/25/22/52/tiger-3039280_1280.jpg',
+            avatar: 'https://cdn.pixabay.com/photo/2017/12/25/22/52/tiger-3039280_1280.jpg',
           },
         };
       }

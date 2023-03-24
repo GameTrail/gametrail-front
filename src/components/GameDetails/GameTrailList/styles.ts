@@ -59,10 +59,22 @@ export const Container = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 560px;
+    width: 50%;
     padding: 0 20px;
+    @media (max-width: 1440px) {
+        width: 70%;
+        padding: 0;
+    };
     @media (max-width: 768px) {
-        width: 100%;
+        width: 70%;
+        padding: 0;
+    };
+    @media (max-width: 426px) {
+        width: 70%;
+        padding: 0;
+    };
+    @media (max-width: 375px) {
+        width: 95%;
         padding: 0;
     };
 `;

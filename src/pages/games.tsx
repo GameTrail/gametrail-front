@@ -9,7 +9,7 @@ export type Props = {
 };
 
 export const getServerSideProps: GetServerSideProps<Props> = async () => {
-  const response = await fetch('https://gametrail-backend-production.up.railway.app/api/game');
+  const response = await fetch('https://gametrail-backend-production.up.railway.app/api/game/');
   const data = await response.json();
 
   return {

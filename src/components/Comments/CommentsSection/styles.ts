@@ -6,9 +6,8 @@ export const CommentsContainer = styled.div`
     background-color: ${({ theme }) => theme.nord.gray1};
     padding-left: 1rem;
     padding-right: 1rem;
-    div div:last-child {
-        margin-botton:0;   
-    }
+    width: 50vw;
+
     @media (max-width: 768px) {
         width: 90vw;
         flex-wrap: wrap;

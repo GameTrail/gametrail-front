@@ -2,6 +2,7 @@ import type { FC } from 'react';
 import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
 import type { Game } from '@/models/Game/types';
+import { normalizeImage } from '@/utils/normalizeImage';
 import {
   CarouselContainer, Container, Title, CarouselImage, Description,
 } from './styles';
@@ -13,7 +14,7 @@ export type Props = {
 const RecentGames:FC<Props> = ({ recentGames }) => {
   const handleRenderGames = () => recentGames?.map((game) => (
     <CarouselImage
-      src={game.image}
+      src={normalizeImage(game.image)}
       alt={game.name}
       width={200}
       height={300}

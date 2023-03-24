@@ -81,9 +81,14 @@ export const Input = styled.input`
 export const ErrorContainer = styled.div`
   text-align: center;
   border-radius: 8px;
-  background-color: #ff7373;
+  background-color: ${({ theme }) => theme.nord.red};
+  color: ${({ theme }) => theme.nord.white2};
   border-color: black;
-  width: 80%;
+  width: 100%;
+  margin-bottom: 1rem;
   height: auto;
-  margin: auto;
+  padding: 0.5rem;
+  @media (max-width: 768px) {
+    font-size: 0.7rem;
+  };
 `;

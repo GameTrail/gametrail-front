@@ -16,7 +16,7 @@ const Register = () => {
 
   const { handleSetToken } = useGameTrail();
   const router = useRouter();
-  const [message, setMessage] = useState<string>('');
+  const [messages, setMessages] = useState<string[]>([]);
 
   const handleRegister = async (e: any) => {
     e.preventDefault();
@@ -45,16 +45,18 @@ const Register = () => {
         if (response.ok) {
           const data = await response.json();
           handleSetToken(data.token);
-          router.push('/');
-          setMessage('Usuario creado correctamente');
+          router.push('/auth/login');
+          setMessages(['Usuario creado correctamente']);
         } else if (password !== password2) {
-          setMessage('Las contraseñas no coinciden, revisa de nuevo');
+          setMessages(['Las contraseñas no coinciden, revisa de nuevo']);
         } else {
-          const data = await response.json();
-          setMessage(data.non_field_errors[0]);
+          const errorData = await response.json() as { [key: string]: string[] };
+          const errorMessages = Object.entries(errorData)
+            .flatMap(([key, errors]) => errors.map((error) => `${key}: ${error}`));
+          setMessages(errorMessages);
         }
       } catch (error) {
-        setMessage('Ha ocurrido un error durante el registro');
+        setMessages(['Ha ocurrido un error durante el registro']);
       }
     };
     authenticate();
@@ -67,7 +69,10 @@ const Register = () => {
         <Title>
           Registrate en GameTrail
         </Title>
-        {!!message && <ErrorContainer>{message}</ErrorContainer>}
+        {messages.map((message, index) => (
+          // eslint-disable-next-line react/no-array-index-key
+          <ErrorContainer key={index}>{message}</ErrorContainer>
+        ))}
         <Container>
           <Label>
             Nombre de usuario

@@ -6,34 +6,28 @@ import {
   Container, Left, Title, Subtitle, AuthButtons, Button, Right, Bottom,
 } from './styles';
 
-const MainSection = () => {
-  const router = useRouter();
-  const navigate = (path: string) => {
-    router.push(path);
-  };
-  return (
-    <Container>
-      <Left>
-        <Title>GameTrail</Title>
-        <Subtitle>
-          Descubre una nueva manera de jugar en comunidad y guardar el progreso de tus juegos.
-        </Subtitle>
-        <AuthButtons>
-          <Button primary onClick={() => navigate('/auth/login')}>
-            Iniciar sesión
-          </Button>
-          <Button animated onClick={() => navigate('/auth/register')}>
-            Registrarse
-          </Button>
-        </AuthButtons>
-      </Left>
-      <Right>
-        <GamerLottie />
-      </Right>
-      <Bottom>
-        <BrandSection />
-      </Bottom>
-
+const MainSection = () => (
+  <Container>
+    <Left>
+      <Title>GameTrail</Title>
+      <Subtitle>
+        Descubre una nueva manera de jugar en comunidad y guardar el progreso de tus juegos.
+      </Subtitle>
+      <AuthButtons>
+        <Link href="/auth/login">
+          <Button primary>Iniciar sesión</Button>
+        </Link>
+        <Link href="/auth/register">
+          <Button animated>Registrarse</Button>
+        </Link>
+      </AuthButtons>
+    </Left>
+    <Right>
+      <GamerLottie />
+    </Right>
+    <Bottom>
+      <BrandSection />
+    </Bottom>
     </Container>
   );
 };

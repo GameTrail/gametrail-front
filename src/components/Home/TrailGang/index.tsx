@@ -1,10 +1,11 @@
 import type { FC } from 'react';
 import React from 'react';
-import type { TrailGang as TrailGangProps } from '@/models/Trail/types';
-import Carrousel from './Carrousel';
+import Link from 'next/link';
+import { GameGangLottie } from '@/components/Lotties';
+import type { Trail as TrailGangProps } from '@/models/Trail/types';
 import GameGang from './GameGang';
 import {
-  Container, Title, ContainerAux,
+  Container, About, Description, Button,
 } from './styles';
 
 export type Props = {
@@ -12,13 +13,20 @@ export type Props = {
 };
 
 const TrailGang:FC<Props> = ({ trailGang }) => (
-  <Container>
-    <Title>La TrailGang de la semana es ... 🥁🍾</Title>
-    <ContainerAux>
-      <Carrousel trailGang={trailGang} />
+  <>
+    <Container>
+      <GameGangLottie />
       <GameGang trailGang={trailGang} />
-    </ContainerAux>
-  </Container>
+    </Container>
+    <About>
+      <Description>
+        Si quieres salir en la pagina de inicio cada semana, crea tu primer trail!
+      </Description>
+      <Link href="/trail/create">
+        <Button animated>Crear trail</Button>
+      </Link>
+    </About>
+  </>
 );
 
 export default TrailGang;

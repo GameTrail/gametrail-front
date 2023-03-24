@@ -28,8 +28,7 @@ const MainSection = () => (
     <Bottom>
       <BrandSection />
     </Bottom>
-    </Container>
-  );
-};
+  </Container>
+);
 
 export default MainSection;

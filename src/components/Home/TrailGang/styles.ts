@@ -1,40 +1,98 @@
 import styled from 'styled-components';
 
-export const Title = styled.h1`
-  color: ${({ theme }) => theme.nord.gray1};
-  line-height: 1.2;
-  text-align: center;
-  font-size: 1.6rem;
-  @media (max-width: 768px) {
-    font-size: 1rem;
-  };
-`;
-
 export const Container = styled.div` 
-  width: 100%;
-  height: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 3%;
-  @media (max-width: 768px) {
-    width: 100%;
-    height: 100%;
-  };
-`;
-
-export const ContainerAux = styled.div` 
-  width: 60%;
-  height: 100%;
-  display: flex;
-  flex-direction: row;
-  padding-top: 3%;
-  padding-bottom: 3%;
-  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100vw;
+    height: 90vh;
+    background-color: ${({ theme }) => theme.nord.gray2};
+    svg {
+      min-width: 25vw;
+    }
+    @media (max-width: 768px) {
     flex-direction: column;         
-    width: 100%;         
+    width: 100vh;         
     height: 100%;
     justify-content: center;
-    padding-top: 10px;  
+    padding-top: 10px; 
+      svg {
+        width: 30vw;
+      } 
   };
+`;
+
+export const About = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    text-align: center;
+    padding-bottom: 10vh;
+    background-color: ${({ theme }) => theme.nord.gray2};
+    @media (max-width: 768px) {
+        display: flex;
+        flex-direction: column;
+    }
+`;
+
+export const Description = styled.h3`
+    display: flex;
+    flex-direction: column;
+    font-size: 1.6rem;
+    padding: 3%;
+    color: ${({ theme }) => theme.nord.white2};
+    @media (max-width: 768px) {
+        padding-left: 33.33%;
+        font-size: 0.9rem;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        width: 70%;
+    }
+`;
+
+type ButtonProps = {
+  primary?: boolean;
+  animated?: boolean;
+};
+
+export const Button = styled.button<ButtonProps>`
+    height: 60px;
+    width: 20%;
+    border-radius: 9px;
+    padding: 0 10px;
+    font-size: 1.4rem;
+    border: none;
+    cursor: pointer;
+    color: ${({ theme, primary }) => (primary ? theme.nord.gray1 : theme.nord.white2)};
+    background: ${({ theme, primary }) => (primary ? theme.nord.blue0 : theme.nord.blue1)};
+
+    ${({ animated }) => animated
+        && `
+        animation: bounce 1s;
+        animation-iteration-count: infinite;
+        
+        @keyframes bounce {
+            0% {
+                scale: 1;
+            }
+            50% {
+                scale: 1.05;
+            } 
+            100% {
+                scale: 1;
+            }
+        }
+    `}
+
+    @media (max-width: 768px) {
+        width: 60vw;
+    }
+    &:hover {
+        transform: ${({ primary }) => (primary ? 'scale(1.05)' : 'none')};
+        transition: transform 0.2s;
+        box-shadow: 0 0 3px ${({ theme }) => theme.nord.gray2};
+    }
 `;

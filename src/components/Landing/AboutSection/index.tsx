@@ -10,7 +10,7 @@ const AboutSection = () => (
       <div>
         <Title>Steam y Xbox Live</Title>
         <Description>
-          Conecta tu cuenta de Steam y Xbox Live para actualizar el progreso de tus juegos
+          Conecta tu cuenta de Steam y Xbox Live para actualizar el progreso de tus juegos y añadirlos a tus listas
         </Description>
       </div>
       <SteamLottie />
@@ -19,7 +19,7 @@ const AboutSection = () => (
       <div>
         <Title>Trails personalizados</Title>
         <Description>
-          Crea Trails personalizados para tus juegos y comparte la aventura con tus amigos
+          Crea Trails personalizados para tus juegos y comparte la aventura con tus amigos o nuevas personas de la comunidad dispuestas a jugar contigo
         </Description>
       </div>
       <PlayersLottie />
@@ -28,7 +28,7 @@ const AboutSection = () => (
       <div>
         <Title>Guarda tu progreso</Title>
         <Description>
-          Gestiona el progreso de todos tus juegos y compartelos con la comunidad
+          Gestiona el progreso de todos tus juegos y compartelos con la comunidad mediante tus propias listas personalizadas
         </Description>
       </div>
       <TodoListLottie />

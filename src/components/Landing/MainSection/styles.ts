@@ -69,6 +69,7 @@ export const AuthButtons = styled.div`
     @media (max-width: 768px) {
         align-items: center;
         justify-content: center;
+        width: 100%;
     }
 `;
 
@@ -87,7 +88,9 @@ export const Button = styled.button<ButtonProps>`
     cursor: pointer;
     color: ${({ theme, primary }) => (primary ? theme.nord.gray1 : theme.nord.white2)};
     background: ${({ theme, primary }) => (primary ? theme.nord.white0 : theme.nord.gray1)};
-
+    @media (max-width: 768px) {
+        width: 100%;
+    }
     ${({ animated }) => animated
         && `
         animation: bounce 1s;

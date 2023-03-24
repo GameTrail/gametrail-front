@@ -1,5 +1,5 @@
 import React from 'react';
-import { useRouter } from 'next/router';
+import Link from 'next/link';
 import { GamerLottie } from '@/components/Lotties';
 import BrandSection from '../BrandSection';
 import {

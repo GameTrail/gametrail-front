@@ -10,10 +10,10 @@ export type Props = {
 };
 
 const TrailCrew:FC<Props> = ({ trailGang }) => {
-  const handleRenderUser = () => trailGang.users.map((game) => (
+  const handleRenderUser = () => trailGang.users.map((user) => (
     <Player>
-      <ProfilePicture src={game.profilePicture} alt="image" width={120} height={120} />
-      <UserName>{game.username}</UserName>
+      <ProfilePicture src={user.avatar} alt="image" width={120} height={120} />
+      <UserName>{user.username}</UserName>
     </Player>
   ));
   return (

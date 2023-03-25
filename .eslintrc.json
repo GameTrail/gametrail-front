@@ -8,6 +8,7 @@
     "airbnb",
     "airbnb-typescript"
   ],
+  "ignorePatterns": ["**/index.js"],
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true

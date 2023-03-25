@@ -31,7 +31,7 @@ const TrailDetails: FC<Props> = ({ trailData, usersData }) => (
       </motion.div>
 
       <motion.div animate={{ x: 0, opacity: 1 }} initial={{ x: 100, opacity: 0 }} transition={{ type: 'easeOut', bounce: 0, duration: 1.4 }}>
-        <Sections usersData={usersData} />
+        <Sections trailData={trailData} usersData={usersData} />
       </motion.div>
 
     </AdjustedContainer>

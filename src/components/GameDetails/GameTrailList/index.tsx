@@ -2,6 +2,7 @@ import React from 'react';
 import type { FC } from 'react';
 import Image from 'next/image';
 import type { Trail } from '@/models/Trail/types';
+import router from 'next/router';
 import { Item, Container } from './styles';
 
 export type Props = {
@@ -16,8 +17,12 @@ const GameTrailList:FC<Props> = ({ trailList }) => {
       : <span style={{ backgroundColor: '#a3be8c' }}>Completed</span>;
   };
 
+  const handleClickTrailDetails: any = (id: number) => {
+    router.push(`/trail/${id}`);
+  };
+
   const handleRenderList = () => trailList?.map((trail) => (
-    <Item key={trail.id}>
+    <Item key={trail.id} onClick={() => handleClickTrailDetails(trail.id)}>
       <Image
         alt={trail.owner.username}
         src={trail.owner.avatar}

@@ -19,7 +19,7 @@ export type MessageToPost = {
 export type Props = {
   trailData: Trail;
 };
-// TODO: Cambiar el socket por la URL del deploy del server de socket.io
+
 const socket = io('https://chat-gametrail.vercel.app:3001');
 
 const ChatContainer: FC<Props> = ({ trailData }) => {
@@ -45,7 +45,6 @@ const ChatContainer: FC<Props> = ({ trailData }) => {
   }, [messages]);
 
   const handleSendMessage = (e: React.FormEvent<HTMLFormElement>) => {
-    // e.preventDefault(); Evitamos que se recargue la página
     const currentDate = new Date();
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     const newMessage = {

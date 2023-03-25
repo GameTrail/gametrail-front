@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { faArrowRightFromBracket, faBars } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Link from 'next/link';
 import { useGameTrail } from '@/hooks';
 import {
   Menu, MenuItem, Nav, MobileMenuIcon, ResponsiveNavbar, Username, Premium,
@@ -50,7 +51,7 @@ const Navbar = () => {
   return (
     <Nav>
       <ResponsiveNavbar>
-        <h1>GAMETRAIL</h1>
+        <Link href="/"><h1>GAMETRAIL</h1></Link>
         {width <= 768 && (
           <MobileMenuIcon showMenu={showMenu} onClick={toggleMenu}>
             <FontAwesomeIcon icon={faBars} />

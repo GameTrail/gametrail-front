@@ -3,11 +3,11 @@ import React from 'react';
 import type { GetServerSideProps, GetServerSidePropsContext } from 'next';
 import { GameDetails } from '@/containers';
 import type { Game as GameProps } from '@/models/Game/types';
-import type { TrailList } from '@/models/TrailList/types';
+import type { Trail } from '@/models/Trail/types';
 
 export type Props = {
   data: GameProps;
-  trailData: TrailList[];
+  trailData: Trail[];
 };
 
 export const getServerSideProps: GetServerSideProps<Props> = async (context: GetServerSidePropsContext) => {

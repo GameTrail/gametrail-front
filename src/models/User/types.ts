@@ -1,6 +1,6 @@
 import type { GameList } from '../GameList/types';
 import type { Rating } from '../Rating/types';
-import type { TrailList } from '../TrailList/types';
+import type { Trail } from '../Trail/types';
 
 export type User = {
   id: number;
@@ -10,7 +10,7 @@ export type User = {
   avatar: string;
   plan: string;
   games: GameList[] | [];
-  trails: TrailList[] | [];
+  trails: Trail[] | [];
   rate_recieved: Rating[] | [];
   comments_received: Comment[] | [];
 };

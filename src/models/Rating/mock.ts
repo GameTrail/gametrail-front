@@ -3,34 +3,34 @@ import { RatingType } from './types';
 
 export const MOCK_USER_RATING: Rating[] = [
   {
-    ratingType: RatingType.Kindness,
+    type: RatingType.KINDNESS,
     rating: 3,
     ratedUser: 'MOCK_USERS[0]',
-    userWhoRates: 'MOCK_USERS[1]',
+    userWhoRate: 'MOCK_USERS[1]',
 
   },
   {
-    ratingType: RatingType.Ability,
+    type: RatingType.ABILITY,
     rating: 3,
     ratedUser: 'MOCK_USERS[1]',
-    userWhoRates: 'MOCK_USERS[0]',
+    userWhoRate: 'MOCK_USERS[0]',
   },
   {
-    ratingType: RatingType.Availability,
+    type: RatingType.AVAILABILITY,
     rating: 3,
     ratedUser: 'MOCK_USERS[0]',
-    userWhoRates: 'MOCK_USERS[1]',
+    userWhoRate: 'MOCK_USERS[1]',
   },
   {
-    ratingType: RatingType.Funny,
+    type: RatingType.FUNNY,
     rating: 3,
     ratedUser: 'MOCK_USERS[0]',
-    userWhoRates: 'MOCK_USERS[1]',
+    userWhoRate: 'MOCK_USERS[1]',
   },
   {
-    ratingType: RatingType.Teamwork,
+    type: RatingType.TEAMWORK,
     rating: 3,
     ratedUser: 'MOCK_USERS[1]',
-    userWhoRates: 'MOCK_USERS[0]',
+    userWhoRate: 'MOCK_USERS[0]',
   },
 ];

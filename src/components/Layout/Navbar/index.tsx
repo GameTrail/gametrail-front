@@ -59,9 +59,17 @@ const Navbar = () => {
       </ResponsiveNavbar>
       {width > 768 ? (
         <Menu>
-          <MenuItem href="/home">
-            <h4>Inicio</h4>
-          </MenuItem>
+          {user !== null && (
+            <MenuItem href="/home">
+              <h4>Inicio</h4>
+            </MenuItem>
+          )}
+
+          {user == null && (
+            <MenuItem href="/">
+              <h4>Inicio</h4>
+            </MenuItem>
+          )}
           <MenuItem href="/games">
             <h4>Juegos</h4>
           </MenuItem>
@@ -70,9 +78,8 @@ const Navbar = () => {
             <MenuItem href="/trail/create">
               <h4>Crear Trail</h4>
             </MenuItem>
-            <MenuItem href={`/api/user/${user?.id}`}>
+            <MenuItem href={`/user/${user?.id}`}>
               <Username>
-                Bienvenido,
                 {' '}
                 {user?.username}
               </Username>
@@ -90,27 +97,39 @@ const Navbar = () => {
       ) : (
         showMenu && (
           <Menu>
+            {user !== null && (
             <MenuItem href="/home">
               <h4>Inicio</h4>
             </MenuItem>
+            )}
+
+            {user == null && (
+            <MenuItem href="/">
+              <h4>Inicio</h4>
+            </MenuItem>
+            )}
+
             <MenuItem href="/games">
               <h4>Juegos</h4>
             </MenuItem>
+            {user !== null && (
             <MenuItem href="/trail/create">
               <h4>Crear Trail</h4>
             </MenuItem>
-            
+            )}
+            {user !== null && (
             <MenuItem href="/auth/logout">
               <FontAwesomeIcon icon={faArrowRightFromBracket} />
             </MenuItem>
+            )}
+
             {token && (
             <>
               <MenuItem href="/trail/create">
                 <h4>Crear Trail</h4>
               </MenuItem>
-              <MenuItem href={`/api/user/${user?.id}`}>
+              <MenuItem href={`/user/${user?.id}`}>
                 <Username>
-                  Bienvenido,
                   {' '}
                   {user?.username}
                 </Username>

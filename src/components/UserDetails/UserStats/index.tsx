@@ -15,26 +15,28 @@ export type Props = {
 const UserStats:FC<Props> = ({ userRating }) => {
   const handleRenderStats = () => {
     if (userRating.length !== 0) {
-      userRating.map((rating) => (
-        <div key={rating.ratingType}>
-          <span>
-            <FontAwesomeIcon icon={faCircle as IconProp} color={COLOR_MAP[rating.ratingType]} />
-          </span>
-          {rating.rating}
-          {' '}
-          {rating.ratingType}
-        </div>
-      ));
+      return (
+        userRating.map((rating) => (
+          <div key={rating.type}>
+            <span>
+              <FontAwesomeIcon icon={faCircle as IconProp} color={COLOR_MAP[rating.type]} />
+            </span>
+            {rating.rating}
+            {' '}
+            {rating.type.toLowerCase()}
+          </div>
+        ))
+      );
     }
     return (
       MOCK_USER_RATING.map((rating) => (
-        <div key={rating.ratingType}>
+        <div key={rating.type}>
           <span>
-            <FontAwesomeIcon icon={faCircle as IconProp} color={COLOR_MAP[rating.ratingType]} />
+            <FontAwesomeIcon icon={faCircle as IconProp} color={COLOR_MAP[rating.type]} />
           </span>
           {rating.rating}
           {' '}
-          {rating.ratingType}
+          {rating.type}
         </div>
       ))
     );

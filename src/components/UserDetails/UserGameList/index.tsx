@@ -12,7 +12,7 @@ export type Props = {
 
 const UserGameList:FC<Props> = ({ gameList }) => {
   const handleRenderGames = () => {
-    if (gameList.length !== 0) {
+    if (gameList !== null) {
       gameList.map((game) => (
         <Game>
           <div>

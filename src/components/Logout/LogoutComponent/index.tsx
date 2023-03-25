@@ -9,7 +9,7 @@ import {
 } from './styles';
 
 const Logout = () => {
-  const { handleSetUser, handleSetToken } = useGameTrail();
+  const { token, handleSetUser, handleSetToken } = useGameTrail();
   const router = useRouter();
 
   const onPressLogout = () => {
@@ -17,8 +17,25 @@ const Logout = () => {
     handleSetToken(null);
     localStorage.removeItem('token');
     localStorage.removeItem('user');
-    localStorage.removeItem('user_id');
 
+    const API_URL = 'https://gametrail-backend-production.up.railway.app/api/auth/logout';
+    const options = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(token),
+    };
+    const logout = async () => {
+      try {
+        const response = await fetch(API_URL, options);
+        if (response.ok) {
+          const data = await response.json();
+          console.log(data);
+        }
+      } catch (error) {
+        console.log({ error });
+      }
+    };
+    logout();
     router.push('/');
   };
 

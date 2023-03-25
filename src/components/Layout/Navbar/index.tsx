@@ -12,6 +12,9 @@ const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [width, setWidth] = useState(0);
 
+  const userState = user;
+  const tokenState = token;
+
   useEffect(() => {
     const handleResize = () => {
       if (typeof window !== 'undefined') {
@@ -48,6 +51,8 @@ const Navbar = () => {
     window.location.href = STRIPE_PRODUCT_URL;
   }, []);
 
+  console.log(userState);
+
   return (
     <Nav>
       <ResponsiveNavbar>
@@ -66,16 +71,14 @@ const Navbar = () => {
           <MenuItem href="/games">
             <h4>Juegos</h4>
           </MenuItem>
-          {token && (
+          {tokenState && (
           <>
             <MenuItem href="/trail/create">
               <h4>Crear Trail</h4>
             </MenuItem>
             <MenuItem href={`/api/user/${user?.id}`}>
               <Username>
-                Bienvenido,
-                {' '}
-                {user?.username}
+                {userState?.username}
               </Username>
             </MenuItem>
             <Premium onClick={handleStripeCheckout}>
@@ -85,7 +88,6 @@ const Navbar = () => {
               <FontAwesomeIcon icon={faArrowRightFromBracket} />
             </MenuItem>
           </>
-
           )}
         </Menu>
       ) : (
@@ -97,22 +99,14 @@ const Navbar = () => {
             <MenuItem href="/games">
               <h4>Juegos</h4>
             </MenuItem>
-            <MenuItem href="/trail/create">
-              <h4>Crear Trail</h4>
-            </MenuItem>
-            <MenuItem href="/auth/logout">
-              <FontAwesomeIcon icon={faArrowRightFromBracket} />
-            </MenuItem>
-            {token && (
+            {tokenState && (
             <>
               <MenuItem href="/trail/create">
                 <h4>Crear Trail</h4>
               </MenuItem>
               <MenuItem href={`/api/user/${user?.id}`}>
                 <Username>
-                  Bienvenido,
-                  {' '}
-                  {user?.username}
+                  {userState?.username}
                 </Username>
               </MenuItem>
               <Premium onClick={handleStripeCheckout}>

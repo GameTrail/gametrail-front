@@ -1,8 +1,11 @@
+'use client';
+
 import React, { useEffect, useState, useCallback } from 'react';
 import { faArrowRightFromBracket, faBars } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
 import { useGameTrail } from '@/hooks';
+import type { User } from '@/models/User/types';
 import {
   Menu, MenuItem, Nav, MobileMenuIcon, ResponsiveNavbar, Username, Premium,
 } from './styles';
@@ -11,9 +14,20 @@ const Navbar = () => {
   const { user, token } = useGameTrail();
   const [showMenu, setShowMenu] = useState(false);
   const [width, setWidth] = useState(0);
+  const [tokenState, setToken] = useState<string | null>(token);
+  const [userState, setUser] = useState<User | null>(user);
 
-  const userState = user;
-  const tokenState = token;
+  useEffect(() => {
+    const newToken = localStorage.getItem('token');
+    const newUser = JSON.parse(localStorage.getItem('user') || '{}');
+    if (newUser !== '{}') {
+      setToken(newToken);
+      setUser(JSON.parse(localStorage.getItem('user') || '{}'));
+    } else {
+      setToken(null);
+      setUser(null);
+    }
+  }, [token, user]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -51,8 +65,6 @@ const Navbar = () => {
     window.location.href = STRIPE_PRODUCT_URL;
   }, []);
 
-  console.log(userState);
-
   return (
     <Nav>
       <ResponsiveNavbar>
@@ -71,7 +83,7 @@ const Navbar = () => {
           <MenuItem href="/games">
             <h4>Juegos</h4>
           </MenuItem>
-          {tokenState && (
+          {tokenState !== null && (
           <>
             <MenuItem href="/trail/create">
               <h4>Crear Trail</h4>
@@ -99,7 +111,7 @@ const Navbar = () => {
             <MenuItem href="/games">
               <h4>Juegos</h4>
             </MenuItem>
-            {tokenState && (
+            {tokenState !== null && (
             <>
               <MenuItem href="/trail/create">
                 <h4>Crear Trail</h4>

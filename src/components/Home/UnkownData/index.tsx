@@ -1,14 +1,17 @@
-import React from 'react';
+import { CuriosityLottie } from '@/components/Lotties';
 import DataCard from './DataCard';
 import {
-  Container, Title,
+  Container, Title, CuriosityContainer,
 } from './styles';
 
 const unkowndata = () => (
-  <Container>
-    <Title>¿Sabías que ... ?</Title>
-    <DataCard />
-  </Container>
+  <CuriosityContainer>
+    <Container>
+      <Title>¿Sabías que ... ?</Title>
+      <DataCard />
+    </Container>
+    <CuriosityLottie />
+  </CuriosityContainer>
 );
 
 export default unkowndata;

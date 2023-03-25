@@ -1,7 +1,7 @@
 import type { User } from '../User/types';
 import type { CommentsGame, CommentsUser } from './types';
 
-export type CommentUser = Pick<User, 'id' | 'username' | 'profilePicture'>;
+export type CommentUser = Pick<User, 'id' | 'username' | 'avatar'>;
 
 export const MOCK_COMMENTS_USER: CommentsUser[] = [
   {
@@ -10,12 +10,12 @@ export const MOCK_COMMENTS_USER: CommentsUser[] = [
     userWhoComments: {
       id: 2,
       username: 'LuisUsrDev',
-      profilePicture: 'https://cdn.pixabay.com/photo/2017/12/25/22/52/tiger-3039280_1280.jpg',
+      avatar: 'https://cdn.pixabay.com/photo/2017/12/25/22/52/tiger-3039280_1280.jpg',
     },
     commentedUser: {
       id: 1,
       username: 'jvegax',
-      profilePicture: 'https://cdn.pixabay.com/photo/2017/10/22/17/54/wolf-2878633_1280.jpg',
+      avatar: 'https://cdn.pixabay.com/photo/2017/10/22/17/54/wolf-2878633_1280.jpg',
     },
   },
   {
@@ -24,12 +24,12 @@ export const MOCK_COMMENTS_USER: CommentsUser[] = [
     userWhoComments: {
       id: 2,
       username: 'wolf223',
-      profilePicture: 'https://cdn.pixabay.com/photo/2017/10/22/17/54/wolf-2878633_1280.jpg',
+      avatar: 'https://cdn.pixabay.com/photo/2017/10/22/17/54/wolf-2878633_1280.jpg',
     },
     commentedUser: {
       id: 1,
       username: 'jvegax',
-      profilePicture: 'https://cdn.pixabay.com/photo/2017/10/22/17/54/wolf-2878633_1280.jpg',
+      avatar: 'https://cdn.pixabay.com/photo/2017/10/22/17/54/wolf-2878633_1280.jpg',
     },
   },
 ];
@@ -42,7 +42,7 @@ export const MOCK_COMMENTS_GAME: CommentsGame[] = [
     userWhoComments: {
       id: 1,
       username: 'LuisUsrDev',
-      profilePicture: 'https://cdn.pixabay.com/photo/2017/12/25/22/52/tiger-3039280_1280.jpg',
+      avatar: 'https://cdn.pixabay.com/photo/2017/12/25/22/52/tiger-3039280_1280.jpg',
     },
   },
   {
@@ -52,7 +52,7 @@ export const MOCK_COMMENTS_GAME: CommentsGame[] = [
     userWhoComments: {
       id: 2,
       username: 'wolf223',
-      profilePicture: 'https://cdn.pixabay.com/photo/2017/10/22/17/54/wolf-2878633_1280.jpg',
+      avatar: 'https://cdn.pixabay.com/photo/2017/10/22/17/54/wolf-2878633_1280.jpg',
     },
   },
 ];

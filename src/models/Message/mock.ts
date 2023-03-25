@@ -10,7 +10,7 @@ export const MOCK_MESSAGES_TRAIL: Message[] = [
     user: {
       id: MOCK_USER.id,
       username: MOCK_USER.username,
-      profilePicture: MOCK_USERS[0].profilePicture,
+      avatar: MOCK_USERS[0].avatar,
     },
     trail: MOCK_TRAIL,
   },
@@ -21,7 +21,7 @@ export const MOCK_MESSAGES_TRAIL: Message[] = [
     user: {
       id: MOCK_USER.id,
       username: MOCK_USER.username,
-      profilePicture: MOCK_USERS[0].profilePicture,
+      avatar: MOCK_USERS[0].avatar,
     },
     trail: MOCK_TRAIL,
   },
@@ -32,7 +32,7 @@ export const MOCK_MESSAGES_TRAIL: Message[] = [
     user: {
       id: MOCK_USER.id,
       username: MOCK_USER.username,
-      profilePicture: MOCK_USERS[0].profilePicture,
+      avatar: MOCK_USERS[0].avatar,
     },
     trail: MOCK_TRAIL,
   },

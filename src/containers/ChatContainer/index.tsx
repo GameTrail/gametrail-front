@@ -4,7 +4,7 @@ import { io } from 'socket.io-client';
 import { ChatSection } from '@/components/Chat';
 import type { Message } from '@/models/Message/types';
 import type { Trail } from '@/models/Trail/types';
-// import { useLogic } from './logic';
+
 import {
   Button, Container, DivContainer, InputField, MessagesContainer,
 } from './styles';

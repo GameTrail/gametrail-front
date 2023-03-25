@@ -1,17 +1,17 @@
 import React from 'react';
 import type { FC } from 'react';
 import Image from 'next/image';
+import type { Trail } from '@/models/Trail/types';
 import router from 'next/router';
-import type { TrailList } from '@/models/TrailList/types';
 import { Item, Container } from './styles';
 
 export type Props = {
-  trailList : TrailList[]
+  trailList : Trail[]
 };
 
 const GameTrailList:FC<Props> = ({ trailList }) => {
-  const handleRenderStatus = (trail: TrailList) => {
-    const status = Date.parse(trail.endDate) > new Date().getTime();
+  const handleRenderStatus = (trail: Trail) => {
+    const status = Date.parse(trail.finishDate) > new Date().getTime();
     return status
       ? <span style={{ backgroundColor: '#5e81ac' }}>In progress</span>
       : <span style={{ backgroundColor: '#a3be8c' }}>Completed</span>;

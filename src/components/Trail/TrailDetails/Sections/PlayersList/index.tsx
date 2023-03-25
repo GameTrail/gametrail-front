@@ -14,7 +14,7 @@ export type Props = {
 };
 
 const PlayersList: FC<Props> = ({ usersData }) => {
-  const userRating = (user: UserData) => user.rating.map((rating: Rating) => rating.rating).reduce((a: number, b: number) => a + b, 0) / user.rating.length;
+  const userRating = (user: UserData) => user.rate_recieved.map((rating: Rating) => rating.rating).reduce((a: number, b: number) => a + b, 0) / user.rate_recieved.length;
   return (
     <Container>
       <motion.div animate={{ opacity: 1, y: 0 }} initial={{ opacity: 0, y: 20 }} transition={{ type: 'spring' }}>

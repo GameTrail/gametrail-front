@@ -21,8 +21,8 @@ const User: FC<Props> = ({ userData }) => {
   };
 
   const handleRenderList = useMemo(() => {
-    if (selectedButton === ButtonType.Trail) return <UserTrailList trailList={userData?.trails || []} />;
-    if (selectedButton === ButtonType.Games) return <UserGameList gameList={userData?.games || []} />;
+    if (selectedButton === ButtonType.Trail) return <UserTrailList trailList={userData.trails} />;
+    if (selectedButton === ButtonType.Games) return <UserGameList gameList={userData.games} />;
     if (selectedButton === ButtonType.Comments) return <CommentsContainer auth_token={authToken} id={userData.id} type="user" key="userCommentsContainer" />;
     return null;
   }, [selectedButton, userData]);
@@ -73,7 +73,7 @@ const User: FC<Props> = ({ userData }) => {
   return (
     <Container darkMode={false}>
       <InfoDetails darkMode={false}>
-        <UserData userName={userData.username} userAvatar={userData.avatar} />
+        <UserData user={userData} />
       </InfoDetails>
 
       {handleRenderKarmaInfo}

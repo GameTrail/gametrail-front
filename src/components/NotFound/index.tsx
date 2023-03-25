@@ -1,12 +1,12 @@
 import React from 'react';
 import { Container, Text } from './styles';
 
-const Error = () => (
+const NotFound = () => (
   <Container>
     <Text>
-      ❌ Ops! Lo sentimos, ha ocurrido un error inesperado.
+      😕 Ops! Lo sentimos, no hemos encontrado lo que buscabas.
     </Text>
   </Container>
 );
 
-export default Error;
+export default NotFound;

@@ -95,6 +95,7 @@ export const MOCK_TRAIL_GAMES: GameList[] = [
     lastModified: '2021-08-01',
     games: [],
   },
+
 ];
 
 export const MOCK_GAME: Game = {

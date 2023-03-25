@@ -31,6 +31,10 @@ margin: 0 auto;
 flex-flow: row wrap;
 justify-content: space-between;
 
+h3{
+    color: ${({ theme }) => theme.nord.gray0};
+}
+
 
 @media (max-width: 750px) {
     justify-content: space-evenly;
@@ -46,9 +50,13 @@ justify-content: space-between;
 
 `;
 
+
+
 export const Cajas = styled.section` 
 
 background-color: ${({ theme }) => theme.nord.gray0};
+box-shadow: 0 0 10px 0 ${({ theme }) => theme.nord.gray3};
+transition: all 0.3s ease-in-out;
 
 
 color: white;
@@ -59,6 +67,8 @@ text-align: center;
 margin: 5px;
 flex-grow: 0.5;
 flex-basis: 20%;
+cursor: pointer;
+
 
 border-radius: 20px;
 
@@ -87,6 +97,10 @@ overflow: hidden;
 margin-bottom: 20px;
 border-top-left-radius: 20px;
 border-top-right-radius: 20px;
+img{
+    width: 100%;
+    height: 100%;
+}
 @media (max-width: 668px) {
     height: 350px;
     
@@ -176,6 +190,7 @@ background-color: ${({ theme }) => theme.nord.gray3};
 font-size: 17px;
 border-radius: 7px;
 bottom: 0;
+cursor: pointer;
 text-align: center;
 &:hover {
   background-color: ${({ theme }) => theme.nord.white0};
@@ -219,6 +234,9 @@ export const Fila = styled.td`
 text-align: center;
 color: ${({ theme }) => theme.nord.white0};
 padding: 20px;
+img{
+    border-radius: 8px;
+}
 
 
 
@@ -263,7 +281,7 @@ margin-bottom: 15px;
 
 export const Boton = styled.button`
 
-border-radius: 15px;
+border-radius: 10px;
 width: 220px;
 height: 60px;
 cursor: pointer;

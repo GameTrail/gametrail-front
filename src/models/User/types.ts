@@ -9,7 +9,7 @@ export type User = {
   auth_token: string;
   avatar: string;
   plan: string;
-  games: GameList;
+  games: GameList[] | [];
   trails: Trail[] | [];
   rate_recieved: Rating[] | [];
   comments_received: Comment[] | [];

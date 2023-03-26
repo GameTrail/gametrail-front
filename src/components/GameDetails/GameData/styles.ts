@@ -136,7 +136,7 @@ export const GameButtons = styled.div`
     
 `;
 
-export const AddButton = styled.p`
+export const AddButton = styled.button`
 
   width: auto;
   height: 40%;
@@ -152,6 +152,7 @@ export const AddButton = styled.p`
   color: ${({ theme }) => (theme.nord.white2)};
   margin-bottom: 5%;
   cursor: pointer;
+  border-width: 0%;
 
   @media (max-width: 768px) {
     width: 45%;

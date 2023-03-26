@@ -15,7 +15,6 @@ export type Props = {
 
 const GameData: FC<Props> = ({ gameDetails }) => {
   const { user, token } = useGameTrail();
-  const userList = user?.games.id;
   const handleRenderPlatform = () => {
     if (gameDetails !== null && gameDetails !== undefined) {
       return gameDetails.platforms?.map((platform) => (
@@ -26,20 +25,19 @@ const GameData: FC<Props> = ({ gameDetails }) => {
     }
     return null;
   };
-  const handleClick = async (game : number) => {
-    if (user && token && userList) {
+  const handleOnClick = async () => {
+    if (user && token) {
       const data = new FormData();
-      data.append('authToken', token);
-      data.append('gameList', userList.toString());
-      data.append('game', game.toString());
+      data.append('user', user.id.toString());
+      data.append('game', gameDetails.id.toString());
       data.append('status', GameListState.PENDING);
-      console.log(data);
       try {
-        const res = await fetch('https://gametrail-backend-production.up.railway.app/api/gameList/game/', {
+        const res = await fetch('https://gametrail-backend-production.up.railway.app/api/gameList/game', {
           method: 'POST',
           body: JSON.stringify(data),
           headers: {
             'Content-Type': 'application/json',
+            Authorization: `Token ${token}`,
           },
         });
         if (!res.ok) {
@@ -49,30 +47,6 @@ const GameData: FC<Props> = ({ gameDetails }) => {
         throw new Error();
       }
     }
-  };
-
-  const addButton = (game: Game) => {
-    if (user && user.games.games) {
-      if (!user.games.games.find((x) => game.id === x.id)) {
-        return (
-          <AddButton onClick={(() => handleClick(gameDetails.id))}>
-            Añadir
-          </AddButton>
-        );
-      }
-      return (
-        <AddButton>
-          En tu Lista
-        </AddButton>
-      );
-    } if (user && user.games) {
-      return (
-        <AddButton onClick={(() => handleClick(gameDetails.id))}>
-          Añadir
-        </AddButton>
-      );
-    }
-    return null;
   };
 
   return (
@@ -87,7 +61,9 @@ const GameData: FC<Props> = ({ gameDetails }) => {
           <PlatformContainer>
             {handleRenderPlatform()}
           </PlatformContainer>
-          {addButton(gameDetails)}
+          <AddButton onClick={handleOnClick}>
+            Añadir
+          </AddButton>
         </GameButtons>
 
       </GameInfo>

@@ -1,7 +1,6 @@
 import type { FC } from 'react';
 import { useMemo, useState } from 'react';
 import PlayersList from '@/components/Trail/TrailDetails/Sections/PlayersList';
-import ChatContainer from '@/containers/ChatContainer';
 import { ButtonType } from '@/containers/GameDetails/types';
 import { MOCK_TRAIL_GAMES } from '@/models/Game/mock';
 import type { Trail } from '@/models/Trail/types';
@@ -22,10 +21,11 @@ const Sections: FC<Props> = ({ trailData, usersData }) => {
   };
 
   const handleRenderList = useMemo(() => {
-    if (selectedButton === ButtonType.Chat) return <ChatContainer trailData={trailData} />;
+    // if (selectedButton === ButtonType.Chat) return <ChatContainer trailData={trailData} />;
     if (selectedButton === ButtonType.Players) return <PlayersList usersData={usersData} />;
     if (selectedButton === ButtonType.Games) return <TrailGameList games={MOCK_TRAIL_GAMES} />; // TODO: Connect to API
     return null;
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedButton, trailData, usersData]);
 
   return (

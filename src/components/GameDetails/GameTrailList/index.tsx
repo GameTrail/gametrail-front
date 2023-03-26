@@ -1,8 +1,8 @@
 import React from 'react';
 import type { FC } from 'react';
 import Image from 'next/image';
-import type { Trail } from '@/models/Trail/types';
 import router from 'next/router';
+import type { Trail } from '@/models/Trail/types';
 import { Item, Container } from './styles';
 
 export type Props = {

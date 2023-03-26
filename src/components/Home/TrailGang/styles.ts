@@ -85,7 +85,7 @@ export const Button = styled.button<ButtonProps>`
                 scale: 1;
             }
         }
-    `}
+    `};
 
     @media (max-width: 768px) {
         width: 60vw;

@@ -48,7 +48,7 @@ export const CarouselContainer = styled.div`
     flex-direction: column;
     height: 50vh;
     width: 90vw;
-    padding-bottom: 0%;
+    padding-bottom: 0;
   };
 `;
 

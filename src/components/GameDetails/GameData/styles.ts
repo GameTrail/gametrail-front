@@ -151,6 +151,7 @@ export const AddButton = styled.p`
   background-color: ${({ theme }) => (theme.nord.purple)};
   color: ${({ theme }) => (theme.nord.white2)};
   margin-bottom: 5%;
+  cursor: pointer;
 
   @media (max-width: 768px) {
     width: 45%;

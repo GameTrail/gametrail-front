@@ -3,7 +3,7 @@ import type { FC } from 'react';
 import NotFoundList from '@/components/Lotties/User/NotFoundList';
 import type { GameList } from '@/models/GameList/types';
 import {
-  Container, Game, GameImage, LastModified, Name, State, GameListEmpty,
+  Container, Game, GameImage, LastModified, Name, State, GameListEmpty, Added
 } from './styles';
 
 export type Props = {
@@ -26,11 +26,13 @@ const UserGameList:FC<Props> = ({ gameList }) => {
             <GameImage src={`https://${game.game.image}`} alt="image" width={120} height={120} />
           </div>
           <div>
-            <Name>{game.name}</Name>
-            <div>
+            <Name>
+              {game.game.name}
+            </Name>
+            <Added>
               <h4>Añadido</h4>
               {parseDate(game.creationMoment)}
-            </div>
+            </Added>
             <LastModified>
               <h4>Última vez modificado</h4>
               {parseDate(game.lastModified)}

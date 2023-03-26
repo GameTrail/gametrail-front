@@ -55,7 +55,7 @@ export const StatsDetails = styled.div`
 
     @media (max-width: 768px) {
         flex-direction: column;
-        width: 330px;
+        width: 530px;
         height: 100%;
         padding-top: 10px;
     };
@@ -69,6 +69,7 @@ export const ListsDetails = styled.div`
     align-items: center;
     justify-content: center;
     padding: 0 20px;
+    
 `;
 
 export const KarmaInfo = styled.div`

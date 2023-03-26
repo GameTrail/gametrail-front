@@ -113,16 +113,6 @@ const Navbar = () => {
             <MenuItem href="/games">
               <h4>Juegos</h4>
             </MenuItem>
-            {user !== null && (
-            <MenuItem href="/trail/create">
-              <h4>Crear Trail</h4>
-            </MenuItem>
-            )}
-            {user !== null && (
-            <MenuItem href="/auth/logout">
-              <FontAwesomeIcon icon={faArrowRightFromBracket} />
-            </MenuItem>
-            )}
 
             {token && (
             <>

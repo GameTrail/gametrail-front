@@ -9,7 +9,6 @@ export enum GameListState {
 export type GameList = {
   id: number
   game: Game
-  name: string
   creationMoment: string
   lastModified: string
   status: GameListState

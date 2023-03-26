@@ -4,7 +4,7 @@ import { Container, Text } from './styles';
 const Error = () => (
   <Container>
     <Text>
-      ❌ Ops! Lo sentimos, ha ocurrido un error inseperado.
+      ❌ Ops! Lo sentimos, ha ocurrido un error inesperado.
     </Text>
   </Container>
 );

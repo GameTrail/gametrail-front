@@ -8,12 +8,7 @@ export type Trail = {
   startDate: string;
   finishDate: string;
   maxPlayers: number;
-};
-
-export type TrailGang = {
-  id: number;
-  image: string;
-  players: User[];
-  games: Game[];
-  startDate: string;
+  owner: User,
+  games: Game[],
+  users: User[],
 };

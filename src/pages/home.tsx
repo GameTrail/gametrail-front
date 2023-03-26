@@ -1,22 +1,33 @@
 import type { FC } from 'react';
-import useSWR from 'swr';
-import Error from '@/components/Error';
-import LoadingSpinner from '@/components/LoadingSpinner';
+import type { GetServerSideProps } from 'next';
 import { Home as HomeComponent } from '@/containers';
-import type { TrailGang } from '@/models/Trail/types';
-import { fetcher } from '@/utils/fetcher';
+import type { Game } from '@/models/Game/types';
+import type { RandomTip } from '@/models/RandomTip/types';
+import type { Trail } from '@/models/Trail/types';
 
 export type Props = {
-  data: TrailGang;
+  dataTrail: Trail;
+  dataGames: Game[];
+  dataTips: RandomTip[];
 };
 
-const Home: FC<Props> = () => {
-  const { data, error } = useSWR('https://gametrail.vercel.app/api/trailgang', fetcher);
+export const getServerSideProps: GetServerSideProps<Props> = async () => {
+  const response1 = await fetch('http://127.0.0.1:3000/api/trailgang');
+  const response2 = await fetch('http://gametrail-backend-production.up.railway.app/api/recentGames/');
+  const response3 = await fetch('https://gametrail-backend-production.up.railway.app/api/sabiasque/');
+  const dataTrail = await response1.json();
+  const dataGames = await response2.json();
+  const dataTips = await response3.json();
 
-  if (error) return <Error />;
-  if (!data) return <LoadingSpinner />;
-
-  return <HomeComponent trailGang={data} />;
+  return {
+    props: {
+      dataTrail,
+      dataGames,
+      dataTips,
+    },
+  };
 };
+
+const Home: FC<Props> = ({ dataTrail, dataGames, dataTips }) => <HomeComponent trailGang={dataTrail} recentGames={dataGames} unknownData={dataTips} />;
 
 export default Home;

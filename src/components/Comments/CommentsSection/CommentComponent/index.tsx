@@ -18,7 +18,7 @@ export type Props = {
 const CommentComponent: FC<Props> = ({ comment }) => (
   <CommentContainer>
     <AvatarContainer>
-      <Image src={comment.userWhoComments.profilePicture} alt="imagen" width={30} height={30} />
+      <Image src={comment.userWhoComments.avatar} alt="imagen" width={30} height={30} />
     </AvatarContainer>
     <CommentContentContainer>
       <CommentUsernameContainer>

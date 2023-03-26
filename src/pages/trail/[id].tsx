@@ -11,7 +11,7 @@ export type Props = {
 
 export const getServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext) => {
   const trail = context.params?.id as string;
-  const response = await fetch(`https://gametrail-backend-production.up.railway.app/api/trail/${trail}`);
+  const response = await fetch(`https://gametrail-backend-production.up.railway.app/api/getTrail/${trail}`);
   const data = await response.json();
 
   return {

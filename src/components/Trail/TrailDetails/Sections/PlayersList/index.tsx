@@ -8,7 +8,7 @@ import {
 } from '@/components/Trail/TrailDetails/Sections/PlayersList/styles';
 import type { Rating } from '@/models/Rating/types';
 import type { Trail } from '@/models/Trail/types';
-import type { User as UserData } from '@/models/User/types';
+import type { User, User as UserData } from '@/models/User/types';
 
 export type Props = {
   trailData: Trail;
@@ -56,7 +56,8 @@ const PlayersList: FC<Props> = ({ trailData }) => (
               {user.username}
             </PlayerName>
             <PlayerValue>
-              <PlayerRating User={user} />
+              {/* This should be changed when users are good. */}
+              <PlayerRating User={(user as unknown as User)} />
             </PlayerValue>
 
           </PlayerListElement>

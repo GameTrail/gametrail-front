@@ -13,7 +13,6 @@ const App = ({ Component, pageProps }: AppProps) => (
       </Layout>
     </ThemeProvider>
   </GameTrailProvider>
-
 );
 
 export default App;

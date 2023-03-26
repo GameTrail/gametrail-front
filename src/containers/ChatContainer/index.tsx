@@ -2,6 +2,7 @@ import type { FC } from 'react';
 import React, { useState, useEffect } from 'react';
 import { io } from 'socket.io-client';
 import { ChatSection } from '@/components/Chat';
+import useGameTrail from '@/hooks/useGameTrail';
 import type { Message } from '@/models/Message/types';
 import type { Trail } from '@/models/Trail/types';
 
@@ -23,6 +24,7 @@ export type Props = {
 const socket = io('https://chat-gametrail.vercel.app:3001');
 
 const ChatContainer: FC<Props> = ({ trailData }) => {
+  const { user: userGametrail } = useGameTrail();
   const [messages, setMessages] = useState<Message[]>([]);
   const [message, setMessage] = useState<string>();
 
@@ -46,7 +48,7 @@ const ChatContainer: FC<Props> = ({ trailData }) => {
 
   const handleSendMessage = (e: React.FormEvent<HTMLFormElement>) => {
     const currentDate = new Date();
-    const user = JSON.parse(localStorage.getItem('user') || '{}');
+    const user = JSON.parse(JSON.stringify(userGametrail) || '{}');
     const newMessage = {
       id: messages.length + 1,
       text: message || '',

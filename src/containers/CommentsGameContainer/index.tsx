@@ -17,8 +17,9 @@ export type Props = {
 };
 
 const CommentsGameContainer: FC<Props> = ({ gameData }) => {
+  const comments = gameData.comments_game === undefined ? [] : gameData.comments_game;
   const { user, token } = useGameTrail();
-  const [commentsArray, setCommentsArray] = useState<(CommentsGame)[]>(gameData.comments_game);
+  const [commentsArray, setCommentsArray] = useState<CommentsGame[]>(comments);
 
   const postComment = async (commentToPost: CommentToPostGame) => {
     const url = 'https://gametrail-backend-production.up.railway.app/api/comment';
@@ -46,7 +47,6 @@ const CommentsGameContainer: FC<Props> = ({ gameData }) => {
       game: gameData.id,
       commentText: input,
     };
-
     const newComment = {
       id: commentsArray.length + 1,
       commentText: input,

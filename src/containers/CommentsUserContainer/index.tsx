@@ -17,8 +17,9 @@ export type Props = {
 };
 
 const CommentsUserContainer: FC<Props> = ({ userData }) => {
+  const comments = userData.comments_received === undefined ? [] : userData.comments_received;
   const { user, token } = useGameTrail();
-  const [commentsArray, setCommentsArray] = useState<(CommentsUser)[]>(userData.comments_received);
+  const [commentsArray, setCommentsArray] = useState<(CommentsUser)[]>(comments);
 
   const postComment = async (commentToPost: CommentToPostUser) => {
     const url = 'https://gametrail-backend-production.up.railway.app/api/comment';

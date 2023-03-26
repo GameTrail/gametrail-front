@@ -15,7 +15,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async (context: Get
   const response = await fetch(`https://gametrail-backend-production.up.railway.app/api/game/${id}/`);
   const data = await response.json();
 
-  const trailResponse = await fetch(`https://gametrail-backend-production.up.railway.app/api/trail/?games__game=${id}`);
+  const trailResponse = await fetch(`https://gametrail-backend-production.up.railway.app/api/getTrail/?games__game=${id}`);
   const trailData = await trailResponse.json();
 
   return {

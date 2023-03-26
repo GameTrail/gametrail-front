@@ -1,7 +1,12 @@
-import type { User } from '../User/types';
+// import type { User } from '../User/types';
 import type { CommentsGame, CommentsUser } from './types';
 
-export type CommentUser = Pick<User, 'id' | 'username' | 'avatar'>;
+// export type CommentUser = Pick<User, 'id' | 'username' | 'avatar'>;
+export type CommentUser = {
+  id: number | null;
+  username: string | null;
+  avatar: string | null;
+};
 
 export const MOCK_COMMENTS_USER: CommentsUser[] = [
   {

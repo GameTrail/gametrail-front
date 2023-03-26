@@ -1,53 +1,39 @@
 import type { FC } from 'react';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { CommentsSection, InputFieldSection } from '@/components/Comments';
+import { useGameTrail } from '@/hooks';
 import type { CommentsGame, CommentsUser } from '@/models/Comment/types';
 import { useLogic } from './logic';
 import { Container } from './styles';
-
-export type CommentToPostUser = {
-  auth_token: string;
-  userId: number;
-  commentedUserId: number;
-  text: string;
-};
+import { Game } from '@/models/Game/types';
 
 export type CommentToPostGame = {
-  auth_token: string;
-  userId: number;
+  auth_token: string | null;
+  userId: number | null;
   gameId: number;
   text: string;
 };
 
 export type Props = {
-  auth_token: string;
-  id: number;
-  type: string;
+  gameData: Game;
+  comments: CommentsGame[];
 };
 
-const CommentsContainer: FC<Props> = ({ auth_token, id, type }) => {
-  const { useSWRGetComments, postComment } = useLogic();
-  const nameProp = type === 'user' ? 'commentsUser' : 'commentsGame';
-  const [commentsArray, setCommentsArray] = useState<(CommentsUser | CommentsGame)[]>([]);
-  const data = useSWRGetComments(id, type);
-
-  useEffect(() => {
-    // Controlamos aquí que mientras que SWR no devuelva la petición, no actualice el estado
-    if (data !== undefined) {
-      setCommentsArray(data[nameProp]);
-    }
-  }, [data, nameProp]);
+const CommentsContainer: FC<Props> = ({ gameData, comments }) => {
+  const { postComment } = useLogic();
+  const { user, token } = useGameTrail();
+  const [commentsArray, setCommentsArray] = useState<(CommentsGame)[]>(comments);
 
   const onClickNewComment = (input: string) => {
     if (input !== '' && input !== undefined) {
       const text = input;
-      let commentToPost: CommentToPostUser | CommentToPostGame;
+      let commentToPost: CommentToPostGame;
       let newComment;
       if (type === 'user') {
         commentToPost = {
-          auth_token,
-          userId: 2,
-          commentedUserId: id,
+          auth_token: token,
+          userId: user?.id,
+          commentedUserId: data.id,
           text,
         };
 
@@ -55,21 +41,21 @@ const CommentsContainer: FC<Props> = ({ auth_token, id, type }) => {
           id: commentsArray.length + 1,
           text,
           userWhoComments: {
-            id: 2,
-            username: 'LuisUsrDev',
-            avatar: 'https://cdn.pixabay.com/photo/2017/12/25/22/52/tiger-3039280_1280.jpg',
+            id: user?.id,
+            username: user?.username,
+            avatar: user?.avatar,
           },
           commentedUser: {
-            id: 1,
-            username: 'jvegax',
+            id: data.id,
+            username: data.username,
             avatar: 'https://cdn.pixabay.com/photo/2017/10/22/17/54/wolf-2878633_1280.jpg',
           },
         };
       } else {
         commentToPost = {
-          auth_token,
-          userId: 2,
-          gameId: id,
+          auth_token: token,
+          userId: user.id,
+          gameId: commentedId,
           text,
         };
 

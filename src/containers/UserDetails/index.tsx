@@ -17,6 +17,7 @@ const User: FC<Props> = ({ userData }) => {
     setSelectedButton(button);
   };
 
+  // a
   const handleRenderList = useMemo(() => {
     if (selectedButton === ButtonType.Trail) return <UserTrailList trailList={userData?.trailList} />;
     if (selectedButton === ButtonType.Games) return <UserGameList gameList={userData?.gameList} />;

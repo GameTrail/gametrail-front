@@ -50,8 +50,6 @@ h3{
 
 `;
 
-
-
 export const Cajas = styled.section` 
 
 background-color: ${({ theme }) => theme.nord.gray0};

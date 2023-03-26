@@ -1,21 +1,24 @@
 import type { FC } from 'react';
-import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';
+import { faCrown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Image from 'next/image';
+import type { User } from '@/models/User/types';
 import { Container } from './styles';
 
 export type Props = {
-  userName: string;
-  userAvatar: string;
+  user:User;
 };
-const UserData: FC<Props> = ({ userName, userAvatar }) => (
+const UserData: FC<Props> = ({ user }) => (
   <Container>
-    <Image src={userAvatar} alt={userName} width={150} height={150} />
+    <Image src={user.avatar} alt={user.username} width={150} height={150} />
     <h1>
       @
-      {userName}
+      {user.username}
       {' '}
-      <FontAwesomeIcon icon={faCircleCheck} color="#31A4F1" size="xs" />
+      {user.plan === 'PREMIUM' && (
+        <FontAwesomeIcon icon={faCrown} size="xs" />
+      )}
+
     </h1>
   </Container>
 

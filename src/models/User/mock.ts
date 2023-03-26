@@ -1,6 +1,5 @@
 import { MOCK_USER_GAME_LIST } from '../GameList/mock';
 import { MOCK_USER_RATING } from '../Rating/mock';
-import { MOCK_USER_TRAIL_LIST } from '../TrailList/mock';
 import type { User } from './types';
 
 export const MOCK_USER: User = {
@@ -10,10 +9,10 @@ export const MOCK_USER: User = {
   avatar: 'https://cdnb.artstation.com/p/assets/images/images/035/213/423/large/mcashe-titanzekeef-dev.jpg?1614374087',
   rate_recieved: MOCK_USER_RATING,
   games: MOCK_USER_GAME_LIST,
-  trails: MOCK_USER_TRAIL_LIST,
   email: '',
   plan: '',
   comments_received: [],
+  trails: [],
 };
 
 export const MOCK_USERS: User[] = [
@@ -26,7 +25,7 @@ export const MOCK_USERS: User[] = [
     avatar: '/images/Prf.jpg',
     rate_recieved: MOCK_USER_RATING,
     games: MOCK_USER_GAME_LIST,
-    trails: MOCK_USER_TRAIL_LIST,
+    trails: [],
     comments_received: [],
   },
   {
@@ -38,7 +37,7 @@ export const MOCK_USERS: User[] = [
     avatar: '/images/Prf.jpg',
     rate_recieved: MOCK_USER_RATING,
     games: MOCK_USER_GAME_LIST,
-    trails: MOCK_USER_TRAIL_LIST,
+    trails: [],
     comments_received: [],
   },
   {
@@ -50,7 +49,7 @@ export const MOCK_USERS: User[] = [
     avatar: '/images/Prf.jpg',
     rate_recieved: MOCK_USER_RATING,
     games: MOCK_USER_GAME_LIST,
-    trails: MOCK_USER_TRAIL_LIST,
+    trails: [],
     comments_received: [],
   },
 ];

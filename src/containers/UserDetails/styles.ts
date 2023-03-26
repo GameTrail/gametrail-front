@@ -94,6 +94,20 @@ export const KarmaInfoToast = styled.div`
     margin: 1rem;
     text-align: justify;
     transition: all 0.7s ease-in-out;
+    @keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 #81A1C1;
+    }
+    50% {
+        box-shadow: 0 0 0 5px #81A1C1;
+    }
+    100% {
+        box-shadow: 0 0 0 0 #81A1C1;
+    }
+}
+    animation : pulse 1.5s ease-in-out infinite;
+  
+
     button {
         all: unset;
         cursor: pointer;
@@ -110,10 +124,15 @@ export const KarmaInfoToast = styled.div`
     }
 
     @media (max-width: 1030px) {
-        width: 100%;
+        width: 70%;
         height: 100%;
         padding: 1.5rem;
         margin: 1rem;
+
+    };
+
+     @media (max-width: 768px) {
+        width: 100%;
 
     };
 

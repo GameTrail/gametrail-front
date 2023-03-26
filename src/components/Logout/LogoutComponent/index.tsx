@@ -17,6 +17,8 @@ const Logout = () => {
     handleSetToken(null);
     localStorage.removeItem('token');
     localStorage.removeItem('user');
+    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('user');
 
     const API_URL = 'https://gametrail-backend-production.up.railway.app/api/auth/logout';
     const options = {

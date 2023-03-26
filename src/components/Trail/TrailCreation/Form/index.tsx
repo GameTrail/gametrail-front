@@ -1,8 +1,9 @@
 'use client';
 
 import type { FC } from 'react';
-import { useCallback } from 'react';
+import { useCallback, useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import Select from 'react-select';
 import {
   Button,
   ButtonRow,
@@ -11,52 +12,97 @@ import {
   Input,
   InputDate,
   InputTextArea,
-  Label,
+  Label, SelectorStyles,
 } from '@/components/Trail/TrailCreation/Form/styles';
+import { useGameTrail } from '@/hooks';
+import type { Game } from '@/models/Game/types';
+import type { Trail } from '@/models/Trail/types';
 
 export type Props = {
   handleSetLoading: (value: boolean) => void
 };
 
 const TrailCreationForm: FC<Props> = ({ handleSetLoading }) => {
+  const { user, token } = useGameTrail();
   const router = useRouter();
-  const handleSubmit = useCallback(async (event: React.FormEvent<HTMLFormElement>) => {
-    handleSetLoading(true);
-    event.preventDefault();
+  const [games, setGames] = useState<Game[]>([]);
 
-    const form = event.currentTarget;
-    const formData = new FormData(form);
+  async function fetchGames() {
+    const res = await fetch('https://gametrail-backend-production.up.railway.app/api/game/');
+    const data: Game[] = await res.json();
+    setGames(data);
+  }
+  useEffect(() => {
+    fetchGames().then((r) => r);
+  }, []);
 
-    const requestData = {
-      name: formData.get('name'),
-      description: formData.get('description'),
-      startDate: formData.get('start-date'),
-      finishDate: formData.get('end-date'),
-      maxPlayers: formData.get('max-players'),
-      owner: '1',
-    };
-    try {
-      const res = await fetch('https://gametrail-backend-production.up.railway.app/api/trail/', {
-        method: 'POST',
-        body: JSON.stringify(requestData),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      if (!res.ok) {
-        throw new Error(res.statusText);
+  const handleSubmit = useCallback(
+    async (event: React.FormEvent<HTMLFormElement>) => {
+      handleSetLoading(true);
+
+      event.preventDefault();
+
+      const form = event.currentTarget;
+      const formData = new FormData(form);
+
+      const requestData = {
+        name: formData.get('name'),
+        description: formData.get('description'),
+        startDate: formData.get('start-date'),
+        finishDate: formData.get('end-date'),
+        maxPlayers: formData.get('max-players'),
+        owner: user?.id.toString(),
+      };
+      try {
+        const res = await fetch('https://gametrail-backend-production.up.railway.app/api/trail/', {
+          method: 'POST',
+          body: JSON.stringify(requestData),
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Token ${token}`,
+          },
+        });
+        if (!res.ok) {
+          throw new Error(res.statusText);
+        }
+      } catch (error) {
+        throw new Error();
+      } finally {
+        const res = await fetch('https://gametrail-backend-production.up.railway.app/api/getTrail/');
+        const data: [Trail] = await res.json();
+        const trailId = data[data.length - 1].id;
+
+        // Each game must be added to the trail by a POST request
+        const selectedGames = formData.getAll('games');
+        selectedGames.map(async (game) => {
+          const gameData = {
+            trail: trailId.toString(),
+            game: game.toString(),
+            priority: (selectedGames.indexOf(game) + 1),
+            message: 'Pendiente de selección',
+            status: 'PENDING',
+          };
+
+          try {
+            await fetch('https://gametrail-backend-production.up.railway.app/api/gameInTrail', {
+              method: 'POST',
+              body: JSON.stringify(gameData),
+              headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Token ${token}`,
+              },
+            });
+          } catch (error) {
+            throw new Error();
+          }
+        });
+
+        router.push(`/trail/${trailId}`);
+        handleSetLoading(false);
       }
-    } catch (error) {
-      throw new Error();
-    } finally {
-      const res = await fetch('https://gametrail-backend-production.up.railway.app/api/trail/');
-      const data: [] = await res.json();
-      const size = data.length;
-
-      router.push(`/trail/${size}`);
-      handleSetLoading(false);
-    }
-  }, [handleSetLoading, router]);
+    },
+    [handleSetLoading, router],
+  );
 
   return (
     <Form onSubmit={handleSubmit}>
@@ -85,6 +131,11 @@ const TrailCreationForm: FC<Props> = ({ handleSetLoading }) => {
       <FieldContainer>
         <Label htmlFor="max-players">Número Máximo de Jugadores</Label>
         <Input type="number" name="max-players" id="max-players" />
+      </FieldContainer>
+
+      <FieldContainer>
+        <Label htmlFor="games">Juegos que se van a Jugar</Label>
+        <Select isMulti name="games" options={games} getOptionLabel={(option: Game) => option.name} getOptionValue={(option: Game) => option.id.toString()} styles={SelectorStyles} placeholder="Selecciona los juegos que quieras..." />
       </FieldContainer>
 
       <ButtonRow>

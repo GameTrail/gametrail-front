@@ -2,20 +2,17 @@ import styled from 'styled-components';
 
 export const InfoRow = styled.div`
     display: flex;
-  width: 100%;
-  gap: 25%;
+    width: 100%;
     padding-top: 1.5rem;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     align-content: center;
     flex-wrap: nowrap;
-  //flex changes to column on mobile
     @media (max-width: 892px) {
         flex-direction: column;
-      
     }
-    `;
+`;
 
 export const JoinButton = styled.div`
   box-sizing: border-box;
@@ -46,23 +43,24 @@ export const JoinButton = styled.div`
 
 export const JoinContainer = styled.div`
     display: flex;
-  gap: 15%;
+    gap: 2em;
     flex-direction: row;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-end;
     align-content: center;
-    flex-wrap: nowrap;
-  padding-top: 1rem;
-    `;
+    margin-top: 1.5rem;
+    width: 80%;
+    @media (max-width: 892px) {
+      width: 100%;
+      justify-content: space-between;
+    }
+`;
 
 export const JoinPlayersCount = styled.div`
     display: flex;
-  gap: 15%;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     align-content: center;
-    flex-wrap: nowrap;
     font-weight: 500;
-  font-size: 2rem;
-    `;
+    font-size: 1.8rem;
+`;

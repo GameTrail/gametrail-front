@@ -19,16 +19,16 @@ function getAverageRating(ratings: Rating[]): number | string {
 }
 
 const PlayerRating: FC<{ User: UserData }> = ({ User }) => {
-  if (!User.rating) {
+  if (!User.rate_recieved) {
     return <>No 🙈</>;
   }
   return (
     <>
       {// We need to average all ratings for this user
-            getAverageRating(User.rating)
+            getAverageRating(User.rate_recieved)
         }
       /
-      {User.rating.length}
+      {User.rate_recieved.length}
       {' '}
       ⭐
     </>

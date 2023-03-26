@@ -12,7 +12,7 @@ const PricingSection = () => (
     />
     <PricingCard
       title={PricingType.Premium}
-      price="$2.95"
+      price="€2.95"
     />
   </Container>
 );

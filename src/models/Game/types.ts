@@ -1,13 +1,16 @@
-import type { TrailList } from '../TrailList/types';
-
+export type Platform = {
+  platform: string
+};
+export type Genre = {
+  genre:string
+};
 export type Game = {
   id: number
   name: string
-  genre: string
-  platforms?: string[]
   releaseDate: string
   image: string
-  photos: string
+  photos:string
   description: string
-  trailList: TrailList[];
+  genre: Genre[] | string
+  platforms?: Platform[]
 };

@@ -16,6 +16,7 @@ export type Props = {
 const TrailDetails: FC<Props> = ({ trailData }) => (
   <Container darkMode={false}>
     <AdjustedContainer>
+
       <motion.div animate={{ x: 0, opacity: 1 }} initial={{ x: 100, opacity: 0 }} transition={{ type: 'easeOut', bounce: 0, duration: 0.8 }}>
         <TrailTitle>{trailData.name}</TrailTitle>
       </motion.div>
@@ -26,14 +27,16 @@ const TrailDetails: FC<Props> = ({ trailData }) => (
       >
         <TrailDescription>{trailData.description}</TrailDescription>
       </motion.div>
+
       <motion.div animate={{ x: 0, opacity: 1 }} initial={{ x: 100, opacity: 0 }} transition={{ type: 'easeOut', bounce: 0, duration: 1.2 }}>
         <PlusInfoRow trailData={trailData} />
       </motion.div>
+
       <motion.div animate={{ x: 0, opacity: 1 }} initial={{ x: 100, opacity: 0 }} transition={{ type: 'easeOut', bounce: 0, duration: 1.4 }}>
         <Sections trailData={trailData} />
       </motion.div>
-    </AdjustedContainer>
 
+    </AdjustedContainer>
   </Container>
 );
 

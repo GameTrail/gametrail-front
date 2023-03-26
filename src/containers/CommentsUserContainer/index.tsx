@@ -4,14 +4,12 @@ import { CommentsSection, InputFieldSection } from '@/components/Comments';
 import { useGameTrail } from '@/hooks';
 import type { CommentsUser } from '@/models/Comment/types';
 import type { User } from '@/models/User/types';
-import { useLogic } from './logic';
 import { Container } from './styles';
 
 export type CommentToPostUser = {
-  auth_token: string | null;
-  userId: number | null;
-  commentedUserId: number | null;
-  text: string;
+  userWhoComments: number;
+  userCommented: number;
+  commentText: string;
 };
 
 export type Props = {
@@ -20,45 +18,57 @@ export type Props = {
 };
 
 const CommentsUserContainer: FC<Props> = ({ userData, comments }) => {
-  const { postComment } = useLogic();
-  const { user, token } = useGameTrail();
-  const [commentsArray, setCommentsArray] = useState<(CommentsUser)[]>(comments);
+  const { user } = useGameTrail();
+  // const [commentsArray, setCommentsArray] = useState<(CommentsUser)[]>(comments);
+
+  const postComment = async (commentToPost: CommentToPostUser) => {
+    const url = 'https://gametrail-backend-production.up.railway.app/api/comment';
+    try {
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: { Authorization: `Token ${token}` },
+        body: JSON.stringify(commentToPost),
+      });
+      const data = await res.json();
+      console.log({ data });
+    } catch (error) {
+      console.log({ error });
+    }
+  };
 
   const onClickNewComment = (input: string) => {
-    if (input !== '' && input !== undefined) {
-      const text = input;
-      const commentToPost = {
-        auth_token: token,
-        userId: user?.id ?? null,
-        commentedUserId: userData.id,
-        text,
-      };
+    if (input === '' || input === undefined) return;
 
-      const newComment = {
-        id: commentsArray.length + 1,
-        text,
-        userWhoComments: {
-          id: user?.id ?? null,
-          username: user?.username ?? 'Guest',
-          avatar: user?.avatar ?? '',
-        },
-        commentedUser: {
-          id: userData.id,
-          username: userData.username,
-          avatar: userData.avatar,
-        },
-      };
-      const updatedCommentedArray = [...commentsArray];
-      updatedCommentedArray.splice(0, 0, newComment);
-      postComment(commentToPost);
-      setCommentsArray(updatedCommentedArray);
-    }
+    const commentToPost = {
+      userWhoComments: user?.id ?? 1,
+      userCommented: userData.id,
+      commentText: input,
+    };
+
+    // const newComment = {
+    //   id: commentsArray.length + 1,
+    //   text: input,
+    //   userWhoComments: {
+    //     id: user?.id ?? null,
+    //     username: user?.username ?? 'Guest',
+    //     avatar: user?.avatar ?? '',
+    //   },
+    //   commentedUser: {
+    //     id: userData.id,
+    //     username: userData.username,
+    //     avatar: userData.avatar,
+    //   },
+    // };
+    // const updatedCommentedArray = [...commentsArray];
+    // updatedCommentedArray.splice(0, 0, newComment);
+    // setCommentsArray(updatedCommentedArray);
+    postComment(commentToPost);
   };
 
   return (
     <Container>
       <InputFieldSection onClickNewComment={onClickNewComment} />
-      <CommentsSection comments={commentsArray} />
+      <CommentsSection comments={comments} />
     </Container>
   );
 };

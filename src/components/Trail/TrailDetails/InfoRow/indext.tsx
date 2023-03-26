@@ -16,11 +16,12 @@ const PlusInfoRow: FC<Props> = ({ trailData }) => {
   const [isJoined, setIsJoined] = useState(false);
 
   if (user) {
-    trailData.users.forEach((userTrail) => {
-      if (userTrail.id === user.id) {
+    for (let i = 0; i < trailData.users.length; i += 1) {
+      if (trailData.users[i].id === user.id) {
         setIsJoined(true);
+        break;
       }
-    });
+    }
   }
 
   const handleJoin = () => {
@@ -42,34 +43,33 @@ const PlusInfoRow: FC<Props> = ({ trailData }) => {
     }
   };
 
-  let joinButton: JSX.Element;
-  if (user && trailData.users.length < trailData.maxPlayers) {
-    if (isJoined) {
-      joinButton = (
-        <JoinButton>
-          <p>UNIDO</p>
-        </JoinButton>
-      );
-    } else {
-      joinButton = (
+  const joinButton = () => {
+    if (user && trailData.users.length < trailData.maxPlayers) {
+      if (isJoined) {
+        return (
+          <JoinButton>
+            <p>UNIDO</p>
+          </JoinButton>
+        );
+      }
+      return (
         <JoinButton onClick={handleJoin}>
           <p>UNIRSE</p>
         </JoinButton>
       );
     }
-  } else {
-    joinButton = (
+    return (
       <JoinButton style={{ visibility: 'hidden' }}>
         <p>UNIRSE</p>
       </JoinButton>
     );
-  }
+  };
 
   return (
     <InfoRow>
       <DateInfo dateStart={trailData.startDate} dateEnd={trailData.finishDate} />
       <JoinContainer>
-        {joinButton}
+        {joinButton()}
 
         <JoinPlayersCount>
           <p>

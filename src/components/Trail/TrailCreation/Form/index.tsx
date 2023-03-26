@@ -74,6 +74,7 @@ const TrailCreationForm: FC<Props> = ({ handleSetLoading }) => {
 
         // Each game must be added to the trail by a POST request
         const selectedGames = formData.getAll('games');
+
         selectedGames.map(async (game) => {
           const gameData = {
             trail: trailId.toString(),

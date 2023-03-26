@@ -13,42 +13,42 @@ export type Props = {
   usersData: UserData[];
 };
 
-const PlayersList: FC<Props> = ({ usersData }) => (
-  <Container>
-    <motion.div animate={{ opacity: 1, y: 0 }} initial={{ opacity: 0, y: 20 }} transition={{ type: 'spring' }}>
-      <PlayerListHeader>
-        <h2>Jugadores</h2>
-        <h2>Valoración</h2>
-      </PlayerListHeader>
+const PlayersList: FC<Props> = ({ usersData }) => {
+  const userRating = (user: UserData) => user.rate_recieved.map((rating: Rating) => rating.rating).reduce((a: number, b: number) => a + b, 0) / user.rate_recieved.length;
+  return (
+    <Container>
+      <motion.div animate={{ opacity: 1, y: 0 }} initial={{ opacity: 0, y: 20 }} transition={{ type: 'spring' }}>
+        <PlayerListHeader>
+          <h2>Jugadores</h2>
+          <h2>Valoración</h2>
+        </PlayerListHeader>
 
-      <PlayerListContainer key="users-list">
-        {usersData.map((user) => (
+        <PlayerListContainer key="users-list">
+          {usersData.map((user) => (
 
-          <PlayerListElement key={user.id}>
-            <ProfilePicture
-              src="/defaults/profile/default-avatar.png"
-              alt={user.username}
-            />
-            <PlayerName>
-              @
-              {user.username}
-            </PlayerName>
-            <PlayerValue>
-              {// We need to average all ratings for this user
-                                user.rating.map((rating: Rating) => rating.rating).reduce((a: number, b: number) => a + b, 0) / user.rating.length
-}
+            <PlayerListElement key={user.id}>
+              <ProfilePicture
+                src="/defaults/profile/default-avatar.png"
+                alt={user.username}
+              />
+              <PlayerName>
+                @
+                {user.username}
+              </PlayerName>
+              <PlayerValue>
+                {userRating(user)}
+                /5 ⭐
+              </PlayerValue>
 
-              /5 ⭐
-            </PlayerValue>
+            </PlayerListElement>
 
-          </PlayerListElement>
+          ))}
+        </PlayerListContainer>
 
-        ))}
-      </PlayerListContainer>
+      </motion.div>
+    </Container>
 
-    </motion.div>
-  </Container>
-
-);
+  );
+};
 
 export default PlayersList;

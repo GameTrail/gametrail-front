@@ -2,9 +2,9 @@ import { RatingType } from '@/models/Rating/types';
 import theme from '@/theme';
 
 export const COLOR_MAP = {
-  [RatingType.Kindness]: theme.nord.orange,
-  [RatingType.Ability]: theme.nord.yellow,
-  [RatingType.Availability]: theme.nord.blue1,
-  [RatingType.Funny]: theme.nord.purple,
-  [RatingType.Teamwork]: theme.nord.red,
+  [RatingType.KINDNESS]: theme.nord.orange,
+  [RatingType.ABILITY]: theme.nord.yellow,
+  [RatingType.AVAILABILITY]: theme.nord.blue1,
+  [RatingType.FUNNY]: theme.nord.purple,
+  [RatingType.TEAMWORK]: theme.nord.red,
 };

@@ -15,19 +15,9 @@ export const useLogic = () => {
   };
 
   const postComment = async (type: string, commentToPost: CommentToPostUser | CommentToPostGame) => {
-    // const url = type === 'user' ? 'http://localhost:3000/api/comment/user' : 'http://localhost:3000/api/comment/game';
-    // // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    // const fetcherToPost = (urlToPost: string) => fetch(url, {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify(commentToPost),
-    // }).then((res) => res.json());
-    // const { data } = useSWR(url, fetcherToPost);
-    // return data;
-
     const url = type === 'user' ? 'http://localhost:3000/api/comment/user' : 'http://localhost:3000/api/comment/game';
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const fetcherToPost = await fetch(url, {
+    await fetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(commentToPost),

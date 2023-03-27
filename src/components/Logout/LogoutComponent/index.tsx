@@ -9,7 +9,7 @@ import {
   LogoutContainer, Title,
 } from './styles';
 
-const LOGOUT_URL = 'https://gametrail-backend-production.up.railway.app/api/auth/logout/';
+const LOGOUT_URL = 'https://gametrail-backend-production.up.railway.app/api/auth/logout';
 
 const Logout = () => {
   const router = useRouter();
@@ -20,10 +20,11 @@ const Logout = () => {
     try {
       const options = {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(userCookie.auth_token),
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Token ${userCookie.auth_token}`,
+        },
       };
-
       const res = await fetch(LOGOUT_URL, options);
       if (!res.ok) return;
       Cookies.remove('user');

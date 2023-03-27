@@ -1,3 +1,4 @@
+import type { FC } from 'react';
 import React from 'react';
 import Link from 'next/link';
 import { GamerLottie } from '@/components/Lotties';
@@ -6,8 +7,16 @@ import {
   Container, Left, Title, Subtitle, AuthButtons, Button, Right, Bottom,
 } from './styles';
 
-const MainSection = () => (
+type Props = {
+  subscriptionSuccess: boolean;
+};
+const MainSection: FC<Props> = ({ subscriptionSuccess }) => (
   <Container>
+    {subscriptionSuccess && (
+      <div className="alert alert-success" role="alert">
+        <h4 className="alert-heading">¡Bienvenido a GameTrail Premium!</h4>
+      </div>
+    )}
     <Left>
       <Title>GameTrail</Title>
       <Subtitle>

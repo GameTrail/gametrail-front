@@ -48,7 +48,7 @@ const PlayersList: FC<Props> = ({ trailData }) => (
 
           <PlayerListElement key={user.id}>
             <ProfilePicture
-              src="/defaults/profile/default-avatar.png"
+              src={user.avatar}
               alt={user.username}
             />
             <PlayerName>

@@ -4,6 +4,7 @@ import { GameData, GameImages, GameTrailList } from '@/components/GameDetails';
 import GameListsButtons from '@/components/GameDetails/GameListsButtons';
 import type { Game } from '@/models/Game/types';
 import type { Trail } from '@/models/Trail/types';
+import { getUserCookie } from '@/utils/login';
 import CommentsContainer from '../CommentsContainer';
 import { Container, ListsDetails } from './style';
 import { ButtonType } from './types';
@@ -14,7 +15,8 @@ export type Props = {
 };
 const GameDetails:FC<Props> = ({ gameDetails, trailData }) => {
   const [selectedButton, setSelectedButton] = useState<ButtonType>(ButtonType.Trail);
-  const authToken = '12345xcvxcb';
+  const userCookie = getUserCookie();
+  const authToken = userCookie?.token || '';
   const onClickButton = (button: ButtonType) => {
     setSelectedButton(button);
   };
@@ -23,7 +25,7 @@ const GameDetails:FC<Props> = ({ gameDetails, trailData }) => {
     if (selectedButton === ButtonType.Trail) return <GameTrailList trailList={trailData} />;
     if (selectedButton === ButtonType.Comments) return <CommentsContainer auth_token={authToken} id={gameDetails.id} type="game" key="commentsGameContainer" />;
     return null;
-  }, [selectedButton, gameDetails, trailData]);
+  }, [selectedButton, trailData, authToken, gameDetails.id]);
   return (
     <Container>
       <GameData gameDetails={gameDetails} />

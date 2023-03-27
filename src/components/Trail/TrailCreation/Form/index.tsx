@@ -22,17 +22,16 @@ import {
 } from '@/components/Trail/TrailCreation/Form/styles';
 import type { Game } from '@/models/Game/types';
 import type { Trail } from '@/models/Trail/types';
+import { getUserCookie } from '@/utils/login';
 
 export type Props = {
   handleSetLoading: (value: boolean) => void
 };
 
 const TrailCreationForm: FC<Props> = ({ handleSetLoading }) => {
-  // const { user, token } = useGameTrail();
   const router = useRouter();
-  // const { user, token } = useGameTrail();
-  const user = JSON.parse(localStorage.getItem('user') || '{}');
-  const token = localStorage.getItem('token');
+  const user = getUserCookie();
+  const token = user?.token;
 
   const handlePremiumFilters = useCallback(async (formData: any, size:number) => {
     if (formData.get('kindness') > 1) {

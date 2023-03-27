@@ -4,8 +4,8 @@ import { useCallback, useMemo, useState } from 'react';
 import { faCrown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Image from 'next/image';
-import { useGameTrail } from '@/hooks';
 import type { User } from '@/models/User/types';
+import { getUserCookie } from '@/utils/login';
 import {
   Container, RateButton, RateContainer, RateLabel, RateButtonSubmit, RateInput, CloseRateContainer,
 } from './styles';
@@ -15,8 +15,8 @@ export type Props = {
 };
 const UserData: FC<Props> = ({ user }) => {
   const [rate, setRenderRate] = useState<boolean>(false);
-  const { user: userWhoRates, token } = useGameTrail();
-
+  const userWhoRates = getUserCookie();
+  const token = userWhoRates?.token;
   const handleRateContainer = useCallback(() => {
     setRenderRate(!rate);
   }, [rate]);
@@ -89,7 +89,9 @@ const UserData: FC<Props> = ({ user }) => {
           <FontAwesomeIcon icon={faCrown} size="xs" />
           )}
         </h1>
-        <RateButton onClick={handleRateContainer}>Valorar</RateButton>
+        {user.id !== userWhoRates?.id && (
+          <RateButton onClick={handleRateContainer}>Valorar</RateButton>
+        )}
       </Container>
       {handleRenderRate}
 

@@ -148,8 +148,8 @@ export const User = styled.div`
 export const Username = styled.p`
     font-size: 1em;
     font-weight: 600;
-    color: ${({ theme }) => theme.nord.white2};
-    margin-bottom: 0.5em;
+    color: ${({ theme }) => theme.nord.white0};
+    padding:1em;
 `;
 
 export const UserImage = styled(Image)`

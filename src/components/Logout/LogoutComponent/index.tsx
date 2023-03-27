@@ -1,43 +1,37 @@
 import React from 'react';
+import Cookies from 'js-cookie';
 import { useRouter } from 'next/router';
 import { Button } from '@/components/Landing/MainSection/styles';
 import { LogoutLottie } from '@/components/Lotties';
-import { useGameTrail } from '@/hooks';
+import { getUserCookie } from '@/utils/login';
 import {
   Container,
   LogoutContainer, Title,
 } from './styles';
 
+const LOGOUT_URL = 'https://gametrail-backend-production.up.railway.app/api/auth/logout/';
+
 const Logout = () => {
-  const { token, handleSetUser, handleSetToken } = useGameTrail();
   const router = useRouter();
+  const userCookie = getUserCookie();
 
-  const onPressLogout = () => {
-    handleSetUser(null);
-    handleSetToken(null);
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    sessionStorage.removeItem('token');
-    sessionStorage.removeItem('user');
+  const onPressLogout = async () => {
+    if (!userCookie) return;
+    try {
+      const options = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(userCookie.auth_token),
+      };
 
-    const API_URL = 'https://gametrail-backend-production.up.railway.app/api/auth/logout';
-    const options = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(token),
-    };
-    const logout = async () => {
-      try {
-        const response = await fetch(API_URL, options);
-        if (!response.ok) {
-          throw new Error(response.statusText);
-        }
-      } catch (error) {
-        throw new Error();
-      }
-    };
-    logout();
-    router.push('/');
+      const res = await fetch(LOGOUT_URL, options);
+      if (!res.ok) return;
+      Cookies.remove('user');
+    } catch (error) {
+      throw new Error('Error al hacer logout');
+    } finally {
+      router.push('/');
+    }
   };
 
   return (

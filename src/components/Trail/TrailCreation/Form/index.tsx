@@ -29,7 +29,6 @@ export type Props = {
 };
 
 const TrailCreationForm: FC<Props> = ({ handleSetLoading }) => {
-
   const router = useRouter();
   const user = getUserCookie();
   const token = user?.token;

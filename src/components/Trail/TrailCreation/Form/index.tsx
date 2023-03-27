@@ -1,18 +1,20 @@
 'use client';
 
 import type { FC } from 'react';
-import { useCallback, useState, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import Select from 'react-select';
 import {
   Button,
   ButtonRow,
   DateFieldContainer,
-  FieldContainer, Form,
+  FieldContainer,
+  Form,
   Input,
   InputDate,
   InputTextArea,
-  Label, SelectorStyles,
+  Label,
+  SelectorStyles,
 } from '@/components/Trail/TrailCreation/Form/styles';
 import { useGameTrail } from '@/hooks';
 import type { Game } from '@/models/Game/types';
@@ -43,7 +45,7 @@ const TrailCreationForm: FC<Props> = ({ handleSetLoading }) => {
     };
 
     try {
-      await fetch('https://gametrail-backend-production.up.railway.app/api/gameInTrail', {
+      return await fetch('https://gametrail-backend-production.up.railway.app/api/gameInTrail', {
         method: 'POST',
         body: JSON.stringify(gameData),
         headers: {

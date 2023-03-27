@@ -42,7 +42,7 @@ export const Item = styled.div`
     border-radius: 10px;
     margin-bottom:10px;
     color: ${({ theme }) => theme.nord.white0};
-    width: 100%;
+    width: 90vw;
     height: 60px;
     padding: 10px 10px;
     box-shadow: 0 0 10px 0 ${({ theme }) => theme.nord.gray3};
@@ -86,4 +86,5 @@ export const Item = styled.div`
             font-weight: 200;
         };
      };
+    }
 `;

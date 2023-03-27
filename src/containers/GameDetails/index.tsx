@@ -5,7 +5,7 @@ import GameListsButtons from '@/components/GameDetails/GameListsButtons';
 import type { Game } from '@/models/Game/types';
 import type { Trail } from '@/models/Trail/types';
 import { getUserCookie } from '@/utils/login';
-import CommentsContainer from '../CommentsContainer';
+import CommentsGameContainer from '../CommentsGameContainer';
 import { Container, ListsDetails } from './style';
 import { ButtonType } from './types';
 
@@ -23,8 +23,9 @@ const GameDetails:FC<Props> = ({ gameDetails, trailData }) => {
 
   const handleRenderList = useMemo(() => {
     if (selectedButton === ButtonType.Trail) return <GameTrailList trailList={trailData} />;
-    if (selectedButton === ButtonType.Comments) return <CommentsContainer auth_token={authToken} id={gameDetails.id} type="game" key="commentsGameContainer" />;
+    if (selectedButton === ButtonType.Comments) return <CommentsGameContainer gameData={gameDetails} />;
     return null;
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedButton, trailData, authToken, gameDetails.id]);
   return (
     <Container>

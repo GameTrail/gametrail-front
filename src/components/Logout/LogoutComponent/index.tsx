@@ -14,6 +14,7 @@ const LOGOUT_URL = 'https://gametrail-backend-production.up.railway.app/api/auth
 const Logout = () => {
   const router = useRouter();
   const userCookie = getUserCookie();
+  const token = userCookie?.auth_token;
 
   const onPressLogout = async () => {
     if (!userCookie) return;
@@ -22,14 +23,11 @@ const Logout = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Token ${userCookie?.auth_token}`,
+          Authorization: `Token ${token}`,
         },
-        body: JSON.stringify(userCookie.auth_token),
       };
-
       const res = await fetch(LOGOUT_URL, options);
       if (!res.ok) return;
-
       Cookies.remove('user');
     } catch (error) {
       throw new Error('Error al hacer logout');

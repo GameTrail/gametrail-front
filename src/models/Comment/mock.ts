@@ -1,12 +1,17 @@
-import type { User } from '../User/types';
+// import type { User } from '../User/types';
 import type { CommentsGame, CommentsUser } from './types';
 
-export type CommentUser = Pick<User, 'id' | 'username' | 'avatar'>;
+// export type CommentUser = Pick<User, 'id' | 'username' | 'avatar'>;
+export type CommentUser = {
+  id: number | null;
+  username: string | null;
+  avatar: string | null;
+};
 
 export const MOCK_COMMENTS_USER: CommentsUser[] = [
   {
     id: 1,
-    text: 'Este chaval sabe de lo que habla, es un crack',
+    commentText: 'Este chaval sabe de lo que habla, es un crack',
     userWhoComments: {
       id: 2,
       username: 'LuisUsrDev',
@@ -20,7 +25,7 @@ export const MOCK_COMMENTS_USER: CommentsUser[] = [
   },
   {
     id: 2,
-    text: 'Nos pasamos el RD2 en 1 semana, no veas cómo corre el tío',
+    commentText: 'Nos pasamos el RD2 en 1 semana, no veas cómo corre el tío',
     userWhoComments: {
       id: 2,
       username: 'wolf223',
@@ -37,8 +42,8 @@ export const MOCK_COMMENTS_USER: CommentsUser[] = [
 export const MOCK_COMMENTS_GAME: CommentsGame[] = [
   {
     id: 1,
-    text: 'Este juego es una pasada, ¡lo recomiendo!',
-    gameId: 1,
+    commentText: 'Este juego es una pasada, ¡lo recomiendo!',
+    game: 1,
     userWhoComments: {
       id: 1,
       username: 'LuisUsrDev',
@@ -47,8 +52,8 @@ export const MOCK_COMMENTS_GAME: CommentsGame[] = [
   },
   {
     id: 2,
-    text: 'La gente tiene este juego como si fuera una obra maestra, menudo tostón',
-    gameId: 1,
+    commentText: 'La gente tiene este juego como si fuera una obra maestra, menudo tostón',
+    game: 1,
     userWhoComments: {
       id: 2,
       username: 'wolf223',

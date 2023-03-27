@@ -1,5 +1,6 @@
 import useSWR from 'swr';
-import type { CommentToPostGame, CommentToPostUser } from '.';
+import type { CommentToPostGame } from '../CommentsGameContainer';
+import type { CommentToPostUser } from '../CommentsUserContainer';
 
 export const useLogic = () => {
   const useSWRGetComments = (id: number, type: string) => {

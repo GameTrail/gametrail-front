@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   UserData, UserStats, UserTrailList, UserAverageRating, UserListsButtons, UserGameList,
 } from '@/components/UserDetails';
-import CommentsContainer from '../CommentsContainer';
+import CommentsUserContainer from '../CommentsUserContainer';
 import {
   Container, InfoDetails, StatsDetails, ListsDetails, KarmaInfo, KarmaInfoToast,
 } from './styles';
@@ -15,7 +15,7 @@ import { ButtonType } from './types';
 const User: FC<Props> = ({ userData }) => {
   const [selectedButton, setSelectedButton] = useState<ButtonType>(ButtonType.Trail);
   const [karmaInfo, setKarmaInfo] = useState<boolean>(false);
-  const authToken = '12345xcvxcb';
+
   const onClickButton = (button: ButtonType) => {
     setSelectedButton(button);
   };
@@ -24,7 +24,7 @@ const User: FC<Props> = ({ userData }) => {
   const handleRenderList = useMemo(() => {
     if (selectedButton === ButtonType.Trail) return <UserTrailList trailList={userData.trails} />;
     if (selectedButton === ButtonType.Games) return <UserGameList gameList={userData.games} />;
-    if (selectedButton === ButtonType.Comments) return <CommentsContainer auth_token={authToken} id={userData.id} type="user" key="userCommentsContainer" />;
+    if (selectedButton === ButtonType.Comments) return <CommentsUserContainer userData={userData} />;
     return null;
   }, [selectedButton, userData]);
 

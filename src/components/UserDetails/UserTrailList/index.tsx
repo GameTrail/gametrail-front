@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import NotFoundList from '@/components/Lotties/User/NotFoundList';
 import type { Trail } from '@/models/Trail/types';
+import theme from '@/theme';
 import { Item, Container, TrailListEmpty } from './styles';
 
 export type Props = {
@@ -15,8 +16,8 @@ const UserTrailList:FC<Props> = ({ trailList }) => {
   const handleRenderStatus = (trail: Trail) => {
     const status = Date.parse(trail.finishDate) > new Date().getTime();
     return status
-      ? <span style={{ backgroundColor: '#5e81ac' }}>In progress</span>
-      : <span style={{ backgroundColor: '#a3be8c' }}>Completed</span>;
+      ? <span style={{ backgroundColor: theme.nord.blue2 }}>In progress</span>
+      : <span style={{ backgroundColor: theme.nord.green }}>Completed</span>;
   };
 
   const handleClick = (trail:number) => {
@@ -36,7 +37,8 @@ const UserTrailList:FC<Props> = ({ trailList }) => {
             />
             <p>{trail.name}</p>
             <p>
-              2/
+              {trail.users.length}
+              /
               {trail.maxPlayers}
             </p>
             <p>

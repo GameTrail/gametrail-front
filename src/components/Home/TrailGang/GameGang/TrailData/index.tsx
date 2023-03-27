@@ -26,7 +26,6 @@ const TrailData:FC<Props> = ({ trailGang }) => {
         <ControllerLottie />
         <Data>
           {trailGang.games.length}
-          {' '}
           Juegos
         </Data>
       </Container>
@@ -34,7 +33,6 @@ const TrailData:FC<Props> = ({ trailGang }) => {
         <TimeLottie />
         <Data>
           {durationInDays.toFixed()}
-          {' '}
           Días
         </Data>
       </Container>

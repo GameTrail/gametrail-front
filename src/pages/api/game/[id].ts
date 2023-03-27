@@ -13,5 +13,7 @@ export default function handler(
     photos: '',
     description: '',
     genre: [],
+    platforms: [],
+    comments_game: [],
   });
 }

@@ -1,4 +1,5 @@
 import type { UserCookie } from '@/components/Login/LoginComponent/types';
+import type { CommentsUser } from '../Comment/types';
 import type { GameList } from '../GameList/types';
 import type { Rating } from '../Rating/types';
 import type { Trail } from '../Trail/types';
@@ -13,7 +14,7 @@ export type User = {
   games: GameList[] | [];
   trails: Trail[] | [];
   rate_recieved: Rating[] | [];
-  comments_received: Comment[] | [];
+  comments_received: CommentsUser[] | [];
 };
 
 export const normalizeUserCookie = (user: any, token: string): UserCookie => ({

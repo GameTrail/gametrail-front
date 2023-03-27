@@ -5,8 +5,9 @@ import {
 } from '@/components/Landing';
 import { getUserCookie } from '@/utils/login';
 
-const STRIPE_CONFIRMATION_KEY = process.env.NEXT_PRIVATE_STRIPE_CONFIRMATION_KEY;
 const Landing = () => {
+  const CONFIRMATION = 'JXs5kgEmZKSDWllXQ40Oga80r0RJSP8CUA35HKyL5cIKP8rHTC';
+
   const [subscriptionSuccess, setSubscriptionSuccess] = useState<boolean>(false);
   const router = useRouter();
   const userCookie = getUserCookie();
@@ -39,7 +40,7 @@ const Landing = () => {
         setSubscriptionSuccess(false);
       }
     };
-    if (stripeConfirmation === STRIPE_CONFIRMATION_KEY) {
+    if (stripeConfirmation === CONFIRMATION) {
       handleUserSubscription();
     }
   }, [router, userCookie]);

@@ -17,6 +17,9 @@ const PlusInfoRow: FC<Props> = ({ trailData }) => {
 
   if (user) {
     for (let i = 0; i < trailData.users.length; i += 1) {
+      if (isJoined) {
+        break;
+      }
       if (trailData.users[i].id === user.id) {
         setIsJoined(true);
         break;

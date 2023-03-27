@@ -32,78 +32,80 @@ const TrailCreationForm: FC<Props> = ({ handleSetLoading }) => {
     const data: Game[] = await res.json();
     setGames(data);
   }
+
+  async function putGame(game: FormDataEntryValue, trailId: number, selectedGames: FormDataEntryValue[]) {
+    const gameData = {
+      trail: trailId.toString(),
+      game: game.toString(),
+      priority: (selectedGames.indexOf(game) + 1),
+      message: 'Pendiente de selección',
+      status: 'PENDING',
+    };
+
+    try {
+      await fetch('https://gametrail-backend-production.up.railway.app/api/gameInTrail', {
+        method: 'POST',
+        body: JSON.stringify(gameData),
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Token ${token}`,
+        },
+      });
+    } catch (error) {
+      throw new Error();
+    }
+  }
+
   useEffect(() => {
     fetchGames().then((r) => r);
   }, []);
 
-  const handleSubmit = useCallback(
-    async (event: React.FormEvent<HTMLFormElement>) => {
-      handleSetLoading(true);
+  const handleSubmit = useCallback(async (event: React.FormEvent<HTMLFormElement>) => {
+    handleSetLoading(true);
 
-      event.preventDefault();
+    event.preventDefault();
 
-      const form = event.currentTarget;
-      const formData = new FormData(form);
+    const form = event.currentTarget;
+    const formData = new FormData(form);
 
-      const requestData = {
-        name: formData.get('name'),
-        description: formData.get('description'),
-        startDate: formData.get('start-date'),
-        finishDate: formData.get('end-date'),
-        maxPlayers: formData.get('max-players'),
-        owner: user?.id.toString(),
-      };
-      try {
-        const res = await fetch('https://gametrail-backend-production.up.railway.app/api/trail/', {
-          method: 'POST',
-          body: JSON.stringify(requestData),
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Token ${token}`,
-          },
-        });
-        if (!res.ok) {
-          throw new Error(res.statusText);
-        }
-      } catch (error) {
-        throw new Error();
-      } finally {
-        const res = await fetch('https://gametrail-backend-production.up.railway.app/api/getTrail/');
-        const data: [Trail] = await res.json();
-        const trailId = data[data.length - 1].id;
-
-        // Each game must be added to the trail by a POST request
-        const selectedGames = formData.getAll('games');
-
-        selectedGames.map(async (game) => {
-          const gameData = {
-            trail: trailId.toString(),
-            game: game.toString(),
-            priority: (selectedGames.indexOf(game) + 1),
-            message: 'Pendiente de selección',
-            status: 'PENDING',
-          };
-
-          try {
-            await fetch('https://gametrail-backend-production.up.railway.app/api/gameInTrail', {
-              method: 'POST',
-              body: JSON.stringify(gameData),
-              headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Token ${token}`,
-              },
-            });
-          } catch (error) {
-            throw new Error();
-          }
-        });
-
-        router.push(`/trail/${trailId}`);
-        handleSetLoading(false);
+    const requestData = {
+      name: formData.get('name'),
+      description: formData.get('description'),
+      startDate: formData.get('start-date'),
+      finishDate: formData.get('end-date'),
+      maxPlayers: formData.get('max-players'),
+      owner: user?.id.toString(),
+    };
+    try {
+      const res = await fetch('https://gametrail-backend-production.up.railway.app/api/trail/', {
+        method: 'POST',
+        body: JSON.stringify(requestData),
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Token ${token}`,
+        },
+      });
+      if (!res.ok) {
+        throw new Error(res.statusText);
       }
-    },
-    [handleSetLoading, router],
-  );
+    } catch (error) {
+      throw new Error();
+    } finally {
+      const res = await fetch('https://gametrail-backend-production.up.railway.app/api/getTrail/');
+      const data: [Trail] = await res.json();
+      const trailId = data[data.length - 1].id;
+
+      // Each game must be added to the trail by a POST request
+
+      const selectedGames = formData.getAll('games');
+      selectedGames.forEach((game) => {
+        putGame(game, trailId, selectedGames).then((r) => r);
+      });
+
+      router.push(`/trail/${trailId}`);
+      handleSetLoading(false);
+    }
+  }, [handleSetLoading, router]);
 
   return (
     <Form onSubmit={handleSubmit}>

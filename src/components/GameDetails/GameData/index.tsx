@@ -16,6 +16,7 @@ export type Props = {
 
 const GameData: FC<Props> = ({ gameDetails }) => {
   const user = getUserCookie();
+  const token = user?.token;
   const [isHidden, setHidden] = useState <boolean>(false);
   async function checkGames() {
     if (!user) {
@@ -41,7 +42,7 @@ const GameData: FC<Props> = ({ gameDetails }) => {
     checkGames().then((r) => r);
   });
   const handleOnClick = async () => {
-    if (user && user.auth_token) {
+    if (user && token) {
       const requestData = {
         user: user.id.toString(),
         game: gameDetails.id.toString(),
@@ -53,7 +54,7 @@ const GameData: FC<Props> = ({ gameDetails }) => {
           body: JSON.stringify(requestData),
           headers: {
             'Content-Type': 'application/json',
-            Authorization: `Token ${user.auth_token}`,
+            Authorization: `Token ${token}`,
           },
         });
         if (!res.ok) {

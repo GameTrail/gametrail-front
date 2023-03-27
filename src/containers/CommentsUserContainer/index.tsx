@@ -63,7 +63,7 @@ const CommentsUserContainer: FC<Props> = ({ userData }) => {
       },
     };
     const updatedCommentedArray = [...commentsArray];
-    updatedCommentedArray.splice(0, 0, newComment);
+    updatedCommentedArray.push(newComment);
     setCommentsArray(updatedCommentedArray);
     postComment(commentToPost);
   };

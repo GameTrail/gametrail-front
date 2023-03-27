@@ -58,7 +58,7 @@ const CommentsGameContainer: FC<Props> = ({ gameData }) => {
       game: gameData.id,
     };
     const updatedCommentedArray = [...commentsArray];
-    updatedCommentedArray.splice(0, 0, newComment);
+    updatedCommentedArray.push(newComment);
     setCommentsArray(updatedCommentedArray);
     postComment(commentToPost);
   };

@@ -31,15 +31,18 @@ const TrailCreationForm: FC<Props> = ({ handleSetLoading }) => {
   const handlePremiumFilters = useCallback(async (formData: any, size:number) => {
     if (formData.get('kindness') > 1) {
       const kindnessData = {
-        trail: size,
-        user: user?.id,
+        trail: size.toString(),
+        user: user?.id.toString(),
         minRating: formData.get('kindness'),
-        type: 'kindness',
+        type: 'KINDNESS',
       };
       const resRatingKindness = await fetch('https://gametrail-backend-production.up.railway.app/api/minRating/', {
         method: 'POST',
         body: JSON.stringify(kindnessData),
-        headers: { Authorization: `Token ${token}`, 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Token ${token}`,
+        },
       });
       if (!resRatingKindness.ok) {
         throw new Error(resRatingKindness.statusText);
@@ -47,15 +50,18 @@ const TrailCreationForm: FC<Props> = ({ handleSetLoading }) => {
     }
     if (formData.get('funny') > 1) {
       const funnyData = {
-        trail: size,
-        user: user?.id,
+        trail: size.toString(),
+        user: user?.id.toString(),
         minRating: formData.get('funny'),
-        type: 'funny',
+        type: 'FUNNY',
       };
       const resRatingFunny = await fetch('https://gametrail-backend-production.up.railway.app/api/minRating/', {
         method: 'POST',
         body: JSON.stringify(funnyData),
-        headers: { Authorization: `Token ${token}`, 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Token ${token}`,
+        },
       });
       if (!resRatingFunny.ok) {
         throw new Error(resRatingFunny.statusText);
@@ -63,15 +69,18 @@ const TrailCreationForm: FC<Props> = ({ handleSetLoading }) => {
     }
     if (formData.get('teamwork') > 1) {
       const teamworkData = {
-        trail: size,
-        user: user?.id,
+        trail: size.toString(),
+        user: user?.id.toString(),
         minRating: formData.get('teamwork'),
-        type: 'teamwork',
+        type: 'TEAMWORK',
       };
       const resRatingTeamwork = await fetch('https://gametrail-backend-production.up.railway.app/api/minRating/', {
         method: 'POST',
         body: JSON.stringify(teamworkData),
-        headers: { Authorization: `Token ${token}`, 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Token ${token}`,
+        },
       });
       if (!resRatingTeamwork.ok) {
         throw new Error(resRatingTeamwork.statusText);
@@ -79,15 +88,18 @@ const TrailCreationForm: FC<Props> = ({ handleSetLoading }) => {
     }
     if (formData.get('ability') > 1) {
       const abilityData = {
-        trail: size,
-        user: user?.id,
+        trail: size.toString(),
+        user: user?.id.toString(),
         minRating: formData.get('ability'),
-        type: 'ability',
+        type: 'ABILITY',
       };
       const resRatingAbility = await fetch('https://gametrail-backend-production.up.railway.app/api/minRating/', {
         method: 'POST',
         body: JSON.stringify(abilityData),
-        headers: { Authorization: `Token ${token}`, 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Token ${token}`,
+        },
       });
       if (!resRatingAbility.ok) {
         throw new Error(resRatingAbility.statusText);
@@ -96,15 +108,18 @@ const TrailCreationForm: FC<Props> = ({ handleSetLoading }) => {
 
     if (formData.get('availability') > 1) {
       const availabilityData = {
-        trail: size,
-        user: user?.id,
+        trail: size.toString(),
+        user: user?.id.toString(),
         minRating: formData.get('availability'),
-        type: 'availability',
+        type: 'AVAILABILITY',
       };
       const resRatingAvailability = await fetch('https://gametrail-backend-production.up.railway.app/api/minRating/', {
         method: 'POST',
         body: JSON.stringify(availabilityData),
-        headers: { Authorization: `Token ${token}`, 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Token ${token}`,
+        },
       });
       if (!resRatingAvailability.ok) {
         throw new Error(resRatingAvailability.statusText);
@@ -145,7 +160,7 @@ const TrailCreationForm: FC<Props> = ({ handleSetLoading }) => {
       const size = data.length;
 
       if (user?.plan === 'PREMIUM') {
-      // await handlePremiumFilters(formData, size);
+        await handlePremiumFilters(formData, 1);
       }
       router.push(`/trail/${size}`);
       handleSetLoading(false);

@@ -3,7 +3,7 @@ import type { FC } from 'react';
 import NotFoundList from '@/components/Lotties/User/NotFoundList';
 import type { GameList } from '@/models/GameList/types';
 import {
-  Container, Game, GameImage, LastModified, Name, State, GameListEmpty, Added
+  Container, Game, GameImage, LastModified, Name, State, GameListEmpty, Added,
 } from './styles';
 
 export type Props = {

@@ -17,7 +17,7 @@ export const Container = styled.div`
   font-style: normal;
   font-family: "Outfit", sans-serif;
   @media (max-width: 768px) {
-    width: 60%;
+    width: 100%;
     font-size: 1.8rem;
   }
   @media (max-width: 1030px) {

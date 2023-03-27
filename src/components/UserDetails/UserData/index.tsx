@@ -86,7 +86,7 @@ const UserData: FC<Props> = ({ user }) => {
           @
           {user.username}
           {' '}
-          {user.plan === 'PREMIUM' && (
+          {user.plan === 'Premium' && (
           <FontAwesomeIcon icon={faCrown} size="xs" />
           )}
         </h1>

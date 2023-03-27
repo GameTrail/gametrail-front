@@ -3,25 +3,30 @@ import React, { useMemo, useState } from 'react';
 import { GameData, GameImages, GameTrailList } from '@/components/GameDetails';
 import GameListsButtons from '@/components/GameDetails/GameListsButtons';
 import type { Game } from '@/models/Game/types';
-import CommentsContainer from '../CommentsContainer';
+import type { Trail } from '@/models/Trail/types';
+import { getUserCookie } from '@/utils/login';
+import CommentsGameContainer from '../CommentsGameContainer';
 import { Container, ListsDetails } from './style';
 import { ButtonType } from './types';
 
 export type Props = {
   gameDetails: Game
+  trailData: Trail[];
 };
-const GameDetails:FC<Props> = ({ gameDetails }) => {
+const GameDetails:FC<Props> = ({ gameDetails, trailData }) => {
   const [selectedButton, setSelectedButton] = useState<ButtonType>(ButtonType.Trail);
-  const authToken = '12345xcvxcb';
+  const userCookie = getUserCookie();
+  const authToken = userCookie?.token || '';
   const onClickButton = (button: ButtonType) => {
     setSelectedButton(button);
   };
 
   const handleRenderList = useMemo(() => {
-    if (selectedButton === ButtonType.Trail) return <GameTrailList trailList={gameDetails?.trailList} />;
-    if (selectedButton === ButtonType.Comments) return <CommentsContainer auth_token={authToken} id={gameDetails.id} type="game" key="commentsGameContainer" />;
+    if (selectedButton === ButtonType.Trail) return <GameTrailList trailList={trailData} />;
+    if (selectedButton === ButtonType.Comments) return <CommentsGameContainer gameData={gameDetails} />;
     return null;
-  }, [selectedButton, gameDetails]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedButton, trailData, authToken, gameDetails.id]);
   return (
     <Container>
       <GameData gameDetails={gameDetails} />

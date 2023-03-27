@@ -5,11 +5,31 @@ export const Container = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 560px;
+    width: 1720px;
+    margin-bottom: 25px;
     padding: 0 20px;
     @media (max-width: 768px) {
-        width: 360px;
+        width: 100vw;
     };
+
+`;
+
+export const TrailListEmpty = styled.div`
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    font-size: 1.2em;
+    font-weight: 600;
+    
+    @media (max-width: 768px) {
+        font-size: 0.8em;
+        font-weight: 600;
+        width: 75vw;
+        height: 50vh;
+    }
 
 `;
 export const Item = styled.div`
@@ -22,7 +42,7 @@ export const Item = styled.div`
     border-radius: 10px;
     margin-bottom:10px;
     color: ${({ theme }) => theme.nord.white0};
-    width: 100%;
+    width: 90vw;
     height: 60px;
     padding: 10px 10px;
     box-shadow: 0 0 10px 0 ${({ theme }) => theme.nord.gray3};
@@ -66,4 +86,5 @@ export const Item = styled.div`
             font-weight: 200;
         };
      };
+    }
 `;

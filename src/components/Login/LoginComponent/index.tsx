@@ -2,99 +2,101 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import { Button } from '@/components/Landing/MainSection/styles';
 import { LoginLottie } from '@/components/Lotties';
-import { useGameTrail } from '@/hooks';
-import { normalizeUser } from '@/models/User/types';
+import { normalizeUserCookie } from '@/models/User/types';
+import { setCookie } from '@/utils/login';
 import {
-  LoginContainer, Container, Title, LoginForm, Label, Input, ErrorContainer,
+  LoginContainer,
+  Container,
+  Title,
+  LoginForm,
+  Label,
+  Input,
+  ErrorContainer,
 } from './styles';
+import type { UserCredentials } from './types';
+
+const URL_LOGIN = 'https://gametrail-backend-production.up.railway.app/api/auth/login';
+const URL_USER = 'https://gametrail-backend-production.up.railway.app/api/user/';
+const LOGIN_ERROR = 'Error al inicial sesión, comprueba tus credenciales.';
 
 const Login = () => {
+  const router = useRouter();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [loginError, setLoginError] = useState('');
 
-  const { handleSetUser, handleSetToken } = useGameTrail();
-  const [userLoading, setUserLoading] = useState<boolean>(true);
-
-  const [message, setMessage] = useState<string>('');
-
-  const handleLogin = (gametrailUsername: string, gametrailPassword: string) => {
-    const API_URL = 'http://127.0.0.1:/api/auth/login/';
-
-    const options = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ gametrailUsername, gametrailPassword }),
-    };
-
-    const getToken = async () => {
-      try {
-        const response = await fetch(API_URL, options);
-        if (response.ok) {
-          const data = await response.json();
-          handleSetToken(data.token);
-          localStorage.setItem('token', data.token);
-          return data.token;
-        }
-        setUserLoading(false);
-        setMessage('No se puede iniciar sesión con estas credenciales');
-      } catch (error) {
-        setUserLoading(false);
-        setMessage('No se puede iniciar sesión con estas credenciales');
-      }
-      return null;
-    };
-
-    const getUser = async () => {
-      const token = await getToken();
-      const data = {
-        token,
-      };
-      const API_URL_USER = 'http://127.0.0.1:3000/api/user/';
-      const optionsUser = {
-        method: 'POST',
+  const getUser = async (userId: number) => {
+    const id = String(userId);
+    const URL = URL_USER + id;
+    try {
+      const response = await fetch(URL, {
+        method: 'GET',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-      };
-      try {
-        const response = await fetch(API_URL_USER, optionsUser);
-        if (response.ok) {
-          const dataUser = await response.json();
-          const user = normalizeUser(dataUser, token);
-          handleSetUser(user);
-          setMessage('');
-          localStorage.setItem('user', JSON.stringify(user));
-        } else {
-          setMessage('No se puede iniciar sesión con estas credenciales');
-        }
-        setUserLoading(false);
-      } catch (error) {
-        setUserLoading(false);
-        setMessage('No se puede iniciar sesión con estas credenciales');
+      });
+
+      if (!response.ok) {
+        setLoginError(LOGIN_ERROR);
+        return { user: null, error: loginError };
       }
-    };
-    getUser();
+
+      const data = await response.json();
+      return { user: data, error: null };
+    } catch (err) {
+      setLoginError(LOGIN_ERROR);
+      return { user: null, error: loginError };
+    }
   };
 
-  const router = useRouter();
+  const onLogin = async (userCredentials: UserCredentials) => {
+    try {
+      const response = await fetch(URL_LOGIN, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(userCredentials),
+      });
 
-  const onPressLogin = (e: any) => {
-    e.preventDefault();
-    handleLogin(username, password);
-    if (!userLoading && !!message) {
+      if (!response.ok) {
+        setLoginError(LOGIN_ERROR);
+        return;
+      }
+
+      const data = await response.json();
+      const userId = data.user_id;
+      const { user, error } = await getUser(userId);
+
+      if (error) {
+        setLoginError(LOGIN_ERROR);
+        return;
+      }
+
+      const userCookie = normalizeUserCookie(user, data.token);
+      setCookie('user', userCookie, 7);
+      setLoginError('');
+    } catch (err) {
+      setLoginError(LOGIN_ERROR);
+    } finally {
+      setUsername('');
+      setPassword('');
+
       router.push('/home');
-    } else {
-      setMessage(message);
     }
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const user = { username, password };
+    onLogin(user);
   };
 
   return (
     <LoginContainer>
       <LoginLottie />
-      <LoginForm>
+      <LoginForm onSubmit={handleSubmit}>
         <Title>
           Inicia sesión en GameTrail
         </Title>
-        {!!message && <ErrorContainer>{message}</ErrorContainer>}
+        {!!loginError && <ErrorContainer>{loginError}</ErrorContainer>}
         <Container>
           <Label>
             Nombre de usuario
@@ -119,7 +121,7 @@ const Login = () => {
             />
           </Label>
         </Container>
-        <Button primary onClick={onPressLogin}>Iniciar sesión</Button>
+        <Button primary type="submit">Iniciar sesión</Button>
       </LoginForm>
     </LoginContainer>
   );

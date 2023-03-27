@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 import React from 'react';
 import PricingCard from './PricingCard';
 import { Container } from './styles';
@@ -12,7 +11,7 @@ const PricingSection = () => (
     />
     <PricingCard
       title={PricingType.Premium}
-      price="$2.95"
+      price="€2.95"
     />
   </Container>
 );

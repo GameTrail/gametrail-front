@@ -4,11 +4,27 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    font-size: 1.2rem;
     justify-content: space-evenly;
     width: 100%;
     height: 100%;
     padding: 20px 20px;
     span {
+        @keyframes blink {
+            0% {
+                box-shadow: 0 0 5px 0  ;
+                border-radius: 50%;
+            }
+            50% {
+                box-shadow: 0 0 2px 0 ;
+                border-radius: 50%;
+                }
+            100% {
+                box-shadow: 0 0 5px 0 ;
+                border-radius: 50%;
+            }
+        }
+        animation: blink 3s infinite;
         font-size: 1rem;
         font-weight: 600;
         margin-right: 10px;

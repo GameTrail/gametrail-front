@@ -1,3 +1,5 @@
+import type { Game } from '../Game/types';
+
 export enum GameListState {
   PLAYING = 'PLAYING',
   PENDING = 'PENDING',
@@ -6,8 +8,9 @@ export enum GameListState {
 
 export type GameList = {
   id: number
-  name: string
-  image: string
+  game: Game
+  creationMoment: string
   lastModified: string
-  state: GameListState
+  status: GameListState
+  gameList:number
 };

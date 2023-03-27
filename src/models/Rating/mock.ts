@@ -1,36 +1,36 @@
-import type { Rating } from './types';
+import type { RatingNull } from './types';
 import { RatingType } from './types';
 
-export const MOCK_USER_RATING: Rating[] = [
+export const MOCK_USER_RATING: RatingNull[] = [
   {
-    ratingType: RatingType.Kindness,
-    rating: 5,
+    type: RatingType.KINDNESS,
+    rating: '?',
     ratedUser: 'MOCK_USERS[0]',
-    userWhoRates: 'MOCK_USERS[1]',
+    userWhoRate: 'MOCK_USERS[1]',
 
   },
   {
-    ratingType: RatingType.Ability,
-    rating: 2,
+    type: RatingType.ABILITY,
+    rating: '?',
     ratedUser: 'MOCK_USERS[1]',
-    userWhoRates: 'MOCK_USERS[0]',
+    userWhoRate: 'MOCK_USERS[0]',
   },
   {
-    ratingType: RatingType.Availability,
-    rating: 3,
+    type: RatingType.AVAILABILITY,
+    rating: '?',
     ratedUser: 'MOCK_USERS[0]',
-    userWhoRates: 'MOCK_USERS[1]',
+    userWhoRate: 'MOCK_USERS[1]',
   },
   {
-    ratingType: RatingType.Funny,
-    rating: 4,
+    type: RatingType.FUNNY,
+    rating: '?',
     ratedUser: 'MOCK_USERS[0]',
-    userWhoRates: 'MOCK_USERS[1]',
+    userWhoRate: 'MOCK_USERS[1]',
   },
   {
-    ratingType: RatingType.Teamwork,
-    rating: 3,
+    type: RatingType.TEAMWORK,
+    rating: '?',
     ratedUser: 'MOCK_USERS[1]',
-    userWhoRates: 'MOCK_USERS[0]',
+    userWhoRate: 'MOCK_USERS[0]',
   },
 ];

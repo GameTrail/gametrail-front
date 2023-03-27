@@ -4,18 +4,18 @@ export const PlayerListElement = styled.li`
     display: flex;
     flex-direction: row;
     width: 100%;
-    height: fit-content;
+    height: auto;
     justify-content: space-between;
-  padding: 2% 5% 2% 5%;
+  padding: 2% 1% 2% 5%;
     align-items: center;
     align-content: center;
     flex-wrap: nowrap;
     font-size: 1.5em;
-    `;
+`;
 
 export const PlayerListContainer = styled.ul`
     width: 100%;
-    height: 100%;
+    height: auto;
   background-color: ${({ theme }) => theme.nord.gray3};
   border-radius: 1.5rem;
   color: ${({ theme }) => theme.nord.white0};
@@ -31,7 +31,11 @@ export const PlayerListHeader = styled.div`
     align-content: center;
     flex-wrap: nowrap;
     font-size: 80%;
-    padding: 4% 16% 1% 12%;
+    padding: 4% 6% 1% 12%;
+  
+  @media (max-width: 892px) {
+    font-size: 60%;
+  }
     `;
 
 export const Container = styled.div`
@@ -54,7 +58,7 @@ export const ProfilePicture = styled.img`
 `;
 
 export const PlayerName = styled.span`
-    font-size: 1.5rem;
+    font-size: 0.9em;
     font-weight: 400;
   width: 100%;
     display: flex;
@@ -62,6 +66,7 @@ export const PlayerName = styled.span`
     justify-content: flex-start;
   @media (max-width: 892px) {
     width: 70%;
+    font-size: 0.7em;
   }
 `;
 

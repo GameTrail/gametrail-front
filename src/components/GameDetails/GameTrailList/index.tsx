@@ -1,39 +1,58 @@
 import React from 'react';
 import type { FC } from 'react';
 import Image from 'next/image';
-import type { TrailList } from '@/models/TrailList/types';
-import { Item, Container } from './styles';
+import router from 'next/router';
+import NotFoundList from '@/components/Lotties/User/NotFoundList';
+import type { Trail } from '@/models/Trail/types';
+import { Item, Container, TrailListEmpty } from './styles';
 
 export type Props = {
-  trailList : TrailList[]
+  trailList : Trail[]
 };
 
 const GameTrailList:FC<Props> = ({ trailList }) => {
-  const handleRenderStatus = (trail: TrailList) => {
-    const status = Date.parse(trail.endDate) > new Date().getTime();
+  const handleRenderStatus = (trail: Trail) => {
+    const status = Date.parse(trail.finishDate) > new Date().getTime();
     return status
       ? <span style={{ backgroundColor: '#5e81ac' }}>In progress</span>
       : <span style={{ backgroundColor: '#a3be8c' }}>Completed</span>;
   };
 
-  const handleRenderList = () => trailList?.map((trail) => (
-    <Item key={trail.id}>
-      <Image
-        alt="jvegax"
-        src="https://cdnb.artstation.com/p/assets/images/images/035/213/423/large/mcashe-titanzekeef-dev.jpg?1614374087"
-        height={30}
-        width={30}
-      />
-      <p>{trail.name}</p>
-      <p>
-        2/
-        {trail.maxPlayers}
-      </p>
-      <p>
-        {handleRenderStatus(trail)}
-      </p>
-    </Item>
-  ));
+  const handleClickTrailDetails: any = (id: number) => {
+    router.push(`/trail/${id}`);
+  };
+
+  const handleRenderList = () => {
+    if (trailList?.length !== 0) {
+      return (
+        trailList?.map((trail) => (
+          <Item key={trail.id} onClick={() => handleClickTrailDetails(trail.id)}>
+            <Image
+              alt={trail.owner.username}
+              src={trail.owner.avatar}
+              height={30}
+              width={30}
+            />
+            <p>{trail.name}</p>
+            <p>
+              2/
+              {trail.maxPlayers}
+            </p>
+            <p>
+              {handleRenderStatus(trail)}
+            </p>
+          </Item>
+        ))
+
+      );
+    }
+    return (
+      <TrailListEmpty>
+        <p>Aún no hay trails creados</p>
+        <NotFoundList />
+      </TrailListEmpty>
+    );
+  };
 
   return (
     <Container>

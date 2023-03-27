@@ -22,13 +22,19 @@ export const Container = styled.div<ContainerProps>`
     `;
 
 export const TrailTitle = styled.h1`
-  font-size: 2.5rem;    
+  font-size: 7rem;    
   color: ${({ theme }) => theme.nord.purple};
+  @media (max-width: 768px) {
+font-size: 3rem;
+  }
 `;
 
 export const TrailDescription = styled.p`
-    font-size: 1.5rem;
     padding-top:1rem;
+  font-size: 2rem;
+  @media (max-width: 768px) {
+font-size: 1.5rem;
+  }
 `;
 
 export const AdjustedContainer = styled.div`

@@ -1,10 +1,11 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { MOCK_USER } from '@/models/User/mock';
-import type { User } from '@/models/User/types';
 
 export default function handler(
   req: NextApiRequest,
-  res: NextApiResponse<User>,
+  res: NextApiResponse,
 ) {
-  res.status(200).json(MOCK_USER);
+  res.status(200).json({
+    token: '0835f889272adb3aceb051bf399cc31406c291a4',
+    id: 7,
+  });
 }

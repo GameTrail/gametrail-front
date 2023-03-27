@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  width: 40%;
-  height: 75vh;
+  height: 100vh;
+  width: 60%;
+  height: fit-content;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -15,10 +16,23 @@ export const Container = styled.div`
   border-radius: 0.5em;
   background-color: ${({ theme }) => theme.nord.white0};
   color: ${({ theme }) => theme.nord.gray0};
+  max-width: 900px;
 
   @media (max-width: 768px) {
     width: 85%;
   }
+ 
+  @media (max-height:720px) {
+    width: 85%;
+    height: 100%;
+  }
+  @media (max-height:800px) {
+    width: 85%;
+    height: 100%;
+  }
+    @media (max-width: 475px) {
+      height: 100%;
+    }
 `;
 
 export const Background = styled.div`

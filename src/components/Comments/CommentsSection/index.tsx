@@ -9,7 +9,10 @@ export type Props = {
 };
 
 const CommentsSection: FC<Props> = ({ comments }) => {
-  const handleRenderComments = () => comments?.reverse().map((comment) => <CommentComponent key={comment.id} comment={comment} />);
+  const handleRenderComments = () => {
+    const sortedComments = comments?.slice().reverse();
+    return sortedComments.map((comment) => <CommentComponent key={comment.id} comment={comment} />);
+  };
 
   return (
     <CommentsContainer>

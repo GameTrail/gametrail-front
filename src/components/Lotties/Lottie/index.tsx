@@ -25,8 +25,6 @@ const LottieComponent: FC<Props> = ({ path }) => {
     }
     return undefined;
   }, [lottie, path]);
-  // eslint-disable-next-line no-console
-  console.log(path);
   return (
     <div ref={ref} />
   );

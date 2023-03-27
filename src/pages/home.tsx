@@ -12,8 +12,8 @@ export type Props = {
 };
 
 export const getServerSideProps: GetServerSideProps<Props> = async () => {
-  const response1 = await fetch('http://127.0.0.1:3000/api/trailgang');
-  const response2 = await fetch('http://gametrail-backend-production.up.railway.app/api/recentGames/');
+  const response1 = await fetch('https://gametrail-backend-production.up.railway.app/api/getTrail/23');
+  const response2 = await fetch('https://gametrail-backend-production.up.railway.app/api/recentGames/');
   const response3 = await fetch('https://gametrail-backend-production.up.railway.app/api/sabiasque/');
   const dataTrail = await response1.json();
   const dataGames = await response2.json();

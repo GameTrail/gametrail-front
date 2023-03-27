@@ -34,6 +34,7 @@ const Login = () => {
         const data = await response.json();
         handleSetToken(data.token);
         localStorage.setItem('token', data.token);
+        sessionStorage.setItem('token', data.token);
 
         const userResponse = await fetch(`https://gametrail-backend-production.up.railway.app/api/user/${data.user_id}`, {
           headers: { Authorization: `Bearer ${data.token}` },
@@ -43,6 +44,7 @@ const Login = () => {
           const user = await userResponse.json();
           handleSetUser(user);
           localStorage.setItem('user', JSON.stringify(user));
+          sessionStorage.setItem('user', JSON.stringify(user));
           router.push('/home');
         } else {
           throw new Error('Error al obtener los datos del usuario');

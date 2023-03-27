@@ -1,28 +1,34 @@
 'use client';
 
 import type { FC } from 'react';
-import { useCallback } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { faCrown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useRouter } from 'next/router';
+import Select from 'react-select';
 import {
   Button,
   ButtonRow,
   DateFieldContainer,
-  FieldContainer, Form,
+  FieldContainer,
+  Form,
   Input,
   InputDate,
   InputTextArea,
   Label,
   PremiumFilterFirst,
   PremiumFilterSecond,
+  SelectorStyles,
 } from '@/components/Trail/TrailCreation/Form/styles';
+import type { Game } from '@/models/Game/types';
+import type { Trail } from '@/models/Trail/types';
 
 export type Props = {
   handleSetLoading: (value: boolean) => void
 };
 
 const TrailCreationForm: FC<Props> = ({ handleSetLoading }) => {
+  // const { user, token } = useGameTrail();
   const router = useRouter();
   // const { user, token } = useGameTrail();
   const user = JSON.parse(localStorage.getItem('user') || '{}');
@@ -36,7 +42,7 @@ const TrailCreationForm: FC<Props> = ({ handleSetLoading }) => {
         minRating: formData.get('kindness'),
         type: 'KINDNESS',
       };
-      const resRatingKindness = await fetch('https://gametrail-backend-production.up.railway.app/api/minRating/', {
+      const resRatingKindness = await fetch('https://gametrail-backend-production.up.railway.app/api/createMinRating', {
         method: 'POST',
         body: JSON.stringify(kindnessData),
         headers: {
@@ -55,7 +61,7 @@ const TrailCreationForm: FC<Props> = ({ handleSetLoading }) => {
         minRating: formData.get('funny'),
         type: 'FUNNY',
       };
-      const resRatingFunny = await fetch('https://gametrail-backend-production.up.railway.app/api/minRating/', {
+      const resRatingFunny = await fetch('https://gametrail-backend-production.up.railway.app/api/createMinRating', {
         method: 'POST',
         body: JSON.stringify(funnyData),
         headers: {
@@ -74,7 +80,7 @@ const TrailCreationForm: FC<Props> = ({ handleSetLoading }) => {
         minRating: formData.get('teamwork'),
         type: 'TEAMWORK',
       };
-      const resRatingTeamwork = await fetch('https://gametrail-backend-production.up.railway.app/api/minRating/', {
+      const resRatingTeamwork = await fetch('https://gametrail-backend-production.up.railway.app/api/createMinRating', {
         method: 'POST',
         body: JSON.stringify(teamworkData),
         headers: {
@@ -93,7 +99,7 @@ const TrailCreationForm: FC<Props> = ({ handleSetLoading }) => {
         minRating: formData.get('ability'),
         type: 'ABILITY',
       };
-      const resRatingAbility = await fetch('https://gametrail-backend-production.up.railway.app/api/minRating/', {
+      const resRatingAbility = await fetch('https://gametrail-backend-production.up.railway.app/api/createMinRating', {
         method: 'POST',
         body: JSON.stringify(abilityData),
         headers: {
@@ -113,7 +119,7 @@ const TrailCreationForm: FC<Props> = ({ handleSetLoading }) => {
         minRating: formData.get('availability'),
         type: 'AVAILABILITY',
       };
-      const resRatingAvailability = await fetch('https://gametrail-backend-production.up.railway.app/api/minRating/', {
+      const resRatingAvailability = await fetch('https://gametrail-backend-production.up.railway.app/api/createMinRating', {
         method: 'POST',
         body: JSON.stringify(availabilityData),
         headers: {
@@ -127,8 +133,44 @@ const TrailCreationForm: FC<Props> = ({ handleSetLoading }) => {
     }
   }, [user, token]);
 
+  const [games, setGames] = useState<Game[]>([]);
+
+  async function fetchGames() {
+    const res = await fetch('https://gametrail-backend-production.up.railway.app/api/game/');
+    const data: Game[] = await res.json();
+    setGames(data);
+  }
+
+  async function putGame(game: FormDataEntryValue, trailId: number, selectedGames: FormDataEntryValue[]) {
+    const gameData = {
+      trail: trailId.toString(),
+      game: game.toString(),
+      priority: (selectedGames.indexOf(game) + 1),
+      message: 'Pendiente de selección',
+      status: 'PENDING',
+    };
+
+    try {
+      return await fetch('https://gametrail-backend-production.up.railway.app/api/gameInTrail', {
+        method: 'POST',
+        body: JSON.stringify(gameData),
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Token ${token}`,
+        },
+      });
+    } catch (error) {
+      throw new Error();
+    }
+  }
+
+  useEffect(() => {
+    fetchGames().then((r) => r);
+  }, []);
+
   const handleSubmit = useCallback(async (event: React.FormEvent<HTMLFormElement>) => {
     handleSetLoading(true);
+
     event.preventDefault();
 
     const form = event.currentTarget;
@@ -140,7 +182,7 @@ const TrailCreationForm: FC<Props> = ({ handleSetLoading }) => {
       startDate: formData.get('start-date'),
       finishDate: formData.get('end-date'),
       maxPlayers: formData.get('max-players'),
-      owner: '1',
+      owner: user?.id.toString(),
     };
     try {
       const res = await fetch('https://gametrail-backend-production.up.railway.app/api/trail/', {
@@ -155,14 +197,20 @@ const TrailCreationForm: FC<Props> = ({ handleSetLoading }) => {
     } catch (error) {
       throw new Error();
     } finally {
-      const res = await fetch('https://gametrail-backend-production.up.railway.app/api/trail/');
-      const data: [] = await res.json();
-      const size = data.length;
+      const res = await fetch('https://gametrail-backend-production.up.railway.app/api/getTrail/');
+      const data: [Trail] = await res.json();
+      const trailId = data[data.length - 1].id;
 
       if (user?.plan === 'PREMIUM') {
-        await handlePremiumFilters(formData, 1);
+        await handlePremiumFilters(formData, trailId);
       }
-      router.push(`/trail/${size}`);
+
+      const selectedGames = formData.getAll('games');
+      selectedGames.forEach((game) => {
+        putGame(game, trailId, selectedGames).then((r) => r);
+      });
+
+      router.push(`/trail/${trailId}`);
       handleSetLoading(false);
     }
   }, [handleSetLoading, router]);
@@ -228,6 +276,11 @@ const TrailCreationForm: FC<Props> = ({ handleSetLoading }) => {
         </PremiumFilterSecond>
       </>
       )}
+
+      <FieldContainer>
+        <Label htmlFor="games">Juegos que se van a Jugar</Label>
+        <Select isMulti name="games" options={games} getOptionLabel={(option: Game) => option.name} getOptionValue={(option: Game) => option.id.toString()} styles={SelectorStyles} placeholder="Selecciona los juegos que quieras..." />
+      </FieldContainer>
 
       <ButtonRow>
         <Button type="submit">Create</Button>

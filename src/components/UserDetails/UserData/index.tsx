@@ -76,7 +76,7 @@ const UserData: FC<Props> = ({ user }) => {
       );
     }
     return null;
-  }, [handleSubmit, rate]);
+  }, [handleRateContainer, handleSubmit, rate]);
 
   return (
     <>

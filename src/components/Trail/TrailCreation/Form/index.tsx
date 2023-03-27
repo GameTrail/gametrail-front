@@ -140,6 +140,7 @@ const TrailCreationForm: FC<Props> = ({ handleSetLoading }) => {
     setGames(data);
   }
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   async function putGame(game: FormDataEntryValue, trailId: number, selectedGames: FormDataEntryValue[]) {
     const gameData = {
       trail: trailId.toString(),
@@ -212,7 +213,7 @@ const TrailCreationForm: FC<Props> = ({ handleSetLoading }) => {
       router.push(`/trail/${trailId}`);
       handleSetLoading(false);
     }
-  }, [handleSetLoading, router]);
+  }, [handlePremiumFilters, handleSetLoading, putGame, router, token, user?.id, user?.plan]);
 
   return (
     <Form onSubmit={handleSubmit}>

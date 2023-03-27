@@ -10,11 +10,12 @@ const ImputFieldSection : FC<Props> = ({ onClickNewComment }) => {
   const [input, setInput] = useState<string>();
 
   const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    event.preventDefault();
     setInput(event.target.value);
   };
 
   const sendCommentToParent = () => {
-    onClickNewComment(input !== undefined ? input : '');
+    onClickNewComment(input ?? '');
     setInput('');
   };
 

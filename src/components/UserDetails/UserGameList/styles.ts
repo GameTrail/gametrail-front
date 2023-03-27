@@ -42,11 +42,11 @@ export const GameListEmpty = styled.div`
 export const Game = styled.div`
     display: flex;
     align-items: center;
-    flex-
+    flex-direction: row;
     justify-content: flex-start;
     gap: 1em;
     border-radius: 9px;
-    width: 100%;
+    width: 90vw;
     height: auto;
     cursor: pointer;
     background-color: ${({ theme }) => theme.nord.gray3};

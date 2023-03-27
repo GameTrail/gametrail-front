@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export const Container = styled.div`
     display: flex;
@@ -13,7 +14,8 @@ export const Container = styled.div`
         flex-wrap: nowrap;
     }
 `;
-export const Player = styled.div`
+
+export const Player = styled(Link)`
     display: flex;
     align-items: center;
     justify-content: flex-start;

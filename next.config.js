@@ -10,7 +10,7 @@ const nextConfig = {
       'cdnb.artstation.com', 'upload.wikimedia.org', 'via.placeholder.com',
       'steamavatar.io', 'i.imgur.com', 'cdnb.artstation.com', 'upload.wikimedia.org',
       'via.placeholder.com', 'store-images.s-microsoft.com', 'cdn.cloudflare.steamstatic.com',
-      'img.lovepik.com', 'cdn.pixabay.com', 'images.igdb.com'],
+      'img.lovepik.com', 'cdn.pixabay.com', 'images.igdb.com', 'randomuser.me'],
   },
 };
 

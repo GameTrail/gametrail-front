@@ -2,8 +2,9 @@ import React from 'react';
 import type { FC } from 'react';
 import Image from 'next/image';
 import router from 'next/router';
+import NotFoundList from '@/components/Lotties/User/NotFoundList';
 import type { Trail } from '@/models/Trail/types';
-import { Item, Container } from './styles';
+import { Item, Container, TrailListEmpty } from './styles';
 
 export type Props = {
   trailList : Trail[]
@@ -21,24 +22,37 @@ const GameTrailList:FC<Props> = ({ trailList }) => {
     router.push(`/trail/${id}`);
   };
 
-  const handleRenderList = () => trailList?.map((trail) => (
-    <Item key={trail.id} onClick={() => handleClickTrailDetails(trail.id)}>
-      <Image
-        alt={trail.owner.username}
-        src={trail.owner.avatar}
-        height={30}
-        width={30}
-      />
-      <p>{trail.name}</p>
-      <p>
-        2/
-        {trail.maxPlayers}
-      </p>
-      <p>
-        {handleRenderStatus(trail)}
-      </p>
-    </Item>
-  ));
+  const handleRenderList = () => {
+    if (trailList?.length !== 0) {
+      return (
+        trailList?.map((trail) => (
+          <Item key={trail.id} onClick={() => handleClickTrailDetails(trail.id)}>
+            <Image
+              alt={trail.owner.username}
+              src={trail.owner.avatar}
+              height={30}
+              width={30}
+            />
+            <p>{trail.name}</p>
+            <p>
+              2/
+              {trail.maxPlayers}
+            </p>
+            <p>
+              {handleRenderStatus(trail)}
+            </p>
+          </Item>
+        ))
+
+      );
+    }
+    return (
+      <TrailListEmpty>
+        <p>Aún no hay trails creados</p>
+        <NotFoundList />
+      </TrailListEmpty>
+    );
+  };
 
   return (
     <Container>

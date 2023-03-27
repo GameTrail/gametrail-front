@@ -13,7 +13,8 @@ export type Props = {
 
 const PlusInfoRow: FC<Props> = ({ trailData }) => {
   const user = getUserCookie();
-  const token = user?.token;
+  const token = user?.token || '';
+
   const [isJoined, setIsJoined] = useState(false);
 
   if (user) {

@@ -54,6 +54,24 @@ export const Item = styled.div`
 
 `;
 
+export const TrailListEmpty = styled.div`
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    font-size: 1.2em;
+    font-weight: 600;
+    
+    @media (max-width: 768px) {
+        font-size: 0.8em;
+        font-weight: 600;
+        width: 75vw;
+        height: 50vh;
+    }
+
+`;
 export const Container = styled.div`
     display: flex;
     flex-direction: column;

@@ -24,7 +24,7 @@ const UserAverageRating:FC<Props> = ({ userRating }) => {
 
   return (
     <Container>
-      3
+      ?
       {' '}
       / 5
       {' '}

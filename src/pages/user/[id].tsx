@@ -1,4 +1,3 @@
-/* eslint-disable linebreak-style */
 import type { FC } from 'react';
 import React from 'react';
 import type { GetServerSideProps, GetServerSidePropsContext } from 'next';
@@ -27,15 +26,6 @@ export const getServerSideProps: GetServerSideProps<Props> = async (context: Get
     },
   };
 };
-// const User: FC<Props> = () => {
-//   const id = window.location.pathname.split('/')[2];
-//   const { data, error } = useSWR(`https://gametrail-backend-production.up.railway.app/api/user/${id}`, fetcher);
-//   if (error) return <Error />;
-//   if (!data) return <LoadingSpinner />;
-//   if (data.detail === 'Not found.') return <NotFound />;
-
-//   return <UserDetails userData={data} />;
-// };
 
 const User: FC<Props> = ({ data }) => {
   if (!data) return <NotFound />;

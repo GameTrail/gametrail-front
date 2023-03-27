@@ -4,8 +4,7 @@ import type { CommentToPostGame, CommentToPostUser } from '.';
 export const useLogic = () => {
   const useSWRGetComments = (id: number, type: string) => {
     const url = type === 'user' ? 'http://localhost:3000/api/comment/user' : 'http://localhost:3000/api/comment/game';
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const fetcher = (urlToGet: string) => fetch(url, {
+    const fetcher = () => fetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(id),
@@ -16,7 +15,6 @@ export const useLogic = () => {
 
   const postComment = async (type: string, commentToPost: CommentToPostUser | CommentToPostGame) => {
     const url = type === 'user' ? 'http://localhost:3000/api/comment/user' : 'http://localhost:3000/api/comment/game';
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     await fetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

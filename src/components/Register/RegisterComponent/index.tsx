@@ -31,7 +31,7 @@ const Register = () => {
   const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const defaultAvatar = './public/images/Prf.jpg';
+    const defaultAvatar = 'https://cdnb.artstation.com/p/assets/images/images/035/213/423/large/mcashe-titanzekeef-dev.jpg?1614374087';
     const avatar = avatarURL || defaultAvatar;
 
     const credentials = {

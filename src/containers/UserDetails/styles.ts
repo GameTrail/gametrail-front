@@ -23,7 +23,7 @@ export const Container = styled.div<ContainerProps>`
 
 export const InfoDetails = styled.div<ContainerProps>`
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
     border-radius: 10px;
@@ -55,7 +55,7 @@ export const StatsDetails = styled.div`
 
     @media (max-width: 768px) {
         flex-direction: column;
-        width: 330px;
+        width: 100%;
         height: 100%;
         padding-top: 10px;
     };
@@ -69,6 +69,7 @@ export const ListsDetails = styled.div`
     align-items: center;
     justify-content: center;
     padding: 0 20px;
+    
 `;
 
 export const KarmaInfo = styled.div`

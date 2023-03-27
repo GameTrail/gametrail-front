@@ -12,3 +12,10 @@ export type Rating = {
   ratedUser?: string,
   userWhoRate?: string
 };
+
+export type RatingNull = {
+  type: RatingType;
+  rating: number | string;
+  ratedUser?: string,
+  userWhoRate?: string
+};

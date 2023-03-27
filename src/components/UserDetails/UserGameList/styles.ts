@@ -42,6 +42,7 @@ export const GameListEmpty = styled.div`
 export const Game = styled.div`
     display: flex;
     align-items: center;
+    flex-
     justify-content: flex-start;
     gap: 1em;
     border-radius: 9px;
@@ -66,7 +67,13 @@ export const Name = styled.p`
     margin-bottom: 0.5em;
 `;
 
-export const LastModified = styled.p`
+export const LastModified = styled.div`
+    font-size: 0.8em;
+    color: ${({ theme }) => theme.nord.white2};
+    margin-bottom: 1em;
+`;
+
+export const Added = styled.div`
     font-size: 0.8em;
     color: ${({ theme }) => theme.nord.white2};
     margin-bottom: 1em;

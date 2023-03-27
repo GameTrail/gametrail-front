@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+  height: 100vh;
   width: 60%;
   height: fit-content;
   display: flex;
@@ -20,6 +21,18 @@ export const Container = styled.div`
   @media (max-width: 768px) {
     width: 85%;
   }
+ 
+  @media (max-height:720px) {
+    width: 85%;
+    height: 100%;
+  }
+  @media (max-height:800px) {
+    width: 85%;
+    height: 100%;
+  }
+    @media (max-width: 475px) {
+      height: 100%;
+    }
 `;
 
 export const Background = styled.div`

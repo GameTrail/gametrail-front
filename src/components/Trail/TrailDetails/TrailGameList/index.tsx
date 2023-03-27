@@ -13,12 +13,12 @@ const TrailGameList:FC<Props> = ({ games }) => {
   const handleRenderGames = () => games.map((game) => (
     <Game>
       <div>
-        <GameImage src={game.image} alt="image" width={160} height={160} />
+        <GameImage src={game.game.image} alt="image" width={160} height={160} />
       </div>
       <div>
-        <Name>{game.name}</Name>
+        <Name>{game.game.name}</Name>
         <LastModified>{game.lastModified}</LastModified>
-        <State state={game.state}>{game.state}</State>
+        <State state={game.status}>{game.status}</State>
       </div>
     </Game>
   ));

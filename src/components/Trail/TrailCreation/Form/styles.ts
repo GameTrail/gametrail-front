@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import type { StylesConfig } from 'react-select';
+import type { Game } from '@/models/Game/types';
 
 export const Form = styled.form`
     display: flex;
@@ -8,7 +10,7 @@ export const Form = styled.form`
     align-content: center;
     flex-wrap: nowrap;
     width: 100%;
-    height: 100%;
+    height: fit-content;
     padding: 0 0 0 0;
     margin: 0 0 0 0;
     `;
@@ -103,3 +105,14 @@ export const Button = styled.button`
   transition: background-color 0.2s;
   font-size: 1.7rem;
 `;
+
+export const SelectorStyles: StylesConfig<Game> = {
+  container: (styles) => ({
+    ...styles,
+    width: '100%',
+  }),
+  control: (styles) => ({
+    ...styles,
+    backgroundColor: '#ECEFF4',
+  }),
+};

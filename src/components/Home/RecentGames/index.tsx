@@ -24,7 +24,7 @@ const RecentGames:FC<Props> = ({ recentGames }) => {
     <Container>
       <Title>Juegos Recientes</Title>
       <CarouselContainer>
-        <Carousel axis="horizontal" autoPlay swipeable centerMode infiniteLoop showStatus={false} showIndicators={false} showArrows={false}>
+        <Carousel axis="horizontal" showThumbs={false} autoPlay swipeable centerMode infiniteLoop showStatus={false} showIndicators={false} showArrows={false}>
           {handleRenderGames()}
         </Carousel>
       </CarouselContainer>

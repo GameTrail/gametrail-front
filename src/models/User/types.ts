@@ -1,3 +1,4 @@
+import type { UserCookie } from '@/components/Login/LoginComponent/types';
 import type { CommentsUser } from '../Comment/types';
 import type { GameList } from '../GameList/types';
 import type { Rating } from '../Rating/types';
@@ -16,8 +17,9 @@ export type User = {
   comments_received: CommentsUser[] | [];
 };
 
-export const normalizeUser = (user: any, token: string | null): User => ({
+export const normalizeUserCookie = (user: any, token: string): UserCookie => ({
   id: user?.id ?? 0,
+  token: token ?? '',
   username: user?.username ?? '',
   email: user?.email ?? '',
   auth_token: token ?? '',

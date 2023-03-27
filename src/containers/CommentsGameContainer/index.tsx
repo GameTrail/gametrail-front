@@ -1,9 +1,9 @@
 import type { FC } from 'react';
 import React, { useState } from 'react';
 import { CommentsSection, InputFieldSection } from '@/components/Comments';
-import { useGameTrail } from '@/hooks';
 import type { CommentsGame } from '@/models/Comment/types';
 import type { Game } from '@/models/Game/types';
+import { getUserCookie } from '@/utils/login';
 import { Container } from './styles';
 
 export type CommentToPostGame = {
@@ -18,7 +18,7 @@ export type Props = {
 
 const CommentsGameContainer: FC<Props> = ({ gameData }) => {
   const comments = gameData.comments_game === undefined ? [] : gameData.comments_game;
-  const { user, token } = useGameTrail();
+  const user = getUserCookie();
   const [commentsArray, setCommentsArray] = useState<CommentsGame[]>(comments);
 
   const postComment = async (commentToPost: CommentToPostGame) => {
@@ -27,7 +27,7 @@ const CommentsGameContainer: FC<Props> = ({ gameData }) => {
     try {
       const res = await fetch(url, {
         method: 'POST',
-        headers: { Authorization: `Token ${token}`, 'Content-Type': 'application/json' },
+        headers: { Authorization: `Token ${user?.auth_token}`, 'Content-Type': 'application/json' },
         body: JSON.stringify(commentToPost),
       });
       const data = await res.json();

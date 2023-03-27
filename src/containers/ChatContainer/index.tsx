@@ -5,6 +5,7 @@ import { ChatSection } from '@/components/Chat';
 import type { Message } from '@/models/Message/types';
 import type { Trail } from '@/models/Trail/types';
 
+import { getUserCookie } from '@/utils/login';
 import {
   Button, Container, DivContainer, InputField, MessagesContainer,
 } from './styles';
@@ -23,13 +24,13 @@ export type Props = {
 const socket = io('https://chat-gametrail.vercel.app:3001');
 
 const ChatContainer: FC<Props> = ({ trailData }) => {
+  const userCookie = getUserCookie();
   const [messages, setMessages] = useState<Message[]>([]);
   const [message, setMessage] = useState<string>();
 
   useEffect(() => {
     socket.emit('join', trailData.id);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [trailData.id]);
 
   useEffect(() => {
     const handleReceiveMessage = (msg: Message) => {
@@ -45,22 +46,22 @@ const ChatContainer: FC<Props> = ({ trailData }) => {
   }, [messages]);
 
   const handleSendMessage = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     const currentDate = new Date();
-    const user = JSON.parse(localStorage.getItem('user') || '{}');
+
     const newMessage = {
       id: messages.length + 1,
       text: message || '',
       creationDate: `${(currentDate.getMonth() + 1).toString()}/${currentDate.getDate().toString()}/${currentDate.getFullYear().toString()}`,
       user: {
-        id: user.id,
-        username: user.username,
-        avatar: user.avatar,
+        id: userCookie?.id,
+        username: userCookie?.username,
+        avatar: userCookie?.avatar,
       },
       trail: trailData,
     };
     socket.emit('send_message', newMessage);
-    e.preventDefault();
-    setMessages([...messages, newMessage]);
+    // setMessages([...messages, newMessage]);
     setMessage('');
   };
 

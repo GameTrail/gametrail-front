@@ -22,7 +22,7 @@ export const Container = styled.ul`
 
 export const DivContainer = styled.div`
     box-sizing: border-box;
-    width: 100;
+    width: 100%;
     padding-top: 1rem;
     border-radius: 1rem;
     margin-bottom: 0.2rem;

@@ -136,8 +136,13 @@ export const GameButtons = styled.div`
     
 `;
 
-export const AddButton = styled.p`
+export type ButtonProps = {
+  ishidden: boolean;
+};
 
+export const AddButton = styled.button<ButtonProps>`
+
+  visibility: ${({ ishidden }) => (ishidden ? 'hidden' : 'visible')};
   width: auto;
   height: 40%;
   padding: 10px 20px 10px 20px;
@@ -151,6 +156,8 @@ export const AddButton = styled.p`
   background-color: ${({ theme }) => (theme.nord.purple)};
   color: ${({ theme }) => (theme.nord.white2)};
   margin-bottom: 5%;
+  cursor: pointer;
+  border-width: 0%;
 
   @media (max-width: 768px) {
     width: 45%;

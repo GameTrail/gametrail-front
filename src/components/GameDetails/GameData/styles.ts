@@ -136,8 +136,13 @@ export const GameButtons = styled.div`
     
 `;
 
-export const AddButton = styled.button`
+export type ButtonProps = {
+  ishidden: boolean;
+};
 
+export const AddButton = styled.button<ButtonProps>`
+
+  visibility: ${({ ishidden }) => (ishidden ? 'hidden' : 'visible')};
   width: auto;
   height: 40%;
   padding: 10px 20px 10px 20px;

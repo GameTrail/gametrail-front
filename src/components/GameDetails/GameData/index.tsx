@@ -1,5 +1,6 @@
 import type { FC } from 'react';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+
 import { useGameTrail } from '@/hooks';
 import type { Game } from '@/models/Game/types';
 import { GameListState } from '@/models/GameList/types';
@@ -15,6 +16,18 @@ export type Props = {
 
 const GameData: FC<Props> = ({ gameDetails }) => {
   const { user, token } = useGameTrail();
+  const [isHidden, setHidden] = useState <boolean>(false);
+  async function checkGames() {
+    const userGames = await fetch(`https://gametrail-backend-production.up.railway.app/api/gameList/?gameList__user=${user?.id}`);
+    const userGamesData: [] = await userGames.json();
+    const foundGame = userGamesData.find((game: { id : number }) => (game.id === gameDetails.id));
+    if (foundGame) {
+      setHidden(true);
+    }
+  }
+  useEffect(() => {
+    checkGames().then((r) => r);
+  });
   const handleRenderPlatform = () => {
     if (gameDetails !== null && gameDetails !== undefined) {
       return gameDetails.platforms?.map((platform) => (
@@ -27,14 +40,15 @@ const GameData: FC<Props> = ({ gameDetails }) => {
   };
   const handleOnClick = async () => {
     if (user && token) {
-      const data = new FormData();
-      data.append('user', user.id.toString());
-      data.append('game', gameDetails.id.toString());
-      data.append('status', GameListState.PENDING);
+      const requestData = {
+        user: user.id.toString(),
+        game: gameDetails.id.toString(),
+        status: GameListState.PENDING.toString(),
+      };
       try {
         const res = await fetch('https://gametrail-backend-production.up.railway.app/api/gameList/game', {
           method: 'POST',
-          body: JSON.stringify(data),
+          body: JSON.stringify(requestData),
           headers: {
             'Content-Type': 'application/json',
             Authorization: `Token ${token}`,
@@ -45,6 +59,8 @@ const GameData: FC<Props> = ({ gameDetails }) => {
         }
       } catch (error) {
         throw new Error();
+      } finally {
+        setHidden(true);
       }
     }
   };
@@ -61,7 +77,7 @@ const GameData: FC<Props> = ({ gameDetails }) => {
           <PlatformContainer>
             {handleRenderPlatform()}
           </PlatformContainer>
-          <AddButton onClick={handleOnClick}>
+          <AddButton onClick={handleOnClick} ishidden={isHidden}>
             Añadir
           </AddButton>
         </GameButtons>

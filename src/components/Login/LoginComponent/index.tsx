@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import { Button } from '@/components/Landing/MainSection/styles';
 import { LoginLottie } from '@/components/Lotties';
-import { useGameTrail } from '@/hooks';
+import { normalizeUserCookie } from '@/models/User/types';
+import { setCookie } from '@/utils/login';
 import {
   LoginContainer,
   Container,
@@ -12,66 +13,90 @@ import {
   Input,
   ErrorContainer,
 } from './styles';
+import type { UserCredentials } from './types';
 
-const LOGIN_AUTH_URL = 'https://gametrail-backend-production.up.railway.app/api/auth/login';
+const URL_LOGIN = 'https://gametrail-backend-production.up.railway.app/api/auth/login';
+const URL_USER = 'https://gametrail-backend-production.up.railway.app/api/user/';
+const LOGIN_ERROR = 'Error al inicial sesión, comprueba tus credenciales.';
 
 const Login = () => {
+  const router = useRouter();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [message, setMessage] = useState<string>('');
-  const { handleSetUser, handleSetToken } = useGameTrail();
-  const router = useRouter();
+  const [loginError, setLoginError] = useState('');
 
-  const handleLogin = async () => {
-    const options = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ password, username }),
-    };
+  const getUser = async (userId: number) => {
+    const id = String(userId);
+    const URL = URL_USER + id;
     try {
-      const response = await fetch(LOGIN_AUTH_URL, options);
-      if (response.ok) {
-        const data = await response.json();
-        handleSetToken(data.token);
-        localStorage.setItem('token', data.token);
-        sessionStorage.setItem('token', data.token);
+      const response = await fetch(URL, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' },
+      });
 
-        const userResponse = await fetch(`https://gametrail-backend-production.up.railway.app/api/user/${data.user_id}`, {
-          headers: { Authorization: `Bearer ${data.token}` },
-        });
-
-        if (userResponse.ok) {
-          const user = await userResponse.json();
-          handleSetUser(user);
-          localStorage.setItem('user', JSON.stringify(user));
-          sessionStorage.setItem('user', JSON.stringify(user));
-          router.push('/home');
-        } else {
-          throw new Error('Error al obtener los datos del usuario');
-        }
-      } else if (response.status === 401) {
-        setMessage('Las credenciales son inválidas');
-      } else {
-        throw new Error('Error al iniciar sesión');
+      if (!response.ok) {
+        setLoginError(LOGIN_ERROR);
+        return { user: null, error: loginError };
       }
-    } catch (error) {
-      setMessage('Error en el inicio de sesión');
+
+      const data = await response.json();
+      return { user: data, error: null };
+    } catch (err) {
+      setLoginError(LOGIN_ERROR);
+      return { user: null, error: loginError };
     }
   };
 
-  const onSubmit = (e: React.FormEvent) => {
+  const onLogin = async (userCredentials: UserCredentials) => {
+    try {
+      const response = await fetch(URL_LOGIN, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(userCredentials),
+      });
+
+      if (!response.ok) {
+        setLoginError(LOGIN_ERROR);
+        return;
+      }
+
+      const data = await response.json();
+      const userId = data.user_id;
+      const { user, error } = await getUser(userId);
+
+      if (error) {
+        setLoginError(LOGIN_ERROR);
+        return;
+      }
+
+      const userCookie = normalizeUserCookie(user, data.token);
+      setCookie('user', userCookie, 7);
+      setLoginError('');
+    } catch (err) {
+      setLoginError(LOGIN_ERROR);
+    } finally {
+      setUsername('');
+      setPassword('');
+
+      router.push('/home');
+    }
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    handleLogin();
+
+    const user = { username, password };
+    onLogin(user);
   };
 
   return (
     <LoginContainer>
       <LoginLottie />
-      <LoginForm>
+      <LoginForm onSubmit={handleSubmit}>
         <Title>
           Inicia sesión en GameTrail
         </Title>
-        {!!message && <ErrorContainer>{message}</ErrorContainer>}
+        {!!loginError && <ErrorContainer>{loginError}</ErrorContainer>}
         <Container>
           <Label>
             Nombre de usuario
@@ -96,7 +121,7 @@ const Login = () => {
             />
           </Label>
         </Container>
-        <Button primary onClick={onSubmit}>Iniciar sesión</Button>
+        <Button primary type="submit">Iniciar sesión</Button>
       </LoginForm>
     </LoginContainer>
   );

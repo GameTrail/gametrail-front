@@ -2,32 +2,40 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import { Button } from '@/components/Landing/MainSection/styles';
 import { LoginLottie } from '@/components/Lotties';
-import { useGameTrail } from '@/hooks';
 import {
   RegisterContainer, Container, Title, RegisterForm, Label, Input, ErrorContainer,
 } from './styles';
 
+const REGISTER_URL = 'https://gametrail-backend-production.up.railway.app/api/auth/register/';
+
+export enum RegisterError {
+  MATCH = 'non_field_errors',
+  USERNAME = 'username',
+  EMAIL = 'email',
+}
+
+export type RegisterErrors = {
+  [key in RegisterError]: string;
+};
+
 const Register = () => {
+  const router = useRouter();
+
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [password2, setPassword2] = useState('');
+  const [passwordConfirmation, setPasswordConfirmation] = useState('');
   const [avatarURL, setAvatar] = useState('');
+  const [registerErrors, setRegisterErrors] = useState<string[]>([]);
 
-  const { handleSetToken } = useGameTrail();
-  const router = useRouter();
-  const [messages, setMessages] = useState<string[]>([]);
-
-  const handleRegister = async (e: any) => {
+  const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const defaultAvatar = './public/images/Prf.jpg';
     const avatar = avatarURL || defaultAvatar;
-    // eslint-disable-next-line @typescript-eslint/naming-convention
-    const password_confirmation = password2;
 
     const credentials = {
-      username, email, password, password_confirmation, avatar,
+      username, email, password, password_confirmation: passwordConfirmation, avatar,
     };
 
     const options = {
@@ -36,27 +44,22 @@ const Register = () => {
       body: JSON.stringify(credentials),
     };
 
-    const API_URL = 'https://gametrail-backend-production.up.railway.app/api/auth/register/';
-
     const authenticate = async () => {
       try {
-        const response = await fetch(API_URL, options);
-        // check if response is ok
+        const response = await fetch(REGISTER_URL, options);
         if (response.ok) {
-          const data = await response.json();
-          handleSetToken(data.token);
+          setRegisterErrors([]);
           router.push('/auth/login');
-          setMessages(['Usuario creado correctamente']);
-        } else if (password !== password2) {
-          setMessages(['Las contraseñas no coinciden, revisa de nuevo']);
+        } else if (password !== passwordConfirmation) {
+          setRegisterErrors([...registerErrors, 'Las contraseñas no coinciden']);
         } else {
           const errorData = await response.json() as { [key: string]: string[] };
           const errorMessages = Object.entries(errorData)
             .flatMap(([key, errors]) => errors.map((error) => `${key}: ${error}`));
-          setMessages(errorMessages);
+          setRegisterErrors(errorMessages);
         }
       } catch (error) {
-        setMessages(['Ha ocurrido un error durante el registro']);
+        setRegisterErrors(['Ha ocurrido un error durante el registro']);
       }
     };
     authenticate();
@@ -65,13 +68,12 @@ const Register = () => {
   return (
     <RegisterContainer>
       <LoginLottie />
-      <RegisterForm>
+      <RegisterForm onSubmit={handleRegister}>
         <Title>
           Registrate en GameTrail
         </Title>
-        {messages.map((message, index) => (
-          // eslint-disable-next-line react/no-array-index-key
-          <ErrorContainer key={index}>{message}</ErrorContainer>
+        {registerErrors.map((message) => (
+          <ErrorContainer key={registerErrors.indexOf(message)}>{message}</ErrorContainer>
         ))}
         <Container>
           <Label>
@@ -116,8 +118,8 @@ const Register = () => {
               type="password"
               name="Repetir Contraseña"
               placeholder="Repetir Contraseña"
-              value={password2}
-              onChange={(e) => setPassword2(e.target.value)}
+              value={passwordConfirmation}
+              onChange={(e) => setPasswordConfirmation(e.target.value)}
             />
           </Label>
         </Container>
@@ -133,7 +135,7 @@ const Register = () => {
             />
           </Label>
         </Container>
-        <Button primary onClick={handleRegister}>Registro</Button>
+        <Button primary type="submit">Registro</Button>
       </RegisterForm>
     </RegisterContainer>
   );

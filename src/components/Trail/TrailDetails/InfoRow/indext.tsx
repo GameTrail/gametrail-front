@@ -1,8 +1,8 @@
 import type { FC } from 'react';
 import React, { useState } from 'react';
 import DateInfo from '@/components/Trail/TrailDetails/InfoRow/DateInfo';
-import { useGameTrail } from '@/hooks';
 import type { Trail as TrailData } from '@/models/Trail/types';
+import { getUserCookie } from '@/utils/login';
 import {
   InfoRow, JoinButton, JoinContainer, JoinPlayersCount,
 } from './styles';
@@ -12,7 +12,8 @@ export type Props = {
 };
 
 const PlusInfoRow: FC<Props> = ({ trailData }) => {
-  const { user, token } = useGameTrail();
+  const user = getUserCookie();
+  const token = user?.token;
   const [isJoined, setIsJoined] = useState(false);
 
   if (user) {

@@ -19,22 +19,25 @@ const SmallMenu: FC<Props> = ({ userCookie, handleStripeCheckout }) => (
       <h4>Juegos</h4>
     </MenuItem>
     {userCookie && (
-    <>
-      <MenuItem href="/trail/create">
-        <h4>Crear Trail</h4>
-      </MenuItem>
-      <MenuItem href={`/user/${userCookie?.id}`}>
-        <Username>
-          {userCookie?.username}
-        </Username>
-      </MenuItem>
-      <Premium onClick={handleStripeCheckout}>
-        <h4>Premium</h4>
-      </Premium>
-      <MenuItem href="/auth/logout">
-        <FontAwesomeIcon icon={faArrowRightFromBracket} />
-      </MenuItem>
-    </>
+      <>
+        <MenuItem href="/trail/create">
+          <h4>Crear Trail</h4>
+        </MenuItem>
+        <MenuItem href={`/user/${userCookie?.id}`}>
+          <Username>
+            {userCookie?.username}
+          </Username>
+        </MenuItem>
+        {userCookie?.plan === 'STANDARD' && (
+          <Premium onClick={handleStripeCheckout}>
+            <h4>Premium</h4>
+          </Premium>
+        )}
+
+        <MenuItem href="/auth/logout">
+          <FontAwesomeIcon icon={faArrowRightFromBracket} />
+        </MenuItem>
+      </>
     )}
   </>
 );

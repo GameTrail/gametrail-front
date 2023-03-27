@@ -28,9 +28,11 @@ const BigMenu: FC<Props> = ({ userCookie, handleStripeCheckout }) => (
             {userCookie?.username}
           </Username>
         </MenuItem>
-        <Premium onClick={handleStripeCheckout}>
-          <h4>Premium</h4>
-        </Premium>
+        {userCookie?.plan === 'STANDARD' && (
+          <Premium onClick={handleStripeCheckout}>
+            <h4>Premium</h4>
+          </Premium>
+        )}
         <MenuItem href="/auth/logout">
           <FontAwesomeIcon icon={faArrowRightFromBracket} />
         </MenuItem>

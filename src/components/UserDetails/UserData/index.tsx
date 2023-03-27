@@ -11,7 +11,7 @@ import {
 } from './styles';
 
 export type Props = {
-  user:User;
+  user: User;
 };
 const UserData: FC<Props> = ({ user }) => {
   const [rate, setRenderRate] = useState<boolean>(false);
@@ -87,7 +87,7 @@ const UserData: FC<Props> = ({ user }) => {
           {user.username}
           {' '}
           {user.plan === 'Premium' && (
-          <FontAwesomeIcon icon={faCrown} size="xs" />
+            <FontAwesomeIcon icon={faCrown} size="xs" />
           )}
         </h1>
         {user.plan === 'PACO' && (
@@ -95,9 +95,7 @@ const UserData: FC<Props> = ({ user }) => {
         )}
       </Container>
       {handleRenderRate}
-
     </>
-
   );
 };
 

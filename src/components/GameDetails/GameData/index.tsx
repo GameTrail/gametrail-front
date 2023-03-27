@@ -1,10 +1,9 @@
 import type { FC } from 'react';
 import React, { useEffect, useState } from 'react';
-
-import { useGameTrail } from '@/hooks';
 import type { Game } from '@/models/Game/types';
 import type { GameInList, UserInDetails } from '@/models/GameInUserList/types';
 import { GameListState } from '@/models/GameList/types';
+import { getUserCookie } from '@/utils/login';
 import { normalizeImage } from '@/utils/normalizeImage';
 import {
   AddButton,
@@ -16,7 +15,8 @@ export type Props = {
 };
 
 const GameData: FC<Props> = ({ gameDetails }) => {
-  const { user, token } = useGameTrail();
+  const user = getUserCookie();
+  const token = user?.token;
   const [isHidden, setHidden] = useState <boolean>(false);
   async function checkGames() {
     if (!user) {

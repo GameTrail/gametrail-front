@@ -37,7 +37,8 @@ const UserTrailList:FC<Props> = ({ trailList }) => {
             />
             <p>{trail.name}</p>
             <p>
-              2/
+              {trail.users.length}
+              /
               {trail.maxPlayers}
             </p>
             <p>

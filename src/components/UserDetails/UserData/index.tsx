@@ -90,7 +90,7 @@ const UserData: FC<Props> = ({ user }) => {
           <FontAwesomeIcon icon={faCrown} size="xs" />
           )}
         </h1>
-        {user.id !== userWhoRates?.id && (
+        {user.plan === 'PACO' && (
           <RateButton onClick={handleRateContainer}>Valorar</RateButton>
         )}
       </Container>

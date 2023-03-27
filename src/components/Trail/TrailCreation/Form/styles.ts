@@ -11,6 +11,10 @@ export const Form = styled.form`
     height: 100%;
     padding: 0 0 0 0;
     margin: 0 0 0 0;
+    @media (max-width: 490px) {
+      width: 100%;
+      height: 100%;
+    }
       svg{
         margin: 0 auto;
         transform: scale(2);

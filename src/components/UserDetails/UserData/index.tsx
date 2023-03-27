@@ -39,7 +39,7 @@ const UserData: FC<Props> = ({ user }) => {
       },
     };
     try {
-      const res = await fetch('https://gametrail-backend-production.up.railway.app/api/rating/', {
+      const res = await fetch('https://gametrail-backend-production.up.railway.app/api/rating', {
         method: 'POST',
         body: JSON.stringify(requestData),
         headers: { Authorization: `Token ${token}`, 'Content-Type': 'application/json' },
@@ -52,6 +52,7 @@ const UserData: FC<Props> = ({ user }) => {
       throw new Error();
     }
     handleRateContainer();
+    window.location.reload();
   }, [handleRateContainer, token, user.id, userWhoRates?.id]);
 
   const handleRenderRate = useMemo(() => {

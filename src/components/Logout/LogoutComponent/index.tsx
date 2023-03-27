@@ -26,7 +26,6 @@ const Logout = () => {
 
       const res = await fetch(LOGOUT_URL, options);
       if (!res.ok) return;
-
       Cookies.remove('user');
     } catch (error) {
       throw new Error('Error al hacer logout');

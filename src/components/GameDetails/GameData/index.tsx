@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 
 import { useGameTrail } from '@/hooks';
 import type { Game } from '@/models/Game/types';
+import type { GameInList, UserInDetails } from '@/models/GameInUserList/types';
 import { GameListState } from '@/models/GameList/types';
 import { normalizeImage } from '@/utils/normalizeImage';
 import {
@@ -18,16 +19,15 @@ const GameData: FC<Props> = ({ gameDetails }) => {
   const { user, token } = useGameTrail();
   const [isHidden, setHidden] = useState <boolean>(false);
   async function checkGames() {
-    const userGames = await fetch(`https://gametrail-backend-production.up.railway.app/api/gameList/?gameList__user=${user?.id}`);
-    const userGamesData: [] = await userGames.json();
-    const foundGame = userGamesData.find((game: { id : number }) => (game.id === gameDetails.id));
-    if (foundGame) {
+    if (!user) {
       setHidden(true);
+      return;
     }
+    const userData = await fetch(`https://gametrail-backend-production.up.railway.app/api/user/${user.id}`);
+    const userGamesData: UserInDetails = await userData.json();
+    const foundGame = userGamesData.games.find((game: GameInList) => (game.game.id === gameDetails.id));
+    setHidden(!!foundGame);
   }
-  useEffect(() => {
-    checkGames().then((r) => r);
-  });
   const handleRenderPlatform = () => {
     if (gameDetails !== null && gameDetails !== undefined) {
       return gameDetails.platforms?.map((platform) => (
@@ -38,6 +38,9 @@ const GameData: FC<Props> = ({ gameDetails }) => {
     }
     return null;
   };
+  useEffect(() => {
+    checkGames().then((r) => r);
+  });
   const handleOnClick = async () => {
     if (user && token) {
       const requestData = {

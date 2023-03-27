@@ -201,7 +201,7 @@ const TrailCreationForm: FC<Props> = ({ handleSetLoading }) => {
       const data: [Trail] = await res.json();
       const trailId = data[data.length - 1].id;
 
-      if (user?.plan === 'PREMIUM') {
+      if (user?.plan === 'Premium') {
         await handlePremiumFilters(formData, trailId);
       }
 
@@ -242,7 +242,7 @@ const TrailCreationForm: FC<Props> = ({ handleSetLoading }) => {
         <Label htmlFor="max-players">Número Máximo de Jugadores</Label>
         <Input type="number" name="max-players" id="max-players" min={1} defaultValue={1} />
       </FieldContainer>
-      {user?.plan === 'PREMIUM' && (
+      {user?.plan === 'Premium' && (
       <>
         <FontAwesomeIcon icon={faCrown} size="xs" />
         <h3>Filtros premium</h3>

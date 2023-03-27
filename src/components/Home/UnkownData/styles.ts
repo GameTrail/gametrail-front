@@ -58,7 +58,7 @@ export const CuriosityContainer = styled.div`
     width: 100vw;
     align-items: center;
     padding-left: 50%;
-    padding-bottom: 0%;
+    padding-bottom: 0;
     svg {
       min-width: 100vw;
     }

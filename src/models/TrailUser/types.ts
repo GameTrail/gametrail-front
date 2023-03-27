@@ -8,3 +8,11 @@ export type TrailUser = {
 
   owner: boolean;
 };
+
+export type TrailMember = {
+  id: number;
+  username: string;
+  email: string;
+  avatar: string;
+  plan: string;
+};

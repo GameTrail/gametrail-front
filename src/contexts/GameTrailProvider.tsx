@@ -13,13 +13,18 @@ const GameTrailProvider = ({ children }: GameTrailProviderProps) => {
 
   const [message] = useState<string>('');
   const [userLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const handleSetUser = (gametrailUser: User | null) => {
+    setLoading(true);
     setUser(gametrailUser);
+    setLoading(false);
   };
 
   const handleSetToken = (authToken: string | null) => {
+    setLoading(true);
     setToken(authToken);
+    setLoading(false);
   };
 
   const contextValue = useMemo(() => ({
@@ -29,7 +34,8 @@ const GameTrailProvider = ({ children }: GameTrailProviderProps) => {
     userLoading,
     handleSetUser,
     handleSetToken,
-  }), [user, token, message, userLoading]);
+    loading,
+  }), [user, token, message, userLoading, loading]);
 
   return (
     <GameTrailContext.Provider value={contextValue}>

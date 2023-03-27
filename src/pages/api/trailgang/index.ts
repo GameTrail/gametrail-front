@@ -26,5 +26,6 @@ export default function handler(
     },
     games: [],
     users: [],
+    platforms: [],
   });
 }

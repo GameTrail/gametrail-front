@@ -6,6 +6,7 @@ interface GameTrailContextProps {
   token: string | null;
   message: string;
   userLoading: boolean;
+  loading: boolean;
   handleSetUser: (user: User | null) => void;
   handleSetToken: (token : string | null) => void;
 }
@@ -15,6 +16,7 @@ const GameTrailContext = createContext<GameTrailContextProps>({
   token: null,
   message: '',
   userLoading: false,
+  loading: false,
   handleSetUser: () => {},
   handleSetToken: () => {},
 });

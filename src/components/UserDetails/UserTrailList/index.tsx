@@ -1,6 +1,5 @@
 import React from 'react';
 import type { FC } from 'react';
-import Image from 'next/image';
 import { useRouter } from 'next/router';
 import NotFoundList from '@/components/Lotties/User/NotFoundList';
 import type { Trail } from '@/models/Trail/types';
@@ -29,7 +28,7 @@ const UserTrailList:FC<Props> = ({ trailList }) => {
       return (
         trailList?.map((trail) => (
           <Item key={trail.id} onClick={() => handleClick(trail.id)}>
-            <Image
+            <img
               alt="owner avatar"
               src={trail.owner.avatar}
               height={30}

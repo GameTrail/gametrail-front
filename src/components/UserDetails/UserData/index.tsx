@@ -3,7 +3,6 @@ import { useCallback, useMemo, useState } from 'react';
 
 import { faCrown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Image from 'next/image';
 import type { User } from '@/models/User/types';
 import { getUserCookie } from '@/utils/login';
 import {
@@ -81,7 +80,7 @@ const UserData: FC<Props> = ({ user }) => {
   return (
     <>
       <Container>
-        <Image src={user.avatar} alt={user.username} width={150} height={150} />
+        <img src={user.avatar} alt={user.username} width={150} height={150} />
         <h1>
           @
           {user.username}

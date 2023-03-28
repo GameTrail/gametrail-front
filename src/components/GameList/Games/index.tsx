@@ -1,6 +1,5 @@
 import type { FC } from 'react';
 import React, { useEffect, useState } from 'react';
-import Image from 'next/image';
 import { useRouter } from 'next/router';
 import type { Game } from '@/models/Game/types';
 import { normalizeImage } from '@/utils/normalizeImage';
@@ -75,7 +74,7 @@ const GameList: FC<Props> = ({ games }) => {
               resultados.slice(offset, offset + PER_PAGE).map((game) => (
                 <Cajas key={game.id} onClick={() => handleClickGameDetails(game.id)}>
                   <Mascara>
-                    <Image src={normalizeImage(game.image)} width={450} height={600} alt="nu" />
+                    <img src={normalizeImage(game.image)} width={450} height={600} alt="nu" />
                   </Mascara>
                   <h2>{game.name}</h2>
 
@@ -123,7 +122,7 @@ const GameList: FC<Props> = ({ games }) => {
                   resultados.slice(offset, offset + PER_PAGE).map((game) => (
 
                     <Row key={game.id} onClick={() => handleClickGameDetails(game.id)}>
-                      <Fila><Image src={normalizeImage(game.image)} width={80} height={100} alt="nu" /></Fila>
+                      <Fila><img src={normalizeImage(game.image)} width={80} height={100} alt="nu" /></Fila>
                       <Fila><h2>{game.name}</h2></Fila>
                       <Fila><h2>{game.releaseDate}</h2></Fila>
                       <Fila>+</Fila>

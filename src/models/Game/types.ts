@@ -15,5 +15,5 @@ export type Game = {
   description: string
   genre: Genre[] | string
   platforms?: Platform[]
-  comments_game: CommentsGame[] | []
+  comments_games: CommentsGame[] | []
 };

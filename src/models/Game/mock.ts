@@ -16,7 +16,7 @@ export const MOCK_GAMES: Game[] = [
     image: 'https://www.empireposter.de/bilder/bilder_l/544070.jpg',
     photos: '',
     description: '',
-    comments_game: [],
+    comments_games: [],
   },
   {
     id: 2,
@@ -27,7 +27,7 @@ export const MOCK_GAMES: Game[] = [
     image: 'https://www.empireposter.de/bilder/bilder_l/544070.jpg',
     photos: '',
     description: '',
-    comments_game: [],
+    comments_games: [],
   },
   {
     id: 3,
@@ -38,7 +38,7 @@ export const MOCK_GAMES: Game[] = [
     image: 'https://www.empireposter.de/bilder/bilder_l/544070.jpg',
     photos: '',
     description: '',
-    comments_game: [],
+    comments_games: [],
   },
   {
     id: 5,
@@ -49,7 +49,7 @@ export const MOCK_GAMES: Game[] = [
     image: 'https://www.empireposter.de/bilder/bilder_l/544070.jpg',
     photos: '',
     description: '',
-    comments_game: [],
+    comments_games: [],
   },
 ];
 export const MOCK_TRAIL_GAMES: GameList[] = [

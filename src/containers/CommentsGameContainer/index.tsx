@@ -17,7 +17,7 @@ export type Props = {
 };
 
 const CommentsGameContainer: FC<Props> = ({ gameData }) => {
-  const comments = gameData.comments_game === undefined ? [] : gameData.comments_game;
+  const comments = gameData.comments_games === undefined ? [] : gameData.comments_games;
   const user = getUserCookie();
   const [commentsArray, setCommentsArray] = useState<CommentsGame[]>(comments);
 

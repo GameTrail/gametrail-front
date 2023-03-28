@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import Image from 'next/image';
+import Link from 'next/link';
 import { handleStateColor } from './logic';
 import type { StateProps } from './types';
 
@@ -39,7 +40,7 @@ export const GameListEmpty = styled.div`
 
 `;
 
-export const Game = styled.div`
+export const Game = styled(Link)`
     display: flex;
     align-items: center;
     flex-direction: row;

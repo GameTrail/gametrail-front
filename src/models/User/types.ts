@@ -1,4 +1,4 @@
-import type { UserCookie } from '@/components/Login/LoginComponent/types';
+import type { MinUser, UserCookie } from '@/components/Login/LoginComponent/types';
 import type { CommentsUser } from '../Comment/types';
 import type { GameList } from '../GameList/types';
 import type { Rating } from '../Rating/types';
@@ -29,4 +29,14 @@ export const normalizeUserCookie = (user: any, token: string): UserCookie => ({
   trails: user?.trails ?? [],
   rate_recieved: user?.rate_recieved ?? [],
   comments_received: user?.comments_received ?? [],
+});
+
+export const minimizeUserCookie = (user: UserCookie, token: string): MinUser => ({
+  id: user?.id ?? 0,
+  token: token ?? '',
+  username: user?.username ?? '',
+  email: user?.email ?? '',
+  auth_token: token ?? '',
+  avatar: user?.avatar ?? '',
+  plan: user?.plan ?? '',
 });

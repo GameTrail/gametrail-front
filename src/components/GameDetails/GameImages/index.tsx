@@ -1,6 +1,5 @@
 import type { FC } from 'react';
 import React from 'react';
-import Image from 'next/image';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
 import type { Game } from '@/models/Game/types';
@@ -15,7 +14,7 @@ const GameImages: FC<Props> = ({ gameDetails }) => {
   const photos = convertToArray(gameDetails.photos);
   const handleRenderImage = () => photos.map((gameImage: string) => (
     <Photo>
-      <Image src={normalizeImage(gameImage)} fill alt="No hay imagen" />
+      <img src={normalizeImage(gameImage)} alt="No hay imagen" />
     </Photo>
   ));
   return (

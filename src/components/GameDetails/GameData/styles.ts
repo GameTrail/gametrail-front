@@ -96,6 +96,7 @@ export const GamePlatform = styled.p<GamePlatformProps>`
     height: auto;
     padding: 10px 20px 10px 20px;
     margin-right: 2%;
+    margin-top: 2%;
     border-radius: 10px;
     font-weight: 600;
     font-style: normal;

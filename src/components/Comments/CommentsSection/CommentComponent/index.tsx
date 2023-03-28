@@ -1,6 +1,5 @@
 import type { FC } from 'react';
 import React from 'react';
-import Image from 'next/image';
 import type { Comment } from '@/models/Comment/types';
 
 import {
@@ -18,7 +17,7 @@ export type Props = {
 const CommentComponent: FC<Props> = ({ comment }) => (
   <CommentContainer>
     <AvatarContainer>
-      <Image src={comment.userWhoComments?.avatar ?? ''} alt="imagen" width={30} height={30} />
+      <img src={comment.userWhoComments?.avatar ?? ''} alt="imagen" width={30} height={30} />
     </AvatarContainer>
     <CommentContentContainer>
       <CommentUsernameContainer>

@@ -12,7 +12,7 @@ export type Props = {
 
 const TrailGameList:FC<Props> = ({ games }) => {
   const handleRenderGames = () => games.map((game) => (
-    <Game>
+    <Game href={`/game/${game.id}`}>
       <div>
         <GameImage src={normalizeImage(game.image)} alt="image" width={160} height={160} />
       </div>

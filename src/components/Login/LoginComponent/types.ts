@@ -20,3 +20,13 @@ export type UserCookie = {
   rate_recieved: [] | Rating[];
   comments_received: [] | Comment[];
 };
+
+export type MinUser = {
+  token: string;
+  id: number;
+  username: string;
+  email: string;
+  auth_token: string;
+  avatar: string;
+  plan: string;
+};

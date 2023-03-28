@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import { Button } from '@/components/Landing/MainSection/styles';
 import { LoginLottie } from '@/components/Lotties';
-import { normalizeUserCookie } from '@/models/User/types';
-import { setCookie } from '@/utils/login';
+import { minimizeUserCookie, normalizeUserCookie } from '@/models/User/types';
+import { setMinCookie } from '@/utils/login';
 import {
   LoginContainer,
   Container,
@@ -70,7 +70,8 @@ const Login = () => {
       }
 
       const userCookie = normalizeUserCookie(user, data.token);
-      setCookie('user', userCookie, 7);
+      const MinUser = minimizeUserCookie(userCookie, userCookie.auth_token);
+      setMinCookie('user', MinUser, 7);
       setLoginError('');
     } catch (err) {
       setLoginError(LOGIN_ERROR);

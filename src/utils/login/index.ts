@@ -1,5 +1,5 @@
 import Cookies from 'js-cookie';
-import type { UserCookie } from '@/components/Login/LoginComponent/types';
+import type { MinUser, UserCookie } from '@/components/Login/LoginComponent/types';
 
 export const getUserCookie = (): UserCookie | null => {
   const userCookie = Cookies.get('user');
@@ -9,5 +9,9 @@ export const getUserCookie = (): UserCookie | null => {
 };
 
 export const setCookie = (cookie: string, value: UserCookie, expires?: number) => {
+  Cookies.set(cookie, JSON.stringify(value), { expires });
+};
+
+export const setMinCookie = (cookie: string, value: MinUser, expires?: number) => {
   Cookies.set(cookie, JSON.stringify(value), { expires });
 };

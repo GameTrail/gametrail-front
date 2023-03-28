@@ -1,5 +1,5 @@
-import type { GameListState } from '@/models/GameList/types';
+import type { TrailGameStatus } from '@/models/Trail/types';
 
 export type StateProps = {
-  state: GameListState
+  state: TrailGameStatus
 };

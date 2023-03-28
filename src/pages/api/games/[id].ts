@@ -14,6 +14,6 @@ export default function handler(
     description: '',
     genre: [],
     platforms: [],
-    comments_game: [],
+    comments_games: [],
   });
 }

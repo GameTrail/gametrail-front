@@ -22,7 +22,7 @@ const Landing = () => {
           userId: userCookie?.id.toString(),
           action: 'SUBSCRIBE',
         };
-        const res = await fetch('https://gametrail-backend-production.up.railway.app/api/sub/', {
+        const res = await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/sub/', {
           method: 'PUT',
           body: JSON.stringify(data),
           headers: {

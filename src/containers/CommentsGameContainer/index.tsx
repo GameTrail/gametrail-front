@@ -22,7 +22,7 @@ const CommentsGameContainer: FC<Props> = ({ gameData }) => {
   const [commentsArray, setCommentsArray] = useState<CommentsGame[]>(comments);
 
   const postComment = async (commentToPost: CommentToPostGame) => {
-    const url = 'https://gametrail-backend-production.up.railway.app/api/comment';
+    const url = 'https://gametrail-backend-production-8fc0.up.railway.app/api/comment';
 
     try {
       const res = await fetch(url, {

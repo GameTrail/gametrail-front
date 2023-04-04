@@ -41,7 +41,7 @@ const TrailCreationForm: FC<Props> = ({ handleSetLoading }) => {
         minRating: formData.get('kindness'),
         type: 'KINDNESS',
       };
-      const resRatingKindness = await fetch('https://gametrail-backend-production.up.railway.app/api/createMinRating', {
+      const resRatingKindness = await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/createMinRating', {
         method: 'POST',
         body: JSON.stringify(kindnessData),
         headers: {
@@ -60,7 +60,7 @@ const TrailCreationForm: FC<Props> = ({ handleSetLoading }) => {
         minRating: formData.get('funny'),
         type: 'FUNNY',
       };
-      const resRatingFunny = await fetch('https://gametrail-backend-production.up.railway.app/api/createMinRating', {
+      const resRatingFunny = await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/createMinRating', {
         method: 'POST',
         body: JSON.stringify(funnyData),
         headers: {
@@ -79,7 +79,7 @@ const TrailCreationForm: FC<Props> = ({ handleSetLoading }) => {
         minRating: formData.get('teamwork'),
         type: 'TEAMWORK',
       };
-      const resRatingTeamwork = await fetch('https://gametrail-backend-production.up.railway.app/api/createMinRating', {
+      const resRatingTeamwork = await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/createMinRating', {
         method: 'POST',
         body: JSON.stringify(teamworkData),
         headers: {
@@ -98,7 +98,7 @@ const TrailCreationForm: FC<Props> = ({ handleSetLoading }) => {
         minRating: formData.get('ability'),
         type: 'ABILITY',
       };
-      const resRatingAbility = await fetch('https://gametrail-backend-production.up.railway.app/api/createMinRating', {
+      const resRatingAbility = await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/createMinRating', {
         method: 'POST',
         body: JSON.stringify(abilityData),
         headers: {
@@ -118,7 +118,7 @@ const TrailCreationForm: FC<Props> = ({ handleSetLoading }) => {
         minRating: formData.get('availability'),
         type: 'AVAILABILITY',
       };
-      const resRatingAvailability = await fetch('https://gametrail-backend-production.up.railway.app/api/createMinRating', {
+      const resRatingAvailability = await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/createMinRating', {
         method: 'POST',
         body: JSON.stringify(availabilityData),
         headers: {
@@ -135,7 +135,7 @@ const TrailCreationForm: FC<Props> = ({ handleSetLoading }) => {
   const [games, setGames] = useState<Game[]>([]);
 
   async function fetchGames() {
-    const res = await fetch('https://gametrail-backend-production.up.railway.app/api/game/');
+    const res = await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/game/');
     const data: Game[] = await res.json();
     setGames(data);
   }
@@ -151,7 +151,7 @@ const TrailCreationForm: FC<Props> = ({ handleSetLoading }) => {
     };
 
     try {
-      return await fetch('https://gametrail-backend-production.up.railway.app/api/gameInTrail', {
+      return await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/gameInTrail', {
         method: 'POST',
         body: JSON.stringify(gameData),
         headers: {
@@ -185,7 +185,7 @@ const TrailCreationForm: FC<Props> = ({ handleSetLoading }) => {
       owner: user?.id.toString(),
     };
     try {
-      const res = await fetch('https://gametrail-backend-production.up.railway.app/api/trail/', {
+      const res = await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/trail/', {
         method: 'POST',
         body: JSON.stringify(requestData),
         headers: { Authorization: `Token ${token}`, 'Content-Type': 'application/json' },
@@ -197,7 +197,7 @@ const TrailCreationForm: FC<Props> = ({ handleSetLoading }) => {
     } catch (error) {
       throw new Error();
     } finally {
-      const res = await fetch('https://gametrail-backend-production.up.railway.app/api/getTrail/');
+      const res = await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/getTrail/');
       const data: [Trail] = await res.json();
       const trailId = data[data.length - 1].id;
 

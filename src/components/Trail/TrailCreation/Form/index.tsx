@@ -6,19 +6,21 @@ import { faCrown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useRouter } from 'next/router';
 import Select from 'react-select';
+import CreateLottie from '@/components/Lotties/Landing/CreateLottie';
 import {
   Button,
-  ButtonRow,
   DateFieldContainer,
-  FieldContainer,
   Form,
   Input,
   InputDate,
   InputTextArea,
   Label,
+  PlanInfoToast,
   PremiumFilterFirst,
   PremiumFilterSecond,
   SelectorStyles,
+  Title,
+  // ErrorContainer,
 } from '@/components/Trail/TrailCreation/Form/styles';
 import type { Game } from '@/models/Game/types';
 import type { Trail } from '@/models/Trail/types';
@@ -32,6 +34,7 @@ const TrailCreationForm: FC<Props> = ({ handleSetLoading }) => {
   const router = useRouter();
   const user = getUserCookie();
   const token = user?.token;
+  // const [formError, setFormError] = useState('');
 
   const handlePremiumFilters = useCallback(async (formData: any, size:number) => {
     if (formData.get('kindness') > 1) {
@@ -41,7 +44,7 @@ const TrailCreationForm: FC<Props> = ({ handleSetLoading }) => {
         minRating: formData.get('kindness'),
         type: 'KINDNESS',
       };
-      const resRatingKindness = await fetch('https://gametrail-backend-production.up.railway.app/api/createMinRating', {
+      const resRatingKindness = await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/createMinRating', {
         method: 'POST',
         body: JSON.stringify(kindnessData),
         headers: {
@@ -60,7 +63,7 @@ const TrailCreationForm: FC<Props> = ({ handleSetLoading }) => {
         minRating: formData.get('funny'),
         type: 'FUNNY',
       };
-      const resRatingFunny = await fetch('https://gametrail-backend-production.up.railway.app/api/createMinRating', {
+      const resRatingFunny = await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/createMinRating', {
         method: 'POST',
         body: JSON.stringify(funnyData),
         headers: {
@@ -79,7 +82,7 @@ const TrailCreationForm: FC<Props> = ({ handleSetLoading }) => {
         minRating: formData.get('teamwork'),
         type: 'TEAMWORK',
       };
-      const resRatingTeamwork = await fetch('https://gametrail-backend-production.up.railway.app/api/createMinRating', {
+      const resRatingTeamwork = await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/createMinRating', {
         method: 'POST',
         body: JSON.stringify(teamworkData),
         headers: {
@@ -98,7 +101,7 @@ const TrailCreationForm: FC<Props> = ({ handleSetLoading }) => {
         minRating: formData.get('ability'),
         type: 'ABILITY',
       };
-      const resRatingAbility = await fetch('https://gametrail-backend-production.up.railway.app/api/createMinRating', {
+      const resRatingAbility = await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/createMinRating', {
         method: 'POST',
         body: JSON.stringify(abilityData),
         headers: {
@@ -118,7 +121,7 @@ const TrailCreationForm: FC<Props> = ({ handleSetLoading }) => {
         minRating: formData.get('availability'),
         type: 'AVAILABILITY',
       };
-      const resRatingAvailability = await fetch('https://gametrail-backend-production.up.railway.app/api/createMinRating', {
+      const resRatingAvailability = await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/createMinRating', {
         method: 'POST',
         body: JSON.stringify(availabilityData),
         headers: {
@@ -135,7 +138,7 @@ const TrailCreationForm: FC<Props> = ({ handleSetLoading }) => {
   const [games, setGames] = useState<Game[]>([]);
 
   async function fetchGames() {
-    const res = await fetch('https://gametrail-backend-production.up.railway.app/api/game/');
+    const res = await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/game/');
     const data: Game[] = await res.json();
     setGames(data);
   }
@@ -151,7 +154,7 @@ const TrailCreationForm: FC<Props> = ({ handleSetLoading }) => {
     };
 
     try {
-      return await fetch('https://gametrail-backend-production.up.railway.app/api/gameInTrail', {
+      return await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/gameInTrail', {
         method: 'POST',
         body: JSON.stringify(gameData),
         headers: {
@@ -170,9 +173,7 @@ const TrailCreationForm: FC<Props> = ({ handleSetLoading }) => {
 
   const handleSubmit = useCallback(async (event: React.FormEvent<HTMLFormElement>) => {
     handleSetLoading(true);
-
     event.preventDefault();
-
     const form = event.currentTarget;
     const formData = new FormData(form);
 
@@ -185,19 +186,18 @@ const TrailCreationForm: FC<Props> = ({ handleSetLoading }) => {
       owner: user?.id.toString(),
     };
     try {
-      const res = await fetch('https://gametrail-backend-production.up.railway.app/api/trail/', {
+      const res = await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/trail/', {
         method: 'POST',
         body: JSON.stringify(requestData),
         headers: { Authorization: `Token ${token}`, 'Content-Type': 'application/json' },
       });
-
       if (!res.ok) {
         throw new Error(res.statusText);
       }
     } catch (error) {
       throw new Error();
     } finally {
-      const res = await fetch('https://gametrail-backend-production.up.railway.app/api/getTrail/');
+      const res = await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/getTrail/');
       const data: [Trail] = await res.json();
       const trailId = data[data.length - 1].id;
 
@@ -216,76 +216,85 @@ const TrailCreationForm: FC<Props> = ({ handleSetLoading }) => {
   }, [handlePremiumFilters, handleSetLoading, putGame, router, token, user?.id, user?.plan]);
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <FieldContainer>
-        <Label htmlFor="name">Nombre del Trail</Label>
-        <Input type="text" name="name" id="name" />
-      </FieldContainer>
+    <>
+      <CreateLottie />
+      <Form onSubmit={handleSubmit}>
+        <Title>
+          Crea un nuevo Trail
+        </Title>
+        {/* {!!formError && <ErrorContainer>{formError}</ErrorContainer>} */}
+        <Label htmlFor="name">
+          Nombre del Trail
+          <Input type="text" name="name" id="name" placeholder="Ponle nombre a tu trail" />
+        </Label>
+        <Label htmlFor="description">
+          Descripción
+          <InputTextArea name="description" id="description" placeholder="Escribe una descripciñon para este Trail. 140 Caracteres máximo" />
+        </Label>
+        <PlanInfoToast>
+          Si eres un usuario estandar, tus trails solo pondrán durar 7 días.
+        </PlanInfoToast>
+        <DateFieldContainer>
+          <Label htmlFor="start-date">
+            Fecha de Inicio
+            <InputDate type="date" name="start-date" id="start-date" />
+          </Label>
+          <Label htmlFor="end-date">
+            Fecha de Fin
+            <InputDate type="date" name="end-date" id="end-date" />
+          </Label>
+        </DateFieldContainer>
+        <PlanInfoToast>
+          Si eres un usuario estandar, solo puedes tener 4 jugadores por Trail.
+        </PlanInfoToast>
+        <Label htmlFor="max-players">
+          Número Máximo de Jugadores
+          <Input type="number" name="max-players" id="max-players" min={1} defaultValue={1} />
+        </Label>
+        {user?.plan === 'Premium' && (
+        <>
+          <FontAwesomeIcon icon={faCrown} size="xs" />
+          <h3>Filtros premium</h3>
+          <h5> Establece valoraciones mínimas para limitar la unión de usuarios.</h5>
+          <PremiumFilterFirst>
+            <Label htmlFor="min-rating-kindness">
+              Amabilidad
+              <Input type="number" name="kindness" id="kindness" max={5} min={1} defaultValue={1} />
+            </Label>
 
-      <FieldContainer>
-        <Label htmlFor="description">Descripción</Label>
-        <InputTextArea name="description" id="description" />
-      </FieldContainer>
+            <Label htmlFor="min-rating-funny">
+              Diversión
+              <Input type="number" name="funny" id="funny" max={5} min={1} defaultValue={1} />
+            </Label>
 
-      <DateFieldContainer>
-        <FieldContainer>
-          <Label htmlFor="start-date">Fecha de Inicio</Label>
-          <InputDate type="date" name="start-date" id="start-date" />
-        </FieldContainer>
+            <Label htmlFor="min-rating-teamwork">
+              Cooperación
+              <Input type="number" name="teamwork" id="teamwork" max={5} min={1} defaultValue={1} />
+            </Label>
 
-        <FieldContainer>
-          <Label htmlFor="end-date">Fecha de Fin</Label>
-          <InputDate type="date" name="end-date" id="end-date" />
-        </FieldContainer>
-      </DateFieldContainer>
-      <FieldContainer>
-        <Label htmlFor="max-players">Número Máximo de Jugadores</Label>
-        <Input type="number" name="max-players" id="max-players" min={1} defaultValue={1} />
-      </FieldContainer>
-      {user?.plan === 'Premium' && (
-      <>
-        <FontAwesomeIcon icon={faCrown} size="xs" />
-        <h3>Filtros premium</h3>
-        <h5> Establece valoraciones mínimas para limitar la unión de usuarios.</h5>
-        <PremiumFilterFirst>
-          <FieldContainer>
-            <Label htmlFor="min-rating-kindness">Amabilidad </Label>
-            <Input type="number" name="kindness" id="kindness" max={5} min={1} defaultValue={1} />
-          </FieldContainer>
+          </PremiumFilterFirst>
+          <PremiumFilterSecond>
+            <Label htmlFor="min-rating-ability">
+              Habilidad
+              <Input type="number" name="ability" id="ability" max={5} min={1} defaultValue={1} />
+            </Label>
 
-          <FieldContainer>
-            <Label htmlFor="min-rating-funny">Diversión </Label>
-            <Input type="number" name="funny" id="funny" max={5} min={1} defaultValue={1} />
-          </FieldContainer>
+            <Label htmlFor="min-rating-availability">
+              Disponibilidad
+              <Input type="number" name="availability" id="availability" max={5} min={1} defaultValue={1} />
+            </Label>
 
-          <FieldContainer>
-            <Label htmlFor="min-rating-teamwork">Cooperación </Label>
-            <Input type="number" name="teamwork" id="teamwork" max={5} min={1} defaultValue={1} />
-          </FieldContainer>
-        </PremiumFilterFirst>
-        <PremiumFilterSecond>
-          <FieldContainer>
-            <Label htmlFor="min-rating-ability">Habilidad </Label>
-            <Input type="number" name="ability" id="ability" max={5} min={1} defaultValue={1} />
-          </FieldContainer>
+          </PremiumFilterSecond>
+        </>
+        )}
 
-          <FieldContainer>
-            <Label htmlFor="min-rating-availability">Disponibilidad </Label>
-            <Input type="number" name="availability" id="availability" max={5} min={1} defaultValue={1} />
-          </FieldContainer>
-        </PremiumFilterSecond>
-      </>
-      )}
-
-      <FieldContainer>
-        <Label htmlFor="games">Juegos que se van a Jugar</Label>
-        <Select isMulti name="games" options={games} getOptionLabel={(option: Game) => option.name} getOptionValue={(option: Game) => option.id.toString()} styles={SelectorStyles} placeholder="Selecciona los juegos que quieras..." />
-      </FieldContainer>
-
-      <ButtonRow>
+        <Label htmlFor="games">
+          Juegos que se van a Jugar
+          <Select isMulti name="games" options={games} getOptionLabel={(option: Game) => option.name} getOptionValue={(option: Game) => option.id.toString()} styles={SelectorStyles} placeholder="Selecciona los juegos que quieras..." />
+        </Label>
         <Button type="submit">Create</Button>
-      </ButtonRow>
-    </Form>
+      </Form>
+    </>
   );
 };
 

@@ -23,7 +23,7 @@ const GameData: FC<Props> = ({ gameDetails }) => {
       setHidden(true);
       return;
     }
-    const userData = await fetch(`https://gametrail-backend-production.up.railway.app/api/user/${user.id}`);
+    const userData = await fetch(`https://gametrail-backend-production-8fc0.up.railway.app/api/user/${user.id}`);
     const userGamesData: UserInDetails = await userData.json();
     const foundGame = userGamesData.games.find((game: GameInList) => (game.game.id === gameDetails.id));
     setHidden(!!foundGame);
@@ -49,7 +49,7 @@ const GameData: FC<Props> = ({ gameDetails }) => {
         status: GameListState.PENDING.toString(),
       };
       try {
-        const res = await fetch('https://gametrail-backend-production.up.railway.app/api/gameList/game', {
+        const res = await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/gameList/game', {
           method: 'POST',
           body: JSON.stringify(requestData),
           headers: {

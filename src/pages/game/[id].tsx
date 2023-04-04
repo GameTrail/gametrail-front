@@ -12,10 +12,10 @@ export type Props = {
 
 export const getServerSideProps: GetServerSideProps<Props> = async (context: GetServerSidePropsContext) => {
   const id = context.params?.id as string;
-  const response = await fetch(`https://gametrail-backend-production.up.railway.app/api/game/${id}/`);
+  const response = await fetch(`https://gametrail-backend-production-8fc0.up.railway.app/api/game/${id}/`);
   const data = await response.json();
 
-  const trailResponse = await fetch(`https://gametrail-backend-production.up.railway.app/api/getTrail/?games__game=${id}`);
+  const trailResponse = await fetch(`https://gametrail-backend-production-8fc0.up.railway.app/api/getTrail/?games__game=${id}`);
   const trailData = await trailResponse.json();
 
   return {

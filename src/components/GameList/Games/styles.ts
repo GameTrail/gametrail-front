@@ -296,6 +296,13 @@ padding: 9px;
 }
 `;
 
+export const GameNameAnonymous = styled.p`
+margin-top: 0%;
+margin: 5%;
+font-size: 25px;
+
+`;
+
 export const StyledReactPaginate = styled(ReactPaginate)`
   display: flex;
   justify-content: center;

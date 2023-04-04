@@ -6,7 +6,7 @@ import {
   RegisterContainer, Container, Title, RegisterForm, Label, Input, ErrorContainer,
 } from './styles';
 
-const REGISTER_URL = 'https://gametrail-backend-production.up.railway.app/api/auth/register/';
+const REGISTER_URL = 'https://gametrail-backend-production-8fc0.up.railway.app/api/auth/register/';
 
 export enum RegisterError {
   MATCH = 'non_field_errors',

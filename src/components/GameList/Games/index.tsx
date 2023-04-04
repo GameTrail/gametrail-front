@@ -2,9 +2,11 @@ import type { FC } from 'react';
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import type { Game } from '@/models/Game/types';
+import type { GameInList, UserInDetails } from '@/models/GameInUserList/types';
+import { getUserCookie } from '@/utils/login';
 import { normalizeImage } from '@/utils/normalizeImage';
 import {
-  Container, Input, StyledReactPaginate, Row, Titulo, Titulo2, Cajas, Cuerpo, Cuerpo2, Fila, Mascara, Button, Buscador, CabezaTabla, Tabla, Boton,
+  Container, Input, StyledReactPaginate, Row, Titulo, Titulo2, Cajas, Cuerpo, Cuerpo2, Fila, Mascara, Button, Buscador, CabezaTabla, Tabla, Boton, GameNameAnonymous,
 } from './styles';
 
 export type Props = {
@@ -16,18 +18,14 @@ const GameList: FC<Props> = ({ games }) => {
   const [resultados, setresultados] = useState<Game[]>([]);
   const [showDiv2, setShowDiv2] = useState(true);
   const [buttonText, setButtonText] = useState('Desactivado');
+  const [userGames, setUserGames] = useState<GameInList[]>([]);
+  const user = getUserCookie();
   const router = useRouter();
 
   const [currentPage, setCurrentPage] = useState(0);
   const PER_PAGE = 12;
   const offset = currentPage * PER_PAGE;
   const pageCount = Math.ceil(games.length / PER_PAGE);
-
-  useEffect(() => {
-    const resultadoFinal = games.filter((game) => Object.values(game).some((value) => typeof value === 'string'
-      && value.toLowerCase().includes(busqueda.toLowerCase())));
-    setresultados(resultadoFinal);
-  }, [busqueda, games]);
 
   const evento = (event: React.ChangeEvent<HTMLInputElement>) => {
     setbusqueda(event.target.value);
@@ -55,6 +53,23 @@ const GameList: FC<Props> = ({ games }) => {
     });
   }
 
+  const checkGameInUserList = (gameId: number) => userGames?.some((game) => (game.id === gameId));
+
+  useEffect(() => {
+    const gamesToRender = games.filter((game) => Object.values(game).some((value) => typeof value === 'string'
+      && value.toLowerCase().includes(busqueda.toLowerCase())));
+    setresultados(gamesToRender);
+  }, [busqueda, games]);
+
+  useEffect(() => {
+    const getUserGames = async (userId: number) => {
+      const res = await fetch(`https://gametrail-backend-production-8fc0.up.railway.app/api/user/${userId}`);
+      const data: UserInDetails = await res.json();
+      console.log(data.games);
+      setUserGames(data.games);
+    };
+    if (user) getUserGames(user?.id);
+  }, [user]);
   return (
 
     <Container>
@@ -76,11 +91,18 @@ const GameList: FC<Props> = ({ games }) => {
                   <Mascara>
                     <img src={normalizeImage(game.image)} width={450} height={600} alt="nu" />
                   </Mascara>
-                  <h2>{game.name}</h2>
+                  <GameNameAnonymous>{game.name}</GameNameAnonymous>
 
-                  <Button>
-                    Añadir
-                  </Button>
+                  {user && checkGameInUserList(game.id) ? (
+                    <Button>
+                      En tu lista
+                    </Button>
+                  ) : (
+
+                    <Boton>
+                      Añadir
+                    </Boton>
+                  )}
 
                 </Cajas>
               ))

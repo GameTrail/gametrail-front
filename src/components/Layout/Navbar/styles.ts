@@ -34,9 +34,10 @@ export const ResponsiveNavbar = styled.div`
 export const Menu = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
   height: 100%;
-  width: 50%;
+  width: 80%;
+  gap: 1em;
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -51,7 +52,7 @@ export const MenuItem = styled(Link)`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 120px;
+  width: auto;
   height: 100%;
   cursor: pointer;
   &:hover {
@@ -66,6 +67,10 @@ export const MenuItem = styled(Link)`
     border-radius: 5px;
     text-align: center;
   }
+`;
+
+export const LogoutItem = styled(MenuItem)`
+  width: 50px;
 `;
 
 interface MobileMenuIconProps {
@@ -146,10 +151,8 @@ export const User = styled.div`
 `;
 
 export const Username = styled.p`
-    font-size: 1em;
     font-weight: 600;
     color: ${({ theme }) => theme.nord.white0};
-    padding:1em;
 `;
 
 export const UserImage = styled(Image)`

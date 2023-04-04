@@ -3,7 +3,9 @@ import React from 'react';
 import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import type { UserCookie } from '@/components/Login/LoginComponent/types';
-import { MenuItem, Premium, Username } from './styles';
+import {
+  LogoutItem, MenuItem, Premium, Username,
+} from './styles';
 
 export type Props = {
   userCookie: UserCookie | null;
@@ -34,9 +36,9 @@ const SmallMenu: FC<Props> = ({ userCookie, handleStripeCheckout }) => (
           </Premium>
         )}
 
-        <MenuItem href="/auth/logout">
+        <LogoutItem href="/auth/logout">
           <FontAwesomeIcon icon={faArrowRightFromBracket} />
-        </MenuItem>
+        </LogoutItem>
       </>
     )}
   </>

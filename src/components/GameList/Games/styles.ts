@@ -199,6 +199,18 @@ text-align: center;
 
 `;
 
+export const ButtonGameInList = styled.p`
+
+margin: 15px;
+padding: 20px;
+background-color: ${({ theme }) => theme.nord.gray3};
+font-size: 17px;
+border-radius: 7px;
+bottom: 0;
+text-align: center;
+
+`;
+
 export const Cuerpo2 = styled.div` 
 
 display: flex;
@@ -296,7 +308,7 @@ padding: 9px;
 }
 `;
 
-export const GameNameAnonymous = styled.p`
+export const GameName = styled.p`
 margin-top: 0%;
 margin: 5%;
 font-size: 25px;

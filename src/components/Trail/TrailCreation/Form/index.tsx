@@ -4,7 +4,7 @@ import type { FC } from 'react';
 import { useCallback, useEffect, useState } from 'react';
 import { faCrown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useRouter } from 'next/router';
+// import { useRouter } from 'next/router';
 import Select from 'react-select';
 import CreateLottie from '@/components/Lotties/Landing/CreateLottie';
 import {
@@ -20,7 +20,7 @@ import {
   PremiumFilterSecond,
   SelectorStyles,
   Title,
-  // ErrorContainer,
+  ErrorContainer,
 } from '@/components/Trail/TrailCreation/Form/styles';
 import type { Game } from '@/models/Game/types';
 import type { Trail } from '@/models/Trail/types';
@@ -31,10 +31,21 @@ export type Props = {
 };
 
 const TrailCreationForm: FC<Props> = ({ handleSetLoading }) => {
-  const router = useRouter();
+  // const router = useRouter();
+  const [trailName, setTrailName] = useState('');
+  const [trailDescription, setTrailDescription] = useState('');
+  const [trailStartDate, setTrailStartDate] = useState('');
+  const [trailEndDate, setTrailEndDate] = useState('');
+  const [trailMaxNumber, setTrailMaxNumber] = useState('2');
+
+  const [userKindness, setUserKindness] = useState('1');
+  const [userFunny, setUserFunny] = useState('1');
+  const [userTeamwork, setUserTeamwork] = useState('1');
+  const [userAbility, setUserAbility] = useState('1');
+  const [userAvailability, setUserAvailability] = useState('1');
   const user = getUserCookie();
   const token = user?.token;
-  // const [formError, setFormError] = useState('');
+  const [formError, setFormError] = useState('');
 
   const handlePremiumFilters = useCallback(async (formData: any, size:number) => {
     if (formData.get('kindness') > 1) {
@@ -171,49 +182,57 @@ const TrailCreationForm: FC<Props> = ({ handleSetLoading }) => {
     fetchGames().then((r) => r);
   }, []);
 
-  const handleSubmit = useCallback(async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     handleSetLoading(true);
-    event.preventDefault();
-    const form = event.currentTarget;
-    const formData = new FormData(form);
 
-    const requestData = {
-      name: formData.get('name'),
-      description: formData.get('description'),
-      startDate: formData.get('start-date'),
-      finishDate: formData.get('end-date'),
-      maxPlayers: formData.get('max-players'),
-      owner: user?.id.toString(),
-    };
     try {
-      const res = await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/trail/', {
+      const requestData = {
+        name: trailName,
+        description: trailDescription,
+        startDate: trailStartDate,
+        finishDate: trailEndDate,
+        maxPlayers: trailMaxNumber,
+        owner: user?.id.toString(),
+      };
+
+      const response = await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/trail/', {
         method: 'POST',
         body: JSON.stringify(requestData),
         headers: { Authorization: `Token ${token}`, 'Content-Type': 'application/json' },
       });
-      if (!res.ok) {
-        throw new Error(res.statusText);
+
+      if (!response.ok) {
+        const err = await response.json();
+        setFormError(err[0]);
+        return;
       }
-    } catch (error) {
-      throw new Error();
-    } finally {
       const res = await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/getTrail/');
       const data: [Trail] = await res.json();
       const trailId = data[data.length - 1].id;
 
-      if (user?.plan === 'Premium') {
-        await handlePremiumFilters(formData, trailId);
-      }
-
+      const form = e.currentTarget;
+      const formData = new FormData(form);
       const selectedGames = formData.getAll('games');
-      selectedGames.forEach((game) => {
-        putGame(game, trailId, selectedGames).then((r) => r);
-      });
+      await Promise.all(selectedGames.map((game) => putGame(game, trailId, selectedGames)));
 
-      router.push(`/trail/${trailId}`);
+      if (user?.plan === 'Premium') {
+        const filtersData = {
+          kindness: userKindness,
+          funny: userFunny,
+          teamwork: userTeamwork,
+          ability: userAbility,
+          availability: userAvailability,
+        };
+        await handlePremiumFilters(filtersData, trailId);
+      }
+      setFormError('');
+    } catch (error) {
+      setFormError('Error de validación');
+    } finally {
       handleSetLoading(false);
     }
-  }, [handlePremiumFilters, handleSetLoading, putGame, router, token, user?.id, user?.plan]);
+  };
 
   return (
     <>
@@ -222,66 +241,147 @@ const TrailCreationForm: FC<Props> = ({ handleSetLoading }) => {
         <Title>
           Crea un nuevo Trail
         </Title>
-        {/* {!!formError && <ErrorContainer>{formError}</ErrorContainer>} */}
-        <Label htmlFor="name">
+        {!!formError && <ErrorContainer>{formError}</ErrorContainer>}
+        <Label>
           Nombre del Trail
-          <Input type="text" name="name" id="name" placeholder="Ponle nombre a tu trail" />
+          <Input
+            type="text"
+            name="name"
+            id="name"
+            placeholder="Ponle nombre a tu trail"
+            value={trailName}
+            onChange={(e) => setTrailName(e.target.value)}
+          />
         </Label>
-        <Label htmlFor="description">
+        <Label>
           Descripción
-          <InputTextArea name="description" id="description" placeholder="Escribe una descripciñon para este Trail. 140 Caracteres máximo" />
+          <InputTextArea
+            name="description"
+            id="description"
+            placeholder="Escribe una descripciñon para este Trail. 140 Caracteres máximo"
+            value={trailDescription}
+            onChange={(e) => setTrailDescription(e.target.value)}
+          />
         </Label>
         <PlanInfoToast>
           Si eres un usuario estandar, tus trails solo pondrán durar 7 días.
         </PlanInfoToast>
         <DateFieldContainer>
-          <Label htmlFor="start-date">
+          <Label>
             Fecha de Inicio
-            <InputDate type="date" name="start-date" id="start-date" />
+            <InputDate
+              type="date"
+              name="start-date"
+              id="start-date"
+              value={trailStartDate}
+              onChange={(e) => setTrailStartDate(e.target.value)}
+            />
           </Label>
-          <Label htmlFor="end-date">
+          <Label>
             Fecha de Fin
-            <InputDate type="date" name="end-date" id="end-date" />
+            <InputDate
+              type="date"
+              name="end-date"
+              id="end-date"
+              value={trailEndDate}
+              onChange={(e) => setTrailEndDate(e.target.value)}
+            />
           </Label>
         </DateFieldContainer>
         <PlanInfoToast>
           Si eres un usuario estandar, solo puedes tener 4 jugadores por Trail.
         </PlanInfoToast>
-        <Label htmlFor="max-players">
+        <Label>
           Número Máximo de Jugadores
-          <Input type="number" name="max-players" id="max-players" min={1} defaultValue={1} />
+          <Input
+            type="number"
+            name="max-players"
+            id="max-players"
+            min={1}
+            defaultValue={2}
+            value={trailMaxNumber}
+            onChange={(e) => setTrailMaxNumber(e.target.value)}
+          />
         </Label>
+
         {user?.plan === 'Premium' && (
         <>
           <FontAwesomeIcon icon={faCrown} size="xs" />
           <h3>Filtros premium</h3>
           <h5> Establece valoraciones mínimas para limitar la unión de usuarios.</h5>
           <PremiumFilterFirst>
-            <Label htmlFor="min-rating-kindness">
+
+            <Label>
               Amabilidad
-              <Input type="number" name="kindness" id="kindness" max={5} min={1} defaultValue={1} />
+              <Input
+                type="number"
+                name="kindness"
+                id="kindness"
+                max={5}
+                min={1}
+                defaultValue={1}
+                value={userKindness}
+                onChange={(e) => setUserKindness(e.target.value)}
+              />
             </Label>
 
-            <Label htmlFor="min-rating-funny">
+            <Label>
               Diversión
-              <Input type="number" name="funny" id="funny" max={5} min={1} defaultValue={1} />
+              <Input
+                type="number"
+                name="funny"
+                id="funny"
+                max={5}
+                min={1}
+                defaultValue={1}
+                value={userFunny}
+                onChange={(e) => setUserFunny(e.target.value)}
+              />
             </Label>
 
-            <Label htmlFor="min-rating-teamwork">
+            <Label>
               Cooperación
-              <Input type="number" name="teamwork" id="teamwork" max={5} min={1} defaultValue={1} />
+              <Input
+                type="number"
+                name="teamwork"
+                id="teamwork"
+                max={5}
+                min={1}
+                value={userTeamwork}
+                onChange={(e) => setUserTeamwork(e.target.value)}
+              />
             </Label>
 
           </PremiumFilterFirst>
+
           <PremiumFilterSecond>
-            <Label htmlFor="min-rating-ability">
+
+            <Label>
               Habilidad
-              <Input type="number" name="ability" id="ability" max={5} min={1} defaultValue={1} />
+              <Input
+                type="number"
+                name="ability"
+                id="ability"
+                max={5}
+                min={1}
+                defaultValue={1}
+                value={userAbility}
+                onChange={(e) => setUserAbility(e.target.value)}
+              />
             </Label>
 
-            <Label htmlFor="min-rating-availability">
+            <Label>
               Disponibilidad
-              <Input type="number" name="availability" id="availability" max={5} min={1} defaultValue={1} />
+              <Input
+                type="number"
+                name="availability"
+                id="availability"
+                max={5}
+                min={1}
+                defaultValue={1}
+                value={userAvailability}
+                onChange={(e) => setUserAvailability(e.target.value)}
+              />
             </Label>
 
           </PremiumFilterSecond>

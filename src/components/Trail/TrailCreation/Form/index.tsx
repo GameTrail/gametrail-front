@@ -1,4 +1,6 @@
-import { useEffect, useState } from 'react';
+import {
+  useEffect, useState,
+} from 'react';
 import { faCrown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Select from 'react-select';
@@ -27,6 +29,11 @@ interface TrailCreationFormProps {
   handleSetLoadingForm: (loading: boolean) => void;
 }
 
+type FormErrorType = {
+  label: string;
+  value: string;
+}[];
+
 const TrailCreationForm = ({ handleSetLoadingForm }: TrailCreationFormProps) => {
   const [games, setGames] = useState<Game[]>([]);
   const [trailName, setTrailName] = useState('');
@@ -42,52 +49,9 @@ const TrailCreationForm = ({ handleSetLoadingForm }: TrailCreationFormProps) => 
   const [userAvailability, setUserAvailability] = useState('1');
   const user = getUserCookie();
   const token = user?.token;
-  const [formError, setFormError] = useState('');
+  const [formError, setFormError] = useState<FormErrorType>([]);
 
   const [loadingInputSelectGames, setLoadingInputSelectGames] = useState(false);
-
-  const fetchGames = async () => {
-    setLoadingInputSelectGames(true);
-    try {
-      const res = await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/game/');
-      const data: Game[] = await res.json();
-      setGames(data);
-    } catch (error) {
-      setFormError('Ops! Error al cargar los juegos');
-    } finally {
-      setLoadingInputSelectGames(false);
-    }
-  };
-
-  const putGame = async (game: FormDataEntryValue, trailId: number, selectedGames: FormDataEntryValue[]) => {
-    const gameData = {
-      trail: trailId.toString(),
-      game: game.toString(),
-      priority: (selectedGames.indexOf(game) + 1),
-      message: 'Pendiente de selección',
-      status: 'PENDING',
-    };
-
-    try {
-      const res = await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/gameInTrail', {
-        method: 'POST',
-        body: JSON.stringify(gameData),
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Token ${token}`,
-        },
-      });
-      if (!res.ok) {
-        throw new Error();
-      }
-    } catch (error) {
-      throw new Error();
-    }
-  };
-
-  useEffect(() => {
-    fetchGames();
-  }, []);
 
   const createTrail = async () => {
     try {
@@ -117,6 +81,32 @@ const TrailCreationForm = ({ handleSetLoadingForm }: TrailCreationFormProps) => 
     }
   };
 
+  const putGame = async (game: FormDataEntryValue, trailId: number, selectedGames: FormDataEntryValue[]) => {
+    const gameData = {
+      trail: trailId.toString(),
+      game: game.toString(),
+      priority: (selectedGames.indexOf(game) + 1),
+      message: 'Pendiente de selección',
+      status: 'PENDING',
+    };
+
+    try {
+      const res = await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/gameInTrail', {
+        method: 'POST',
+        body: JSON.stringify(gameData),
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Token ${token}`,
+        },
+      });
+      if (!res.ok) {
+        setFormError([...formError, { label: 'Añadir juegos al Trail', value: 'No se han podido añadir los juegos al trail correctamente' }]);
+      }
+    } catch (error) {
+      setFormError([...formError, { label: 'Añadir juegos al Trail', value: 'No se han podido añadir los juegos al trail correctamente' }]);
+    }
+  };
+
   const createTrailGames = async (formData: FormData, trailId: number) => {
     const selectedGames = formData.getAll('games');
     selectedGames.forEach(async (game) => {
@@ -140,13 +130,30 @@ const TrailCreationForm = ({ handleSetLoadingForm }: TrailCreationFormProps) => 
       if (user?.plan === 'Premium') {
         await handlePremiumFilters(formData, trailId, user, token);
       }
-      setFormError('');
+      setFormError([]);
     } catch (error) {
-      setFormError('Ops! Error al crear el Trail');
+      setFormError((prevState) => [...prevState, { label: 'Creación de Trail', value: 'No se ha podido crear el trail correctamente' }]);
+      throw new Error();
     } finally {
       handleSetLoadingForm(false);
     }
   };
+
+  useEffect(() => {
+    const fetchGames = async () => {
+      setLoadingInputSelectGames(true);
+      try {
+        const res = await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/game/');
+        const data: Game[] = await res.json();
+        setGames(data);
+      } catch (error) {
+        setFormError([...formError, { label: 'Añadir juegos al Trail', value: 'No se han podido añadir los juegos al trail correctamente' }]);
+      } finally {
+        setLoadingInputSelectGames(false);
+      }
+    };
+    fetchGames();
+  }, [formError]);
 
   return (
     <>
@@ -155,7 +162,18 @@ const TrailCreationForm = ({ handleSetLoadingForm }: TrailCreationFormProps) => 
         <Title>
           Crea un nuevo Trail
         </Title>
-        {!!formError && <ErrorContainer>{formError}</ErrorContainer>}
+        {formError.length > 0 && (
+        <ErrorContainer>
+          {formError.map((error) => (
+            <>
+              <p>{error.label}</p>
+              :
+              {' '}
+              <p>{error.value}</p>
+            </>
+          ))}
+        </ErrorContainer>
+        )}
         <Label>
           Nombre del Trail
           <Input

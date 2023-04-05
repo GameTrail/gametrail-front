@@ -3,7 +3,9 @@ import React from 'react';
 import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import type { UserCookie } from '@/components/Login/LoginComponent/types';
-import { MenuItem, Premium, Username } from './styles';
+import {
+  LogoutItem, MenuItem, Premium, Username,
+} from './styles';
 
 export type Props = {
   userCookie: UserCookie | null;
@@ -13,15 +15,18 @@ export type Props = {
 const BigMenu: FC<Props> = ({ userCookie, handleStripeCheckout }) => (
   <>
     <MenuItem href="/home">
-      <h4>Inicio</h4>
+      <p>Inicio</p>
     </MenuItem>
     <MenuItem href="/games">
-      <h4>Juegos</h4>
+      <p>Juegos</p>
+    </MenuItem>
+    <MenuItem href="/trails">
+      <p>Trails</p>
     </MenuItem>
     {userCookie && (
       <>
         <MenuItem href="/trail/create">
-          <h4>Crear Trail</h4>
+          <p>Crear Trail</p>
         </MenuItem>
         <MenuItem href={`/user/${userCookie?.id}`}>
           <Username>
@@ -30,12 +35,12 @@ const BigMenu: FC<Props> = ({ userCookie, handleStripeCheckout }) => (
         </MenuItem>
         {userCookie?.plan === 'STANDARD' && (
           <Premium onClick={handleStripeCheckout}>
-            <h4>Premium</h4>
+            <p>Premium</p>
           </Premium>
         )}
-        <MenuItem href="/auth/logout">
+        <LogoutItem href="/auth/logout">
           <FontAwesomeIcon icon={faArrowRightFromBracket} />
-        </MenuItem>
+        </LogoutItem>
       </>
     )}
   </>

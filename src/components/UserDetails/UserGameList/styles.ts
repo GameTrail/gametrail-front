@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import Image from 'next/image';
 import Link from 'next/link';
 import { handleStateColor } from './logic';
 import type { StateProps } from './types';
@@ -91,7 +90,7 @@ export const State = styled.p<StateProps>`
     background-color: ${({ theme, state }) => () => handleStateColor(theme, state)};
 `;
 
-export const GameImage = styled(Image)`
+export const GameImage = styled.img`
     border-radius: 9px;
     height: auto;
 `;

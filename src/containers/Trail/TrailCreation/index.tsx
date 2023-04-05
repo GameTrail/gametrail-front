@@ -6,13 +6,16 @@ import {
 } from '@/containers/Trail/TrailCreation/styles';
 
 const TrailCreation = () => {
-  const [loading, setLoading] = useState(false);
-  const handleSetLoading = (value: boolean) => {
-    setLoading(value);
+  const [loadingForm, setLoadingForm] = useState(false);
+  const handleSetLoadingForm = (value: boolean) => {
+    setLoadingForm(value);
   };
+
+  if (loadingForm) return <LoadingSpinner />;
+
   return (
     <Container>
-      {loading ? <LoadingSpinner /> : <TrailCreationForm handleSetLoading={handleSetLoading} />}
+      <TrailCreationForm handleSetLoadingForm={handleSetLoadingForm} />
     </Container>
 
   );

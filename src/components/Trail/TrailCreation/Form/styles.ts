@@ -230,7 +230,7 @@ export const Button = styled.button`
   font-size: 1.7rem;
 `;
 
-export const SelectorStyles: StylesConfig<Game> = {
+export const GamesSelectorStyles: StylesConfig<Game> = {
   container: (styles) => ({
     ...styles,
     width: '100%',

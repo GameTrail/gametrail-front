@@ -1,10 +1,6 @@
-'use client';
-
-import type { FC } from 'react';
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { faCrown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { useRouter } from 'next/router';
 import Select from 'react-select';
 import CreateLottie from '@/components/Lotties/Landing/CreateLottie';
 import {
@@ -18,20 +14,21 @@ import {
   PlanInfoToast,
   PremiumFilterFirst,
   PremiumFilterSecond,
-  SelectorStyles,
+  GamesSelectorStyles,
   Title,
   ErrorContainer,
 } from '@/components/Trail/TrailCreation/Form/styles';
 import type { Game } from '@/models/Game/types';
 import type { Trail } from '@/models/Trail/types';
 import { getUserCookie } from '@/utils/login';
+import { handlePremiumFilters } from '@/utils/Trail/handlePremiumFilters';
 
-export type Props = {
-  handleSetLoading: (value: boolean) => void
-};
+interface TrailCreationFormProps {
+  handleSetLoadingForm: (loading: boolean) => void;
+}
 
-const TrailCreationForm: FC<Props> = ({ handleSetLoading }) => {
-  // const router = useRouter();
+const TrailCreationForm = ({ handleSetLoadingForm }: TrailCreationFormProps) => {
+  const [games, setGames] = useState<Game[]>([]);
   const [trailName, setTrailName] = useState('');
   const [trailDescription, setTrailDescription] = useState('');
   const [trailStartDate, setTrailStartDate] = useState('');
@@ -47,115 +44,22 @@ const TrailCreationForm: FC<Props> = ({ handleSetLoading }) => {
   const token = user?.token;
   const [formError, setFormError] = useState('');
 
-  const handlePremiumFilters = useCallback(async (formData: any, size:number) => {
-    if (formData.get('kindness') > 1) {
-      const kindnessData = {
-        trail: size.toString(),
-        user: user?.id.toString(),
-        minRating: formData.get('kindness'),
-        type: 'KINDNESS',
-      };
-      const resRatingKindness = await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/createMinRating', {
-        method: 'POST',
-        body: JSON.stringify(kindnessData),
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Token ${token}`,
-        },
-      });
-      if (!resRatingKindness.ok) {
-        throw new Error(resRatingKindness.statusText);
-      }
-    }
-    if (formData.get('funny') > 1) {
-      const funnyData = {
-        trail: size.toString(),
-        user: user?.id.toString(),
-        minRating: formData.get('funny'),
-        type: 'FUNNY',
-      };
-      const resRatingFunny = await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/createMinRating', {
-        method: 'POST',
-        body: JSON.stringify(funnyData),
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Token ${token}`,
-        },
-      });
-      if (!resRatingFunny.ok) {
-        throw new Error(resRatingFunny.statusText);
-      }
-    }
-    if (formData.get('teamwork') > 1) {
-      const teamworkData = {
-        trail: size.toString(),
-        user: user?.id.toString(),
-        minRating: formData.get('teamwork'),
-        type: 'TEAMWORK',
-      };
-      const resRatingTeamwork = await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/createMinRating', {
-        method: 'POST',
-        body: JSON.stringify(teamworkData),
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Token ${token}`,
-        },
-      });
-      if (!resRatingTeamwork.ok) {
-        throw new Error(resRatingTeamwork.statusText);
-      }
-    }
-    if (formData.get('ability') > 1) {
-      const abilityData = {
-        trail: size.toString(),
-        user: user?.id.toString(),
-        minRating: formData.get('ability'),
-        type: 'ABILITY',
-      };
-      const resRatingAbility = await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/createMinRating', {
-        method: 'POST',
-        body: JSON.stringify(abilityData),
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Token ${token}`,
-        },
-      });
-      if (!resRatingAbility.ok) {
-        throw new Error(resRatingAbility.statusText);
-      }
-    }
+  const [loadingInputSelectGames, setLoadingInputSelectGames] = useState(false);
 
-    if (formData.get('availability') > 1) {
-      const availabilityData = {
-        trail: size.toString(),
-        user: user?.id.toString(),
-        minRating: formData.get('availability'),
-        type: 'AVAILABILITY',
-      };
-      const resRatingAvailability = await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/createMinRating', {
-        method: 'POST',
-        body: JSON.stringify(availabilityData),
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Token ${token}`,
-        },
-      });
-      if (!resRatingAvailability.ok) {
-        throw new Error(resRatingAvailability.statusText);
-      }
+  const fetchGames = async () => {
+    setLoadingInputSelectGames(true);
+    try {
+      const res = await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/game/');
+      const data: Game[] = await res.json();
+      setGames(data);
+    } catch (error) {
+      setFormError('Ops! Error al cargar los juegos');
+    } finally {
+      setLoadingInputSelectGames(false);
     }
-  }, [user, token]);
+  };
 
-  const [games, setGames] = useState<Game[]>([]);
-
-  async function fetchGames() {
-    const res = await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/game/');
-    const data: Game[] = await res.json();
-    setGames(data);
-  }
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  async function putGame(game: FormDataEntryValue, trailId: number, selectedGames: FormDataEntryValue[]) {
+  const putGame = async (game: FormDataEntryValue, trailId: number, selectedGames: FormDataEntryValue[]) => {
     const gameData = {
       trail: trailId.toString(),
       game: game.toString(),
@@ -165,7 +69,7 @@ const TrailCreationForm: FC<Props> = ({ handleSetLoading }) => {
     };
 
     try {
-      return await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/gameInTrail', {
+      const res = await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/gameInTrail', {
         method: 'POST',
         body: JSON.stringify(gameData),
         headers: {
@@ -173,19 +77,19 @@ const TrailCreationForm: FC<Props> = ({ handleSetLoading }) => {
           Authorization: `Token ${token}`,
         },
       });
+      if (!res.ok) {
+        throw new Error();
+      }
     } catch (error) {
       throw new Error();
     }
-  }
+  };
 
   useEffect(() => {
-    fetchGames().then((r) => r);
+    fetchGames();
   }, []);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    handleSetLoading(true);
-
+  const createTrail = async () => {
     try {
       const requestData = {
         name: trailName,
@@ -195,42 +99,52 @@ const TrailCreationForm: FC<Props> = ({ handleSetLoading }) => {
         maxPlayers: trailMaxNumber,
         owner: user?.id.toString(),
       };
-
-      const response = await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/trail/', {
+      const res = await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/trail/', {
         method: 'POST',
         body: JSON.stringify(requestData),
         headers: { Authorization: `Token ${token}`, 'Content-Type': 'application/json' },
       });
-
-      if (!response.ok) {
-        const err = await response.json();
-        setFormError(err[0]);
-        return;
+      if (!res.ok) {
+        throw new Error();
       }
-      const res = await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/getTrail/');
-      const data: [Trail] = await res.json();
-      const trailId = data[data.length - 1].id;
+      // TODO: Obtener el id del trail creado desde backend en lugar de hacerlo así
+      const trailRes = await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/getTrail/');
+      const trailData: Trail[] = await trailRes.json();
+      const trailId = trailData[trailData.length - 1].id;
+      return trailId;
+    } catch (error) {
+      throw new Error();
+    }
+  };
 
-      const form = e.currentTarget;
-      const formData = new FormData(form);
-      const selectedGames = formData.getAll('games');
-      await Promise.all(selectedGames.map((game) => putGame(game, trailId, selectedGames)));
+  const createTrailGames = async (formData: FormData, trailId: number) => {
+    const selectedGames = formData.getAll('games');
+    selectedGames.forEach(async (game) => {
+      await putGame(game, trailId, selectedGames);
+    });
+  };
 
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.currentTarget);
+    handleSetLoadingForm(true);
+    try {
+      // Paso 1: Crear el trail
+      const trailId = await createTrail();
+
+      // Paso 2: Crear los juegos del trail
+      await createTrailGames(formData, trailId);
+
+      // Paso 3: Crear los filtros premium del trail
       if (user?.plan === 'Premium') {
-        const filtersData = {
-          kindness: userKindness,
-          funny: userFunny,
-          teamwork: userTeamwork,
-          ability: userAbility,
-          availability: userAvailability,
-        };
-        await handlePremiumFilters(filtersData, trailId);
+        await handlePremiumFilters(formData, trailId, user, token);
       }
       setFormError('');
     } catch (error) {
-      setFormError('Error de validación');
+      setFormError('Ops! Error al crear el Trail');
     } finally {
-      handleSetLoading(false);
+      handleSetLoadingForm(false);
     }
   };
 
@@ -305,92 +219,92 @@ const TrailCreationForm: FC<Props> = ({ handleSetLoading }) => {
         </Label>
 
         {user?.plan === 'Premium' && (
-        <>
-          <FontAwesomeIcon icon={faCrown} size="xs" />
-          <h3>Filtros premium</h3>
-          <h5> Establece valoraciones mínimas para limitar la unión de usuarios.</h5>
-          <PremiumFilterFirst>
+          <>
+            <FontAwesomeIcon icon={faCrown} size="xs" />
+            <h3>Filtros premium</h3>
+            <h5> Establece valoraciones mínimas para limitar la unión de usuarios.</h5>
+            <PremiumFilterFirst>
 
-            <Label>
-              Amabilidad
-              <Input
-                type="number"
-                name="kindness"
-                id="kindness"
-                max={5}
-                min={1}
-                defaultValue={1}
-                value={userKindness}
-                onChange={(e) => setUserKindness(e.target.value)}
-              />
-            </Label>
+              <Label>
+                Amabilidad
+                <Input
+                  type="number"
+                  name="kindness"
+                  id="kindness"
+                  max={5}
+                  min={1}
+                  defaultValue={1}
+                  value={userKindness}
+                  onChange={(e) => setUserKindness(e.target.value)}
+                />
+              </Label>
 
-            <Label>
-              Diversión
-              <Input
-                type="number"
-                name="funny"
-                id="funny"
-                max={5}
-                min={1}
-                defaultValue={1}
-                value={userFunny}
-                onChange={(e) => setUserFunny(e.target.value)}
-              />
-            </Label>
+              <Label>
+                Diversión
+                <Input
+                  type="number"
+                  name="funny"
+                  id="funny"
+                  max={5}
+                  min={1}
+                  defaultValue={1}
+                  value={userFunny}
+                  onChange={(e) => setUserFunny(e.target.value)}
+                />
+              </Label>
 
-            <Label>
-              Cooperación
-              <Input
-                type="number"
-                name="teamwork"
-                id="teamwork"
-                max={5}
-                min={1}
-                value={userTeamwork}
-                onChange={(e) => setUserTeamwork(e.target.value)}
-              />
-            </Label>
+              <Label>
+                Cooperación
+                <Input
+                  type="number"
+                  name="teamwork"
+                  id="teamwork"
+                  max={5}
+                  min={1}
+                  value={userTeamwork}
+                  onChange={(e) => setUserTeamwork(e.target.value)}
+                />
+              </Label>
 
-          </PremiumFilterFirst>
+            </PremiumFilterFirst>
 
-          <PremiumFilterSecond>
+            <PremiumFilterSecond>
 
-            <Label>
-              Habilidad
-              <Input
-                type="number"
-                name="ability"
-                id="ability"
-                max={5}
-                min={1}
-                defaultValue={1}
-                value={userAbility}
-                onChange={(e) => setUserAbility(e.target.value)}
-              />
-            </Label>
+              <Label>
+                Habilidad
+                <Input
+                  type="number"
+                  name="ability"
+                  id="ability"
+                  max={5}
+                  min={1}
+                  defaultValue={1}
+                  value={userAbility}
+                  onChange={(e) => setUserAbility(e.target.value)}
+                />
+              </Label>
 
-            <Label>
-              Disponibilidad
-              <Input
-                type="number"
-                name="availability"
-                id="availability"
-                max={5}
-                min={1}
-                defaultValue={1}
-                value={userAvailability}
-                onChange={(e) => setUserAvailability(e.target.value)}
-              />
-            </Label>
+              <Label>
+                Disponibilidad
+                <Input
+                  type="number"
+                  name="availability"
+                  id="availability"
+                  max={5}
+                  min={1}
+                  defaultValue={1}
+                  value={userAvailability}
+                  onChange={(e) => setUserAvailability(e.target.value)}
+                />
+              </Label>
 
-          </PremiumFilterSecond>
-        </>
+            </PremiumFilterSecond>
+          </>
         )}
 
         <Label htmlFor="games">
           Juegos que se van a Jugar
-          <Select isMulti name="games" options={games} getOptionLabel={(option: Game) => option.name} getOptionValue={(option: Game) => option.id.toString()} styles={SelectorStyles} placeholder="Selecciona los juegos que quieras..." />
+          <Select isMulti name="games" isLoading={loadingInputSelectGames} isDisabled={loadingInputSelectGames} options={games} getOptionLabel={(option: Game) => option.name} getOptionValue={(option: Game) => option.id.toString()} styles={GamesSelectorStyles} placeholder="Selecciona los juegos que quieras..." />
         </Label>
         <Button type="submit">Create</Button>
       </Form>

@@ -1,35 +1,37 @@
-import type { FC } from 'react';
-import React from 'react';
-import type { GetServerSideProps, GetServerSidePropsContext } from 'next';
-import NotFound from '@/components/NotFound';
+import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+import Error from '@/components/Error';
+import LoadingSpinner from '@/components/LoadingSpinner';
 import { UserDetails } from '@/containers';
 import type { User as UserDetailsProps } from '@/models/User/types';
 
-export type Props = {
-  data: UserDetailsProps;
-};
+const User = () => {
+  const router = useRouter();
+  const [userData, setUserData] = useState<UserDetailsProps | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<boolean>(false);
+  const { id } = router.query;
 
-export const getServerSideProps: GetServerSideProps<Props> = async (context: GetServerSidePropsContext) => {
-  const id = context.params?.id as string;
-  const response = await fetch(`https://gametrail-backend-production-8fc0.up.railway.app/api/user/${id}/`);
-  const data = await response.json();
-  if (data.detail === 'Not found.') {
-    return {
-      props: {
-        data: null,
-      },
+  useEffect(() => {
+    const fetchUser = async () => {
+      setLoading(true);
+      try {
+        const response = await fetch(`https://gametrail-backend-production-8fc0.up.railway.app/api/user/${id}/`);
+        const data = await response.json();
+        setUserData(data);
+        setError(false);
+      } catch (err) {
+        setError(true);
+      } finally {
+        setLoading(false);
+      }
     };
-  }
-  return {
-    props: {
-      data,
-    },
-  };
-};
+    fetchUser();
+  }, [id]);
 
-const User: FC<Props> = ({ data }) => {
-  if (!data) return <NotFound />;
-  return <UserDetails userData={data} />;
+  if (loading) return <LoadingSpinner />;
+  if (error || !userData) return <Error />;
+  return <UserDetails userData={userData} />;
 };
 
 export default User;

@@ -11,6 +11,7 @@ const Landing = () => {
   const [subscriptionSuccess, setSubscriptionSuccess] = useState<boolean>(false);
   const router = useRouter();
   const userCookie = getUserCookie();
+
   useEffect(() => {
     if (userCookie === null) return;
     const currentURL = router.asPath;

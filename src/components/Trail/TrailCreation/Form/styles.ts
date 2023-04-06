@@ -15,13 +15,12 @@ export const Title = styled.h2`
 
 export const ErrorContainer = styled.div`
   text-align: center;
-  border-radius: 8px;
+  border-radius: 20px;
   background-color: ${({ theme }) => theme.nord.red};
   color: ${({ theme }) => theme.nord.white2};
-  border-color: black;
-  width: 80%;
+  width: 100%;
   height: auto;
-  margin: auto;
+  margin: 0.15em;
   padding: 0.5rem;
   @media (max-width: 768px) {
     font-size: 0.7rem;
@@ -87,7 +86,7 @@ export const Form = styled.form`
 
 export const Label = styled.label`
   width: 100%;
-  margin-bottom: 2em;
+  margin-bottom: 1em;
   color: ${({ theme }) => theme.nord.white2};
   max-width: 60vw;
 `;

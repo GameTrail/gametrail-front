@@ -29,11 +29,6 @@ interface TrailCreationFormProps {
   handleSetLoadingForm: (loading: boolean) => void;
 }
 
-type FormErrorType = {
-  label: string;
-  value: string;
-}[];
-
 const TrailCreationForm = ({ handleSetLoadingForm }: TrailCreationFormProps) => {
   const [games, setGames] = useState<Game[]>([]);
   const [trailName, setTrailName] = useState('');
@@ -49,7 +44,7 @@ const TrailCreationForm = ({ handleSetLoadingForm }: TrailCreationFormProps) => 
   const [userAvailability, setUserAvailability] = useState('1');
   const user = getUserCookie();
   const token = user?.token;
-  const [formError, setFormError] = useState<FormErrorType>([]);
+  const [formError, setFormError] = useState<string[]>([]);
 
   const [loadingInputSelectGames, setLoadingInputSelectGames] = useState(false);
 
@@ -69,7 +64,9 @@ const TrailCreationForm = ({ handleSetLoadingForm }: TrailCreationFormProps) => 
         headers: { Authorization: `Token ${token}`, 'Content-Type': 'application/json' },
       });
       if (!res.ok) {
-        throw new Error();
+        const errorData = await res.json() as { [key: string]: string[] };
+        const errorMessages = Object.entries(errorData).flatMap(([key, errors]) => errors.map((error) => `${key}: ${error}`));
+        setFormError(errorMessages);
       }
       // TODO: Obtener el id del trail creado desde backend en lugar de hacerlo así
       const trailRes = await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/getTrail/');
@@ -77,6 +74,7 @@ const TrailCreationForm = ({ handleSetLoadingForm }: TrailCreationFormProps) => 
       const trailId = trailData[trailData.length - 1].id;
       return trailId;
     } catch (error) {
+      setFormError([Error().message]);
       throw new Error();
     }
   };
@@ -100,10 +98,13 @@ const TrailCreationForm = ({ handleSetLoadingForm }: TrailCreationFormProps) => 
         },
       });
       if (!res.ok) {
-        setFormError([...formError, { label: 'Añadir juegos al Trail', value: 'No se han podido añadir los juegos al trail correctamente' }]);
+        const errorData = await res.json() as { [key: string]: string[] };
+        const errorMessages = Object.entries(errorData).flatMap(([key, errors]) => errors.map((error) => `${key}: ${error}`));
+        setFormError(errorMessages);
       }
     } catch (error) {
-      setFormError([...formError, { label: 'Añadir juegos al Trail', value: 'No se han podido añadir los juegos al trail correctamente' }]);
+      setFormError([Error().message]);
+      setFormError(['No se han podido añadir los juegos. Prueba de nuevo, revisa los campos.']);
     }
   };
 
@@ -118,24 +119,15 @@ const TrailCreationForm = ({ handleSetLoadingForm }: TrailCreationFormProps) => 
     e.preventDefault();
 
     const formData = new FormData(e.currentTarget);
-    handleSetLoadingForm(true);
-    try {
-      // Paso 1: Crear el trail
-      const trailId = await createTrail();
+    // Paso 1: Crear el trail
+    const trailId = await createTrail();
 
-      // Paso 2: Crear los juegos del trail
-      await createTrailGames(formData, trailId);
+    // Paso 2: Crear los juegos del trail
+    await createTrailGames(formData, trailId);
 
-      // Paso 3: Crear los filtros premium del trail
-      if (user?.plan === 'Premium') {
-        await handlePremiumFilters(formData, trailId, user, token);
-      }
-      setFormError([]);
-    } catch (error) {
-      setFormError((prevState) => [...prevState, { label: 'Creación de Trail', value: 'No se ha podido crear el trail correctamente' }]);
-      throw new Error();
-    } finally {
-      handleSetLoadingForm(false);
+    // Paso 3: Crear los filtros premium del trail
+    if (user?.plan === 'Premium') {
+      await handlePremiumFilters(formData, trailId, user, token);
     }
   };
 
@@ -147,7 +139,8 @@ const TrailCreationForm = ({ handleSetLoadingForm }: TrailCreationFormProps) => 
         const data: Game[] = await res.json();
         setGames(data);
       } catch (error) {
-        setFormError([...formError, { label: 'Añadir juegos al Trail', value: 'No se han podido añadir los juegos al trail correctamente' }]);
+        setLoadingInputSelectGames(false);
+        setFormError(['No se han cargado los juegos, prueba de nuevo']);
       } finally {
         setLoadingInputSelectGames(false);
       }
@@ -162,18 +155,7 @@ const TrailCreationForm = ({ handleSetLoadingForm }: TrailCreationFormProps) => 
         <Title>
           Crea un nuevo Trail
         </Title>
-        {formError.length > 0 && (
-        <ErrorContainer>
-          {formError.map((error) => (
-            <>
-              <p>{error.label}</p>
-              :
-              {' '}
-              <p>{error.value}</p>
-            </>
-          ))}
-        </ErrorContainer>
-        )}
+        {formError.map((message) => (<ErrorContainer key={formError.indexOf(message)}>{message}</ErrorContainer>))}
         <Label>
           Nombre del Trail
           <Input
@@ -190,7 +172,7 @@ const TrailCreationForm = ({ handleSetLoadingForm }: TrailCreationFormProps) => 
           <InputTextArea
             name="description"
             id="description"
-            placeholder="Escribe una descripciñon para este Trail. 140 Caracteres máximo"
+            placeholder="Escribe una descripción para este Trail. 140 Caracteres máximo"
             value={trailDescription}
             onChange={(e) => setTrailDescription(e.target.value)}
           />
@@ -230,7 +212,6 @@ const TrailCreationForm = ({ handleSetLoadingForm }: TrailCreationFormProps) => 
             name="max-players"
             id="max-players"
             min={1}
-            defaultValue={2}
             value={trailMaxNumber}
             onChange={(e) => setTrailMaxNumber(e.target.value)}
           />

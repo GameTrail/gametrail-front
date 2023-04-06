@@ -23,7 +23,7 @@ import {
 import type { Game } from '@/models/Game/types';
 import type { Trail } from '@/models/Trail/types';
 import { getUserCookie } from '@/utils/login';
-import { handlePremiumFilters } from '@/utils/Trail/handlePremiumFilters';
+import { handlePremiumFilters } from '@/utils/trail/handlePremiumFilters';
 
 interface TrailCreationFormProps {
   handleSetLoadingForm: (loading: boolean) => void;

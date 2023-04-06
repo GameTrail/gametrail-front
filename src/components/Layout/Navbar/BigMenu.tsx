@@ -4,7 +4,8 @@ import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import type { UserCookie } from '@/components/Login/LoginComponent/types';
 import {
-  LogoutItem, MenuItem, Premium, Username,
+  Avatar,
+  LogoutItem, MenuItem, Premium,
 } from './styles';
 
 export type Props = {
@@ -29,9 +30,7 @@ const BigMenu: FC<Props> = ({ userCookie, handleStripeCheckout }) => (
           <p>Crear Trail</p>
         </MenuItem>
         <MenuItem href={`/user/${userCookie?.id}`}>
-          <Username>
-            {userCookie?.username}
-          </Username>
+          <Avatar src={userCookie.avatar} alt="No hay imagen" />
         </MenuItem>
         {userCookie?.plan === 'STANDARD' && (
           <Premium onClick={handleStripeCheckout}>

@@ -35,7 +35,7 @@ const BigMenu: FC<Props> = ({ userCookie, handleStripeCheckout }) => (
         </MenuItem>
         {userCookie?.plan === 'STANDARD' && (
           <Premium onClick={handleStripeCheckout}>
-            <p>Premium</p>
+            <p>Hazte Premium</p>
           </Premium>
         )}
         <LogoutItem href="/auth/logout">

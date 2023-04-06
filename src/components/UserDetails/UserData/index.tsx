@@ -1,11 +1,13 @@
 import type { FC } from 'react';
 import { useCallback, useMemo, useState } from 'react';
 
-import { faCrown } from '@fortawesome/free-solid-svg-icons';
+import { faCrown, faGear } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useRouter } from 'next/router';
 import type { User } from '@/models/User/types';
 import { getUserCookie } from '@/utils/login';
 import {
+
   Container, RateButton, RateContainer, RateLabel, RateButtonSubmit, RateInput, CloseRateContainer,
 } from './styles';
 
@@ -19,6 +21,8 @@ const UserData: FC<Props> = ({ user }) => {
   const handleRateContainer = useCallback(() => {
     setRenderRate(!rate);
   }, [rate]);
+
+  const router = useRouter();
 
   const handleSubmit = useCallback(async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -77,6 +81,9 @@ const UserData: FC<Props> = ({ user }) => {
     return null;
   }, [handleRateContainer, handleSubmit, rate]);
 
+  const handleConfigProfile = useCallback(() => {
+    router.push('/user/configuration');
+  }, [router]);
   return (
     <>
       <Container>
@@ -86,12 +93,17 @@ const UserData: FC<Props> = ({ user }) => {
           {user.username}
           {' '}
           {user.plan === 'Premium' && (
-            <FontAwesomeIcon icon={faCrown} size="xs" />
+            <FontAwesomeIcon icon={faCrown} className="crown" size="xs" />
+          )}
+
+          {user.id === userWhoRates?.id && (
+            <FontAwesomeIcon icon={faGear} className="gear" onClick={handleConfigProfile} size="xs" />
           )}
         </h1>
-        {user.plan === 'PACO' && (
+        {user.id !== userWhoRates?.id && (
           <RateButton onClick={handleRateContainer}>Valorar</RateButton>
         )}
+
       </Container>
       {handleRenderRate}
     </>

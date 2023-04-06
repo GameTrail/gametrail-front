@@ -1,25 +1,38 @@
-import type { FC } from 'react';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
-import type { GetServerSideProps, GetServerSidePropsContext } from 'next';
+import { useRouter } from 'next/router';
+import Error from '@/components/Error';
+import LoadingSpinner from '@/components/LoadingSpinner';
 import TrailDetails from '@/containers/Trail/TrailDetails';
 import type { Trail as TrailData } from '@/models/Trail/types';
 
-export type Props = {
-  data: TrailData;
+const Trail = () => {
+  const router = useRouter();
+  const [trailData, setTrailData] = useState<TrailData | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<boolean>(false);
+  const { id } = router.query;
+
+  useEffect(() => {
+    const fetchTrail = async () => {
+      setLoading(true);
+      try {
+        const response = await fetch(`https://gametrail-backend-production-8fc0.up.railway.app/api/getTrail/${id}`);
+        const data = await response.json();
+        setTrailData(data);
+        setError(false);
+      } catch (err) {
+        setError(true);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchTrail();
+  }, [id]);
+
+  if (loading) return <LoadingSpinner />;
+  if (error) return <Error />;
+  return <TrailDetails trailData={trailData} />;
 };
 
-export const getServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext) => {
-  const trail = context.params?.id as string;
-  const response = await fetch(`https://gametrail-backend-production-8fc0.up.railway.app/api/getTrail/${trail}`);
-  const data = await response.json();
-
-  return {
-    props: {
-      data,
-    },
-  };
-};
-
-const Trail: FC<Props> = ({ data }) => <TrailDetails trailData={data} />;
 export default Trail;

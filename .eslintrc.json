@@ -21,6 +21,7 @@
     "react"
   ],
   "rules": {
+    "@next/next/no-img-element": "off",
     "react/react-in-jsx-scope": "off",
     "react/jsx-props-no-spreading": "off",
     "import/no-extraneous-dependencies": "off" ,

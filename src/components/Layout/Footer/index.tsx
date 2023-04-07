@@ -5,7 +5,10 @@ const Footer = () => (
   <Foot>
     <h1>GAMETRAIL</h1>
     <Menu>
-      <MenuItem href="/">
+      <MenuItem href="/terms">
+        <h4>Términos y condiciones de uso</h4>
+      </MenuItem>
+      <MenuItem href="/disclaimer">
         <h4>Aviso legal</h4>
       </MenuItem>
       <MenuItem href="/">
@@ -13,6 +16,9 @@ const Footer = () => (
       </MenuItem>
       <MenuItem href="/">
         <h4>Política de privacidad</h4>
+      </MenuItem>
+      <MenuItem href="/">
+        <h4>Política de datos</h4>
       </MenuItem>
     </Menu>
   </Foot>

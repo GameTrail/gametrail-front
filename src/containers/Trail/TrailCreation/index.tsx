@@ -1,24 +1,22 @@
-import { useState } from 'react';
-import LoadingSpinner from '@/components/LoadingSpinner';
+// import { useState } from 'react';
+// import LoadingSpinner from '@/components/LoadingSpinner';
 import TrailCreationForm from '@/components/Trail/TrailCreation/Form';
 import {
   Container,
 } from '@/containers/Trail/TrailCreation/styles';
 
-const TrailCreation = () => {
-  const [loadingForm, setLoadingForm] = useState(false);
-  const handleSetLoadingForm = (value: boolean) => {
-    setLoadingForm(value);
-  };
+const TrailCreation = () => (
+  // const [loadingForm, setLoadingForm] = useState(false);
+  // const handleSetLoadingForm = (value: boolean) => {
+  //   setLoadingForm(value);
+  // };
 
-  if (loadingForm) return <LoadingSpinner />;
+  // if (loadingForm) return <LoadingSpinner />;
 
-  return (
-    <Container>
-      <TrailCreationForm handleSetLoadingForm={handleSetLoadingForm} />
-    </Container>
+  <Container>
+    <TrailCreationForm />
+  </Container>
 
-  );
-};
+);
 
 export default TrailCreation;

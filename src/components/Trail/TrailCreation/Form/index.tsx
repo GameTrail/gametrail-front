@@ -23,13 +23,13 @@ import {
 import type { Game } from '@/models/Game/types';
 import type { Trail } from '@/models/Trail/types';
 import { getUserCookie } from '@/utils/login';
-import { handlePremiumFilters } from '@/utils/trail/handlePremiumFilters';
+import { handlePremiumFilters } from '@/utils/Trail/handlePremiumFilters';
 
-interface TrailCreationFormProps {
-  handleSetLoadingForm: (loading: boolean) => void;
-}
+// interface TrailCreationFormProps {
+//   handleSetLoadingForm: (loading: boolean) => void;
+// }
 
-const TrailCreationForm = ({ handleSetLoadingForm }: TrailCreationFormProps) => {
+const TrailCreationForm = () => {
   const [games, setGames] = useState<Game[]>([]);
   const [trailName, setTrailName] = useState('');
   const [trailDescription, setTrailDescription] = useState('');
@@ -50,7 +50,6 @@ const TrailCreationForm = ({ handleSetLoadingForm }: TrailCreationFormProps) => 
 
   const createTrail = async () => {
     try {
-      handleSetLoadingForm(true);
       const requestData = {
         name: trailName,
         description: trailDescription,
@@ -64,23 +63,26 @@ const TrailCreationForm = ({ handleSetLoadingForm }: TrailCreationFormProps) => 
         body: JSON.stringify(requestData),
         headers: { Authorization: `Token ${token}`, 'Content-Type': 'application/json' },
       });
-      if (!res.ok) {
-        handleSetLoadingForm(false);
-        const errorData = await res.json() as { [key: string]: string[] };
-        const errorMessages = Object.entries(errorData).flatMap(([key, errors]) => errors.map((error) => `${key}: ${error}`));
-        setFormError(errorMessages);
+      switch (res.status) {
+        case 400:
+          // eslint-disable-next-line no-case-declarations
+          const errorData = await res.json() as { [key: string]: string[] };
+          // eslint-disable-next-line no-case-declarations
+          const errorMessages = Object.entries(errorData).flatMap(([key, errors]) => errors.map((error) => `${key}: ${error}`));
+          setFormError(errorMessages);
+          break;
+        default:
+          setFormError([await res.json() as string]);
       }
+    } catch (error) {
+      setFormError(['Ha ocurrido un error al crear el trail, pruebe de nuevo más tarde.']);
+    } finally {
       // TODO: Obtener el id del trail creado desde backend en lugar de hacerlo así
       const trailRes = await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/getTrail/');
       const trailData: Trail[] = await trailRes.json();
       const trailId = trailData[trailData.length - 1].id;
+      // eslint-disable-next-line no-unsafe-finally
       return trailId;
-    } catch (error) {
-      handleSetLoadingForm(false);
-      setFormError([Error().message]);
-      throw new Error();
-    } finally {
-      handleSetLoadingForm(false);
     }
   };
 
@@ -92,7 +94,6 @@ const TrailCreationForm = ({ handleSetLoadingForm }: TrailCreationFormProps) => 
       message: 'Pendiente de selección',
       status: 'PENDING',
     };
-    handleSetLoadingForm(true);
 
     try {
       const res = await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/gameInTrail', {
@@ -104,17 +105,12 @@ const TrailCreationForm = ({ handleSetLoadingForm }: TrailCreationFormProps) => 
         },
       });
       if (!res.ok) {
-        handleSetLoadingForm(false);
         const errorData = await res.json() as { [key: string]: string[] };
-        const errorMessages = Object.entries(errorData).flatMap(([key, errors]) => errors.map((error) => `${key}: ${error}`));
+        const errorMessages = Object.entries(errorData).flatMap(([key, errores]) => errores.map((error) => `${key}: ${error}`));
         setFormError(errorMessages);
       }
     } catch (error) {
-      handleSetLoadingForm(false);
-      setFormError([Error().message]);
-      setFormError(['No se han podido añadir los juegos. Prueba de nuevo, revisa los campos.']);
-    } finally {
-      handleSetLoadingForm(false);
+      setFormError(['Ha ocurrido un error al añadir los juegos, pruebe de nuevo más tarde.']);
     }
   };
 
@@ -129,6 +125,7 @@ const TrailCreationForm = ({ handleSetLoadingForm }: TrailCreationFormProps) => 
     e.preventDefault();
 
     const formData = new FormData(e.currentTarget);
+
     // Paso 1: Crear el trail
     const trailId = await createTrail();
 
@@ -150,7 +147,7 @@ const TrailCreationForm = ({ handleSetLoadingForm }: TrailCreationFormProps) => 
         setGames(data);
       } catch (error) {
         setLoadingInputSelectGames(false);
-        setFormError(['No se han cargado los juegos, prueba de nuevo']);
+        setFormError([(error as Error).message]);
       } finally {
         setLoadingInputSelectGames(false);
       }

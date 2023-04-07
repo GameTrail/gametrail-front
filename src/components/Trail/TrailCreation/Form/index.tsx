@@ -3,6 +3,7 @@ import {
 } from 'react';
 import { faCrown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import router from 'next/router';
 import Select from 'react-select';
 import CreateLottie from '@/components/Lotties/Landing/CreateLottie';
 import {
@@ -35,7 +36,7 @@ const TrailCreationForm = () => {
   const [trailDescription, setTrailDescription] = useState('');
   const [trailStartDate, setTrailStartDate] = useState('');
   const [trailEndDate, setTrailEndDate] = useState('');
-  const [trailMaxNumber, setTrailMaxNumber] = useState('2');
+  const [trailMaxNumber, setTrailMaxNumber] = useState(2);
 
   const [userKindness, setUserKindness] = useState('1');
   const [userFunny, setUserFunny] = useState('1');
@@ -48,42 +49,47 @@ const TrailCreationForm = () => {
 
   const [loadingInputSelectGames, setLoadingInputSelectGames] = useState(false);
 
-  const createTrail = async () => {
-    try {
-      const requestData = {
-        name: trailName,
-        description: trailDescription,
-        startDate: trailStartDate,
-        finishDate: trailEndDate,
-        maxPlayers: trailMaxNumber,
-        owner: user?.id.toString(),
-      };
-      const res = await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/trail/', {
-        method: 'POST',
-        body: JSON.stringify(requestData),
-        headers: { Authorization: `Token ${token}`, 'Content-Type': 'application/json' },
-      });
-      switch (res.status) {
-        case 400:
-          // eslint-disable-next-line no-case-declarations
-          const errorData = await res.json() as { [key: string]: string[] };
-          // eslint-disable-next-line no-case-declarations
-          const errorMessages = Object.entries(errorData).flatMap(([key, errors]) => errors.map((error) => `${key}: ${error}`));
-          setFormError(errorMessages);
-          break;
-        default:
-          setFormError([await res.json() as string]);
-      }
-    } catch (error) {
-      setFormError(['Ha ocurrido un error al crear el trail, pruebe de nuevo más tarde.']);
-    } finally {
-      // TODO: Obtener el id del trail creado desde backend en lugar de hacerlo así
-      const trailRes = await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/getTrail/');
-      const trailData: Trail[] = await trailRes.json();
-      const trailId = trailData[trailData.length - 1].id;
-      // eslint-disable-next-line no-unsafe-finally
-      return trailId;
+  const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const startDate = new Date(trailStartDate);
+    const endDate = new Date(trailEndDate);
+
+    if (user?.plan !== 'PREMIUM' && (endDate.getTime() - startDate.getTime() > 7 * 86400000)) {
+      setFormError((prevState) => [...prevState, 'La diferencia entre las fechas no puede ser mayor a 7 días']);
     }
+
+    if (e.target.name === 'start-date') {
+      setTrailStartDate(e.target.value);
+    } else {
+      setTrailEndDate(e.target.value);
+    }
+  };
+
+  const createTrail = async () => {
+    const requestData = {
+      name: trailName,
+      description: trailDescription,
+      startDate: trailStartDate,
+      finishDate: trailEndDate,
+      maxPlayers: trailMaxNumber,
+      owner: user?.id.toString(),
+    };
+    if (user?.plan !== 'PREMIUM' && trailMaxNumber > 4) {
+      setFormError((prevState) => [...prevState, 'Si eres un usuario estandar, tus trails solo pueden tener 4 jugadores como máximo.']);
+    }
+    const res = await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/trail/', {
+      method: 'POST',
+      body: JSON.stringify(requestData),
+      headers: { Authorization: `Token ${token}`, 'Content-Type': 'application/json' },
+    });
+    if (!res.ok) {
+      setFormError(['Existe al menos un error en el formulario, comprueba los campos.']);
+    }
+
+    // TODO: Obtener el id del trail creado desde backend en lugar de hacerlo así
+    const trailRes = await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/getTrail/');
+    const trailData: Trail[] = await trailRes.json();
+    const trailId = trailData[trailData.length - 1].id;
+    return trailId;
   };
 
   const putGame = async (game: FormDataEntryValue, trailId: number, selectedGames: FormDataEntryValue[]) => {
@@ -136,6 +142,8 @@ const TrailCreationForm = () => {
     if (user?.plan === 'Premium') {
       await handlePremiumFilters(formData, trailId, user, token);
     }
+
+    router.push(`/user/${user?.id}`);
   };
 
   useEffect(() => {
@@ -166,6 +174,7 @@ const TrailCreationForm = () => {
         <Label>
           Nombre del Trail
           <Input
+            required
             type="text"
             name="name"
             id="name"
@@ -177,6 +186,7 @@ const TrailCreationForm = () => {
         <Label>
           Descripción
           <InputTextArea
+            required
             name="description"
             id="description"
             placeholder="Escribe una descripción para este Trail. 140 Carácteres de máximo"
@@ -192,21 +202,25 @@ const TrailCreationForm = () => {
           <Label>
             Fecha de Inicio
             <InputDate
+              required
               type="date"
               name="start-date"
               id="start-date"
+              min={new Date().toISOString().split('T')[0]}
               value={trailStartDate}
-              onChange={(e) => setTrailStartDate(e.target.value)}
+              onChange={handleDateChange}
             />
           </Label>
           <Label>
             Fecha de Fin
             <InputDate
+              required
               type="date"
               name="end-date"
               id="end-date"
+              min={trailStartDate ? new Date(trailStartDate).toISOString().split('T')[0] : ''}
               value={trailEndDate}
-              onChange={(e) => setTrailEndDate(e.target.value)}
+              onChange={handleDateChange}
             />
           </Label>
         </DateFieldContainer>
@@ -216,12 +230,13 @@ const TrailCreationForm = () => {
         <Label>
           Número Máximo de Jugadores
           <Input
+            required
             type="number"
             name="max-players"
             id="max-players"
             min={1}
             value={trailMaxNumber}
-            onChange={(e) => setTrailMaxNumber(e.target.value)}
+            onChange={(e) => setTrailMaxNumber(e.target.valueAsNumber)}
           />
         </Label>
 
@@ -311,7 +326,7 @@ const TrailCreationForm = () => {
 
         <Label htmlFor="games">
           Juegos que se van a Jugar
-          <Select isMulti name="games" isLoading={loadingInputSelectGames} isDisabled={loadingInputSelectGames} options={games} getOptionLabel={(option: Game) => option.name} getOptionValue={(option: Game) => option.id.toString()} styles={GamesSelectorStyles} placeholder="Selecciona los juegos que quieras..." />
+          <Select required isMulti name="games" isLoading={loadingInputSelectGames} isDisabled={loadingInputSelectGames} options={games} getOptionLabel={(option: Game) => option.name} getOptionValue={(option: Game) => option.id.toString()} styles={GamesSelectorStyles} placeholder="Selecciona los juegos que quieras..." />
         </Label>
         <Button type="submit">Create</Button>
       </Form>

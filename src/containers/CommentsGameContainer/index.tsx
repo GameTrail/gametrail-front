@@ -1,6 +1,8 @@
 import type { FC } from 'react';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { CommentsSection, InputFieldSection } from '@/components/Comments';
+import Error from '@/components/Error';
+import LoadingSpinner from '@/components/LoadingSpinner';
 import type { CommentsGame } from '@/models/Comment/types';
 import type { Game } from '@/models/Game/types';
 import { getUserCookie } from '@/utils/login';
@@ -17,9 +19,11 @@ export type Props = {
 };
 
 const CommentsGameContainer: FC<Props> = ({ gameData }) => {
-  const comments = gameData.comments_games === undefined ? [] : gameData.comments_games;
   const user = getUserCookie();
-  const [commentsArray, setCommentsArray] = useState<CommentsGame[]>(comments);
+  const [commentsArray, setCommentsArray] = useState<CommentsGame[] | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<boolean>(false);
+  const [post, setPost] = useState(false);
 
   const postComment = async (commentToPost: CommentToPostGame) => {
     const url = 'https://gametrail-backend-production-8fc0.up.railway.app/api/comment';
@@ -33,9 +37,9 @@ const CommentsGameContainer: FC<Props> = ({ gameData }) => {
       const data = await res.json();
       // eslint-disable-next-line no-console
       console.log({ data });
-    } catch (error) {
+    } catch (err) {
       // eslint-disable-next-line no-console
-      console.log({ error });
+      console.log({ err });
     }
   };
 
@@ -47,22 +51,29 @@ const CommentsGameContainer: FC<Props> = ({ gameData }) => {
       game: gameData.id,
       commentText: input,
     };
-    const newComment = {
-      id: commentsArray.length + 1,
-      commentText: input,
-      userWhoComments: {
-        id: user?.id ?? null,
-        username: user?.username ?? '',
-        avatar: user?.avatar ?? '',
-      },
-      game: gameData.id,
-    };
-    const updatedCommentedArray = [...commentsArray];
-    updatedCommentedArray.push(newComment);
-    setCommentsArray(updatedCommentedArray);
     postComment(commentToPost);
+    setPost(!post);
   };
 
+  useEffect(() => {
+    const fetchGameDetails = async (id: number) => {
+      setLoading(true);
+      try {
+        const gameDetailsResponse = await fetch(`https://gametrail-backend-production-8fc0.up.railway.app/api/game/${id}/`);
+        const gameDetailsData = await gameDetailsResponse.json();
+        setCommentsArray(gameDetailsData.comments_games);
+        setError(false);
+      } catch (err) {
+        setError(true);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchGameDetails(gameData.id);
+  }, [post, gameData.id]);
+
+  if (loading) return <LoadingSpinner />;
+  if (error || !gameData) return <Error />;
   return (
     <Container>
       <InputFieldSection onClickNewComment={onClickNewComment} />

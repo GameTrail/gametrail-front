@@ -1,6 +1,8 @@
 import type { FC } from 'react';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { CommentsSection, InputFieldSection } from '@/components/Comments';
+import Error from '@/components/Error';
+import LoadingSpinner from '@/components/LoadingSpinner';
 import type { CommentsUser } from '@/models/Comment/types';
 import type { User } from '@/models/User/types';
 import { getUserCookie } from '@/utils/login';
@@ -17,9 +19,11 @@ export type Props = {
 };
 
 const CommentsUserContainer: FC<Props> = ({ userData }) => {
-  const comments = userData.comments_received === undefined ? [] : userData.comments_received;
   const user = getUserCookie();
-  const [commentsArray, setCommentsArray] = useState<(CommentsUser)[]>(comments);
+  const [commentsArray, setCommentsArray] = useState<CommentsUser [] | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<boolean>(false);
+  const [post, setPost] = useState(false);
 
   const postComment = async (commentToPost: CommentToPostUser) => {
     const url = 'https://gametrail-backend-production-8fc0.up.railway.app/api/comment';
@@ -33,9 +37,9 @@ const CommentsUserContainer: FC<Props> = ({ userData }) => {
       const data = await res.json();
       // eslint-disable-next-line no-console
       console.log({ data });
-    } catch (error) {
+    } catch (err) {
       // eslint-disable-next-line no-console
-      console.log({ error });
+      console.log({ err });
     }
   };
 
@@ -47,27 +51,31 @@ const CommentsUserContainer: FC<Props> = ({ userData }) => {
       userCommented: userData.id,
       commentText: input,
     };
-
-    const newComment = {
-      id: commentsArray.length + 1,
-      commentText: input,
-      userWhoComments: {
-        id: user?.id ?? null,
-        username: user?.username ?? 'Guest',
-        avatar: user?.avatar ?? '',
-      },
-      commentedUser: {
-        id: userData.id,
-        username: userData.username,
-        avatar: userData.avatar,
-      },
-    };
-    const updatedCommentedArray = [...commentsArray];
-    updatedCommentedArray.push(newComment);
-    setCommentsArray(updatedCommentedArray);
     postComment(commentToPost);
+    setPost(!post);
   };
 
+  useEffect(() => {
+    // eslint-disable-next-line no-console
+    console.log('Se ha ejecutado el useEffect de CommentsUserContainer');
+    const fetchUser = async (id: number) => {
+      setLoading(true);
+      try {
+        const response = await fetch(`https://gametrail-backend-production-8fc0.up.railway.app/api/user/${id}/`);
+        const data = await response.json();
+        setCommentsArray(data.comments_received);
+        setError(false);
+      } catch (err) {
+        setError(true);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchUser(userData.id);
+  }, [post, userData.id]);
+
+  if (loading) return <LoadingSpinner />;
+  if (error || !userData) return <Error />;
   return (
     <Container>
       <InputFieldSection onClickNewComment={onClickNewComment} />

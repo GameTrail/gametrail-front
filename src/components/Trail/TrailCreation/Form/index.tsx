@@ -50,6 +50,7 @@ const TrailCreationForm = ({ handleSetLoadingForm }: TrailCreationFormProps) => 
 
   const createTrail = async () => {
     try {
+      handleSetLoadingForm(true);
       const requestData = {
         name: trailName,
         description: trailDescription,
@@ -64,6 +65,7 @@ const TrailCreationForm = ({ handleSetLoadingForm }: TrailCreationFormProps) => 
         headers: { Authorization: `Token ${token}`, 'Content-Type': 'application/json' },
       });
       if (!res.ok) {
+        handleSetLoadingForm(false);
         const errorData = await res.json() as { [key: string]: string[] };
         const errorMessages = Object.entries(errorData).flatMap(([key, errors]) => errors.map((error) => `${key}: ${error}`));
         setFormError(errorMessages);
@@ -74,8 +76,11 @@ const TrailCreationForm = ({ handleSetLoadingForm }: TrailCreationFormProps) => 
       const trailId = trailData[trailData.length - 1].id;
       return trailId;
     } catch (error) {
+      handleSetLoadingForm(false);
       setFormError([Error().message]);
       throw new Error();
+    } finally {
+      handleSetLoadingForm(false);
     }
   };
 
@@ -87,6 +92,7 @@ const TrailCreationForm = ({ handleSetLoadingForm }: TrailCreationFormProps) => 
       message: 'Pendiente de selección',
       status: 'PENDING',
     };
+    handleSetLoadingForm(true);
 
     try {
       const res = await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/gameInTrail', {
@@ -98,13 +104,17 @@ const TrailCreationForm = ({ handleSetLoadingForm }: TrailCreationFormProps) => 
         },
       });
       if (!res.ok) {
+        handleSetLoadingForm(false);
         const errorData = await res.json() as { [key: string]: string[] };
         const errorMessages = Object.entries(errorData).flatMap(([key, errors]) => errors.map((error) => `${key}: ${error}`));
         setFormError(errorMessages);
       }
     } catch (error) {
+      handleSetLoadingForm(false);
       setFormError([Error().message]);
       setFormError(['No se han podido añadir los juegos. Prueba de nuevo, revisa los campos.']);
+    } finally {
+      handleSetLoadingForm(false);
     }
   };
 
@@ -172,13 +182,14 @@ const TrailCreationForm = ({ handleSetLoadingForm }: TrailCreationFormProps) => 
           <InputTextArea
             name="description"
             id="description"
-            placeholder="Escribe una descripción para este Trail. 140 Caracteres máximo"
+            placeholder="Escribe una descripción para este Trail. 140 Carácteres de máximo"
             value={trailDescription}
+            maxLength={140}
             onChange={(e) => setTrailDescription(e.target.value)}
           />
         </Label>
         <PlanInfoToast>
-          Si eres un usuario estandar, tus trails solo pondrán durar 7 días.
+          Si eres un usuario estandar, tus trails solo pondrán durar 7 días como máximo.
         </PlanInfoToast>
         <DateFieldContainer>
           <Label>

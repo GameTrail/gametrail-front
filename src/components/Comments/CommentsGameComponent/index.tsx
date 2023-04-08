@@ -1,11 +1,12 @@
 import type { FC } from 'react';
 import React, { useEffect, useState } from 'react';
-import { CommentsSection, InputFieldSection } from '@/components/Comments';
 import Error from '@/components/Error';
 import LoadingSpinner from '@/components/LoadingSpinner';
 import type { CommentsGame } from '@/models/Comment/types';
 import type { Game } from '@/models/Game/types';
 import { getUserCookie } from '@/utils/login';
+import CommentsSection from './CommentsSection';
+import InputFieldSection from './InputFieldSection';
 import { Container } from './styles';
 
 export type CommentToPostGame = {

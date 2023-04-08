@@ -1,2 +1,2 @@
-export { default as CommentsSection } from './CommentsSection';
-export { default as InputFieldSection } from './InputFieldSection';
+export { default as CommentsGameComponent } from './CommentsGameComponent';
+export { default as CommentsUserComponent } from './CommentsUserComponent';

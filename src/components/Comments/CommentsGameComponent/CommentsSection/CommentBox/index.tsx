@@ -14,7 +14,7 @@ export type Props = {
   comment: Comment;
 };
 
-const CommentComponent: FC<Props> = ({ comment }) => (
+const CommentBox: FC<Props> = ({ comment }) => (
   <CommentContainer>
     <AvatarContainer>
       <img src={comment.userWhoComments?.avatar ?? ''} alt="imagen" width={30} height={30} />
@@ -36,4 +36,4 @@ const CommentComponent: FC<Props> = ({ comment }) => (
   </CommentContainer>
 );
 
-export default CommentComponent;
+export default CommentBox;

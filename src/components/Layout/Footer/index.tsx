@@ -11,7 +11,7 @@ const Footer = () => (
       <MenuItem href="/disclaimer">
         <h4>Aviso legal</h4>
       </MenuItem>
-      <MenuItem href="/">
+      <MenuItem href="/contact">
         <h4>Contacto</h4>
       </MenuItem>
       <MenuItem href="/">

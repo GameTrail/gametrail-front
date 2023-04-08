@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 import React, { useMemo, useState } from 'react';
-import { CommentsGameComponent } from '@/components/Comments';
+import { CommentsComponent } from '@/components/Comments';
 import { GameData, GameImages, GameTrailList } from '@/components/GameDetails';
 import GameListsButtons from '@/components/GameDetails/GameListsButtons';
 import type { Game } from '@/models/Game/types';
@@ -23,7 +23,7 @@ const GameDetails:FC<Props> = ({ gameDetails, trailData }) => {
 
   const handleRenderList = useMemo(() => {
     if (selectedButton === ButtonType.Trail) return <GameTrailList trailList={trailData} />;
-    if (selectedButton === ButtonType.Comments) return <CommentsGameComponent gameData={gameDetails} />;
+    if (selectedButton === ButtonType.Comments) return <CommentsComponent data={gameDetails} type="game" />;
     return null;
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedButton, trailData, authToken, gameDetails.id]);

@@ -1,2 +1,1 @@
-export { default as CommentsGameComponent } from './CommentsGameComponent';
-export { default as CommentsUserComponent } from './CommentsUserComponent';
+export { default as CommentsComponent } from './CommentsComponent';

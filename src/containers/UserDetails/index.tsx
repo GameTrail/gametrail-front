@@ -2,7 +2,7 @@ import type { FC } from 'react';
 import React, { useMemo, useState } from 'react';
 import { faCircleQuestion } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { CommentsUserComponent } from '@/components/Comments';
+import { CommentsComponent } from '@/components/Comments';
 import {
   UserData, UserStats, UserTrailList, UserAverageRating, UserListsButtons, UserGameList,
 } from '@/components/UserDetails';
@@ -23,7 +23,7 @@ const User: FC<Props> = ({ userData }) => {
   const handleRenderList = useMemo(() => {
     if (selectedButton === ButtonType.Trail) return <UserTrailList trailList={userData.trails} />;
     if (selectedButton === ButtonType.Games) return <UserGameList gameList={userData.games} />;
-    if (selectedButton === ButtonType.Comments) return <CommentsUserComponent userData={userData} />;
+    if (selectedButton === ButtonType.Comments) return <CommentsComponent data={userData} type="user" />;
     return null;
   }, [selectedButton, userData]);
 

@@ -5,8 +5,8 @@ import LoadingSpinner from '@/components/LoadingSpinner';
 import type { CommentsGame } from '@/models/Comment/types';
 import type { Game } from '@/models/Game/types';
 import { getUserCookie } from '@/utils/login';
-import CommentsSection from './CommentsSection';
-import InputFieldSection from './InputFieldSection';
+import CommentsSection from '../CommentsSection';
+import InputFieldSection from '../InputFieldSection';
 import { Container } from './styles';
 
 export type CommentToPostGame = {

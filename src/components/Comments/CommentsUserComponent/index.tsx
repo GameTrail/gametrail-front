@@ -5,8 +5,8 @@ import LoadingSpinner from '@/components/LoadingSpinner';
 import type { CommentsUser } from '@/models/Comment/types';
 import type { User } from '@/models/User/types';
 import { getUserCookie } from '@/utils/login';
-import CommentsSection from './CommentsSection';
-import InputFieldSection from './InputFieldSection';
+import CommentsSection from '../CommentsSection';
+import InputFieldSection from '../InputFieldSection';
 import { Container } from './styles';
 
 export type CommentToPostUser = {

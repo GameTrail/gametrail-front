@@ -22,7 +22,6 @@ import {
   ErrorContainer,
 } from '@/components/Trail/TrailCreation/Form/styles';
 import type { Game } from '@/models/Game/types';
-import type { Trail } from '@/models/Trail/types';
 import { getUserCookie } from '@/utils/login';
 import { handlePremiumFilters } from '@/utils/Trail/handlePremiumFilters';
 
@@ -84,11 +83,9 @@ const TrailCreationForm = () => {
     if (!res.ok) {
       setFormError(['Existe al menos un error en el formulario, comprueba los campos.']);
     }
-
-    // TODO: Obtener el id del trail creado desde backend en lugar de hacerlo así
-    const trailRes = await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/getTrail/');
-    const trailData: Trail[] = await trailRes.json();
-    const trailId = trailData[trailData.length - 1].id;
+    const data = await res.json();
+    console.log(data);
+    const trailId = data.id;
     return trailId;
   };
 
@@ -151,8 +148,8 @@ const TrailCreationForm = () => {
       setLoadingInputSelectGames(true);
       try {
         const res = await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/game/');
-        const data: Game[] = await res.json();
-        setGames(data);
+        const data = await res.json();
+        setGames(data.results);
       } catch (error) {
         setLoadingInputSelectGames(false);
         setFormError([(error as Error).message]);

@@ -137,12 +137,12 @@ const Register = () => {
           </Label>
         </Container>
         <LabelCheck>
-          Al clickar aquí,
-          <Link href="/terms"> aceptas los terminos y condiciones de uso </Link>
-          , además de las
-          <Link href="/privacy"> políticas de privacidad </Link>
+          Al clickar aquí, aceptas los
+          <Link href="/terms"> términos y condiciones de uso </Link>
+          , además de la
+          <Link href="/privacy"> política de privacidad </Link>
           y
-          <Link href="/cookiespolicy"> de cookies </Link>
+          <Link href="/cookiespolicy"> política de cookies </Link>
           de GameTrail
           <InputCheck
             type="checkbox"

@@ -1,36 +1,46 @@
+import type { ChangeEvent } from 'react';
 import React, { useEffect, useState } from 'react';
+import { useDebouncedCallback } from 'use-debounce';
 import Error from '@/components/Error';
 import LoadingSpinner from '@/components/LoadingSpinner';
 import { GameList } from '@/containers';
 import type { Game } from '@/models/Game/types';
 
+const GAMES_API_URL = 'https://gametrail-backend-production-8fc0.up.railway.app/api/game/';
+
 const Games = () => {
   const [games, setGames] = useState<Game[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
+  const [searchQuery, setSearchQuery] = useState<string>('');
 
-  const fetchGames = async () => {
+  const handleUpdateSearchQuery = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(e.target.value);
+  };
+
+  const debounceSearch = useDebouncedCallback(async (searchTerm: string) => {
     setLoading(true);
     try {
-      const response = await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/game/');
+      const searchUrl = searchTerm.length > 2 ? `${GAMES_API_URL}?search=${searchTerm}` : GAMES_API_URL;
+      const response = await fetch(searchUrl);
       const data = await response.json();
-      setGames(data);
+      setGames(data.results);
       setError(false);
     } catch (err) {
       setError(true);
     } finally {
       setLoading(false);
     }
-  };
+  }, 750);
 
   useEffect(() => {
-    fetchGames();
-  }, []);
+    debounceSearch(searchQuery);
+  }, [debounceSearch, searchQuery]);
 
   if (loading) return <LoadingSpinner />;
   if (error) return <Error />;
 
-  return <GameList games={games} />;
+  return <GameList games={games} searchQuery={searchQuery} handleUpdateSearchQuery={handleUpdateSearchQuery} />;
 };
 
 export default Games;

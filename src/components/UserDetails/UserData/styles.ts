@@ -79,7 +79,7 @@ export const RateButton = styled.button`
     padding: 10px 20px;
     border-radius: 8px;
     width: 100px;
-
+    border: none;
     background-color: ${({ theme }) => (theme.nord.gray3)};
     color: ${({ theme }) => (theme.nord.white0)};
 
@@ -99,9 +99,9 @@ export const RateButton = styled.button`
 `;
 
 export const RateContainer = styled.form`
-  position: absolute; /* Cambiar la posición a absoluta */
-  top: 0; /* Posicionar en la parte superior */
-  right: 0; /* Posicionar en la parte más alejada a la derecha */
+  position: absolute; 
+  top: 0; 
+  right: 0; 
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -128,7 +128,7 @@ export const RateContainer = styled.form`
       position:fixed;
       gap:0.5rem;
       z-index: 1;
-      margin-right: 7rem;
+      margin-right: 5rem;
       justify-content: center;
   };
 `;
@@ -173,6 +173,7 @@ export const RateButtonSubmit = styled.button`
     border-radius: 8px;
     margin-top: 1rem;
     width: 100px;
+    border: none;
     background-color: ${({ theme }) => (theme.nord.gray3)};
     color: ${({ theme }) => (theme.nord.white0)};
     &:hover {
@@ -200,4 +201,20 @@ export const CloseRateContainer = styled.button`
     padding: 2px 5px;
 
     cursor: pointer;
+`;
+
+export const ErrorContainer = styled.div`
+  text-align: center;
+  border-radius: 8px;
+  background-color: ${({ theme }) => theme.nord.red};
+  color: ${({ theme }) => theme.nord.white2};
+  border-color: black;
+  width: 100%;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  height: auto;
+  padding: 0.5rem;
+  @media (max-width: 768px) {
+    font-size: 0.7rem;
+  };
 `;

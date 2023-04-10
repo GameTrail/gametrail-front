@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { Button } from '@/components/Landing/MainSection/styles';
 import { LoginLottie } from '@/components/Lotties';
 import {
-  RegisterContainer, Container, Title, RegisterForm, Label, Input, ErrorContainer,
+  RegisterContainer, Container, Title, RegisterForm, Label, Input, ErrorContainer, LabelCheck, InputCheck,
 } from './styles';
 
 const REGISTER_URL = 'https://gametrail-backend-production-8fc0.up.railway.app/api/auth/register/';
@@ -135,6 +136,19 @@ const Register = () => {
             />
           </Label>
         </Container>
+        <LabelCheck>
+          Acepto los
+          <Link href="/terms"> términos y condiciones de uso </Link>
+          , además de la
+          <Link href="/privacy"> política de privacidad </Link>
+          y
+          <Link href="/cookiespolicy"> política de cookies </Link>
+          de GameTrail.
+          <InputCheck
+            type="checkbox"
+            required
+          />
+        </LabelCheck>
         <Button primary type="submit">Registro</Button>
       </RegisterForm>
     </RegisterContainer>

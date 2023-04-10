@@ -1,11 +1,11 @@
 import type { FC } from 'react';
 import React, { useMemo, useState } from 'react';
+import { CommentsComponent } from '@/components/Comments';
 import { GameData, GameImages, GameTrailList } from '@/components/GameDetails';
 import GameListsButtons from '@/components/GameDetails/GameListsButtons';
 import type { Game } from '@/models/Game/types';
 import type { Trail } from '@/models/Trail/types';
 import { getUserCookie } from '@/utils/login';
-import CommentsGameContainer from '../CommentsGameContainer';
 import { Container, ListsDetails } from './style';
 import { ButtonType } from './types';
 
@@ -23,7 +23,7 @@ const GameDetails:FC<Props> = ({ gameDetails, trailData }) => {
 
   const handleRenderList = useMemo(() => {
     if (selectedButton === ButtonType.Trail) return <GameTrailList trailList={trailData} />;
-    if (selectedButton === ButtonType.Comments) return <CommentsGameContainer gameData={gameDetails} />;
+    if (selectedButton === ButtonType.Comments) return <CommentsComponent data={gameDetails} type="game" />;
     return null;
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedButton, trailData, authToken, gameDetails.id]);

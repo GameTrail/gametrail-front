@@ -63,15 +63,18 @@ export const Label = styled.label`
 
 export const LabelCheck = styled.label`
   color: ${({ theme }) => theme.nord.white1};
-  font-size: 0.7em;
+  font-size: 0.8em;
   @media (max-width: 768px) {
-    font-size: 0.35rem;
+    font-size: 0.7rem;
   };
+  a {
+    color: ${({ theme }) => theme.nord.blue2};
+  }
 `;
 
 export const InputCheck = styled.input`
   padding: 15px;
-  margin-bottom: 3em;
+  margin-bottom: 2em;
   display: flex;
   border-radius: 9px;
   background: ${({ theme }) => theme.nord.white1};

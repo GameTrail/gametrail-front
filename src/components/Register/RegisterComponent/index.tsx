@@ -139,8 +139,8 @@ const Register = () => {
         <LabelCheck>
           Al clickar aquí,
           <Link href="/terms"> aceptas los terminos y condiciones de uso </Link>
-          ,
-          <Link href="/privacy"> además de las políticas de privacidad </Link>
+          , además de las
+          <Link href="/privacy"> políticas de privacidad </Link>
           y
           <Link href="/cookiespolicy"> de cookies </Link>
           de GameTrail

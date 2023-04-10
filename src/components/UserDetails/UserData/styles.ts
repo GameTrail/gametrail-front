@@ -10,7 +10,7 @@ export const Container = styled.div`
     padding: 10px 30px;   
     white-space: pre;
     font-weight: 600;
-    svg{
+    .crown{
         color: ${({ theme }) => theme.nord.yellow};
         @keyframes changeColor {
             0% {
@@ -36,7 +36,21 @@ export const Container = styled.div`
         animation: changeColor 2s linear infinite;
 
     }
-    
+
+    .gear {
+        cursor: pointer;
+        color: ${({ theme }) => theme.nord.gray3};
+        animation: rotateGear 5s linear infinite;
+    }
+
+    @keyframes rotateGear {
+        from {
+                transform: rotate(0deg);
+        }
+        to {
+                transform: rotate(360deg);
+        }
+    }
 
     img{
 

@@ -78,8 +78,9 @@ const Login = () => {
     } finally {
       setUsername('');
       setPassword('');
-
-      router.push('/home');
+      if (loginError === '') {
+        router.push('/home');
+      }
     }
   };
 

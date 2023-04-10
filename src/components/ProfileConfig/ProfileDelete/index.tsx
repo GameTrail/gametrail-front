@@ -31,10 +31,10 @@ const ProfileDelete = () => {
       if (!res.ok) {
         throw new Error(res.statusText);
       }
-      Cookies.remove('user');
     } catch (error) {
       throw new Error();
     } finally {
+      Cookies.remove('user');
       router.push('/');
     }
   };

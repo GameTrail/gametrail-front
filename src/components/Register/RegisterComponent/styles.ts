@@ -61,6 +61,31 @@ export const Label = styled.label`
   };
 `;
 
+export const LabelCheck = styled.label`
+  color: ${({ theme }) => theme.nord.white1};
+  font-size: 0.7em;
+  @media (max-width: 768px) {
+    font-size: 0.35rem;
+  };
+`;
+
+export const InputCheck = styled.input`
+  padding: 15px;
+  margin-bottom: 3em;
+  display: flex;
+  border-radius: 9px;
+  background: ${({ theme }) => theme.nord.white1};
+  color: ${({ theme }) => theme.nord.gray1};
+  width: 100%;
+  max-width: 400px;
+  outline: none;
+  border: none;
+  font-size: 1em;
+  @media (max-width: 768px) {
+    font-size: 0.7rem;
+  };
+`;
+
 export const Input = styled.input`
   padding: 15px;
   margin: auto;

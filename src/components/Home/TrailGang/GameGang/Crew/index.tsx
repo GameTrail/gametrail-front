@@ -12,8 +12,8 @@ export type Props = {
 const TrailCrew:FC<Props> = ({ trailGang }) => {
   const handleRenderUser = () => trailGang?.users?.map((user) => (
     <Player href={`/user/${user?.id}`}>
-      <ProfilePicture src={user.avatar} alt="image" width={120} height={120} />
-      <UserName>{user.username}</UserName>
+      <ProfilePicture src={user?.avatar} alt="image" width={120} height={120} />
+      <UserName>{user?.username}</UserName>
     </Player>
   ));
   return (

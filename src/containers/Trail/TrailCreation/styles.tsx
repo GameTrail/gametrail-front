@@ -2,41 +2,27 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   height: 100vh;
-  width: 60%;
-  height: fit-content;
+  width: 80vw;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
+  flex-direction: row;
   flex-wrap: nowrap;
-  padding: 2em 2em 2em 2em;
-  margin: 1.6em 0 1.6em 0;
+  padding: 5em;
+  margin-top: 3em;
+  margin-bottom: 3em;
   box-shadow: 0 0 0.5em 0.1em ${({ theme }) => theme.nord.gray0};
   border-radius: 0.5em;
-  background-color: ${({ theme }) => theme.nord.white0};
+  background: ${({ theme }) => theme.nord.gray3};
   color: ${({ theme }) => theme.nord.gray0};
-  max-width: 900px;
-
   @media (max-width: 768px) {
-    width: 85%;
-  }
- 
-  @media (max-height:720px) {
-    width: 85%;
+    flex-direction: column;         
+    width: 90vw;         
     height: 100%;
-  }
-  @media (max-height:800px) {
-    width: 85%;
+    justify-content: center;
+  };
+  @media (min-width: 768px) and (max-width: 1024px) {
+    flex-direction: column;         
+    width: 100%;         
     height: 100%;
-  }
-    @media (max-width: 475px) {
-      height: 100%;
-    }
-`;
-
-export const Background = styled.div`
-  width: 100%;
-  height: 100%;
-  background-color: ${({ theme }) => theme.nord.white2};
+    justify-content: center;
+  };
 `;

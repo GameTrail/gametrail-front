@@ -11,8 +11,8 @@ export type Props = {
 };
 
 const TrailData:FC<Props> = ({ trailGang }) => {
-  const startDate = new Date(trailGang.startDate);
-  const finishDate = new Date(trailGang.finishDate);
+  const startDate = new Date(trailGang?.startDate);
+  const finishDate = new Date(trailGang?.finishDate);
 
   // Calcular la diferencia en milisegundos
   const durationInMs = finishDate.getTime() - startDate.getTime();
@@ -25,7 +25,7 @@ const TrailData:FC<Props> = ({ trailGang }) => {
       <Container>
         <ControllerLottie />
         <Data>
-          {trailGang.games.length}
+          {trailGang?.games?.length}
           Juegos
         </Data>
       </Container>

@@ -21,7 +21,7 @@ const Sections: FC<Props> = ({ trailData }) => {
   const handleRenderList = useMemo(() => {
     if (selectedButton === ButtonType.Chat) return <ChatContainer trailData={trailData} />;
     if (selectedButton === ButtonType.Players) return <PlayersList trailData={trailData} />;
-    return <TrailGameList games={trailData.games} />;
+    return <TrailGameList trailData={trailData} />;
   }, [selectedButton, trailData]);
 
   return (

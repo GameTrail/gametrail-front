@@ -1,7 +1,6 @@
 import type { FC } from 'react';
 import { useMemo, useState } from 'react';
 import PlayersList from '@/components/Trail/TrailDetails/Sections/PlayersList';
-import ChatContainer from '@/containers/ChatContainer';
 import { ButtonType } from '@/containers/GameDetails/types';
 import type { Trail } from '@/models/Trail/types';
 import TrailButtons from '../TrailButtons';
@@ -19,7 +18,7 @@ const Sections: FC<Props> = ({ trailData }) => {
   };
 
   const handleRenderList = useMemo(() => {
-    if (selectedButton === ButtonType.Chat) return <ChatContainer trailData={trailData} />;
+    // if (selectedButton === ButtonType.Chat) return // TODO: Add chat component;
     if (selectedButton === ButtonType.Players) return <PlayersList trailData={trailData} />;
     return <TrailGameList games={trailData.games} />;
   }, [selectedButton, trailData]);

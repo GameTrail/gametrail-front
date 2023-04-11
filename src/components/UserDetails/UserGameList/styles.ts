@@ -46,7 +46,7 @@ export const Game = styled(Link)`
     justify-content: flex-start;
     gap: 1em;
     border-radius: 9px;
-    width: 55vw;
+    width: 75vw;
     height: auto;
     cursor: pointer;
     background-color: ${({ theme }) => theme.nord.gray3};
@@ -59,15 +59,12 @@ export const Game = styled(Link)`
         background-color: ${({ theme }) => theme.nord.gray2};
     }
 
-    @media (max-width: 1024px) {
-        width: 75vw;
-    }
 
     @media (max-width: 768px) {
         width: 80vw;
     }
 
-    @media (max-width: 426px) {
+    @media (max-width: 767px) {
         flex-direction: column;
     }
 `;
@@ -100,12 +97,8 @@ export const GameInfo = styled.div`
     display: flex;
     align-items: flex-start;
     flex-direction: row;
-    justify-content: flex-start;
-    gap: 6em;
-
-    @media (max-width: 1023px) {
-        gap: 3em;
-    }
+    justify-content: space-between;
+    padding-right: 5%;
 
     @media (max-width: 767px) {
         align-items: center;
@@ -121,6 +114,9 @@ export const Name = styled.p`
     font-weight: 600;
     color: ${({ theme }) => theme.nord.white2};
     margin-bottom: 0.5em;
+    @media (max-width: 768px) {
+        text-align: center;
+    }
 `;
 
 export const LastModified = styled.div`

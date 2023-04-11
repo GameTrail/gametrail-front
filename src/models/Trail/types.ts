@@ -45,6 +45,23 @@ export type TrailGame = {
   status: TrailGameStatus;
 };
 
+export type GameInTrail = {
+  games: {
+    comments_games: CommentsGame[] | [];
+    description: string;
+    genres: string[] | [];
+    id: number;
+    image: string;
+    name: string;
+    photos: string;
+    platform: string[] | [];
+    releaseDate: string;
+  };
+  message: string;
+  priority: number;
+  status: TrailGameStatus;
+};
+
 export interface CommentsGame {
   commentText: string;
   game: number;

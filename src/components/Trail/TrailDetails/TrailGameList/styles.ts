@@ -58,15 +58,16 @@ export const LastModified = styled.p`
     margin-bottom: 1em;
 `;
 
-export const State = styled.p<StateProps>`
+export const State = styled.button<StateProps>`
+    border: none;
     font-size: 1em;
     font-weight: 600;
     color: ${({ theme }) => theme.nord.white0};
-
+    width: 200px;
     text-align: center;
     line-height: 40px;
     height: 40px;
-
+    cursor: pointer;
     border-radius: 9px;
     background-color: ${({ theme, state }) => () => handleStateColor(theme, state)};
 `;

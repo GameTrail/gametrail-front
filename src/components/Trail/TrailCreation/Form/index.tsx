@@ -84,7 +84,6 @@ const TrailCreationForm = () => {
       setFormError(['Existe al menos un error en el formulario, comprueba los campos.']);
     }
     const data = await res.json();
-    console.log(data);
     const trailId = data.id;
     return trailId;
   };

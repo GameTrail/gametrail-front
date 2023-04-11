@@ -1,0 +1,356 @@
+[
+    {
+      "id": 1,
+      "name": "Thief II: The Metal Age",
+      "releaseDate": "2000-03-21",
+      "image": "//images.igdb.com/igdb/image/upload/t_original/co1y6v.jpg",
+      "photos": "//images.igdb.com/igdb/image/upload/t_original/puvydf5d6v0zirxfhzpg.jpg, //images.igdb.com/igdb/image/upload/t_original/z0b9mqcqbtmnnxigekjc.jpg, //images.igdb.com/igdb/image/upload/t_original/ja4t61c1ndvtzufbdrf4.jpg, //images.igdb.com/igdb/image/upload/t_original/yf2hsfdd4fe9ev6wmpye.jpg, //images.igdb.com/igdb/image/upload/t_original/h4eotdbgoo30v40jtus0.jpg, //images.igdb.com/igdb/image/upload/t_original/sc83c4.jpg, //images.igdb.com/igdb/image/upload/t_original/sc83c5.jpg, //images.igdb.com/igdb/image/upload/t_original/sc83c6.jpg, //images.igdb.com/igdb/image/upload/t_original/sc83c7.jpg, //images.igdb.com/igdb/image/upload/t_original/sc83c8.jpg, ",
+      "description": "The ultimate thief is back! Tread softly as you make your way through 15 new complex, non-linear levels full of loot to steal and guards to outsmart. Improved enemy AI, new gadgets and a riveting story will draw you into the world of Thief II: The Metal Age, a place of powerful new technologies, fanatical religions and corruption.",
+      "genres": [
+        "Shooter",
+        "Simulator",
+        "Adventure"
+      ],
+      "platforms": [
+        "PC (Microsoft Windows)"
+      ],
+      "comments_games": [
+        {
+          "id": 38,
+          "commentText": "Buen tipo",
+          "game": 1,
+          "userWhoComments": {
+            "id": 17,
+            "username": "batman",
+            "avatar": "https://image.api.playstation.com/cdn/EP1018/CUSA00135_00/xS3Qo4dKqAAaTyhCUvYOhE8cRWUlwBIr.png?w=440&thumb=false"
+          }
+        },
+        {
+          "id": 52,
+          "commentText": "Mañana comenzaré a jugar a este, el primero me pareció alucinante!!",
+          "game": 1,
+          "userWhoComments": {
+            "id": 23,
+            "username": "juanillo2",
+            "avatar": "https://cdnb.artstation.com/p/assets/images/images/035/213/423/large/mcashe-titanzekeef-dev.jpg?1614374087"
+          }
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Thief: The Dark Project",
+      "releaseDate": "1998-11-30",
+      "image": "//images.igdb.com/igdb/image/upload/t_original/co22ne.jpg",
+      "photos": "//images.igdb.com/igdb/image/upload/t_original/wisqqkvrtl93vfocx6wn.jpg, //images.igdb.com/igdb/image/upload/t_original/zzd1rj1nvidcf2c1kxfi.jpg, //images.igdb.com/igdb/image/upload/t_original/toutvbhdj0ll88wt9jjf.jpg, //images.igdb.com/igdb/image/upload/t_original/e9hwdhnl6fbpne1thiu2.jpg, //images.igdb.com/igdb/image/upload/t_original/ejqhijtsgahc2bru0tn8.jpg, ",
+      "description": "Thief is a first-person stealth game that likes the dark. You sneak through the ruins of haunted cathedrals, subterranean ruins, and forbidding prisons, in a dark and sinister city - heavily inspired by Steampunk and the Dark Ages. Garrett finds an ally in the shadows, as he steals for money and uncovers the hidden agendas of allies and enemies. The story that unravels is one of deception and revenge.",
+      "genres": [
+        "Simulator",
+        "Adventure"
+      ],
+      "platforms": [
+        "PC (Microsoft Windows)"
+      ],
+      "comments_games": []
+    },
+    {
+      "id": 3,
+      "name": "Thief: Deadly Shadows",
+      "releaseDate": "2004-05-25",
+      "image": "//images.igdb.com/igdb/image/upload/t_original/co2rom.jpg",
+      "photos": "//images.igdb.com/igdb/image/upload/t_original/ccvyu2a3t0ehowio0kcs.jpg, //images.igdb.com/igdb/image/upload/t_original/ggvkkgfccrlcgoduwnpc.jpg, //images.igdb.com/igdb/image/upload/t_original/z8gvh3ozti5ct86ckhzo.jpg, //images.igdb.com/igdb/image/upload/t_original/pcdj2kkzs7ydwrxtgszs.jpg, //images.igdb.com/igdb/image/upload/t_original/ynrqiomcxtdigktqlnpd.jpg, ",
+      "description": "In the third instalment of the Thief series, master-thief Garrett is contacted by Keeper Artemus with a mission to steal two valuable artefacts. At the same time, Garrett learns about a prophecy: the coming of a Dark Age. He embarks upon a journey to unravel a mystery that threatens the existence of the order of Keepers. Is it possible that there is a traitor in their midst?\n\nThe stealth and thievery game, Thief: Deadly Shadows comes with a number of improvements over two previous parts. Released in 2004, it left behind the aging Dark Engine, using a heavily modified Unreal engine instead. Realistic lighting effects have been implemented: each character and object now casts its own shadow. A third person's view has been made available in addition to the standard first person perspective.\n\nThe stealth system that made Thief: The Dark Project and Thief 2: The Metal Age famous is still in place. You have to stick to the shadows and avoid making noise, as guards will react to anything suspicious. It is also the first game of the series that introduced free roaming. The City, divided into several unlockable districts, is yours to explore. You can interact with the city's inhabitants: pickpocket, steal, or even mug them for loot.",
+      "genres": [
+        "Shooter",
+        "Simulator",
+        "Adventure"
+      ],
+      "platforms": [
+        "PC (Microsoft Windows)",
+        "Xbox"
+      ],
+      "comments_games": []
+    },
+    {
+      "id": 4,
+      "name": "Thief",
+      "releaseDate": "2014-02-25",
+      "image": "//images.igdb.com/igdb/image/upload/t_original/co22nc.jpg",
+      "photos": "//images.igdb.com/igdb/image/upload/t_original/zeqv7lvh8aaemeaa2bhl.jpg, //images.igdb.com/igdb/image/upload/t_original/fnymr7nmagyhaycwkftg.jpg, //images.igdb.com/igdb/image/upload/t_original/u9m4lnfpkv3u9sh1ufsw.jpg, //images.igdb.com/igdb/image/upload/t_original/sgbhfpclrk5udlowkpyq.jpg, //images.igdb.com/igdb/image/upload/t_original/mrhprawxqcaidwvhszch.jpg, ",
+      "description": "There is a rising tide of fear in The City. Hatred saturates every stone and whilst the rich prosper, the less fortunate face misery and repression. Ravaged with sickness and famine, they wait for something to change.\nInto this shadowy world steps Garrett, THE master thief in Thief, a reinvention of a franchise that helped define an entire genre of games. This first-person adventure features intelligent design that allows players to take full control, with freedom to choose their path through the game's levels and how they approach and overcome each challenge.",
+      "genres": [
+        "Shooter",
+        "Adventure"
+      ],
+      "platforms": [
+        "PC (Microsoft Windows)",
+        "PlayStation 3",
+        "Mac",
+        "PlayStation 4",
+        "Xbox 360",
+        "Xbox One"
+      ],
+      "comments_games": [
+        {
+          "id": 44,
+          "commentText": "Comentario al juego de Thief de Juanillo2",
+          "game": 4,
+          "userWhoComments": {
+            "id": 23,
+            "username": "juanillo2",
+            "avatar": "https://cdnb.artstation.com/p/assets/images/images/035/213/423/large/mcashe-titanzekeef-dev.jpg?1614374087"
+          }
+        },
+        {
+          "id": 45,
+          "commentText": "Comentario 2 al juego Thief de Juanillo2",
+          "game": 4,
+          "userWhoComments": {
+            "id": 23,
+            "username": "juanillo2",
+            "avatar": "https://cdnb.artstation.com/p/assets/images/images/035/213/423/large/mcashe-titanzekeef-dev.jpg?1614374087"
+          }
+        },
+        {
+          "id": 46,
+          "commentText": "Vaya juegazo, de 10!!",
+          "game": 4,
+          "userWhoComments": {
+            "id": 23,
+            "username": "juanillo2",
+            "avatar": "https://cdnb.artstation.com/p/assets/images/images/035/213/423/large/mcashe-titanzekeef-dev.jpg?1614374087"
+          }
+        },
+        {
+          "id": 49,
+          "commentText": "Ayer volví a jugar a este juego cuando lo vi, por aquí, es alucinante!!",
+          "game": 4,
+          "userWhoComments": {
+            "id": 23,
+            "username": "juanillo2",
+            "avatar": "https://cdnb.artstation.com/p/assets/images/images/035/213/423/large/mcashe-titanzekeef-dev.jpg?1614374087"
+          }
+        },
+        {
+          "id": 51,
+          "commentText": "Nadie más comenta en este juego?? si es la caña!!",
+          "game": 4,
+          "userWhoComments": {
+            "id": 23,
+            "username": "juanillo2",
+            "avatar": "https://cdnb.artstation.com/p/assets/images/images/035/213/423/large/mcashe-titanzekeef-dev.jpg?1614374087"
+          }
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Baldur's Gate",
+      "releaseDate": "2015-10-14",
+      "image": "//images.igdb.com/igdb/image/upload/t_original/co20gb.jpg",
+      "photos": "//images.igdb.com/igdb/image/upload/t_original/pnlcmjbgsgcroc7eckp0.jpg, //images.igdb.com/igdb/image/upload/t_original/g1luboq2uilkirzjmjix.jpg, //images.igdb.com/igdb/image/upload/t_original/inlndqpsep41avgxl8re.jpg, //images.igdb.com/igdb/image/upload/t_original/kovmsqezzyde0mnacncx.jpg, ",
+      "description": "Baldur's Gate is a fantasy role-playing video game developed by BioWare and published in 1998 by Interplay Entertainment. It is the first game in the Baldur's Gate series and takes place in the Forgotten Realms, a high fantasy campaign setting, using a modified version of the Advanced Dungeons & Dragons (AD&D) 2nd edition rules. It was the first game to use the Infinity Engine for its graphics, with Interplay using the engine for other Forgotten Realms-licensed games, including the Icewind Dale series, as well as other licensed D&D campaign worlds such as Planescape: Torment. The game's story focuses on players controlling a protagonist of their own creation who finds themselves travelling across the Sword Coast alongside a party of companions, to unravel the mystery surrounding a sudden iron crisis affecting the region and attempting to discover the culprits behind it, all while uncovering dark secrets about their origins and dealing with attempts on their life.",
+      "genres": [
+        "Role-playing (RPG)"
+      ],
+      "platforms": [
+        "iOS",
+        "PC (Microsoft Windows)",
+        "Mac",
+        "Linux"
+      ],
+      "comments_games": []
+    },
+    {
+      "id": 6,
+      "name": "Baldur's Gate II: Shadows of Amn",
+      "releaseDate": "2014-10-14",
+      "image": "//images.igdb.com/igdb/image/upload/t_original/co1y4w.jpg",
+      "photos": "//images.igdb.com/igdb/image/upload/t_original/u6oyz9tazkdzfuaha2oy.jpg, //images.igdb.com/igdb/image/upload/t_original/s1u29bg7vfsdent9cnhf.jpg, //images.igdb.com/igdb/image/upload/t_original/cwbxvah22y5lv3lnq173.jpg, //images.igdb.com/igdb/image/upload/t_original/lcvpmm5wtjkv7gxgzu8r.jpg, //images.igdb.com/igdb/image/upload/t_original/yilgqbbkc4hdyzl2asmn.jpg, ",
+      "description": "Every World has conflict. Good and evil. Friend and foe. Safety and danger. In Baldur's Gate II: Shadows of Amn, you'll find yourself between these factions. This epic sequel to the Roleplaying Game of the Year will immerse you in a world of intrigue, adventure and fierce combat where your ability to discern the difference between these sides - with the assistance of steel and spell - determines your fate. Set in the Forgotten Realms campaign setting, Baldur's Gate II is the most stunning Advanced Dungeons and Dragons game to date.",
+      "genres": [
+        "Role-playing (RPG)"
+      ],
+      "platforms": [
+        "PC (Microsoft Windows)",
+        "Mac",
+        "Linux"
+      ],
+      "comments_games": []
+    },
+    {
+      "id": 35,
+      "name": "Dungeon Keeper 2",
+      "releaseDate": "1999-06-30",
+      "image": "//images.igdb.com/igdb/image/upload/t_original/co22na.jpg",
+      "photos": "//images.igdb.com/igdb/image/upload/t_original/u8em6993ux2pqanzfcyn.jpg, //images.igdb.com/igdb/image/upload/t_original/mfu2u2bnoypqnfraleth.jpg, ",
+      "description": "Like its predecessor, players take the role of a dungeon keeper, building and defending an underground dungeon from the would-be heroes that invade it, as well as from other keepers. In the game's campaign mode, the player is charged with recovering the portal gems from each area in order to open a portal to the surface.",
+      "genres": [
+        "Real Time Strategy (RTS)",
+        "Strategy"
+      ],
+      "platforms": [
+        "PC (Microsoft Windows)"
+      ],
+      "comments_games": []
+    },
+    {
+      "id": 7,
+      "name": "Jagged Alliance",
+      "releaseDate": "1994-06-02",
+      "image": "//images.igdb.com/igdb/image/upload/t_original/dwovjbfacbjx7fr1gtut.jpg",
+      "photos": "//images.igdb.com/igdb/image/upload/t_original/rffq9ju1jid0aklrudmz.jpg, //images.igdb.com/igdb/image/upload/t_original/ugvo2kxpaytnooq5mg3b.jpg, //images.igdb.com/igdb/image/upload/t_original/r6d0faxnsxuf3kgsbffh.jpg, //images.igdb.com/igdb/image/upload/t_original/w4wra5mnszsawdxqpiaa.jpg, //images.igdb.com/igdb/image/upload/t_original/mfjiyf9mjxh0fpharpaq.jpg, //images.igdb.com/igdb/image/upload/t_original/bhzgjwzka1gnvrqz8rie.jpg, //images.igdb.com/igdb/image/upload/t_original/bdc6idv5owolbsjlmvha.jpg, //images.igdb.com/igdb/image/upload/t_original/dtgoluxl9dkjvobkij6c.jpg, //images.igdb.com/igdb/image/upload/t_original/rgvwaqiifsmavvsyqusp.jpg, //images.igdb.com/igdb/image/upload/t_original/x0uxtezgnvucdxonp89s.jpg, ",
+      "description": "Desperately you are called to the island of Metavira by scientist Jack Richards and his lovely daughter Brenda. You hear of their plight - the Fallow trees, their precious, medicinal sap on which countless of lives depend, are under the control of the evil and traitorous Santino. With most of the island already in his grasp, you must hand-pick a commando force of mercenaries and take back the island by force. That is, if you can...\n\nJagged Alliance features: 60 mercenaries... 60 attitudes... 60 voices; intense turn-based combat lets you plan every action; non-linear gameplay; three exciting levels of play will determine if you're as good as you think you are and a replay feature to look for Santino's Achilles heel - you'll need all the help you can get!\n\nAn exciting game design approach - role playing and strategy - puts you in the thick of the action!",
+      "genres": [
+        "Role-playing (RPG)",
+        "Strategy",
+        "Turn-based strategy (TBS)",
+        "Tactical"
+      ],
+      "platforms": [
+        "DOS",
+        "Nintendo DS"
+      ],
+      "comments_games": []
+    },
+    {
+      "id": 8,
+      "name": "Jagged Alliance: Deadly Games",
+      "releaseDate": "1995-12-31",
+      "image": "//images.igdb.com/igdb/image/upload/t_original/co29gc.jpg",
+      "photos": "//images.igdb.com/igdb/image/upload/t_original/sc6czj.jpg, //images.igdb.com/igdb/image/upload/t_original/sc6czk.jpg, //images.igdb.com/igdb/image/upload/t_original/sc6czl.jpg, ",
+      "description": "The enemy is on the run. One more mortar shell should take them out. Still, you have to blow up the bridge by sundown, and Postie is starting to talk to himself again. Maybe you shouldn't let him keep that dynamite...\n\nMore ways to play. Play the new solo campaign or choose multiplayer mode via your network connection. More power. The included scenario editor provides infinite replay ability. Create your own maps, traps and enemies. Use the campaign editor to create your own deadly games. More mercenaries. Choose from 70 different mercs, including 10 new ones - plus all 60 of the original Jagged Alliance mercs. More weapons. Fun new war toys include mortars, grenade launchers, boobytrap kits and more! More terrain. Skirmish through jungles, deserts, towns and frozen wastelands.\n\nAnd more attitude than ever!",
+      "genres": [
+        "Role-playing (RPG)",
+        "Strategy",
+        "Turn-based strategy (TBS)",
+        "Tactical"
+      ],
+      "platforms": [
+        "DOS"
+      ],
+      "comments_games": []
+    },
+    {
+      "id": 9,
+      "name": "Jagged Alliance 2",
+      "releaseDate": "1999-07-23",
+      "image": "//images.igdb.com/igdb/image/upload/t_original/co28qh.jpg",
+      "photos": "//images.igdb.com/igdb/image/upload/t_original/kddtrngo8vqlqcb062cc.jpg, //images.igdb.com/igdb/image/upload/t_original/cf1m4yktirxz5fph2sbz.jpg, //images.igdb.com/igdb/image/upload/t_original/jyuagh82tmpqt72hce9w.jpg, //images.igdb.com/igdb/image/upload/t_original/ygbth3c3ktuzvzvbn2i6.jpg, //images.igdb.com/igdb/image/upload/t_original/zdnazfmtd5p6j6ph7o5p.jpg, ",
+      "description": "Jagged Alliance 2 is a perfect blend of strategy, roleplaying and tactical combat. With dozen of new weapons, 150+ individual in-game characters, realistic combat physics and more than 10,000 lines of digitalized speech. Welcome to the killing grounds!",
+      "genres": [
+        "Role-playing (RPG)",
+        "Strategy",
+        "Turn-based strategy (TBS)",
+        "Tactical",
+        "Adventure"
+      ],
+      "platforms": [
+        "PC (Microsoft Windows)",
+        "Amiga",
+        "Linux"
+      ],
+      "comments_games": []
+    },
+    {
+      "id": 10,
+      "name": "Vampire: The Masquerade - Bloodlines",
+      "releaseDate": "2004-11-16",
+      "image": "//images.igdb.com/igdb/image/upload/t_original/co2n14.jpg",
+      "photos": "//images.igdb.com/igdb/image/upload/t_original/uhvnbk4ffkascq1gjl8s.jpg, //images.igdb.com/igdb/image/upload/t_original/mwbjpavj9vlj72gferdu.jpg, //images.igdb.com/igdb/image/upload/t_original/h0vzqwuqnmepah8ifkoo.jpg, //images.igdb.com/igdb/image/upload/t_original/iw7i5qtyrkpvd86zwihr.jpg, //images.igdb.com/igdb/image/upload/t_original/touscumdyispwjwgvp9g.jpg, ",
+      "description": "A first- and third-person Western RPG based on the Vampire: The Masquerade tabletop RPG with a heavy emphasis on character building and role-playing, in which the player embodies a fledgling vampire under the guidance of vampire prince Sebastian LaCroix. The player must serve the prince while getting to know the various factions of vampires in Los Angeles and forming their own political views.",
+      "genres": [
+        "Role-playing (RPG)"
+      ],
+      "platforms": [
+        "PC (Microsoft Windows)"
+      ],
+      "comments_games": []
+    },
+    {
+      "id": 11,
+      "name": "Vampire: The Masquerade - Redemption",
+      "releaseDate": "2000-06-07",
+      "image": "//images.igdb.com/igdb/image/upload/t_original/co1pmn.jpg",
+      "photos": "//images.igdb.com/igdb/image/upload/t_original/f8nncndknc4w58tl0mtb.jpg, //images.igdb.com/igdb/image/upload/t_original/a4mwudvv4m48tyrudqya.jpg, //images.igdb.com/igdb/image/upload/t_original/kwjpkveqcyqfyff1lpzi.jpg, //images.igdb.com/igdb/image/upload/t_original/tw9gem5f0jikewah6sgq.jpg, //images.igdb.com/igdb/image/upload/t_original/bbdclm8m5c6iuiwra5d6.jpg, ",
+      "description": "Vampire: The Masquerade – Redemption is a 2000 role-playing video game based on White Wolf's game Vampire: The Masquerade and follows the adventures of Christof Romuald, a 12th-century French crusader who is killed and subsequently revived as a Vampire. The game depicts Christof's centuries-long journey from the Dark Ages of 12th century Prague and Vienna to modern-day London and New York City in search of his humanity and his kidnapped love, the nun Anezka.",
+      "genres": [
+        "Role-playing (RPG)",
+        "Adventure"
+      ],
+      "platforms": [
+        "PC (Microsoft Windows)",
+        "Mac"
+      ],
+      "comments_games": []
+    },
+    {
+      "id": 12,
+      "name": "Fallout",
+      "releaseDate": "1997-09-30",
+      "image": "//images.igdb.com/igdb/image/upload/t_original/co1ybn.jpg",
+      "photos": "//images.igdb.com/igdb/image/upload/t_original/p2lbeztzht6mgwosmx4j.jpg, //images.igdb.com/igdb/image/upload/t_original/bsbrwfjo7hnjufo0wkyw.jpg, //images.igdb.com/igdb/image/upload/t_original/u351wabe0uvhvxfmoric.jpg, //images.igdb.com/igdb/image/upload/t_original/hsco2qgztxnglynokv8l.jpg, //images.igdb.com/igdb/image/upload/t_original/owz8jrbpfbjacqqrq4x1.jpg, ",
+      "description": "The Vault Dweller is tasked with exploring post-nuclear California in order to retrieve a water chip to replace the broken chip of Vault 13, their home, which they are the first person to ever leave. The player will engage in Western RPG character building and turn-based tactical combat while getting to know settlements and factions of people, mutants and ghouls through branching dialogue trees.",
+      "genres": [
+        "Role-playing (RPG)",
+        "Turn-based strategy (TBS)"
+      ],
+      "platforms": [
+        "PC (Microsoft Windows)",
+        "DOS",
+        "Mac"
+      ],
+      "comments_games": []
+    },
+    {
+      "id": 13,
+      "name": "Fallout 2",
+      "releaseDate": "1998-10-29",
+      "image": "//images.igdb.com/igdb/image/upload/t_original/co50kv.jpg",
+      "photos": "//images.igdb.com/igdb/image/upload/t_original/evnnt5pmbi15sioo3osb.jpg, //images.igdb.com/igdb/image/upload/t_original/swb4gu9v7wltlexijovg.jpg, //images.igdb.com/igdb/image/upload/t_original/ot58snzzvhhthu4dw6ox.jpg, //images.igdb.com/igdb/image/upload/t_original/zxuqt6b7aabrvxw1cay4.jpg, //images.igdb.com/igdb/image/upload/t_original/smrxbmolajqzg8vtxneg.jpg, //images.igdb.com/igdb/image/upload/t_original/zirx33oc4igljmz5jpcr.jpg, //images.igdb.com/igdb/image/upload/t_original/msre6ptfvzhixsyqxte3.jpg, //images.igdb.com/igdb/image/upload/t_original/fs77e1gmnr0rrimrwiuw.jpg, //images.igdb.com/igdb/image/upload/t_original/twyn9jgelrwboonfhflt.jpg, //images.igdb.com/igdb/image/upload/t_original/qvv3xeie9ubur6m96g5u.jpg, ",
+      "description": "A turn-based tactical Western RPG in which the Chosen One is tasked with exploring post-nuclear California to locate and retrieve the fabled Garden of Eden Creation Kit for their famine-stricken tribe, while coming into contact through branching dialogue trees with numerous tribes, factions and micro-civilizations, each with their own virtues, vices, socioeconomic situations and political agendas.",
+      "genres": [
+        "Role-playing (RPG)",
+        "Turn-based strategy (TBS)"
+      ],
+      "platforms": [
+        "PC (Microsoft Windows)",
+        "Mac"
+      ],
+      "comments_games": []
+    },
+    {
+      "id": 88,
+      "name": "Need for Speed III: Hot Pursuit",
+      "releaseDate": "1998-10-12",
+      "image": "//images.igdb.com/igdb/image/upload/t_original/co2097.jpg",
+      "photos": "//images.igdb.com/igdb/image/upload/t_original/q62ohxgt1fvyimtxer5z.jpg, //images.igdb.com/igdb/image/upload/t_original/samoob03jig5yo5ph9fg.jpg, //images.igdb.com/igdb/image/upload/t_original/jfqvdzkfyvu5owcwasvg.jpg, ",
+      "description": "Drive some of the most exotic cars in illegal street race on many different tracks, while trying not to be caught by police!",
+      "genres": [
+        "Racing"
+      ],
+      "platforms": [
+        "PC (Microsoft Windows)",
+        "PlayStation"
+      ],
+      "comments_games": []
+    },
+    {
+      "id": 14,
+      "name": "Fallout 3",
+      "releaseDate": "2008-10-28",
+      "image": "//images.igdb.com/igdb/image/upload/t_original/co1ycw.jpg",
+      "photos": "//images.igdb.com/igdb/image/upload/t_original/j6vczdq7svdvttebwykb.jpg, //images.igdb.com/igdb/image/upload/t_original/nfky0otqolphaqwu72ad.jpg, //images.igdb.com/igdb/image/upload/t_original/opjyvwt6eysdgpwbfsmt.jpg, //images.igdb.com/igdb/image/upload/t_original/belgt59onk6hro6et0ji.jpg, //images.igdb.com/igdb/image/upload/t_original/u5ohhrd1rhgjsmtfazh1.jpg, ",
+      "description": "Fallout 3 from the creators of the award-winning Oblivion, featuring one of the most realized game worlds ever created. Create any kind of character you want and explore the open wastes of post-apocalyptic Washington D.C. Every minute is a fight for survival as you encounter Super Mutants, Ghouls, Raiders and other dangers of the Wasteland. Prepare for the future.\n\nThe third game in the Fallout series, Fallout 3 is a singleplayer action role-playing game (RPG) set in a post-apocalyptic Washington DC. Combining the horrific insanity of the Cold War era theory of mutually assured destruction gone terribly wrong, with the kitschy naivety of American 1950s nuclear propaganda, Fallout 3 will satisfy both players familiar with the popular first two games in its series as well as those coming to the franchise for the first time.",
+      "genres": [
+        "Shooter",
+        "Role-playing (RPG)"
+      ],
+      "platforms": [
+        "PC (Microsoft Windows)",
+        "PlayStation 3",
+        "Xbox 360"
+      ],
+      "comments_games": []
+    }
+  ]

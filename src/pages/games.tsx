@@ -13,9 +13,30 @@ const Games = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
   const [searchQuery, setSearchQuery] = useState<string>('');
+  const [pages, setPages] = useState<number>(1);
 
   const handleUpdateSearchQuery = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
+  };
+
+  const handleSetPages = (gamesCount: number) => {
+    setPages(Math.ceil(gamesCount / 15));
+  };
+
+  const handlePagination = async (page: number) => {
+    setLoading(true);
+    try {
+      const searchUrl = `${GAMES_API_URL}?page=${page}&search=${searchQuery}`;
+      const response = await fetch(searchUrl);
+      const data = await response.json();
+      setGames(data.results);
+      handleSetPages(data.count);
+      setError(false);
+    } catch (err) {
+      setError(true);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const debounceSearch = useDebouncedCallback(async (searchTerm: string) => {
@@ -25,6 +46,7 @@ const Games = () => {
       const response = await fetch(searchUrl);
       const data = await response.json();
       setGames(data.results);
+      handleSetPages(data.count);
       setError(false);
     } catch (err) {
       setError(true);
@@ -40,7 +62,15 @@ const Games = () => {
   if (loading) return <LoadingSpinner />;
   if (error) return <Error />;
 
-  return <GameList games={games} searchQuery={searchQuery} handleUpdateSearchQuery={handleUpdateSearchQuery} />;
+  return (
+    <GameList
+      games={games}
+      pages={pages}
+      searchQuery={searchQuery}
+      handleUpdateSearchQuery={handleUpdateSearchQuery}
+      handlePagination={handlePagination}
+    />
+  );
 };
 
 export default Games;

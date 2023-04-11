@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import type { Game } from '@/models/Game/types';
 import { normalizeImage } from '@/utils/normalizeImage';
-import PaginationCard from './PaginationCard';
+import PaginationCard from '../../PaginationCard';
 import {
   Container, Input, Row, Titulo, Titulo2, Cajas, Cuerpo, Cuerpo2, Fila, Mascara, Button, Buscador, CabezaTabla, Tabla, Boton,
 } from './styles';
@@ -11,13 +11,14 @@ import {
 export type Props = {
   games: Game[];
   pages: number;
+  currentPage: number;
   searchQuery: string;
   handleUpdateSearchQuery: (e: ChangeEvent<HTMLInputElement>) => void;
   handlePagination: (page: number) => void;
 };
 
 const GameList: FC<Props> = ({
-  games, pages, searchQuery, handleUpdateSearchQuery, handlePagination,
+  games, pages, currentPage, searchQuery, handleUpdateSearchQuery, handlePagination,
 }) => {
   const [showDiv2, setShowDiv2] = useState(true);
   const [buttonText, setButtonText] = useState('Desactivado');
@@ -82,7 +83,7 @@ const GameList: FC<Props> = ({
           </Tabla>
         </Cuerpo2>
       )}
-      <PaginationCard pages={pages} handlePagination={handlePagination} />
+      <PaginationCard pages={pages} currentPage={currentPage} handlePagination={handlePagination} />
     </Container>
   );
 };

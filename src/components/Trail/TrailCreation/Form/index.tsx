@@ -2,7 +2,7 @@ import {
   useEffect, useState,
 } from 'react';
 import router from 'next/router';
-import Select from 'react-select';
+import AsyncSelect from 'react-select/async';
 import CreateLottie from '@/components/Lotties/Landing/CreateLottie';
 import {
   Button,
@@ -22,8 +22,13 @@ import { getUserCookie } from '@/utils/login';
 import { handlePremiumFilters } from '@/utils/Trail/handlePremiumFilters';
 import PremiumFilters from '../PremiumFilters';
 
+const GAMES_URL = 'https://gametrail-backend-production-8fc0.up.railway.app/api/game/';
+
 const TrailCreationForm = () => {
   const [games, setGames] = useState<Game[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [searchQuery, setSearchQuery] = useState<string>('');
+
   const [trailName, setTrailName] = useState('');
   const [trailDescription, setTrailDescription] = useState('');
   const [trailStartDate, setTrailStartDate] = useState('');
@@ -38,8 +43,6 @@ const TrailCreationForm = () => {
   const user = getUserCookie();
   const token = user?.token;
   const [formError, setFormError] = useState<string[]>([]);
-
-  const [loadingInputSelectGames, setLoadingInputSelectGames] = useState(false);
 
   const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const startDate = new Date(trailStartDate);
@@ -128,20 +131,20 @@ const TrailCreationForm = () => {
 
   useEffect(() => {
     const fetchGames = async () => {
-      setLoadingInputSelectGames(true);
+      setLoading(true);
       try {
-        const res = await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/game/');
-        const data = await res.json();
+        const searchUrl = searchQuery.length > 1 ? `${GAMES_URL}?search=${searchQuery}` : GAMES_URL;
+        const response = await fetch(searchUrl);
+        const data = await response.json();
         setGames(data.results);
-      } catch (error) {
-        setLoadingInputSelectGames(false);
-        setFormError([(error as Error).message]);
+      } catch (err) {
+        console.error({ err });
       } finally {
-        setLoadingInputSelectGames(false);
+        setLoading(false);
       }
     };
     fetchGames();
-  }, [formError]);
+  }, [searchQuery]);
 
   return (
     <>
@@ -222,35 +225,35 @@ const TrailCreationForm = () => {
 
         {
           user?.plan === 'Premium' && (
-          <PremiumFilters
-            userTeamwork={userTeamwork}
-            userAbility={userAbility}
-            userKindness={userKindness}
-            userFunny={userFunny}
-            userAvailability={userAvailability}
-            setUserTeamwork={setUserTeamwork}
-            setUserAbility={setUserAbility}
-            setUserKindness={setUserKindness}
-            setUserFunny={setUserFunny}
-            setUserAvailability={setUserAvailability}
-          />
+            <PremiumFilters
+              userTeamwork={userTeamwork}
+              userAbility={userAbility}
+              userKindness={userKindness}
+              userFunny={userFunny}
+              userAvailability={userAvailability}
+              setUserTeamwork={setUserTeamwork}
+              setUserAbility={setUserAbility}
+              setUserKindness={setUserKindness}
+              setUserFunny={setUserFunny}
+              setUserAvailability={setUserAvailability}
+            />
           )
         }
 
         <Label htmlFor="games">
           Juegos que se van a Jugar
-          <Select
+          <AsyncSelect
             required
             isMulti
             isSearchable
             name="games"
-            isLoading={loadingInputSelectGames}
-            isDisabled={loadingInputSelectGames}
-            options={games}
+            styles={GamesSelectorStyles}
             getOptionLabel={(option: Game) => option.name}
             getOptionValue={(option: Game) => option.id.toString()}
-            styles={GamesSelectorStyles}
-            placeholder="Selecciona los juegos que quieras..."
+            isLoading={loading}
+            onInputChange={(value) => setSearchQuery(value)}
+            defaultOptions={games}
+            loadOptions={async () => games}
           />
         </Label>
         <Button type="submit">Crear</Button>

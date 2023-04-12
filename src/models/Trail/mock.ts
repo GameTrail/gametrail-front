@@ -21,10 +21,10 @@ export const MOCK_TRAIL: Trail = {
   owner: {
     id: 48,
     auth_token: 'asdkjlafsdjklasdfjasdf',
-    comments_received: [],
+    comments_recieved: [],
     games: [],
     plan: 'STANDARD',
-    rate_recieved: [],
+    average_ratings: [],
     trails: [],
     username: 'jacky6868',
     avatar: 'https://cdnb.artstation.com/p/assets/images/images/035/213/423/large/mcashe-titanzekeef-dev.jpg?1614374087',

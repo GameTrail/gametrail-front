@@ -17,7 +17,7 @@ export type Props = {
 };
 
 const CommentsUserContainer: FC<Props> = ({ userData }) => {
-  const comments = userData.comments_received === undefined ? [] : userData.comments_received;
+  const comments = userData.comments_recieved === undefined ? [] : userData.comments_recieved;
   const user = getUserCookie();
   const [commentsArray, setCommentsArray] = useState<(CommentsUser)[]>(comments);
 

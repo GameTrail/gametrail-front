@@ -4,7 +4,6 @@ import { GameData, GameImages, GameTrailList } from '@/components/GameDetails';
 import GameListsButtons from '@/components/GameDetails/GameListsButtons';
 import type { Game } from '@/models/Game/types';
 import type { Trail } from '@/models/Trail/types';
-import { getUserCookie } from '@/utils/login';
 import CommentsGameContainer from '../CommentsGameContainer';
 import { Container, ListsDetails } from './style';
 import { ButtonType } from './types';
@@ -15,8 +14,6 @@ export type Props = {
 };
 const GameDetails:FC<Props> = ({ gameDetails, trailData }) => {
   const [selectedButton, setSelectedButton] = useState<ButtonType>(ButtonType.Trail);
-  const userCookie = getUserCookie();
-  const authToken = userCookie?.token || '';
   const onClickButton = (button: ButtonType) => {
     setSelectedButton(button);
   };
@@ -25,8 +22,7 @@ const GameDetails:FC<Props> = ({ gameDetails, trailData }) => {
     if (selectedButton === ButtonType.Trail) return <GameTrailList trailList={trailData} />;
     if (selectedButton === ButtonType.Comments) return <CommentsGameContainer gameData={gameDetails} />;
     return null;
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedButton, trailData, authToken, gameDetails.id]);
+  }, [selectedButton, trailData, gameDetails]);
   return (
     <Container>
       <GameData gameDetails={gameDetails} />

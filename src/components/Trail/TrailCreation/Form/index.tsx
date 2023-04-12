@@ -1,8 +1,6 @@
 import {
   useEffect, useState,
 } from 'react';
-import { faCrown } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import router from 'next/router';
 import Select from 'react-select';
 import CreateLottie from '@/components/Lotties/Landing/CreateLottie';
@@ -15,8 +13,6 @@ import {
   InputTextArea,
   Label,
   PlanInfoToast,
-  PremiumFilterFirst,
-  PremiumFilterSecond,
   GamesSelectorStyles,
   Title,
   ErrorContainer,
@@ -24,10 +20,7 @@ import {
 import type { Game } from '@/models/Game/types';
 import { getUserCookie } from '@/utils/login';
 import { handlePremiumFilters } from '@/utils/Trail/handlePremiumFilters';
-
-// interface TrailCreationFormProps {
-//   handleSetLoadingForm: (loading: boolean) => void;
-// }
+import PremiumFilters from '../PremiumFilters';
 
 const TrailCreationForm = () => {
   const [games, setGames] = useState<Game[]>([]);
@@ -84,9 +77,7 @@ const TrailCreationForm = () => {
       setFormError(['Existe al menos un error en el formulario, comprueba los campos.']);
     }
     const data = await res.json();
-    console.log(data);
-    const trailId = data.id;
-    return trailId;
+    return data.id;
   };
 
   const putGame = async (game: FormDataEntryValue, trailId: number, selectedGames: FormDataEntryValue[]) => {
@@ -128,17 +119,9 @@ const TrailCreationForm = () => {
     e.preventDefault();
 
     const formData = new FormData(e.currentTarget);
-
-    // Paso 1: Crear el trail
     const trailId = await createTrail();
-
-    // Paso 2: Crear los juegos del trail
     await createTrailGames(formData, trailId);
-
-    // Paso 3: Crear los filtros premium del trail
-    if (user?.plan === 'Premium') {
-      await handlePremiumFilters(formData, trailId, user, token);
-    }
+    if (user?.plan === 'Premium') await handlePremiumFilters(formData, trailId, user, token);
 
     router.push(`/user/${user?.id}`);
   };
@@ -237,95 +220,40 @@ const TrailCreationForm = () => {
           />
         </Label>
 
-        {user?.plan === 'Premium' && (
-          <>
-            <FontAwesomeIcon icon={faCrown} size="xs" />
-            <h3>Filtros premium</h3>
-            <h5> Establece valoraciones mínimas para limitar la unión de usuarios.</h5>
-            <PremiumFilterFirst>
-
-              <Label>
-                Amabilidad
-                <Input
-                  type="number"
-                  name="kindness"
-                  id="kindness"
-                  max={5}
-                  min={1}
-                  defaultValue={1}
-                  value={userKindness}
-                  onChange={(e) => setUserKindness(e.target.value)}
-                />
-              </Label>
-
-              <Label>
-                Diversión
-                <Input
-                  type="number"
-                  name="funny"
-                  id="funny"
-                  max={5}
-                  min={1}
-                  defaultValue={1}
-                  value={userFunny}
-                  onChange={(e) => setUserFunny(e.target.value)}
-                />
-              </Label>
-
-              <Label>
-                Cooperación
-                <Input
-                  type="number"
-                  name="teamwork"
-                  id="teamwork"
-                  max={5}
-                  min={1}
-                  value={userTeamwork}
-                  onChange={(e) => setUserTeamwork(e.target.value)}
-                />
-              </Label>
-
-            </PremiumFilterFirst>
-
-            <PremiumFilterSecond>
-
-              <Label>
-                Habilidad
-                <Input
-                  type="number"
-                  name="ability"
-                  id="ability"
-                  max={5}
-                  min={1}
-                  defaultValue={1}
-                  value={userAbility}
-                  onChange={(e) => setUserAbility(e.target.value)}
-                />
-              </Label>
-
-              <Label>
-                Disponibilidad
-                <Input
-                  type="number"
-                  name="availability"
-                  id="availability"
-                  max={5}
-                  min={1}
-                  defaultValue={1}
-                  value={userAvailability}
-                  onChange={(e) => setUserAvailability(e.target.value)}
-                />
-              </Label>
-
-            </PremiumFilterSecond>
-          </>
-        )}
+        {
+          user?.plan === 'Premium' && (
+          <PremiumFilters
+            userTeamwork={userTeamwork}
+            userAbility={userAbility}
+            userKindness={userKindness}
+            userFunny={userFunny}
+            userAvailability={userAvailability}
+            setUserTeamwork={setUserTeamwork}
+            setUserAbility={setUserAbility}
+            setUserKindness={setUserKindness}
+            setUserFunny={setUserFunny}
+            setUserAvailability={setUserAvailability}
+          />
+          )
+        }
 
         <Label htmlFor="games">
           Juegos que se van a Jugar
-          <Select required isMulti name="games" isLoading={loadingInputSelectGames} isDisabled={loadingInputSelectGames} options={games} getOptionLabel={(option: Game) => option.name} getOptionValue={(option: Game) => option.id.toString()} styles={GamesSelectorStyles} placeholder="Selecciona los juegos que quieras..." />
+          <Select
+            required
+            isMulti
+            isSearchable
+            name="games"
+            isLoading={loadingInputSelectGames}
+            isDisabled={loadingInputSelectGames}
+            options={games}
+            getOptionLabel={(option: Game) => option.name}
+            getOptionValue={(option: Game) => option.id.toString()}
+            styles={GamesSelectorStyles}
+            placeholder="Selecciona los juegos que quieras..."
+          />
         </Label>
-        <Button type="submit">Create</Button>
+        <Button type="submit">Crear</Button>
       </Form>
     </>
   );

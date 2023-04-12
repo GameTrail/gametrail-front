@@ -1,34 +1,17 @@
 import React from 'react';
 import type { FC } from 'react';
-import { faMeteor } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import type { Rating } from '@/models/Rating/types';
+import { calculateAverageRating } from '@/utils/calculateAverageRating';
 import { Container } from './styles';
 
 export type Props = {
-  userRating: Rating[];
+  userRating: Rating;
 };
 const UserAverageRating:FC<Props> = ({ userRating }) => {
-  if (userRating.length !== 0) {
-    return (
-      <Container>
-        {userRating.map((rating) => rating.rating)
-          .reduce((a, b) => a + b, 0) / userRating.length}
-        {' '}
-        / 5
-        {' '}
-        <FontAwesomeIcon icon={faMeteor} color="#31A4F1" size="lg" />
-      </Container>
-    );
-  }
-
+  const avergareRating = calculateAverageRating(userRating);
   return (
     <Container>
-      ?
-      {' '}
-      / 5
-      {' '}
-      <FontAwesomeIcon icon={faMeteor} color="#31A4F1" size="lg" />
+      {avergareRating}
     </Container>
   );
 };

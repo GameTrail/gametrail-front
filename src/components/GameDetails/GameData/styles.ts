@@ -88,6 +88,7 @@ const handlePlatformColor = (theme : DefaultTheme, platform : string) => {
   if (platform?.includes('PlayStation')) return theme.nord.blue3;
   if (platform?.includes('Xbox')) return theme.nord.green;
   if (platform?.includes('Nintendo')) return theme.nord.red;
+  if (platform?.includes('Wii')) return theme.nord.red;
   return theme.nord.gray3;
 };
 

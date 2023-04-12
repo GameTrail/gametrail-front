@@ -26,12 +26,11 @@ export const Cuerpo = styled.div`
   width: 80%;
   margin: 0 auto;
   flex-flow: row wrap;
-  justify-content: space-between;
+  justify-content: flex-start;
 
 h3{
     color: ${({ theme }) => theme.nord.gray0};
 }
-
 
 @media (max-width: 750px) {
     justify-content: space-evenly;
@@ -49,6 +48,7 @@ h3{
 
 export const Cajas = styled.section` 
 
+max-width: 380px;
 background-color: ${({ theme }) => theme.nord.gray0};
 box-shadow: 0 0 10px 0 ${({ theme }) => theme.nord.gray3};
 transition: all 0.3s ease-in-out;
@@ -70,6 +70,10 @@ border-radius: 20px;
 &:hover {
     transform: scale(1.1);
     transition: all 300ms;
+}
+
+@media (min-width: 1440px) {
+    min-width: 360px;
 }
 
 @media (max-width: 1250px) {
@@ -303,4 +307,10 @@ padding: 9px;
     transition: all 300ms;
     
 }
+`;
+
+export const GameName = styled.p`
+margin-top: 0%;
+margin: 5%;
+font-size: 25px;
 `;

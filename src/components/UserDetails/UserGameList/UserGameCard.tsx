@@ -3,7 +3,7 @@ import React from 'react';
 import type { GameList } from '@/models/GameList/types';
 import { parseGameListDate } from '@/utils/parseGameListDate';
 import {
-  Added, Game, GameImage, LastModified, Name, State,
+  Added, Game, GameData, GameImage, GameInfo, LastModified, Name, State,
 } from './styles';
 
 interface Props {
@@ -19,22 +19,24 @@ const UserGameCard: FC<Props> = ({ gameListItem, onUpdateGameStatus }) => {
   return (
     <Game href={`/game/${gameListItem.game.id}`}>
       <div>
-        <GameImage src={`https://${gameListItem.game.image}`} alt="image" width={120} height={120} />
+        <GameImage src={`https://${gameListItem.game.image}`} alt="image" />
       </div>
-      <div>
+      <GameData>
         <Name>
           {gameListItem.game.name}
         </Name>
-        <Added>
-          <h4>Añadido</h4>
-          {parseGameListDate(gameListItem.creationMoment)}
-        </Added>
-        <LastModified>
-          <h4>Última vez modificado</h4>
-          {parseGameListDate(gameListItem.lastModified)}
-        </LastModified>
-        <State onClick={onClick} state={gameListItem.status}>{gameListItem.status}</State>
-      </div>
+        <GameInfo>
+          <Added>
+            <h4>Añadido</h4>
+            {parseGameListDate(gameListItem.creationMoment)}
+          </Added>
+          <LastModified>
+            <h4>Última vez modificado</h4>
+            {parseGameListDate(gameListItem.lastModified)}
+          </LastModified>
+          <State onClick={onClick} state={gameListItem.status}>{gameListItem.status}</State>
+        </GameInfo>
+      </GameData>
     </Game>
   );
 };

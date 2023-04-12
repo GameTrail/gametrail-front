@@ -3,27 +3,15 @@ import { useRouter } from 'next/router';
 import Error from '@/components/Error';
 import LoadingSpinner from '@/components/LoadingSpinner';
 import { UserDetails } from '@/containers';
-import type { User as UserDetailsProps } from '@/models/User/types';
-import { isRatingEmpty } from '@/utils/isRatingEmpty';
+import type { User as UserProps } from '@/models/User/types';
+import { normalizeUserRating } from '@/utils/normalizeUserRating';
 
 const User = () => {
   const router = useRouter();
-  const [userData, setUserData] = useState<UserDetailsProps | null>(null);
+  const [userData, setUserData] = useState<UserProps | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
   const { id } = router.query;
-
-  const normalizedUserRating = (userRating: any): UserDetailsProps['average_ratings'] => {
-    if (isRatingEmpty(userRating)) return null;
-
-    return {
-      kindness: userRating.KINDNESS,
-      ability: userRating.ABILITY,
-      availability: userRating.AVAILABILITY,
-      funny: userRating.FUNNY,
-      teamwork: userRating.TEAMWORK,
-    };
-  };
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -32,9 +20,9 @@ const User = () => {
         const response = await fetch(`https://gametrail-backend-production-8fc0.up.railway.app/api/user/${id}/`);
         const data = await response.json();
 
-        const normalizedUserData: UserDetailsProps = {
+        const normalizedUserData: UserProps = {
           ...data,
-          average_ratings: normalizedUserRating(data.average_ratings),
+          average_ratings: normalizeUserRating(data.average_ratings),
         };
         setUserData(normalizedUserData);
         setError(false);

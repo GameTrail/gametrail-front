@@ -6,33 +6,11 @@ import {
   PlayerListContainer,
   PlayerListElement, PlayerListHeader, PlayerName, PlayerValue, ProfilePicture,
 } from '@/components/Trail/TrailDetails/Sections/PlayersList/styles';
-import type { Rating } from '@/models/Rating/types';
 import type { Trail } from '@/models/Trail/types';
-import type { User, User as UserData } from '@/models/User/types';
+import PlayerRating from './PlayerRatingCard';
 
 export type Props = {
   trailData: Trail;
-};
-
-function getAverageRating(ratings: Rating[]): number | string {
-  return ratings.map((rating: Rating) => rating.rating).reduce((a: number, b: number) => a + b, 0) / ratings.length;
-}
-
-const PlayerRating: FC<{ User: UserData }> = ({ User }) => {
-  if (!User.average_ratings) {
-    return <>No 🙈</>;
-  }
-  return (
-    <>
-      {// We need to average all ratings for this user
-            getAverageRating(User.average_ratings)
-        }
-      /
-      {User.average_ratings.length}
-      {' '}
-      ⭐
-    </>
-  );
 };
 
 const PlayersList: FC<Props> = ({ trailData }) => (
@@ -44,20 +22,19 @@ const PlayersList: FC<Props> = ({ trailData }) => (
       </PlayerListHeader>
 
       <PlayerListContainer key="users-list">
-        {trailData.users.map((user) => (
+        {trailData.users.map((trailMember) => (
 
-          <PlayerListElement key={user.id}>
+          <PlayerListElement key={trailMember.id}>
             <ProfilePicture
-              src={user.avatar}
-              alt={user.username}
+              src={trailMember.avatar}
+              alt={trailMember.username}
             />
             <PlayerName>
               @
-              {user.username}
+              {trailMember.username}
             </PlayerName>
             <PlayerValue>
-              {/* This should be changed when users are good. */}
-              <PlayerRating User={(user as unknown as User)} />
+              <PlayerRating trailMember={trailMember} />
             </PlayerValue>
 
           </PlayerListElement>

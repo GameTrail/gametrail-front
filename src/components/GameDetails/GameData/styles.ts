@@ -1,6 +1,5 @@
 import type { DefaultTheme } from 'styled-components';
 import styled from 'styled-components';
-import Image from 'next/image';
 
 export const Container = styled.div`
   width: 100%;
@@ -16,7 +15,7 @@ export const Container = styled.div`
   }
 `;
 
-export const GameImage = styled(Image)`
+export const GameImage = styled.img`
 
   box-shadow: 0 0 10px 0 ${({ theme }) => theme.nord.gray3};
   transition: all 0.3s ease-in-out;

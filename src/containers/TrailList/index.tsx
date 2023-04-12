@@ -19,7 +19,7 @@ const TrailList = () => {
       try {
         const response = await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/getTrail/');
         const data = await response.json();
-        setTrails(data);
+        setTrails(data.results);
         setError(null);
       } catch (err) {
         setError('Ops! Ha ocurrido un error inesperado.');

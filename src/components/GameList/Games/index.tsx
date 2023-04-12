@@ -1,5 +1,6 @@
 import type { FC, ChangeEvent } from 'react';
 import React, { useState } from 'react';
+
 import { useRouter } from 'next/router';
 import type { Game } from '@/models/Game/types';
 import { normalizeImage } from '@/utils/normalizeImage';

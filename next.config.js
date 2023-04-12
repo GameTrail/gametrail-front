@@ -1,4 +1,8 @@
-const nextConfig = {
+const withPWA = require('next-pwa')({
+  dest: 'public',
+});
+
+const nextConfig = withPWA({
   reactStrictMode: true,
   images: {
 
@@ -13,6 +17,6 @@ const nextConfig = {
       'img.lovepik.com', 'cdn.pixabay.com', 'images.igdb.com', 'randomuser.me',
       'imgs.search.brave.com'],
   },
-};
+});
 
 module.exports = nextConfig;

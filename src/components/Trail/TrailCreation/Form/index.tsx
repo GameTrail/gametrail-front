@@ -138,7 +138,7 @@ const TrailCreationForm = () => {
         const data = await response.json();
         setGames(data.results);
       } catch (err) {
-        console.error({ err });
+        setFormError(['Ha ocurrido un error al cargar los juegos, pruebe de nuevo más tarde.']);
       } finally {
         setLoading(false);
       }

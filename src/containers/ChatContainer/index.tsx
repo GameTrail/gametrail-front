@@ -21,7 +21,7 @@ export type Props = {
   trailData: Trail;
 };
 
-const socket = io('https://chat-gametrail.vercel.app:3001');
+const socket = io('');
 
 const ChatContainer: FC<Props> = ({ trailData }) => {
   const userCookie = getUserCookie();

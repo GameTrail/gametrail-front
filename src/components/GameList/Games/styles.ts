@@ -2,33 +2,31 @@ import styled from 'styled-components';
 
 export const Container = styled.div` 
 
-width: 100%;
-height: auto;
-background-color: ${({ theme }) => theme.nord.white0};
-ul{
-    list-style: none;
-  }   
+  width: 100%;
+  height: auto;
+  background-color: ${({ theme }) => theme.nord.white0};
+  ul{
+      list-style: none;
+    }   
 `;
 
 export const Buscador = styled.div` 
-
-width: 80%;
-height: auto;
-margin-left: 10%;
-    
+  width: 80%;
+  height: auto;
+  margin-left: 10%;
 `;
 
 export const Cuerpo = styled.div` 
 
-background-color: ${({ theme }) => theme.nord.white0};
+  background-color: ${({ theme }) => theme.nord.white0};
 
-padding: 20px;
-display: flex;
-flex-direction: row;
-width: 80%;
-margin: 0 auto;
-flex-flow: row wrap;
-justify-content: space-between;
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  margin: 0 auto;
+  flex-flow: row wrap;
+  justify-content: space-between;
 
 h3{
     color: ${({ theme }) => theme.nord.gray0};
@@ -195,6 +193,18 @@ text-align: center;
      transition: all 0.3s ease-in-out;
         box-shadow: 0 0 10px 0;
 }
+
+`;
+
+export const ButtonGameInList = styled.p`
+
+margin: 15px;
+padding: 20px;
+background-color: ${({ theme }) => theme.nord.gray3};
+font-size: 17px;
+border-radius: 7px;
+bottom: 0;
+text-align: center;
 
 `;
 

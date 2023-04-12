@@ -28,6 +28,7 @@ export const ResponsiveNavbar = styled.div`
       flex-direction: row;
       align-items: center;
       height: auto;
+      gap:60px;
     }
 `;
 
@@ -150,9 +151,11 @@ export const User = styled.div`
     }
 `;
 
-export const Username = styled.p`
-    font-weight: 600;
-    color: ${({ theme }) => theme.nord.white0};
+export const Avatar = styled.img`
+    height: 60px;
+    width: 60px;
+    border-width: 1px;
+    border-radius: 100%;
 `;
 
 export const UserImage = styled(Image)`

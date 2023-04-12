@@ -25,7 +25,7 @@ const Game = () => {
         const gameDetailsData = await gameDetailsResponse.json();
         const trailDataData = await trailDataResponse.json();
         setGameDetails(gameDetailsData);
-        setTrailData(trailDataData.results);
+        setTrailData(trailDataData);
         setError(false);
       } catch (err) {
         setError(true);

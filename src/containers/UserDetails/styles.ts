@@ -11,6 +11,7 @@ export const Container = styled.div<ContainerProps>`
     justify-content: center;
     width: 100%;
     height: auto;
+    min-height: 80vh;
     padding: 0 20px;
 
     color: ${({ darkMode, theme }) => (darkMode ? theme.nord.white0 : theme.nord.gray1)};

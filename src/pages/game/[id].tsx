@@ -23,9 +23,9 @@ const Game = () => {
           fetch(`https://gametrail-backend-production-8fc0.up.railway.app/api/getTrail/?games__game=${id}`),
         ]);
         const gameDetailsData = await gameDetailsResponse.json();
-        const trailDataData = await trailDataResponse.json();
+        const trailApiData = await trailDataResponse.json();
         setGameDetails(gameDetailsData);
-        setTrailData(trailDataData);
+        setTrailData(trailApiData.results);
         setError(false);
       } catch (err) {
         setError(true);

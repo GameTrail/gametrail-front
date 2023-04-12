@@ -1,35 +1,32 @@
 import styled from 'styled-components';
-import ReactPaginate from 'react-paginate';
 
 export const Container = styled.div` 
 
-width: 100%;
-height: auto;
-background-color: ${({ theme }) => theme.nord.white0};
-ul{
-    list-style: none;
-  }   
+  width: 100%;
+  height: auto;
+  background-color: ${({ theme }) => theme.nord.white0};
+  ul{
+      list-style: none;
+    }   
 `;
 
 export const Buscador = styled.div` 
-
-width: 80%;
-height: auto;
-margin-left: 10%;
-    
+  width: 80%;
+  height: auto;
+  margin-left: 10%;
 `;
 
 export const Cuerpo = styled.div` 
 
-background-color: ${({ theme }) => theme.nord.white0};
+  background-color: ${({ theme }) => theme.nord.white0};
 
-padding: 20px;
-display: flex;
-flex-direction: row;
-width: 80%;
-margin: 0 auto;
-flex-flow: row wrap;
-justify-content: space-between;
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  margin: 0 auto;
+  flex-flow: row wrap;
+  justify-content: space-between;
 
 h3{
     color: ${({ theme }) => theme.nord.gray0};
@@ -306,151 +303,4 @@ padding: 9px;
     transition: all 300ms;
     
 }
-`;
-
-export const GameName = styled.p`
-margin-top: 0%;
-margin: 5%;
-font-size: 25px;
-
-`;
-
-export const StyledReactPaginate = styled(ReactPaginate)`
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-    
-  .previous,
-  .next {
-    display: inline-block;
-    padding: 10px;
-    margin: 10px;
-    border-radius: 4px;
-    background-color: ${({ theme }) => theme.nord.gray2};
-    color: ${({ theme }) => theme.nord.white2};
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-
-    &:hover {
-      background-color: ${({ theme }) => theme.nord.white1};
-    }
-
-    
-  }
-  @media (min-width: 567px) {
-    
-    li{
-    display: inline-block;
-    padding: 10px;
-    margin: 15px;
-    border-radius: 4px;
-    background-color: #eee;
-    color: #333;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  a{
-    padding: 18px;
-  }
-  
-
-  .pagination__link {
-    display: inline-block;
-    padding: 10px;
-    margin: 0 25px;
-    border-radius: 4px;
-    color: ${({ theme }) => theme.nord.white2};
-    background-color: ${({ theme }) => theme.nord.gray2};
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    
-
-    &--active {
-        background-color: ${({ theme }) => theme.nord.orange};
-        color: ${({ theme }) => theme.nord.white2};
-    }
-
-    &--disabled {
-      opacity: 0.5;
-      pointer-events: none;
-    }
-
-    &:hover {
-      background-color: ${({ theme }) => theme.nord.white1};
-        color: ${({ theme }) => theme.nord.gray2};
-    }
-  }
-}
-@media (max-width: 567px) {
-  .previous,
-  .next {
-    display: inline-block;
-    padding: 10px;
-    margin: 10px;
-    border-radius: 4px;
-    background-color: ${({ theme }) => theme.nord.gray2};
-    color: ${({ theme }) => theme.nord.white2};
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    font-size: 10px;
-
-    &:hover {
-      background-color: ${({ theme }) => theme.nord.white1};
-    }
-
-    
-  }
-    
-    li{
-    display: none;
-    padding: 10px;
-    margin: 15px;
-    border-radius: 4px;
-    background-color: #eee;
-    color: #333;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  a{
-    padding: 18px;
-    display: none;
-
-  }
-  
-
-  .pagination__link {
-    display: none;
-
-    display: inline-block;
-    padding: 10px;
-    margin: 0 25px;
-    border-radius: 4px;
-    color: ${({ theme }) => theme.nord.white2};
-    background-color: ${({ theme }) => theme.nord.gray2};
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    
-
-    &--active {
-        background-color: ${({ theme }) => theme.nord.orange};
-        color: ${({ theme }) => theme.nord.white2};
-    }
-
-    &--disabled {
-      opacity: 0.5;
-      pointer-events: none;
-    }
-
-    &:hover {
-      background-color: ${({ theme }) => theme.nord.white1};
-        color: ${({ theme }) => theme.nord.gray2};
-    }
-  }
-}
-  
-
-  
-  
-
-  
 `;

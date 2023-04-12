@@ -1,10 +1,8 @@
 import {
   useEffect, useState,
 } from 'react';
-import { faCrown } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import router from 'next/router';
-import Select from 'react-select';
+import AsyncSelect from 'react-select/async';
 import CreateLottie from '@/components/Lotties/Landing/CreateLottie';
 import {
   Button,
@@ -15,8 +13,6 @@ import {
   InputTextArea,
   Label,
   PlanInfoToast,
-  PremiumFilterFirst,
-  PremiumFilterSecond,
   GamesSelectorStyles,
   Title,
   ErrorContainer,
@@ -24,13 +20,15 @@ import {
 import type { Game } from '@/models/Game/types';
 import { getUserCookie } from '@/utils/login';
 import { handlePremiumFilters } from '@/utils/Trail/handlePremiumFilters';
+import PremiumFilters from '../PremiumFilters';
 
-// interface TrailCreationFormProps {
-//   handleSetLoadingForm: (loading: boolean) => void;
-// }
+const GAMES_URL = 'https://gametrail-backend-production-8fc0.up.railway.app/api/game/';
 
 const TrailCreationForm = () => {
   const [games, setGames] = useState<Game[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [searchQuery, setSearchQuery] = useState<string>('');
+
   const [trailName, setTrailName] = useState('');
   const [trailDescription, setTrailDescription] = useState('');
   const [trailStartDate, setTrailStartDate] = useState('');
@@ -45,8 +43,6 @@ const TrailCreationForm = () => {
   const user = getUserCookie();
   const token = user?.token;
   const [formError, setFormError] = useState<string[]>([]);
-
-  const [loadingInputSelectGames, setLoadingInputSelectGames] = useState(false);
 
   const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const startDate = new Date(trailStartDate);
@@ -84,8 +80,7 @@ const TrailCreationForm = () => {
       setFormError(['Existe al menos un error en el formulario, comprueba los campos.']);
     }
     const data = await res.json();
-    const trailId = data.id;
-    return trailId;
+    return data.id;
   };
 
   const putGame = async (game: FormDataEntryValue, trailId: number, selectedGames: FormDataEntryValue[]) => {
@@ -127,37 +122,29 @@ const TrailCreationForm = () => {
     e.preventDefault();
 
     const formData = new FormData(e.currentTarget);
-
-    // Paso 1: Crear el trail
     const trailId = await createTrail();
-
-    // Paso 2: Crear los juegos del trail
     await createTrailGames(formData, trailId);
-
-    // Paso 3: Crear los filtros premium del trail
-    if (user?.plan === 'Premium') {
-      await handlePremiumFilters(formData, trailId, user, token);
-    }
+    if (user?.plan === 'Premium') await handlePremiumFilters(formData, trailId, user, token);
 
     router.push(`/user/${user?.id}`);
   };
 
   useEffect(() => {
     const fetchGames = async () => {
-      setLoadingInputSelectGames(true);
+      setLoading(true);
       try {
-        const res = await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/game/');
-        const data = await res.json();
+        const searchUrl = searchQuery.length > 1 ? `${GAMES_URL}?search=${searchQuery}` : GAMES_URL;
+        const response = await fetch(searchUrl);
+        const data = await response.json();
         setGames(data.results);
-      } catch (error) {
-        setLoadingInputSelectGames(false);
-        setFormError([(error as Error).message]);
+      } catch (err) {
+        setFormError(['Ha ocurrido un error al cargar los juegos, pruebe de nuevo más tarde.']);
       } finally {
-        setLoadingInputSelectGames(false);
+        setLoading(false);
       }
     };
     fetchGames();
-  }, [formError]);
+  }, [searchQuery]);
 
   return (
     <>
@@ -236,95 +223,40 @@ const TrailCreationForm = () => {
           />
         </Label>
 
-        {user?.plan === 'Premium' && (
-          <>
-            <FontAwesomeIcon icon={faCrown} size="xs" />
-            <h3>Filtros premium</h3>
-            <h5> Establece valoraciones mínimas para limitar la unión de usuarios.</h5>
-            <PremiumFilterFirst>
-
-              <Label>
-                Amabilidad
-                <Input
-                  type="number"
-                  name="kindness"
-                  id="kindness"
-                  max={5}
-                  min={1}
-                  defaultValue={1}
-                  value={userKindness}
-                  onChange={(e) => setUserKindness(e.target.value)}
-                />
-              </Label>
-
-              <Label>
-                Diversión
-                <Input
-                  type="number"
-                  name="funny"
-                  id="funny"
-                  max={5}
-                  min={1}
-                  defaultValue={1}
-                  value={userFunny}
-                  onChange={(e) => setUserFunny(e.target.value)}
-                />
-              </Label>
-
-              <Label>
-                Cooperación
-                <Input
-                  type="number"
-                  name="teamwork"
-                  id="teamwork"
-                  max={5}
-                  min={1}
-                  value={userTeamwork}
-                  onChange={(e) => setUserTeamwork(e.target.value)}
-                />
-              </Label>
-
-            </PremiumFilterFirst>
-
-            <PremiumFilterSecond>
-
-              <Label>
-                Habilidad
-                <Input
-                  type="number"
-                  name="ability"
-                  id="ability"
-                  max={5}
-                  min={1}
-                  defaultValue={1}
-                  value={userAbility}
-                  onChange={(e) => setUserAbility(e.target.value)}
-                />
-              </Label>
-
-              <Label>
-                Disponibilidad
-                <Input
-                  type="number"
-                  name="availability"
-                  id="availability"
-                  max={5}
-                  min={1}
-                  defaultValue={1}
-                  value={userAvailability}
-                  onChange={(e) => setUserAvailability(e.target.value)}
-                />
-              </Label>
-
-            </PremiumFilterSecond>
-          </>
-        )}
+        {
+          user?.plan === 'Premium' && (
+            <PremiumFilters
+              userTeamwork={userTeamwork}
+              userAbility={userAbility}
+              userKindness={userKindness}
+              userFunny={userFunny}
+              userAvailability={userAvailability}
+              setUserTeamwork={setUserTeamwork}
+              setUserAbility={setUserAbility}
+              setUserKindness={setUserKindness}
+              setUserFunny={setUserFunny}
+              setUserAvailability={setUserAvailability}
+            />
+          )
+        }
 
         <Label htmlFor="games">
           Juegos que se van a Jugar
-          <Select required isMulti name="games" isLoading={loadingInputSelectGames} isDisabled={loadingInputSelectGames} options={games} getOptionLabel={(option: Game) => option.name} getOptionValue={(option: Game) => option.id.toString()} styles={GamesSelectorStyles} placeholder="Selecciona los juegos que quieras..." />
+          <AsyncSelect
+            required
+            isMulti
+            isSearchable
+            name="games"
+            styles={GamesSelectorStyles}
+            getOptionLabel={(option: Game) => option.name}
+            getOptionValue={(option: Game) => option.id.toString()}
+            isLoading={loading}
+            onInputChange={(value) => setSearchQuery(value)}
+            defaultOptions={games}
+            loadOptions={async () => games}
+          />
         </Label>
-        <Button type="submit">Create</Button>
+        <Button type="submit">Crear</Button>
       </Form>
     </>
   );

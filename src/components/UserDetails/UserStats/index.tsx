@@ -1,6 +1,10 @@
 import React from 'react';
 import type { FC } from 'react';
+import type { IconProp } from '@fortawesome/fontawesome-svg-core';
+import { faCircle } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import type { Rating, RatingType } from '@/models/Rating/types';
+import { COLOR_MAP } from './constants';
 import { Container } from './styles';
 
 export type Props = {
@@ -14,7 +18,15 @@ const UserStats:FC<Props> = ({ userRating }) => {
       const rating = userRating[type as RatingType];
       return (
         <div key={type}>
-          <h3>{rating}</h3>
+          <h3>
+            <FontAwesomeIcon icon={faCircle as IconProp} color={COLOR_MAP[type as RatingType]} />
+            {' '}
+            {rating}
+            {' '}
+            -
+            {' '}
+            {type.toUpperCase()}
+          </h3>
         </div>
       );
     });

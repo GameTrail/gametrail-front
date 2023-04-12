@@ -1,37 +1,36 @@
-import type { FC } from 'react';
-import React, { useEffect, useState } from 'react';
+import type { FC, ChangeEvent } from 'react';
+import React, {
+  useEffect, useState,
+} from 'react';
+
 import { useRouter } from 'next/router';
 import type { Game } from '@/models/Game/types';
+import type { GameInList, UserInDetails } from '@/models/GameInUserList/types';
+import { GameListState } from '@/models/GameList/types';
+import { getUserCookie } from '@/utils/login';
 import { normalizeImage } from '@/utils/normalizeImage';
 import {
-  Container, Input, StyledReactPaginate, Row, Titulo, Titulo2, Cajas, Cuerpo, Cuerpo2, Fila, Mascara, Button, Buscador, CabezaTabla, Tabla, Boton,
+  Container, Input, StyledReactPaginate, Row, Titulo, Titulo2, Cajas, Cuerpo, Cuerpo2, Fila, Mascara, Button, Buscador, CabezaTabla, Tabla, Boton, ButtonGameInList, GameName,
 } from './styles';
 
 export type Props = {
   games: Game[];
+  searchQuery: string;
+  handleUpdateSearchQuery: (e: ChangeEvent<HTMLInputElement>) => void;
 };
 
-const GameList: FC<Props> = ({ games }) => {
-  const [busqueda, setbusqueda] = useState('');
-  const [resultados, setresultados] = useState<Game[]>([]);
+const GameList: FC<Props> = ({ games, searchQuery, handleUpdateSearchQuery }) => {
   const [showDiv2, setShowDiv2] = useState(true);
   const [buttonText, setButtonText] = useState('Desactivado');
+  const [userGames, setUserGames] = useState<GameInList[]>([]);
+  const user = getUserCookie();
+  const token = user?.token;
   const router = useRouter();
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [currentPage, setCurrentPage] = useState(0);
   const PER_PAGE = 12;
-  const offset = currentPage * PER_PAGE;
   const pageCount = Math.ceil(games.length / PER_PAGE);
-
-  useEffect(() => {
-    const resultadoFinal = games.filter((game) => Object.values(game).some((value) => typeof value === 'string'
-      && value.toLowerCase().includes(busqueda.toLowerCase())));
-    setresultados(resultadoFinal);
-  }, [busqueda, games]);
-
-  const evento = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setbusqueda(event.target.value);
-  };
 
   const toggleDiv = () => {
     setShowDiv2(!showDiv2);
@@ -55,11 +54,46 @@ const GameList: FC<Props> = ({ games }) => {
     });
   }
 
+  const handleOnClick = async (gameId: number) => {
+    if (user && token) {
+      const requestData = {
+        user: user.id.toString(),
+        game: gameId.toString(),
+        status: GameListState.PENDING.toString(),
+      };
+      try {
+        const res = await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/gameList/game', {
+          method: 'POST',
+          body: JSON.stringify(requestData),
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Token ${token}`,
+          },
+        });
+        if (!res.ok) {
+          throw new Error(res.statusText);
+        }
+      } catch (error) {
+        throw new Error();
+      }
+    }
+  };
+
+  const checkGameInUserList = (gameId: number) => userGames?.some((game) => (game.game.id === gameId));
+
+  useEffect(() => {
+    const getUserGames = async (userId: number) => {
+      const res = await fetch(`https://gametrail-backend-production-8fc0.up.railway.app/api/user/${userId}`);
+      const data: UserInDetails = await res.json();
+      setUserGames(data.games);
+    };
+    if (user) getUserGames(user?.id);
+  }, [user]);
   return (
 
     <Container>
       <Buscador>
-        <Input type="text" value={busqueda} onChange={evento} placeholder="Buscar..." />
+        <Input type="text" value={searchQuery} onChange={handleUpdateSearchQuery} placeholder="Buscar..." />
         <Titulo>Lista de juegos</Titulo>
         <Titulo2>Modo Lista</Titulo2>
         <Boton onClick={toggleDiv}>{buttonText}</Boton>
@@ -68,24 +102,28 @@ const GameList: FC<Props> = ({ games }) => {
         <>
           <Cuerpo>
 
-            {resultados.length === 0 && <h3>No hemos encontrado ningún resultado</h3>}
-            {resultados.length > 0 && (
-
-              resultados.slice(offset, offset + PER_PAGE).map((game) => (
+            {
+              games.map((game) => (
                 <Cajas key={game.id} onClick={() => handleClickGameDetails(game.id)}>
                   <Mascara>
                     <img src={normalizeImage(game.image)} width={450} height={600} alt="nu" />
                   </Mascara>
-                  <h2>{game.name}</h2>
+                  <GameName>{game.name}</GameName>
 
-                  <Button>
-                    Añadir
-                  </Button>
+                  {user && (checkGameInUserList(game.id) ? (
+                    <ButtonGameInList>
+                      En tu lista
+                    </ButtonGameInList>
+                  ) : (
+
+                    <Button onClick={(event) => { event.stopPropagation(); handleOnClick(game.id); }}>
+                      Añadir
+                    </Button>
+                  ))}
 
                 </Cajas>
               ))
-
-            )}
+            }
           </Cuerpo>
           <StyledReactPaginate
             previousLabel="← Anterior"
@@ -111,27 +149,33 @@ const GameList: FC<Props> = ({ games }) => {
                   <th>Portada</th>
                   <th>Nombre</th>
                   <th>Fecha</th>
-                  <th>Estado</th>
+                  {user && <th>Estado</th>}
                 </tr>
               </CabezaTabla>
               <tbody>
 
-                {resultados.length === 0 && <h3>No hemos encontrado ningún resultado</h3>}
-                {resultados.length > 0 && (
+                {games.map((game) => (
 
-                  resultados.slice(offset, offset + PER_PAGE).map((game) => (
+                  <Row key={game.id} onClick={() => handleClickGameDetails(game.id)}>
+                    <Fila><img src={normalizeImage(game.image)} width={80} height={100} alt="nu" /></Fila>
+                    <Fila><h2>{game.name}</h2></Fila>
+                    <Fila><h2>{game.releaseDate}</h2></Fila>
+                    {user && (checkGameInUserList(game.id) ? (
+                      <Fila>
+                        <ButtonGameInList>
+                          En tu lista
+                        </ButtonGameInList>
+                      </Fila>
+                    ) : (
+                      <Fila>
+                        <Button onClick={(event) => { event.stopPropagation(); handleOnClick(game.id); }}>
+                          Añadir
+                        </Button>
+                      </Fila>
+                    ))}
+                  </Row>
 
-                    <Row key={game.id} onClick={() => handleClickGameDetails(game.id)}>
-                      <Fila><img src={normalizeImage(game.image)} width={80} height={100} alt="nu" /></Fila>
-                      <Fila><h2>{game.name}</h2></Fila>
-                      <Fila><h2>{game.releaseDate}</h2></Fila>
-                      <Fila>+</Fila>
-                    </Row>
-
-                  ))
-
-                )}
-
+                ))}
               </tbody>
             </Tabla>
 

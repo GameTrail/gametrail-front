@@ -54,21 +54,17 @@ const Login = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(userCredentials),
       });
-
       if (!response.ok) {
         setLoginError(LOGIN_ERROR);
         return;
       }
-
       const data = await response.json();
       const userId = data.user_id;
       const { user, error } = await getUser(userId);
-
       if (error) {
         setLoginError(LOGIN_ERROR);
         return;
       }
-
       const userCookie = normalizeUserCookie(user, data.token);
       const MinUser = minimizeUserCookie(userCookie, userCookie.auth_token);
       setMinCookie('user', MinUser, 7);
@@ -86,7 +82,6 @@ const Login = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     const user = { username, password };
     onLogin(user);
   };

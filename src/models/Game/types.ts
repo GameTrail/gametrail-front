@@ -1,5 +1,8 @@
 import type { CommentsGame } from '../Comment/types';
 
+export type Platform = {
+  platform: string
+};
 export type Genre = {
   genre:string
 };
@@ -11,6 +14,6 @@ export type Game = {
   photos:string
   description: string
   genre: Genre[] | string
-  platforms?: string[]
+  platforms?: Platform[]
   comments_games: CommentsGame[] | []
 };

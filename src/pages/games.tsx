@@ -21,7 +21,7 @@ const Games = () => {
   };
 
   const handleSetPages = (gamesCount: number) => {
-    setPages(Math.ceil(gamesCount / 15));
+    setPages(Math.ceil(gamesCount / 16));
   };
 
   const handlePagination = async (page: number) => {

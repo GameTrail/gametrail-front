@@ -42,10 +42,10 @@ const PaginationCard: FC<Props> = ({ pages, currentPage, handlePagination }) => 
             3
           </PageButton>
           {handleRenderNewPage()}
-          <PageButton onClick={handleNextPage}>Next</PageButton>
+          <PageButton onClick={handleNextPage} disabled={currentPage === pages - 1}>Next</PageButton>
           <h1> ... </h1>
-          <PageButton key={pages} onClick={() => handlePagination(pages)}>
-            {pages}
+          <PageButton key={pages - 1} onClick={() => handlePagination(pages - 1)}>
+            {pages - 1}
           </PageButton>
         </>
       );

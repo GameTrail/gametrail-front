@@ -47,12 +47,12 @@ const GameList: FC<Props> = ({
       </Buscador>
       {showDiv2 ? (
         <Cuerpo>
-          {games.map((game) => (
-            <Cajas key={game.id} onClick={() => handleClickGameDetails(game.id)}>
+          {games?.map((game) => (
+            <Cajas key={game?.id} onClick={() => handleClickGameDetails(game?.id)}>
               <Mascara>
-                <img src={normalizeImage(game.image)} width={450} height={600} alt="nu" />
+                <img src={normalizeImage(game?.image)} width={450} height={600} alt="nu" />
               </Mascara>
-              <h2>{game.name}</h2>
+              <h2>{game?.name}</h2>
               <Button>
                 Añadir
               </Button>
@@ -71,11 +71,11 @@ const GameList: FC<Props> = ({
               </tr>
             </CabezaTabla>
             <tbody>
-              {games.map((game) => (
-                <Row key={game.id} onClick={() => handleClickGameDetails(game.id)}>
-                  <Fila><img src={normalizeImage(game.image)} width={80} height={100} alt="nu" /></Fila>
-                  <Fila><h2>{game.name}</h2></Fila>
-                  <Fila><h2>{game.releaseDate}</h2></Fila>
+              {games?.map((game) => (
+                <Row key={game?.id} onClick={() => handleClickGameDetails(game?.id)}>
+                  <Fila><img src={normalizeImage(game?.image)} width={80} height={100} alt="nu" /></Fila>
+                  <Fila><h2>{game?.name}</h2></Fila>
+                  <Fila><h2>{game?.releaseDate}</h2></Fila>
                   <Fila>+</Fila>
                 </Row>
               ))}

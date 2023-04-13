@@ -16,13 +16,19 @@ const TrailCard: FC<Props> = ({ trail }) => {
     router.push(`/trail/${trail.id}`);
   };
 
+  const sliceText = (text: string) => {
+    if (text.length > 15) {
+      return `${text.slice(0, 15)}...`;
+    }
+    return text;
+  };
   return (
     <CardWrapper onClick={handleClickTrail}>
       <CardImage src={trail.games[0]?.image} />
       <CardContent>
-        <Name>{trail.name}</Name>
+        <Name>{sliceText(trail.name)}</Name>
         <TrailDate>{trail.startDate}</TrailDate>
-        <Description>{trail.description}</Description>
+        <Description>{sliceText(trail.description)}</Description>
         <Players>
           Jugadores
           {' '}

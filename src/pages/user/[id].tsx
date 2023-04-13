@@ -3,11 +3,12 @@ import { useRouter } from 'next/router';
 import Error from '@/components/Error';
 import LoadingSpinner from '@/components/LoadingSpinner';
 import { UserDetails } from '@/containers';
-import type { User as UserDetailsProps } from '@/models/User/types';
+import type { User as UserProps } from '@/models/User/types';
+import { normalizeUserRating } from '@/utils/normalizeUserRating';
 
 const User = () => {
   const router = useRouter();
-  const [userData, setUserData] = useState<UserDetailsProps | null>(null);
+  const [userData, setUserData] = useState<UserProps | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
   const { id } = router.query;
@@ -18,7 +19,12 @@ const User = () => {
       try {
         const response = await fetch(`https://gametrail-backend-production-8fc0.up.railway.app/api/user/${id}/`);
         const data = await response.json();
-        setUserData(data);
+
+        const normalizedUserData: UserProps = {
+          ...data,
+          average_ratings: normalizeUserRating(data.average_ratings),
+        };
+        setUserData(normalizedUserData);
         setError(false);
       } catch (err) {
         setError(true);
@@ -31,6 +37,7 @@ const User = () => {
 
   if (loading) return <LoadingSpinner />;
   if (error || !userData) return <Error />;
+
   return <UserDetails userData={userData} />;
 };
 

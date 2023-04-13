@@ -13,8 +13,8 @@ export type User = {
   plan: string;
   games: GameList[] | [];
   trails: Trail[] | [];
-  rate_recieved: Rating[] | [];
-  comments_received: CommentsUser[] | [];
+  average_ratings: Rating;
+  comments_recieved: CommentsUser[] | [];
 };
 
 export const normalizeUserCookie = (user: any, token: string): UserCookie => ({
@@ -27,8 +27,8 @@ export const normalizeUserCookie = (user: any, token: string): UserCookie => ({
   plan: user?.plan ?? '',
   games: user?.gammes ?? [],
   trails: user?.trails ?? [],
-  rate_recieved: user?.rate_recieved ?? [],
-  comments_received: user?.comments_received ?? [],
+  average_ratings: user?.average_ratings ?? [],
+  comments_recieved: user?.comments_recieved ?? [],
 });
 
 export const minimizeUserCookie = (user: UserCookie, token: string): MinUser => ({

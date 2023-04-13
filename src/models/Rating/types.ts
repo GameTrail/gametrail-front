@@ -1,17 +1,18 @@
 export enum RatingType {
-  KINDNESS = 'KINDNESS',
-  FUNNY = 'FUNNY',
-  TEAMWORK = 'TEAMWORK',
-  AVAILABILITY = 'AVAILABILITY',
-  ABILITY = 'ABILITY',
+  KINDNESS = 'kindness',
+  FUNNY = 'funny',
+  TEAMWORK = 'teamwork',
+  AVAILABILITY = 'availability',
+  ABILITY = 'ability',
 }
 
 export type Rating = {
-  type: RatingType;
-  rating: number;
-  ratedUser?: string,
-  userWhoRate?: string
-};
+  kindness: number,
+  funny: number,
+  teamwork: number,
+  availability: number,
+  ability: number,
+} | null;
 
 export type RatingNull = {
   type: RatingType;

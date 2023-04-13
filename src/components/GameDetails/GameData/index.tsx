@@ -31,8 +31,8 @@ const GameData: FC<Props> = ({ gameDetails }) => {
   const handleRenderPlatform = () => {
     if (gameDetails !== null && gameDetails !== undefined) {
       return gameDetails.platforms?.map((platform) => (
-        <GamePlatform platform={platform.platform}>
-          {platform.platform}
+        <GamePlatform platform={platform}>
+          {platform}
         </GamePlatform>
       ));
     }

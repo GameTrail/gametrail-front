@@ -1,12 +1,14 @@
 import type { FC } from 'react';
 import { useCallback, useMemo, useState } from 'react';
 
-import { faCrown } from '@fortawesome/free-solid-svg-icons';
+import { faCrown, faGear } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useRouter } from 'next/router';
 import type { User } from '@/models/User/types';
 import { getUserCookie } from '@/utils/login';
 import {
-  Container, RateButton, RateContainer, RateLabel, RateButtonSubmit, RateInput, CloseRateContainer,
+
+  Container, RateButton, RateContainer, RateLabel, RateButtonSubmit, RateInput, CloseRateContainer, ErrorContainer,
 } from './styles';
 
 export type Props = {
@@ -14,11 +16,14 @@ export type Props = {
 };
 const UserData: FC<Props> = ({ user }) => {
   const [rate, setRenderRate] = useState<boolean>(false);
+  const [ratingError, setRatingError] = useState<boolean>(false);
   const userWhoRates = getUserCookie();
   const token = userWhoRates?.token;
   const handleRateContainer = useCallback(() => {
     setRenderRate(!rate);
   }, [rate]);
+
+  const router = useRouter();
 
   const handleSubmit = useCallback(async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -48,17 +53,28 @@ const UserData: FC<Props> = ({ user }) => {
         throw new Error(res.statusText);
       }
     } catch (error) {
+      setRatingError(true);
       throw new Error();
     }
     handleRateContainer();
     window.location.reload();
   }, [handleRateContainer, token, user.id, userWhoRates?.id]);
 
+  const handleAlreadyVotedError = useMemo(() => {
+    if (ratingError) {
+      return (
+        <ErrorContainer>Ya has valorado a este usuario</ErrorContainer>
+      );
+    }
+
+    return null;
+  }, [ratingError]);
   const handleRenderRate = useMemo(() => {
     if (rate) {
       return (
         <RateContainer onSubmit={handleSubmit}>
           <CloseRateContainer onClick={handleRateContainer}>X</CloseRateContainer>
+          {handleAlreadyVotedError}
           <h2>Valorar usuario</h2>
           <RateLabel htmlFor="KINDNESS">Amabilidad</RateLabel>
           <RateInput type="number" id="kindness" name="kindness" min="1" max="5" defaultValue={5} />
@@ -75,8 +91,11 @@ const UserData: FC<Props> = ({ user }) => {
       );
     }
     return null;
-  }, [handleRateContainer, handleSubmit, rate]);
+  }, [handleAlreadyVotedError, handleRateContainer, handleSubmit, rate]);
 
+  const handleConfigProfile = useCallback(() => {
+    router.push('/user/configuration');
+  }, [router]);
   return (
     <>
       <Container>
@@ -86,12 +105,17 @@ const UserData: FC<Props> = ({ user }) => {
           {user.username}
           {' '}
           {user.plan === 'Premium' && (
-            <FontAwesomeIcon icon={faCrown} size="xs" />
+            <FontAwesomeIcon icon={faCrown} className="crown" size="xs" />
+          )}
+
+          {user.id === userWhoRates?.id && (
+            <FontAwesomeIcon icon={faGear} className="gear" onClick={handleConfigProfile} size="xs" />
           )}
         </h1>
-        {user.plan === 'PACO' && (
+        {user.id !== userWhoRates?.id && (
           <RateButton onClick={handleRateContainer}>Valorar</RateButton>
         )}
+
       </Container>
       {handleRenderRate}
     </>

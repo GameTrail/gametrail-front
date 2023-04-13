@@ -17,8 +17,8 @@ export type UserCookie = {
   plan: string;
   games: [] | GameList[];
   trails: Trail[] | [];
-  rate_recieved: [] | Rating[];
-  comments_received: [] | Comment[];
+  average_ratings: [] | Rating[];
+  comments_recieved: [] | Comment[];
 };
 
 export type MinUser = {

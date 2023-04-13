@@ -2,10 +2,10 @@ import type { FC } from 'react';
 import React, { useMemo, useState } from 'react';
 import { faCircleQuestion } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { CommentsComponent } from '@/components/Comments';
 import {
   UserData, UserStats, UserTrailList, UserAverageRating, UserListsButtons, UserGameList,
 } from '@/components/UserDetails';
-import CommentsUserContainer from '../CommentsUserContainer';
 import {
   Container, InfoDetails, StatsDetails, ListsDetails, KarmaInfo, KarmaInfoToast,
 } from './styles';
@@ -22,8 +22,8 @@ const User: FC<Props> = ({ userData }) => {
 
   const handleRenderList = useMemo(() => {
     if (selectedButton === ButtonType.Trail) return <UserTrailList trailList={userData.trails} />;
-    if (selectedButton === ButtonType.Games) return <UserGameList gameList={userData.games} />;
-    if (selectedButton === ButtonType.Comments) return <CommentsUserContainer userData={userData} />;
+    if (selectedButton === ButtonType.Games) return <UserGameList userId={userData.id} />;
+    if (selectedButton === ButtonType.Comments) return <CommentsComponent data={userData} type="user" />;
     return null;
   }, [selectedButton, userData]);
 
@@ -32,42 +32,8 @@ const User: FC<Props> = ({ userData }) => {
   );
 
   const handleRenderKarmaInfo = useMemo(() => {
-    if (karmaInfo) {
-      return (
-        <KarmaInfoToast>
-          <p>
-            El karma mide la reputación de un usuario de GameTrail en base a 5 medidas:
-            <br />
-          </p>
-          <ol>
-            <li>
-              <b>Amabilidad</b>
-              {' '}
-            </li>
-            <li>
-              <b>Habilidad</b>
-              {' '}
-            </li>
-            <li>
-              <b>Disponibilidad</b>
-              {' '}
-            </li>
-            <li>
-              <b>Diversión</b>
-              {' '}
-            </li>
-            <li>
-              <b>Cooperación</b>
-              {' '}
-            </li>
-          </ol>
-          <p>
-            El karma corresponde a la valoración media de estas 5 métricas.
-          </p>
-        </KarmaInfoToast>
-      );
-    }
-    return null;
+    if (!karmaInfo) return null;
+    return <KarmaInfoToast />;
   }, [karmaInfo]);
 
   return (
@@ -84,8 +50,8 @@ const User: FC<Props> = ({ userData }) => {
         <h2>Karma</h2>
       </KarmaInfo>
       <StatsDetails>
-        <UserAverageRating userRating={userData.rate_recieved} />
-        <UserStats userRating={userData.rate_recieved} />
+        <UserAverageRating userRating={userData.average_ratings} />
+        <UserStats userRating={userData.average_ratings} />
       </StatsDetails>
 
       <UserListsButtons onClickButton={onClickButton} selectedButton={selectedButton} />

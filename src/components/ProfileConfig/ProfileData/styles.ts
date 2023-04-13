@@ -12,8 +12,7 @@ export const MainContainer = styled.div`
 export const ProfileForm = styled.form`
   display: flex;
   flex-direction: column;
-  margin: 3%;
-  width: 50vw;
+  width: 700px;
   padding:1rem;
   text-align: center;
   border-radius: 30px;
@@ -71,6 +70,21 @@ export const Input = styled.input`
   font-size: 1em;
   @media (max-width: 768px) {
     font-size: 0.7rem;
+  };
+`;
+export const ErrorContainer = styled.div`
+  text-align: center;
+  border-radius: 8px;
+  background-color: ${({ theme }) => theme.nord.red};
+  color: ${({ theme }) => theme.nord.white2};
+  border-color: black;
+  width: 50%;
+  margin:0 auto;
+  height: auto;
+  padding: 0.5rem;
+  @media (max-width: 768px) {
+    font-size: 0.7rem;
+    width: 80%;
   };
 `;
 export const Button = styled.button`

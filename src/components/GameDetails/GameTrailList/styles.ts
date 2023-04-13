@@ -4,7 +4,7 @@ export const Item = styled.div`
     display: flex;
     cursor:pointer;
     flex-direction: row;
-    font-size: 0.75rem;
+    font-size: 1em;
     justify-content: space-between;
     background-color: ${({ theme }) => theme.nord.gray3};
     border-radius: 10px;
@@ -39,6 +39,7 @@ export const Item = styled.div`
         align-items: center;
         justify-content: space-between;
         width: 100%;
+        font-size: 0.6em;
         span{
             font-size: 0.50rem;
             font-weight: 400;
@@ -77,7 +78,7 @@ export const Container = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 50%;
+    width: 70%;
     padding: 0 20px;
     @media (max-width: 1440px) {
         width: 70%;

@@ -12,7 +12,6 @@ export const Nav = styled.nav`
   background-color: ${({ theme }) => theme.nord.gray1};
   color: ${({ theme }) => theme.nord.white0};
   box-shadow: 0 0 10px ${({ theme }) => theme.nord.gray2};
-
   @media (max-width: 768px) {
     padding: 0 20px;
     flex-direction: column;
@@ -39,7 +38,6 @@ export const Menu = styled.div`
   height: 100%;
   width: 80%;
   gap: 1em;
-
   @media (max-width: 768px) {
     flex-direction: column;
     align-items: center;
@@ -59,12 +57,10 @@ export const MenuItem = styled(Link)`
   &:hover {
     background-color: ${({ theme }) => theme.nord.gray3};
   }
-
   @media (max-width: 768px) {
     width: auto;
     height: auto;
-    margin: 5px 0;
-    padding: 10px 20px;
+    margin-bottom: 10px;
     border-radius: 5px;
     text-align: center;
   }
@@ -90,9 +86,6 @@ export const MobileMenuIcon = styled.div<MobileMenuIconProps>`
     margin-left: auto;
     transition: transform 0.3s ease-in-out;
     transform: ${(props) => (props.showMenu ? 'rotate(90deg)' : 'rotate(0)')};
-    svg {
-      font-size: 1.5rem;
-    }
   }
 `;
 
@@ -109,53 +102,34 @@ export const Premium = styled.div`
   margin-left: 1.2em;
   text-align: center;
   cursor: pointer;
-
-@keyframes gradient {
-  0% {
-    background-position: 0 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0 50%;
-  }
-}
-
-&:hover {
-  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1), 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-}
-
-@media (max-width: 768px) {
-  margin-left: 0;
-}
-`;
-
-export const User = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 1em;
-    border-radius: 9px;
-    width: 100%;
-    height: auto;
-    cursor: pointer;
-    background-color: ${({ theme }) => theme.nord.gray3};
-
-    box-shadow: 0 0 10px 0 ${({ theme }) => theme.nord.gray3};
-    transition: all 0.3s ease-in-out;
-    
-    &:hover {
-        box-shadow: 0 0 10px 0;
-        background-color: ${({ theme }) => theme.nord.gray2};
+  @keyframes gradient {
+    0% {
+      background-position: 0 50%;
     }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0 50%;
+    }
+  }
+  &:hover {
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1), 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  }
+  @media (max-width: 768px) {
+    margin-left: 0;
+  }
 `;
 
 export const Avatar = styled.img`
-    height: 60px;
-    width: 60px;
+    height: 50px;
+    width: 50px;
     border-width: 1px;
     border-radius: 100%;
+    @media (max-width: 768px) {
+      margin-top: -10px;
+      margin-bottom: -10px;
+    }
 `;
 
 export const UserImage = styled(Image)`

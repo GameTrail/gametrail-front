@@ -7,29 +7,29 @@ import {
 } from './styles';
 
 interface Props {
-  userKindness: string;
+  useramabilidad: string;
   userFunny: string;
   userTeamwork: string;
   userAbility: string;
-  userAvailability: string;
-  setUserKindness: (value: string) => void;
+  userAvailhabilidad: string;
+  setUseramabilidad: (value: string) => void;
   setUserFunny: (value: string) => void;
   setUserTeamwork: (value: string) => void;
   setUserAbility: (value: string) => void;
-  setUserAvailability: (value: string) => void;
+  setUserAvailhabilidad: (value: string) => void;
 }
 
 const PremiumFilters: FC<Props> = ({
-  userKindness,
+  useramabilidad,
   userFunny,
   userTeamwork,
   userAbility,
-  userAvailability,
-  setUserKindness,
+  userAvailhabilidad,
+  setUseramabilidad,
   setUserFunny,
   setUserTeamwork,
   setUserAbility,
-  setUserAvailability,
+  setUserAvailhabilidad,
 }) => (
   <>
     <FontAwesomeIcon icon={faCrown} size="xs" />
@@ -41,13 +41,13 @@ const PremiumFilters: FC<Props> = ({
         Amabilidad
         <Input
           type="number"
-          name="kindness"
-          id="kindness"
+          name="amabilidad"
+          id="amabilidad"
           max={5}
           min={1}
           defaultValue={1}
-          value={userKindness}
-          onChange={(e) => setUserKindness(e.target.value)}
+          value={useramabilidad}
+          onChange={(e) => setUseramabilidad(e.target.value)}
         />
       </Label>
 
@@ -55,8 +55,8 @@ const PremiumFilters: FC<Props> = ({
         Diversión
         <Input
           type="number"
-          name="funny"
-          id="funny"
+          name="diversion"
+          id="diversion"
           max={5}
           min={1}
           defaultValue={1}
@@ -86,8 +86,8 @@ const PremiumFilters: FC<Props> = ({
         Habilidad
         <Input
           type="number"
-          name="ability"
-          id="ability"
+          name="habilidad"
+          id="habilidad"
           max={5}
           min={1}
           defaultValue={1}
@@ -100,13 +100,13 @@ const PremiumFilters: FC<Props> = ({
         Disponibilidad
         <Input
           type="number"
-          name="availability"
-          id="availability"
+          name="availhabilidad"
+          id="availhabilidad"
           max={5}
           min={1}
           defaultValue={1}
-          value={userAvailability}
-          onChange={(e) => setUserAvailability(e.target.value)}
+          value={userAvailhabilidad}
+          onChange={(e) => setUserAvailhabilidad(e.target.value)}
         />
       </Label>
 

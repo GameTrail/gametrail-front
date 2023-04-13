@@ -4,11 +4,24 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    font-size: 1.2rem;
+    font-size: 0.8em;
     justify-content: space-evenly;
     width: 100%;
     height: 100%;
-    padding: 20px 20px;
+    svg {
+        width: 5%;
+        height: 5%;
+    }
+    @media (max-width: 768px) {
+        padding-bottom: 1em;
+        padding-top: 1em;
+        padding-left: 31%;
+        font-size: 0.6em;
+        svg {
+            width: 3%;
+            height: 3%;
+        }
+    }
     span {
         @keyframes blink {
             0% {

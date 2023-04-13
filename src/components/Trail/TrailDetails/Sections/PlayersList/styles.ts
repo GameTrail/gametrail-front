@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import Link from 'next/link';
 
-export const PlayerListElement = styled.li`
+export const PlayerListElement = styled(Link)`
     display: flex;
     flex-direction: row;
     width: 100%;

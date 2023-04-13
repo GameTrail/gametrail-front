@@ -15,7 +15,8 @@ export const Foot = styled.footer`
     box-shadow: 0 0 10px ${({ theme }) => theme.nord.gray2};
 
     @media (max-width: 768px) {
-        padding: 20px 20px;
+        padding: 20px;
+        height: auto;
         flex-direction: column;
     }
 `;
@@ -31,6 +32,8 @@ export const Menu = styled.div`
     @media (max-width: 768px) {
         width: 100%;
         justify-content: center;
+        flex-direction: column;
+        padding-top: 10px;
     }
 `;
 

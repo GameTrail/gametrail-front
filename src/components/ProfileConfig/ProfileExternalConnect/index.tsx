@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   ExternalConnectContainer, ExternalConnectImage, ExternalConnectButton, MainContainer,
 } from './styles';
 
 const ProfileExternalConnect = () => {
-  const handleSteamConnect = () => {
+  const [connected, setConnected] = useState(false);
+
+  const handleSteamConnect = async () => {
+    setConnected(true);
   };
 
   const handleXboxConnect = () => {
@@ -15,9 +18,13 @@ const ProfileExternalConnect = () => {
       <ExternalConnectContainer>
         <ExternalConnectImage src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Steam_icon_logo.svg/768px-Steam_icon_logo.svg.png" />
 
-        <ExternalConnectButton onClick={handleSteamConnect}>
-          Conectar
-        </ExternalConnectButton>
+        {connected ? (
+          <p>Conectado a Steam!</p>
+        ) : (
+          <ExternalConnectButton onClick={handleSteamConnect}>
+            Conectar
+          </ExternalConnectButton>
+        )}
 
       </ExternalConnectContainer>
 
@@ -31,7 +38,6 @@ const ProfileExternalConnect = () => {
       </ExternalConnectContainer>
 
     </MainContainer>
-
   );
 };
 

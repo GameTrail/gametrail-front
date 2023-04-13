@@ -12,10 +12,10 @@ export const DeletePopup = styled.div`
   color: ${({ theme }) => theme.nord.white0};
   background-color: ${({ theme }) => theme.nord.red};
   border-radius: 8px;
-  margin-top: 10rem;
+  margin-top: 3em;
   z-index: 1;
-  width: 600px;
-  height: 200px;
+  width: 50%;
+  height: 90%;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.25);
   @keyframes pulse {
     0% {
@@ -68,7 +68,8 @@ export const DeleteButton = styled.button`
     border-radius: 9px;
     padding: 0 10px;
     font-size: 1.4rem;
-    margin: 0 auto;
+    margin-top: 1em;
+    margin-bottom: 2em;
     border: none;
     cursor: pointer;
     color: ${({ theme }) => (theme.nord.white2)};

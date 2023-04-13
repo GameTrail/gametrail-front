@@ -103,7 +103,6 @@ export const Button = styled.button`
         height:40px;
         font-size: 0.8rem;
     };
-
     &:hover {
         box-shadow: 0 0 3px ${({ theme }) => theme.nord.gray2};
         background-color: ${({ theme }) => (theme.nord.white2)};

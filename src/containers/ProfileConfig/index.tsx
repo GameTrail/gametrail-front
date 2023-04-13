@@ -17,9 +17,6 @@ const ProfileUser = () => {
       <Header>Acciones</Header>
       <Separator />
       <ProfileDelete />
-      <Header>Conexiones</Header>
-      <Separator />
-      <ProfileExternalConnect />
     </MainContainer>
   );
 };

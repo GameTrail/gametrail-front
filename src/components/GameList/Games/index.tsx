@@ -9,7 +9,7 @@ import { getUserCookie } from '@/utils/login';
 import { normalizeImage } from '@/utils/normalizeImage';
 import PaginationCard from '../../PaginationCard';
 import {
-  Container, Input, Row, Titulo, Titulo2, Cajas, Cuerpo, Cuerpo2, Fila, Mascara, Button, Buscador, CabezaTabla, Tabla, Boton, TitlesContainer,
+  Container, Input, Row, Titulo, Titulo2, Cajas, Cuerpo, Cuerpo2, Fila, Mascara, Button, Buscador, CabezaTabla, Tabla, Boton, TitlesContainer, GameName, ButtonGameInList,
 } from './styles';
 
 export type Props = {

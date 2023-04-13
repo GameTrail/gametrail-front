@@ -14,11 +14,12 @@ const ProfileUser = () => {
       <Header>Datos</Header>
       <Separator />
       <ProfileData userData={user} />
-
       <Header>Acciones</Header>
       <Separator />
       <ProfileDelete />
-
+      <Header>Conexiones</Header>
+      <Separator />
+      <ProfileExternalConnect />
     </MainContainer>
   );
 };

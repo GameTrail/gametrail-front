@@ -2,12 +2,9 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 50%;
-    gap: 2rem;
-    padding: 10px 30px;   
     white-space: pre;
     font-weight: 600;
     .crown{
@@ -41,19 +38,19 @@ export const Container = styled.div`
         cursor: pointer;
         color: ${({ theme }) => theme.nord.gray3};
         animation: rotateGear 5s linear infinite;
+        width: 25%;
+        height: 25%;
     }
 
     @keyframes rotateGear {
         from {
-                transform: rotate(0deg);
+            transform: rotate(0deg);
         }
         to {
-                transform: rotate(360deg);
+            transform: rotate(360deg);
         }
     }
-
     img{
-
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
@@ -63,11 +60,17 @@ export const Container = styled.div`
 
     @media (max-width: 768px) {
         flex-direction: column;
-        width: 100%;
-        height: 100%;
         padding-top: 10px;
         h1{
             margin-top: 1rem;
+            font-size: larger;
+        }
+        .gear {
+            cursor: pointer;
+            color: ${({ theme }) => theme.nord.gray3};
+            animation: rotateGear 5s linear infinite;
+            width: 30%;
+            height: 30%;
         }
     };
 `;

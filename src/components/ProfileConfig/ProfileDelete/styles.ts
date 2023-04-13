@@ -35,8 +35,8 @@ export const DeletePopup = styled.div`
     align-items: center;
     position: fixed;
     margin-top: 2rem;
-    width: 350px;
-    height: 200px;
+    width: 90%;
+    height: 70%;
     z-index: 1;
     font-size: 0.8rem;
     justify-content: center;

@@ -1,7 +1,5 @@
 import type { FC } from 'react';
 import React from 'react';
-import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import type { UserCookie } from '@/components/Login/LoginComponent/types';
 import {
   Avatar,
@@ -21,6 +19,9 @@ const SmallMenu: FC<Props> = ({ userCookie, handleStripeCheckout }) => (
     <MenuItem href="/games">
       <h4>Juegos</h4>
     </MenuItem>
+    <MenuItem href="/trails">
+      <p>Trails</p>
+    </MenuItem>
     {userCookie && (
       <>
         <MenuItem href="/trail/create">
@@ -31,12 +32,11 @@ const SmallMenu: FC<Props> = ({ userCookie, handleStripeCheckout }) => (
         </MenuItem>
         {userCookie?.plan === 'STANDARD' && (
           <Premium onClick={handleStripeCheckout}>
-            <h4>Premium</h4>
+            <h4>Hazte Premium</h4>
           </Premium>
         )}
-
         <LogoutItem href="/auth/logout">
-          <FontAwesomeIcon icon={faArrowRightFromBracket} />
+          <h4>Salir</h4>
         </LogoutItem>
       </>
     )}

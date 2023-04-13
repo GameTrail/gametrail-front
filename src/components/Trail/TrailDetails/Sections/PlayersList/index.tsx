@@ -24,7 +24,7 @@ const PlayersList: FC<Props> = ({ trailData }) => (
       <PlayerListContainer key="users-list">
         {trailData.users.map((trailMember) => (
 
-          <PlayerListElement key={trailMember.id}>
+          <PlayerListElement key={trailMember.id} href={`/user/${trailMember?.id}`}>
             <ProfilePicture
               src={trailMember.avatar}
               alt={trailMember.username}

@@ -35,11 +35,11 @@ const TrailCreationForm = () => {
   const [trailEndDate, setTrailEndDate] = useState('');
   const [trailMaxNumber, setTrailMaxNumber] = useState(2);
 
-  const [userKindness, setUserKindness] = useState('1');
+  const [useramabilidad, setUseramabilidad] = useState('1');
   const [userFunny, setUserFunny] = useState('1');
   const [userTeamwork, setUserTeamwork] = useState('1');
   const [userAbility, setUserAbility] = useState('1');
-  const [userAvailability, setUserAvailability] = useState('1');
+  const [userAvailhabilidad, setUserAvailhabilidad] = useState('1');
   const user = getUserCookie();
   const token = user?.token;
   const [formError, setFormError] = useState<string[]>([]);
@@ -228,14 +228,14 @@ const TrailCreationForm = () => {
             <PremiumFilters
               userTeamwork={userTeamwork}
               userAbility={userAbility}
-              userKindness={userKindness}
+              useramabilidad={useramabilidad}
               userFunny={userFunny}
-              userAvailability={userAvailability}
+              userAvailhabilidad={userAvailhabilidad}
               setUserTeamwork={setUserTeamwork}
               setUserAbility={setUserAbility}
-              setUserKindness={setUserKindness}
+              setUseramabilidad={setUseramabilidad}
               setUserFunny={setUserFunny}
-              setUserAvailability={setUserAvailability}
+              setUserAvailhabilidad={setUserAvailhabilidad}
             />
           )
         }

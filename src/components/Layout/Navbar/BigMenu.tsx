@@ -38,7 +38,7 @@ const BigMenu: FC<Props> = ({ userCookie, handleStripeCheckout }) => (
           </Premium>
         )}
         <LogoutItem href="/auth/logout">
-          <FontAwesomeIcon icon={faArrowRightFromBracket} />
+          <FontAwesomeIcon icon={faArrowRightFromBracket} width={20} height={20} />
         </LogoutItem>
       </>
     )}

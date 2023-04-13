@@ -6,7 +6,7 @@ import type { Game } from '@/models/Game/types';
 import { normalizeImage } from '@/utils/normalizeImage';
 import PaginationCard from '../../PaginationCard';
 import {
-  Container, Input, Row, Titulo, Titulo2, Cajas, Cuerpo, Cuerpo2, Fila, Mascara, Button, Buscador, CabezaTabla, Tabla, Boton,
+  Container, Input, Row, Titulo, Titulo2, Cajas, Cuerpo, Cuerpo2, Fila, Mascara, Button, Buscador, CabezaTabla, Tabla, Boton, TitlesContainer,
 } from './styles';
 
 export type Props = {
@@ -41,10 +41,12 @@ const GameList: FC<Props> = ({
   return (
     <Container>
       <Buscador>
-        <Input type="text" value={searchQuery} onChange={handleUpdateSearchQuery} placeholder="Buscar..." />
         <Titulo>Lista de juegos</Titulo>
-        <Titulo2>Modo Lista</Titulo2>
-        <Boton onClick={toggleDiv}>{buttonText}</Boton>
+        <Input type="text" value={searchQuery} onChange={handleUpdateSearchQuery} placeholder="Buscar..." />
+        <TitlesContainer>
+          <Titulo2>Modo Lista</Titulo2>
+          <Boton onClick={toggleDiv}>{buttonText}</Boton>
+        </TitlesContainer>
       </Buscador>
       {showDiv2 ? (
         <Cuerpo>

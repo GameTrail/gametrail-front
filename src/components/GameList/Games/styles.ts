@@ -265,3 +265,9 @@ padding: 9px;
     height: 40px;
 }
 `;
+
+export const GameName = styled.p`
+margin-top: 0%;
+margin: 5%;
+font-size: 25px;
+`;

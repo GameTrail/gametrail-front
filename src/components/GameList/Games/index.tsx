@@ -1,8 +1,11 @@
 import type { FC, ChangeEvent } from 'react';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { useRouter } from 'next/router';
 import type { Game } from '@/models/Game/types';
+import type { GameInList, UserInDetails } from '@/models/GameInUserList/types';
+import { GameListState } from '@/models/GameList/types';
+import { getUserCookie } from '@/utils/login';
 import { normalizeImage } from '@/utils/normalizeImage';
 import PaginationCard from '../../PaginationCard';
 import {
@@ -24,6 +27,8 @@ const GameList: FC<Props> = ({
   const [showDiv2, setShowDiv2] = useState(true);
   const [buttonText, setButtonText] = useState('Desactivado');
   const router = useRouter();
+  const user = getUserCookie();
+  const [userGames, setUserGames] = useState<GameInList[]>([]);
 
   const toggleDiv = () => {
     setShowDiv2(!showDiv2);
@@ -37,6 +42,42 @@ const GameList: FC<Props> = ({
   const handleClickGameDetails: any = (id: number) => {
     router.push(`/game/${id}`);
   };
+
+  const handleOnClick = async (gameId: number) => {
+    if (user) {
+      const requestData = {
+        user: user.id.toString(),
+        game: gameId.toString(),
+        status: GameListState.PENDING.toString(),
+      };
+      try {
+        const res = await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/gameList/game', {
+          method: 'POST',
+          body: JSON.stringify(requestData),
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Token ${user.token}`,
+          },
+        });
+        if (!res.ok) {
+          throw new Error(res.statusText);
+        }
+      } catch (error) {
+        throw new Error();
+      }
+    }
+  };
+
+  const checkGameInUserList = (gameId: number) => userGames?.some((game) => (game.game.id === gameId));
+
+  useEffect(() => {
+    const getUserGames = async (userId: number) => {
+      const res = await fetch(`https://gametrail-backend-production-8fc0.up.railway.app/api/user/${userId}`);
+      const data: UserInDetails = await res.json();
+      setUserGames(data.games);
+    };
+    if (user) getUserGames(user.id);
+  }, [user]);
 
   return (
     <Container>
@@ -55,10 +96,17 @@ const GameList: FC<Props> = ({
               <Mascara>
                 <img src={normalizeImage(game?.image)} width={450} height={600} alt="nu" />
               </Mascara>
-              <h2>{game?.name}</h2>
-              <Button>
-                Añadir
-              </Button>
+              <GameName>{game?.name}</GameName>
+              {user && (checkGameInUserList(game.id) ? (
+                <ButtonGameInList>
+                  En tu lista
+                </ButtonGameInList>
+              ) : (
+
+                <Button onClick={(event) => { event.stopPropagation(); handleOnClick(game.id); }}>
+                  Añadir
+                </Button>
+              ))}
             </Cajas>
           ))}
         </Cuerpo>
@@ -79,7 +127,19 @@ const GameList: FC<Props> = ({
                   <Fila><img src={normalizeImage(game?.image)} width={80} height={100} alt="nu" /></Fila>
                   <Fila><h2>{game?.name}</h2></Fila>
                   <Fila><h2>{game?.releaseDate}</h2></Fila>
-                  <Fila>+</Fila>
+                  {user && (checkGameInUserList(game.id) ? (
+                    <Fila>
+                      <ButtonGameInList>
+                        En tu lista
+                      </ButtonGameInList>
+                    </Fila>
+                  ) : (
+                    <Fila>
+                      <Button onClick={(event) => { event.stopPropagation(); handleOnClick(game.id); }}>
+                        Añadir
+                      </Button>
+                    </Fila>
+                  ))}
                 </Row>
               ))}
             </tbody>

@@ -7,7 +7,7 @@ import { getUserCookie } from '@/utils/login';
 import { normalizeImage } from '@/utils/normalizeImage';
 import {
   AddButton,
-  Container, GameButtons, GameDescription, GameImage, GameInfo, GamePlatform, PlatformContainer, Title,
+  Container, GameButtons, GameDescription, GameImage, GameInListButton, GameInfo, GamePlatform, PlatformContainer, Title,
 } from './styles';
 
 export type Props = {
@@ -17,17 +17,8 @@ export type Props = {
 const GameData: FC<Props> = ({ gameDetails }) => {
   const user = getUserCookie();
   const token = user?.token;
-  const [isHidden, setHidden] = useState <boolean>(false);
-  async function checkGames() {
-    if (!user) {
-      setHidden(true);
-      return;
-    }
-    const userData = await fetch(`https://gametrail-backend-production-8fc0.up.railway.app/api/user/${user.id}`);
-    const userGamesData: UserInDetails = await userData.json();
-    const foundGame = userGamesData.games.find((game: GameInList) => (game.game.id === gameDetails.id));
-    setHidden(!!foundGame);
-  }
+  const [userGames, setUserGames] = useState<GameInList[]>([]);
+
   const handleRenderPlatform = () => {
     if (gameDetails !== null && gameDetails !== undefined) {
       return gameDetails.platforms?.map((platform) => (
@@ -38,9 +29,6 @@ const GameData: FC<Props> = ({ gameDetails }) => {
     }
     return null;
   };
-  useEffect(() => {
-    checkGames().then((r) => r);
-  });
   const handleOnClick = async () => {
     if (user && token) {
       const requestData = {
@@ -62,11 +50,35 @@ const GameData: FC<Props> = ({ gameDetails }) => {
         }
       } catch (error) {
         throw new Error();
-      } finally {
-        setHidden(true);
       }
     }
   };
+
+  const checkGameInUserList = () => userGames.some((game) => (game.game.id === gameDetails.id));
+
+  const handleRenderAddButton = () => {
+    if (checkGameInUserList() && userGames.length !== 0) {
+      return (
+        <GameInListButton>
+          En tu lista de juegos
+        </GameInListButton>
+      );
+    }
+    return (
+      <AddButton onClick={handleOnClick}>
+        Añadir
+      </AddButton>
+    );
+  };
+
+  useEffect(() => {
+    const getUserGames = async (userId: number) => {
+      const res = await fetch(`https://gametrail-backend-production-8fc0.up.railway.app/api/user/${userId}`);
+      const data: UserInDetails = await res.json();
+      setUserGames(data.games);
+    };
+    if (user) getUserGames(user.id);
+  }, [user]);
 
   return (
     <Container>
@@ -80,9 +92,7 @@ const GameData: FC<Props> = ({ gameDetails }) => {
           <PlatformContainer>
             {handleRenderPlatform()}
           </PlatformContainer>
-          <AddButton onClick={handleOnClick} ishidden={isHidden}>
-            Añadir
-          </AddButton>
+          {user ? handleRenderAddButton() : null}
         </GameButtons>
 
       </GameInfo>

@@ -1,11 +1,11 @@
 import type { FC } from 'react';
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useRouter } from 'next/router';
 import type { UserCookie } from '@/components/Login/LoginComponent/types';
 import { minimizeUserCookie, normalizeUserCookie } from '@/models/User/types';
 import { getUserCookie, setMinCookie } from '@/utils/login';
 import {
-  MainContainer, ProfileForm, FieldContainer, Label, Input, Button, ProfileFormTitle,
+  MainContainer, ProfileForm, FieldContainer, Label, Input, Button, ProfileFormTitle, ErrorContainer,
 } from './styles';
 
 type Props = {
@@ -16,6 +16,7 @@ const ProfileData:FC<Props> = () => {
   const router = useRouter();
   const user = getUserCookie();
   const token = user?.token === undefined ? '' : user?.token;
+  const [registerErrors, setRegisterErrors] = useState<string[]>([]);
 
   const handleSubmit = useCallback(async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -35,21 +36,24 @@ const ProfileData:FC<Props> = () => {
         headers: { Authorization: `Token ${token}`, 'Content-Type': 'application/json' },
       });
 
-      if (!res.ok) {
-        throw new Error(res.statusText);
+      if (res.ok) {
+        const updatedUser = {
+          ...user,
+          email: requestData.email,
+          avatar: requestData.avatar,
+        };
+        const userCookie = normalizeUserCookie(updatedUser, token);
+        const MinUser = minimizeUserCookie(userCookie, userCookie.auth_token);
+        setMinCookie('user', MinUser, 7);
+        router.push(`/user/${user?.id}`);
+      } else {
+        const errorData = await res.json() as { [key: string]: string[] };
+        const errorMessages = Object.entries(errorData)
+          .flatMap(([key, errors]) => errors.map((error) => `${key}: ${error}`));
+        setRegisterErrors(errorMessages);
       }
     } catch (error) {
-      throw new Error();
-    } finally {
-      const updatedUser = {
-        ...user,
-        email: requestData.email,
-        avatar: requestData.avatar,
-      };
-      const userCookie = normalizeUserCookie(updatedUser, token);
-      const MinUser = minimizeUserCookie(userCookie, userCookie.auth_token);
-      setMinCookie('user', MinUser, 7);
-      router.push(`/user/${user?.id}`);
+      setRegisterErrors(['Ha ocurrido un error']);
     }
   }, [router, token, user]);
 
@@ -57,6 +61,9 @@ const ProfileData:FC<Props> = () => {
     <MainContainer>
       <ProfileForm onSubmit={handleSubmit}>
         <ProfileFormTitle> Editar datos </ProfileFormTitle>
+        {registerErrors.map((message) => (
+          <ErrorContainer key={registerErrors.indexOf(message)}>{message}</ErrorContainer>
+        ))}
         <FieldContainer>
           <Label htmlFor="name">Email</Label>
           <Input type="email" name="email" id="email" placeholder={`${user?.email}`} />

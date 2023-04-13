@@ -1,5 +1,5 @@
 import React from 'react';
-import { ProfileData, ProfileDelete, ProfileExternalConnect } from '@/components/ProfileConfig';
+import { ProfileData, ProfileDelete } from '@/components/ProfileConfig';
 import { getUserCookie } from '@/utils/login';
 import {
   MainContainer, Header, Separator, MainHeader,
@@ -18,10 +18,6 @@ const ProfileUser = () => {
       <Header>Acciones</Header>
       <Separator />
       <ProfileDelete />
-
-      <Header>Conexiones</Header>
-      <Separator />
-      <ProfileExternalConnect />
 
     </MainContainer>
   );

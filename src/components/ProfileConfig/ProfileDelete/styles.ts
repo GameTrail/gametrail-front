@@ -60,6 +60,7 @@ export const DeleteContainer = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    margin-bottom: 1rem;
 `;
 
 export const DeleteButton = styled.button`

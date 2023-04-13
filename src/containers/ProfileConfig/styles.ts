@@ -45,5 +45,4 @@ export const MainHeader = styled.h1`
         text-align: center;
         margin-left:0rem;
     };
-
 `;

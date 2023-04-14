@@ -68,7 +68,7 @@ const Disclaimer = () => (
     <Subtitle2>Contacta con nosotros</Subtitle2>
     <Text>Si tiene alguna pregunta sobre este Descargo de responsabilidad, puede contactarnos:</Text>
     <Ul>
-      <Li>Por correo electrónico: help.gametrail@gmail.com</Li>
+      <Li>Por correo electrónico: help.user.gametrail@gmail.com</Li>
     </Ul>
   </Container>
 );

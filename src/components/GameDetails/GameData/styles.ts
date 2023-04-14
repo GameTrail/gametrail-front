@@ -88,6 +88,7 @@ const handlePlatformColor = (theme : DefaultTheme, platform : string) => {
   if (platform?.includes('PlayStation')) return theme.nord.blue3;
   if (platform?.includes('Xbox')) return theme.nord.green;
   if (platform?.includes('Nintendo')) return theme.nord.red;
+  if (platform?.includes('Wii')) return theme.nord.red;
   return theme.nord.gray3;
 };
 
@@ -137,13 +138,7 @@ export const GameButtons = styled.div`
     
 `;
 
-export type ButtonProps = {
-  ishidden: boolean;
-};
-
-export const AddButton = styled.button<ButtonProps>`
-
-  visibility: ${({ ishidden }) => (ishidden ? 'hidden' : 'visible')};
+export const AddButton = styled.button`
   width: auto;
   height: 40%;
   padding: 10px 20px 10px 20px;
@@ -158,7 +153,7 @@ export const AddButton = styled.button<ButtonProps>`
   color: ${({ theme }) => (theme.nord.white2)};
   margin-bottom: 5%;
   cursor: pointer;
-  border-width: 0%;
+  border: none;
 
   @media (max-width: 768px) {
     width: 45%;
@@ -167,4 +162,21 @@ export const AddButton = styled.button<ButtonProps>`
   @media (max-width: 426px) {
     width: 100%;
   }
+`;
+
+export const GameInListButton = styled.p`
+  width: auto;
+  height: 40%;
+  padding: 10px 20px 10px 20px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-style: normal;
+  font-family: "Outfit", sans-serif;
+  font-size: 24px;
+  white-space:nowrap;
+  text-align: center;
+  background-color: ${({ theme }) => (theme.nord.purple)};
+  color: ${({ theme }) => (theme.nord.white2)};
+  margin-bottom: 5%;
+
 `;

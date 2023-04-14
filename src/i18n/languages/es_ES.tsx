@@ -3,6 +3,7 @@ const globals = {
   register: 'Registrarse',
   month: 'mes',
   start: 'Comenzar',
+  exit: 'Salir',
 };
 
 const navbar = {
@@ -11,6 +12,14 @@ const navbar = {
   trails: 'Trails',
   create_trail: 'Crear Trail',
   become_premium: 'Hazte Premium',
+};
+
+const footer = {
+  privacy_policy: 'Política de privacidad',
+  legal_notice: 'Aviso legal',
+  contact: 'Contacto',
+  terms_and_conditions: 'Términos y condiciones de uso',
+  cookies_policy: 'Política de cookies',
 };
 
 const landing = {
@@ -72,6 +81,7 @@ const Dictionary = {
   ...landing.MainSection,
   ...landing.PricingSection,
   ...navbar,
+  ...footer,
 };
 
 export default Dictionary;

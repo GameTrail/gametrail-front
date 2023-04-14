@@ -12,10 +12,10 @@ export const DeletePopup = styled.div`
   color: ${({ theme }) => theme.nord.white0};
   background-color: ${({ theme }) => theme.nord.red};
   border-radius: 8px;
-  margin-top: 10rem;
+  margin-top: 3em;
   z-index: 1;
-  width: 600px;
-  height: 200px;
+  width: 50%;
+  height: 90%;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.25);
   @keyframes pulse {
     0% {
@@ -35,8 +35,8 @@ export const DeletePopup = styled.div`
     align-items: center;
     position: fixed;
     margin-top: 2rem;
-    width: 350px;
-    height: 200px;
+    width: 90%;
+    height: 70%;
     z-index: 1;
     font-size: 0.8rem;
     justify-content: center;
@@ -60,6 +60,7 @@ export const DeleteContainer = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    margin-bottom: 1rem;
 `;
 
 export const DeleteButton = styled.button`
@@ -68,7 +69,8 @@ export const DeleteButton = styled.button`
     border-radius: 9px;
     padding: 0 10px;
     font-size: 1.4rem;
-    margin: 0 auto;
+    margin-top: 1em;
+    margin-bottom: 2em;
     border: none;
     cursor: pointer;
     color: ${({ theme }) => (theme.nord.white2)};
@@ -97,13 +99,12 @@ export const DeleteConfirmButton = styled.button`
         margin-top: 1rem;
         justify-content: center;
         width: 200px;
-        border-radius: 9px;
         transition: all 0.2s ease-in-out;
-        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        box-shadow: rgba(0, 0, 0, 0.24) 0 3px 8px;
         font-weight: 600;
         font-style: normal;
         font-size: 16px;
-        letter-spacing: 0px;
+        letter-spacing: 0;
         line-height: 1.2;
         text-align: center;
          &:hover {
@@ -124,13 +125,12 @@ export const DeleteCancelButton = styled.button`
         color: ${({ theme }) => theme.nord.gray3};
         margin-top: 1rem;
         justify-content: center;
-        border-radius: 9px;
-        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        box-shadow: rgba(0, 0, 0, 0.24) 0 3px 8px;
         transition: all 0.2s ease-in-out;
         font-style: bold;
         font-weight: 600;
         font-size: 16px;
-        letter-spacing: 0px;
+        letter-spacing: 0;
         line-height: 1.2;
         text-align: center;
          &:hover {

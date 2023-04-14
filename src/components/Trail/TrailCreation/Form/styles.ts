@@ -9,7 +9,10 @@ export const Title = styled.h2`
   font-size: 2rem;
   padding-bottom: 0.5em;
   @media (max-width: 768px) {
-    font-size: 1.2rem;
+    display: flex;
+    font-size: 1.5rem;
+    text-align: center;
+    margin-top: -4em;
   };
 `;
 
@@ -24,6 +27,8 @@ export const ErrorContainer = styled.div`
   padding: 0.5rem;
   @media (max-width: 768px) {
     font-size: 0.7rem;
+    display: flex;
+    text-align: center;
   };
 `;
 
@@ -37,14 +42,14 @@ export const Form = styled.form`
   padding-top: 5em;
   padding-bottom: 5em;
   width: 100%;
-  @media (max-width: 490px) {
-    width: 100%;
-    height: 100%;
-  }
-  svg{
-    transform: scale(2);
-    margin: 0.1rem;
-    color: ${({ theme }) => theme.nord.gray0};
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-top: 2em;
+    margin-bottom: 2em;
   }
   h3{
     text-align: center;
@@ -67,6 +72,9 @@ export const Label = styled.label`
   margin-bottom: 1em;
   color: ${({ theme }) => theme.nord.white2};
   max-width: 60vw;
+  @media (max-width: 768px) {
+      font-size: 0.8rem;
+    }
 `;
 
 export const Input = styled.input`
@@ -77,17 +85,11 @@ export const Input = styled.input`
   border: 0.1rem solid ${({ theme }) => theme.nord.white0};
   border-radius: 0.5rem;
   font-size: 1rem;
-  font-family: Unbounded;
-`;
-
-export const InputDate = styled.input`
-  width: 90%;
-  height: 2rem;
-  background-color: ${({ theme }) => theme.nord.white2};
-  border: 0.1rem solid ${({ theme }) => theme.nord.white0};
-  border-radius: 0.5rem;
-  font-size: 1rem;
-  font-family: Unbounded;
+  font-family: Unbounded,serif;
+  @media (max-width: 768px) {
+      font-size: 0.5rem;
+      width: 100%;
+    }
 `;
 
 export const InputTextArea = styled.textarea`
@@ -98,38 +100,43 @@ export const InputTextArea = styled.textarea`
   border: 0.1rem solid ${({ theme }) => theme.nord.white0};
   border-radius: 0.5rem;
   font-size: 1rem;
-  font-family: Unbounded;
+  font-family: Unbounded,serif;
+  @media (max-width: 768px) {
+      font-size: 0.5rem;
+      text-align: center;
+      width: 100%;
+    }
 `;
 
 export const DateFieldContainer = styled.div`
-  width: 100%;
-  height: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: end;
-  align-content: end;
   flex-wrap: nowrap;
-  padding: 0 0 0 0;
-  margin: 0 0 0 3%;
   @media (max-width: 768px) {
+    display: flex;
     flex-direction: column;
+    align-items: center;
     width: 100%;
   }
 `;
-export const FieldContainer = styled.div`
-    width: 100%;
-    height: 100%;
+
+export const InputDate = styled.input`
+  width: 90%;
+  height: 2rem;
+  background-color: ${({ theme }) => theme.nord.white2};
+  border: 0.1rem solid ${({ theme }) => theme.nord.white0};
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-family: Unbounded,serif;
+  @media (max-width: 768px) {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    align-content: center;
-    flex-wrap: nowrap;
-    padding: 0 0 0 0;
-    margin: 0 0 1.2em 0;
-  
-    `;
+      font-size: 0.5rem;
+      text-align: center;
+      width: 100%;
+    }
+`;
 
 export const Button = styled.button`
   width: 100%;
@@ -142,6 +149,13 @@ export const Button = styled.button`
   }
   transition: background-color 0.2s;
   font-size: 1.7rem;
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    font-size: 1rem;
+    text-align: center;
+    width: 100%;
+  }
 `;
 
 export const GamesSelectorStyles: StylesConfig<Game> = {
@@ -180,13 +194,11 @@ export const PlanInfoToast = styled.div`
     }
   }
   animation : pulse 1.5s ease-in-out infinite;
-  @media (max-width: 1030px) {
-    width: 70%;
-    height: 100%;
-    padding: 1.5rem;
-    margin: 1rem;
-  };
   @media (max-width: 768px) {
+    flex-direction: column;
+    font-size: 0.5rem;
+    text-align: center;
     width: 100%;
-  };
+    height: 100%;
+  }
 `;

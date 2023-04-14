@@ -97,28 +97,25 @@ const UserData: FC<Props> = ({ user }) => {
     router.push('/user/configuration');
   }, [router]);
   return (
-    <>
-      <Container>
-        <img src={user.avatar} alt={user.username} width={150} height={150} />
-        <h1>
-          @
-          {user.username}
-          {' '}
-          {user.plan === 'Premium' && (
-            <FontAwesomeIcon icon={faCrown} className="crown" size="xs" />
-          )}
-
-          {user.id === userWhoRates?.id && (
-            <FontAwesomeIcon icon={faGear} className="gear" onClick={handleConfigProfile} size="xs" />
-          )}
-        </h1>
-        {user.id !== userWhoRates?.id && (
-          <RateButton onClick={handleRateContainer}>Valorar</RateButton>
+    <Container>
+      <img src={user.avatar} alt={user.username} width={150} height={150} />
+      <h1>
+        @
+        {user.username}
+        {' '}
+        {user.plan === 'Premium' && (
+        <FontAwesomeIcon icon={faCrown} className="crown" size="xs" />
         )}
 
-      </Container>
+        {user.id === userWhoRates?.id && (
+        <FontAwesomeIcon icon={faGear} className="gear" onClick={handleConfigProfile} size="xs" />
+        )}
+      </h1>
+      {user.id !== userWhoRates?.id && (
+      <RateButton onClick={handleRateContainer}>Valorar</RateButton>
+      )}
       {handleRenderRate}
-    </>
+    </Container>
   );
 };
 

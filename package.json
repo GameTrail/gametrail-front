@@ -51,6 +51,7 @@
     "react-select": "5.7.2",
     "socket.io": "4.6.1",
     "socket.io-client": "4.6.1",
+    "steam-web": "^0.7.0",
     "styled-components": "5.3.9",
     "swr": "2.1.0",
     "typescript": "4.9.5",

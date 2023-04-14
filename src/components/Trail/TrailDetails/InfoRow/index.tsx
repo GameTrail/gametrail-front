@@ -31,11 +31,11 @@ const PlusInfoRow: FC<Props> = ({ trailData }) => {
 
   const handleJoin = () => {
     const requestData = {
-      trailId: trailData.id,
-      userId: user?.id.toString(),
+      trail: trailData.id,
+      user: user?.id.toString(),
     };
     try {
-      fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/trail/join', {
+      fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/addUserInTrail', {
         method: 'POST',
         body: JSON.stringify(requestData),
         headers: {
@@ -45,6 +45,8 @@ const PlusInfoRow: FC<Props> = ({ trailData }) => {
       }).then((r) => r);
     } catch (error) {
       throw new Error();
+    } finally {
+      setIsJoined(true);
     }
   };
 

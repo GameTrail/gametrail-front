@@ -90,7 +90,7 @@ const CookiesPolicy = () => (
     <Subtitle2>Contáctenos:</Subtitle2>
     <Text>Si tiene alguna pregunta sobre esta Política de Cookies, puede contactarnos por correo electrónico a</Text>
     <Ul>
-      <Strong>help.gametrail@gmail.com</Strong>
+      <Strong>help.user.gametrail@gmail.com</Strong>
     </Ul>
   </Container>
 );

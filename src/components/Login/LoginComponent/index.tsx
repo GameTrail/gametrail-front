@@ -69,14 +69,12 @@ const Login = () => {
       const MinUser = minimizeUserCookie(userCookie, userCookie.auth_token);
       setMinCookie('user', MinUser, 7);
       setLoginError('');
+      router.push('/home');
     } catch (err) {
       setLoginError(LOGIN_ERROR);
     } finally {
       setUsername('');
       setPassword('');
-      if (loginError === '') {
-        router.push('/home');
-      }
     }
   };
 

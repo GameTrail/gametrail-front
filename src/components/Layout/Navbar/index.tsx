@@ -64,7 +64,7 @@ const Navbar = () => {
         <Link href="/"><h1>GAMETRAIL</h1></Link>
         {width <= 768 && (
           <MobileMenuIcon showMenu={showMenu} onClick={toggleMenu}>
-            <FontAwesomeIcon icon={faBars} />
+            <FontAwesomeIcon icon={faBars} width={20} height={20} />
           </MobileMenuIcon>
         )}
       </ResponsiveNavbar>

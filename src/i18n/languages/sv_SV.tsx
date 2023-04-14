@@ -3,6 +3,7 @@ const globals = {
   register: 'Registrera',
   month: 'månad',
   start: 'Starta',
+  exit: 'Avsluta',
 };
 
 const navbar = {
@@ -11,6 +12,14 @@ const navbar = {
   trails: 'Trails',
   create_trail: 'Skapa Trail',
   become_premium: 'Bli Premium',
+};
+
+const footer = {
+  privacy_policy: 'Integritetspolicy',
+  legal_notice: 'Juridisk information',
+  contact: 'Kontakt',
+  terms_and_conditions: 'Användarvillkor',
+  cookies_policy: 'Cookie-policy',
 };
 
 const landing = {
@@ -68,6 +77,7 @@ const Dictionary = {
   ...landing.MainSection,
   ...landing.PricingSection,
   ...navbar,
+  ...footer,
 };
 
 export default Dictionary;

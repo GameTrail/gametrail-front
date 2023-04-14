@@ -6,8 +6,9 @@ import { CommentsComponent } from '@/components/Comments';
 import {
   UserData, UserStats, UserTrailList, UserAverageRating, UserListsButtons, UserGameList,
 } from '@/components/UserDetails';
+import KarmaToast from './KarmaToast';
 import {
-  Container, InfoDetails, StatsDetails, ListsDetails, KarmaInfo, KarmaInfoToast,
+  Container, InfoDetails, StatsDetails, ListsDetails, KarmaInfo,
 } from './styles';
 import type { Props } from './types';
 import { ButtonType } from './types';
@@ -22,7 +23,7 @@ const User: FC<Props> = ({ userData }) => {
 
   const handleRenderList = useMemo(() => {
     if (selectedButton === ButtonType.Trail) return <UserTrailList trailList={userData.trails} />;
-    if (selectedButton === ButtonType.Games) return <UserGameList gameList={userData.games} />;
+    if (selectedButton === ButtonType.Games) return <UserGameList userId={userData.id} />;
     if (selectedButton === ButtonType.Comments) return <CommentsComponent data={userData} type="user" />;
     return null;
   }, [selectedButton, userData]);
@@ -33,7 +34,7 @@ const User: FC<Props> = ({ userData }) => {
 
   const handleRenderKarmaInfo = useMemo(() => {
     if (!karmaInfo) return null;
-    return <KarmaInfoToast />;
+    return <KarmaToast />;
   }, [karmaInfo]);
 
   return (

@@ -9,7 +9,7 @@ const Contact = () => (
     <ContactLottie />
     <Title>¡Contacta con nosotros!</Title>
     <Text> Si tienes alguna duda, sugerencia o quieres saber algo mas sobre nosotros no dudes en contactar con nosotros mediante el siguiente correo:</Text>
-    <Strong> help.gametrail@gmail.com </Strong>
+    <Strong> help.user.gametrail@gmail.com </Strong>
   </Container>
 );
 

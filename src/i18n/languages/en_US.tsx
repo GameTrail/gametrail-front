@@ -129,6 +129,53 @@ const CookiesPolicy = {
   'cookies-use-23': 'If you have any questions about this Cookies Policy, you can contact us by email at',
 
 };
+
+const Disclaimer = {
+  disclaimer: 'Legal Disclaimer',
+  disclaimer_last_update: 'Last Updated: April 07, 2023',
+  'disclaimer-1': 'Interpretation and Definitions',
+  'disclaimer-2': 'Interpretation',
+  'disclaimer-3': 'Words with initial capital letters have defined meanings under the following conditions. The following definitions will have the same meaning regardless of whether they appear in singular or plural form.',
+  'disclaimer-4': 'Definitions',
+  'disclaimer-5': 'For the purposes of this disclaimer:',
+  'disclaimer-6': 'Company',
+  'disclaimer-7': '(referred to as "the Company", "We", "Us", or "Our" in this disclaimer) refers to GameTrail.',
+  'disclaimer-8': 'Service',
+  'disclaimer-9': 'refers to the website or the application or both.',
+  'disclaimer-10': 'You',
+  'disclaimer-11': 'means the person accessing the Service, or the company, or any legal entity on behalf of which such person accesses or uses the Service, as applicable.',
+  'disclaimer-12': 'Website',
+  'disclaimer-13': 'refers to GameTrail, accessible from: ',
+  'disclaimer-14': 'Application',
+  'disclaimer-15': 'means the software program provided by the Company that is downloaded on any electronic device called GameTrail.',
+  'disclaimer-16': 'Disclaimer',
+  'disclaimer-17': 'The information contained in the Service is for general informational purposes only.',
+  'disclaimer-18': 'The Company assumes no responsibility for errors or omissions in the content of the Service.',
+  'disclaimer-19': 'The Company does not guarantee that the Service is free from viruses or other harmful components.',
+  'disclaimer-20': 'Disclaimer of External Links',
+  'disclaimer-21': 'The Service may contain links to external websites that are not provided or maintained by, or in any way affiliated with, the Company.',
+  'disclaimer-22': 'Please note that the Company does not guarantee the accuracy, relevance, timeliness, or completeness of any information on these external websites.',
+  'disclaimer-23': 'Disclaimer of Errors and Omissions',
+  'disclaimer-24': 'The information provided by the Service is for general guidance on matters of interest only. Even though the Company takes all precautions to ensure that the content of the Service is current and accurate, errors may occur. Additionally, due to the changing nature of laws, rules, and regulations, there may be delays, omissions, or inaccuracies in the information contained in the Service.',
+  'disclaimer-25': 'The Company shall not be liable for any errors or omissions, or for the results obtained from the use of this information.',
+  'disclaimer-26': 'Disclaimer of Fair Use',
+  'disclaimer-27': 'The Company may use copyrighted material that has not always been specifically authorized by the copyright owner. The Company makes such material available for criticism, comment, news reporting, teaching, scholarship, or research.',
+  'disclaimer-28': 'The Company believes that this constitutes "fair use" of any copyrighted material as provided for in section 107 of the US Copyright Law.',
+  'disclaimer-29': 'If you wish to use copyrighted material from the Service for your own purposes that go beyond fair use, you must obtain permission from the copyright owner.',
+  'disclaimer-30': 'Disclaimer of Expressive Opinions',
+  'disclaimer-31': 'The Service may contain opinions and views that are those of the authors and do not necessarily reflect the policy or official position of any other author, agency, organization, employer, or company, including the Company.',
+  'disclaimer-32': 'Comments posted by users are their sole responsibility, and users shall assume full responsibility, liability, and blame for any defamation or litigation that results from something written in or as a direct result of something written in a comment. The Company is not responsible for any comments posted by users and reserves the right to remove any comment for any reason whatsoever.',
+  'disclaimer-33': 'Disclaimer of liability',
+  'disclaimer-34': 'The information on the Service is provided with the understanding that the Company is not rendering legal, accounting, tax, or other professional services. As such, it should not be used as a substitute for consultation with competent accounting, tax, legal, or other professional advisors.',
+  'disclaimer-35': 'In no event shall the Company or its suppliers be liable for any special, incidental, indirect, or consequential damages arising out of or in connection with your access or use or inability to access or use the Service.',
+  'disclaimer-36': 'Disclaimer "Use at your own risk"',
+  'disclaimer-37': 'All information on the service is provided "as is", without warranty of completeness, accuracy, timeliness, or results obtained from the use of this information, and without warranty of any kind, express or implied, including, but not limited to warranties of performance, merchantability, and fitness for a particular purpose.',
+  'disclaimer-38': 'The Company shall not be liable to You or anyone else for any decision made or action taken in reliance on the information provided by the Service or for any consequential, special, or similar damages, even if advised of the possibility of such damages.',
+  'disclaimer-39': 'Contact Us',
+  'disclaimer-40': 'If you have any questions about this disclaimer, you can contact us:',
+  'disclaimer-41': 'By email:',
+};
+
 const Dictionary = {
   ...globals,
   ...landing.FaqSection,
@@ -140,6 +187,7 @@ const Dictionary = {
   ...Comments,
   ...Contact,
   ...CookiesPolicy,
+  ...Disclaimer,
 };
 
 export default Dictionary;

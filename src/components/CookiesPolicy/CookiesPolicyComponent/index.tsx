@@ -9,7 +9,7 @@ const CookiesPolicy = () => {
   return (
     <Container>
       <Title>{t('cookies_policy')}</Title>
-      <Text>{t('last_update')}</Text>
+      <Text>{t('cookies_last_update')}</Text>
       <Text>{t('cookies_disclaimer')}</Text>
       <Text>{t('cookies_disclaimer2')}</Text>
       <Subtitle>{t('interpretation')}</Subtitle>

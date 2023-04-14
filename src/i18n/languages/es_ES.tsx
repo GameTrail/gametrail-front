@@ -87,7 +87,7 @@ const Contact = {
 
 const CookiesPolicy = {
   cookies_policy: 'Política de cookies',
-  last_update: 'Última actualización: 08 de abril de 2023',
+  cookies_last_update: 'Última actualización: 08 de abril de 2023',
   cookies_disclaimer: 'Las cookies no suelen contener ninguna información que identifique personalmente a un usuario, pero la información personal que almacenamos sobre usted puede estar vinculada a la información almacenada y obtenida de las cookies. Para obtener más información sobre cómo utilizamos, almacenamos y mantenemos seguros sus datos personales, consulte nuestra Política de privacidad.',
   cookies_disclaimer2: 'No almacenamos información personal sensible, como direcciones de correo postal, contraseñas de cuentas, etc. en las cookies que utilizamos.',
 
@@ -131,6 +131,52 @@ const CookiesPolicy = {
   'cookies-use-23': 'Si tiene alguna pregunta sobre esta Política de Cookies, puede contactarnos por correo electrónico a',
 };
 
+const Disclaimer = {
+  disclaimer: 'Aviso legal',
+  disclaimer_last_update: 'Última actualización: 07 de abril de 2023',
+  'disclaimer-1': 'Interpretación y definiciones',
+  'disclaimer-2': 'Interpretación',
+  'disclaimer-3': 'Las palabras cuya letra inicial está en mayúscula tienen significados definidos bajo las siguientes condiciones. Las siguientes definiciones tendrán el mismo significado independientemente de si aparecen en singular o en plural.',
+  'disclaimer-4': 'Definiciones',
+  'disclaimer-5': 'A los efectos de este descargo de responsabilidad:',
+  'disclaimer-6': 'Compañía',
+  'disclaimer-7': '(referido como "la Compañía", "Nosotros", "Nos" o "Nuestro" en este descargo de responsabilidad) se refiere a GameTrail.',
+  'disclaimer-8': 'Servicio',
+  'disclaimer-9': 'se refiere al sitio web o la aplicación o ambos.',
+  'disclaimer-10': 'Tú',
+  'disclaimer-11': 'significa la persona que accede al Servicio, o la empresa, o cualquier entidad legal en nombre de la cual dicha persona accede o utiliza el Servicio, según corresponda.',
+  'disclaimer-12': 'Sitio web',
+  'disclaimer-13': 'se refiere a GameTrail, accesible desde: ',
+  'disclaimer-14': 'Aplicación',
+  'disclaimer-15': 'significa el programa de software proporcionado por la Compañía que se descarga en cualquier dispositivo electrónico llamado GameTrail.',
+  'disclaimer-16': 'Descargo de responsabilidad',
+  'disclaimer-17': 'La información contenida en el Servicio es solo para fines informativos generales.',
+  'disclaimer-18': 'La Compañía no asume ninguna responsabilidad por errores u omisiones en el contenido del Servicio.',
+  'disclaimer-19': 'La Compañía no garantiza que el Servicio esté libre de virus u otros componentes perjudiciales.',
+  'disclaimer-20': 'Descargo de responsabilidad de enlaces externos',
+  'disclaimer-21': 'El Servicio puede contener enlaces a sitios web externos que no son proporcionados ni mantenidos por o de ninguna manera afiliados a la Compañía.',
+  'disclaimer-22': 'Por favor, tenga en cuenta que la Compañía no garantiza la precisión, relevancia, puntualidad o integridad de ninguna información en estos sitios web externos.',
+  'disclaimer-23': 'Exención de responsabilidad por errores y omisiones',
+  'disclaimer-24': 'La información proporcionada por el Servicio es solo para orientación general sobre cuestiones de interés. Incluso si la Compañía toma todas las precauciones para asegurarse de que el contenido del Servicio sea actual y preciso, pueden ocurrir errores. Además, dada la naturaleza cambiante de las leyes, normas y regulaciones, puede haber demoras, omisiones o inexactitudes en la información contenida en el Servicio.',
+  'disclaimer-25': 'La Compañía no se hace responsable de ningún error u omisión, ni de los resultados obtenidos del uso de esta información.',
+  'disclaimer-26': 'Exención de responsabilidad por uso justo',
+  'disclaimer-27': 'La Compañía puede utilizar material con derechos de autor que no siempre ha sido específicamente autorizado por el propietario de los derechos de autor. La Compañía pone a disposición dicho material para crítica, comentario, reportajes de noticias, enseñanza, becas o investigación.',
+  'disclaimer-28': 'La Compañía considera que esto constituye un "uso justo" de cualquier material con derechos de autor según lo previsto en la sección 107 de la ley de derechos de autor de los Estados Unidos.',
+  'disclaimer-29': 'Si desea utilizar material con derechos de autor del Servicio para sus propios fines que vayan más allá del uso justo, debe obtener permiso del propietario de los derechos de autor.',
+  'disclaimer-30': 'Exención de responsabilidad por opiniones expresadas',
+  'disclaimer-31': 'El Servicio puede contener opiniones y puntos de vista que son de los autores y no reflejan necesariamente la política o posición oficial de ningún otro autor, agencia, organización, empleador o empresa, incluida la Compañía.',
+  'disclaimer-32': 'Los comentarios publicados por los usuarios son su responsabilidad exclusiva y los usuarios asumirán la responsabilidad completa, la responsabilidad y la culpa por cualquier difamación o litigio que resulte de algo escrito en o como resultado directo de algo escrito en un comentario. La Compañía no se hace responsable de ningún comentario publicado por los usuarios y se reserva el derecho de eliminar cualquier comentario por cualquier motivo que sea.',
+  'disclaimer-33': 'Exención de responsabilidad sin responsabilidad',
+  'disclaimer-34': 'La información en el Servicio se proporciona con el entendimiento de que la Compañía no está prestando servicios y asesoramiento profesional en materia legal, contable, fiscal u otros servicios. Como tal, no debe usarse como sustituto de la consulta con asesores profesionales competentes en contabilidad, impuestos, legales u otros asesores competentes.',
+  'disclaimer-35': 'En ningún caso la Compañía o sus proveedores serán responsables de ningún daño especial, incidental, indirecto o consecuente que surja de o en conexión con su acceso o uso o la imposibilidad de acceder o usar el Servicio.',
+  'disclaimer-36': 'Exención de responsabilidad "Úselo bajo su propio riesgo"',
+  'disclaimer-37': 'Toda la información en el servicio se proporciona &quot;tal cual&quot;, sin garantía de integridad, precisión, puntualidad o de los resultados obtenidos del uso de esta información, y sin garantía de ningún tipo, expresa o implícita, incluyendo, pero no limitado a garantías de rendimiento, comerciabilidad y aptitud para un propósito particular.',
+  'disclaimer-38': 'La Compañía no será responsable ante Usted ni ante nadie más por cualquier decisión tomada o acción realizada en confianza en la información proporcionada por el Servicio o por cualquier daño consecuente, especial o similar, incluso si se le ha informado de la posibilidad de tales daños.',
+  'disclaimer-39': 'Contacta con nosotros',
+  'disclaimer-40': 'Si tiene alguna pregunta sobre este descargo de responsabilidad, puede contactarnos:',
+  'disclaimer-41': 'Por correo electrónico: ',
+};
+
 const Dictionary = {
   ...globals,
   ...landing.FaqSection,
@@ -142,6 +188,7 @@ const Dictionary = {
   ...Comments,
   ...Contact,
   ...CookiesPolicy,
+  ...Disclaimer,
 };
 
 export default Dictionary;

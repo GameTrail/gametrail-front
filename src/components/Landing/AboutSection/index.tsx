@@ -1,4 +1,5 @@
 import React from 'react';
+import LanguagesSelector from '@/components/Landing/AboutSection/LanguagesSelector';
 import { PlayersLottie, SteamLottie, TodoListLottie } from '@/components/Lotties';
 import {
   Container, Description, About, Title,
@@ -32,6 +33,16 @@ const AboutSection = () => (
         </Description>
       </div>
       <TodoListLottie />
+    </About>
+    <About>
+      <div>
+        <Title>Siéntete como en casa</Title>
+        <Description>
+          Gametrail está disponible en 2 idiomas: Español e Inglés, y se está trabajando en más idiomas para que puedas disfrutar de la experiencia en tu idioma.
+          ¡Pulsa el icono de la derecha para cambiar el idioma!
+        </Description>
+      </div>
+      <LanguagesSelector />
     </About>
   </Container>
 );

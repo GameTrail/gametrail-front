@@ -70,6 +70,63 @@ const landing = {
   },
 };
 
+const Comments = {
+  send: 'Skicka',
+  write_a_comment: 'Skriv en kommentar',
+};
+
+const Contact = {
+  contact_us: 'Kontakta oss!',
+  contact_us_description: 'Har du några frågor eller förslag? Tveka inte att kontakta oss! Vi hjälper dig gärna.',
+  help_email: 'help.user.gametrail@gmail.com',
+};
+
+const CookiesPolicy = {
+  cookies_policy: 'Kakor (Cookies) Policy',
+  last_update: 'Senast uppdaterad: 8 april 2023',
+  cookies_disclaimer: 'Kakor (Cookies) innehåller vanligtvis ingen information som personligen identifierar en användare, men den personliga information som vi lagrar om dig kan vara kopplad till den information som lagras och erhålls från kakor (cookies). För mer information om hur vi använder, lagrar och säkerställer din personliga data, vänligen se vår Integritetspolicy.',
+  cookies_disclaimer2: 'Vi lagrar inte känslig personlig information, som postadresser, lösenord till konton etc., i de kakor (cookies) vi använder.',
+
+  interpretation: 'Tolkning och definitioner',
+  'interpretation-1': 'Tolkning',
+  'interpretation-2': 'Ord med inledande versal har definierade betydelser enligt följande villkor. Följande definitioner ska ha samma betydelse oavsett om de förekommer i singular eller plural.',
+  'interpretation-3': 'Definitioner',
+  'interpretation-4': 'För ändamål av denna Kakor (Cookies) Policy:',
+  company: 'Företag',
+  'company-1': '(här refererat som "Företaget", "Vi", "Oss" eller "Vår" i denna Kakor (Cookies) Policy) avser GameTrail.',
+  cookies: 'Kakor (Cookies)',
+  'cookies-1': 'avser små filer som placeras på din persondator, mobila enhet eller annan enhet av en webbplats, som innehåller detaljer om din webbhistorik på den webbplatsen bland dess många användningsområden.',
+  website: 'Webbplats',
+  'website-1': 'avser GameTrail, åtkomlig från: ',
+  you: 'Du',
+  'you-1': 'avser den individ som får åtkomst till eller använder Webbplatsen, eller ett företag eller annan juridisk enhet för vars räkning sådan individ får åtkomst till eller använder Webbplatsen, beroende på sammanhanget.',
+
+  cookies_use: 'Användning av kakor (cookies)',
+  'cookies-use-1': 'Typ av kakor (cookies) vi använder',
+  'cookies-use-2': 'Kakor (cookies) kan vara "permanenta" eller "sessionskakor (session cookies)". Permanenta kakor (cookies) förblir på din persondator eller mobila enhet när du stänger av den, medan sessionskakor (session cookies) raderas så snart du stänger din webbläsare.',
+  'cookies-use-3': 'Vi använder både sessionskakor (session cookies) och permanenta kakor (cookies) för de ändamål som anges nedan:',
+  'cookies-use-4': 'Nödvändiga/Essentiella kakor (cookies)',
+  'cookies-use-5': 'Typ: Sessionskakor (session cookies)',
+  admin_by_us: 'Administreras av: Oss',
+  'cookies-use-7': 'Syfte: Dessa cookies är nödvändiga för att tillhandahålla tjänster via webbplatsen och möjliggöra användning av vissa funktioner. De hjälper till att autentisera användare och förhindra bedräglig användning av användarkonton. Utan dessa cookies kan de begärda tjänsterna inte tillhandahållas, och vi använder endast dessa cookies för att tillhandahålla dessa tjänster.',
+  'cookies-use-8': 'Funktionscookies: Beständiga cookies',
+  'cookies-use-9': 'Typ: Beständiga cookies',
+  'cookies-use-10': 'Syfte: Dessa cookies tillåter oss att komma ihåg de val du gör när du använder webbplatsen, såsom att komma ihåg dina inloggningsuppgifter eller språkpreferens. Syftet med dessa cookies är att erbjuda en mer personlig upplevelse och förhindra att du behöver ange dina preferenser varje gång du använder webbplatsen.',
+  'cookies-use-11': 'Dina val avseende cookies:',
+  'cookies-use-12': 'Om du föredrar att undvika användning av cookies på webbplatsen måste du först inaktivera användningen av cookies i din webbläsare och sedan ta bort sparade cookies i din webbläsare som är associerade med denna webbplats. Du kan använda detta alternativ för att undvika användning av cookies när som helst.',
+  'cookies-use-13': 'Om du inte accepterar våra cookies kan du uppleva vissa olägenheter vid användning av webbplatsen och vissa funktioner kan fungera korrekt.',
+  'cookies-use-14': 'Om du vill ta bort cookies eller instruera din webbläsare att ta bort eller avvisa cookies, besök hjälpsidorna för din webbläsare.',
+  'cookies-use-15': 'För webbläsaren Google Chrome, besök denna Google-sida:',
+  'cookies-use-16': 'För webbläsaren Internet Explorer, besök denna Microsoft-sida:',
+  'cookies-use-17': 'För webbläsaren Firefox, besök denna Mozilla-sida:',
+  'cookies-use-18': 'För webbläsaren Safari, besök denna Apple-sida:',
+  'cookies-use-19': 'För vilken annan webbläsare som helst, besök de officiella webbsidorna för din webbläsare.',
+  'cookies-use-20': 'Mer information om cookies:',
+  'cookies-use-21': 'Du kan få mer information om cookies på:',
+  'cookies-use-22': 'Kontakta oss:',
+  'cookies-use-23': 'Om du har några frågor om denna cookiespolicy kan du kontakta oss via e-post på',
+};
+
 const Dictionary = {
   ...globals,
   ...landing.FaqSection,
@@ -78,6 +135,9 @@ const Dictionary = {
   ...landing.PricingSection,
   ...navbar,
   ...footer,
+  ...Comments,
+  ...Contact,
+  ...CookiesPolicy,
 };
 
 export default Dictionary;

@@ -72,6 +72,63 @@ const landing = {
   },
 };
 
+const Comments = {
+  send: 'Send',
+  write_a_comment: 'Write a comment',
+};
+
+const Contact = {
+  contact_us: 'Contact us!',
+  contact_us_description: 'Do you have any questions or suggestions? Feel free to contact us! We will be happy to help you.',
+  help_email: 'help.user.gametrail@gmail.com',
+};
+
+const CookiesPolicy = {
+  cookies_policy: 'Cookies Policy',
+  last_update: 'Last updated: April 8, 2023',
+  cookies_disclaimer: 'Cookies usually do not contain any information that personally identifies a user, but the personal information we store about you may be linked to the information stored and obtained from cookies. For more information on how we use, store, and keep your personal data secure, please refer to our Privacy Policy.',
+  cookies_disclaimer2: 'We do not store sensitive personal information, such as postal addresses, account passwords, etc., in the cookies we use.',
+
+  interpretation: 'Interpretation and Definitions',
+  'interpretation-1': 'Interpretation',
+  'interpretation-2': 'Words with initial capital letters have defined meanings in the following conditions. The following definitions have the same meaning regardless of whether they appear in singular or plural.',
+  'interpretation-3': 'Definitions',
+  'interpretation-4': 'For the purposes of this Cookies Policy:',
+  company: 'Company',
+  'company-1': '(referred to as "the Company", "We", "Us", or "Our" in this Cookies Policy) refers to GameTrail.',
+  cookies: 'Cookies',
+  'cookies-1': 'means small files that are placed on your personal computer, mobile device, or any other device by a website, which contains details of your browsing history on that website among its many uses.',
+  website: 'Website',
+  'website-1': 'refers to GameTrail, accessible from: ',
+  you: 'You',
+  'you-1': 'means the individual accessing or using the Website, or a company, or any legal entity on behalf of which such individual is accessing or using the Website, as applicable.',
+
+  cookies_use: 'Use of Cookies',
+  'cookies-use-1': 'Types of cookies we use',
+  'cookies-use-2': 'Cookies can be "persistent" or "session" cookies. Persistent cookies remain on your personal computer or mobile device when you are disconnected, while session cookies are deleted as soon as you close your web browser.',
+  'cookies-use-3': 'We use both session and persistent cookies for the purposes set forth below:',
+  'cookies-use-4': 'Necessary/Essential Cookies',
+  'cookies-use-5': 'Type: Session Cookies',
+  admin_by_us: 'Managed by: Us',
+  'cookies-use-7': 'Purpose: These Cookies are essential to provide you with services available through the Website and enable you to use some of its features. They help authenticate users and prevent fraudulent use of user accounts. Without these Cookies, the services you have requested cannot be provided, and we only use these Cookies to provide you with those services.',
+  'cookies-use-8': 'Functionality Cookies: Persistent Cookies',
+  'cookies-use-9': 'Type: Persistent Cookies',
+  'cookies-use-10': 'Purpose: These Cookies allow us to remember the choices you make when using the Website, such as remembering your login details or language preference. The purpose of these Cookies is to provide you with a more personalized experience and prevent you from having to re-enter your preferences every time you use the Website.',
+  'cookies-use-11': 'Your choices regarding Cookies:',
+  'cookies-use-12': 'If you prefer to avoid the use of Cookies on the Website, you must first disable the use of Cookies in your browser and then delete the saved Cookies in your browser associated with this website. You can use this option to avoid the use of Cookies at any time.',
+  'cookies-use-13': 'If you do not accept our Cookies, you may experience some inconvenience in your use of the Website and some functions may not work correctly.',
+  'cookies-use-14': 'If you wish to delete Cookies or instruct your web browser to delete or reject Cookies, please visit the help pages of your web browser.',
+  'cookies-use-15': 'For Google Chrome web browser, visit this Google page:',
+  'cookies-use-16': 'For Internet Explorer web browser, visit this Microsoft page:',
+  'cookies-use-17': 'For Firefox web browser, visit this Mozilla page:',
+  'cookies-use-18': 'For Safari web browser, visit this Apple page:',
+  'cookies-use-19': 'For any other web browser, visit the official web pages of your web browser.',
+  'cookies-use-20': 'More information about Cookies:',
+  'cookies-use-21': 'You can obtain more information about Cookies at:',
+  'cookies-use-22': 'Contact us:',
+  'cookies-use-23': 'If you have any questions about this Cookies Policy, you can contact us by email at',
+
+};
 const Dictionary = {
   ...globals,
   ...landing.FaqSection,
@@ -80,6 +137,9 @@ const Dictionary = {
   ...landing.PricingSection,
   ...navbar,
   ...footer,
+  ...Comments,
+  ...Contact,
+  ...CookiesPolicy,
 };
 
 export default Dictionary;

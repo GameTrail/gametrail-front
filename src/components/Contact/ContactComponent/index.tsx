@@ -7,7 +7,7 @@ import {
 const Contact = () => (
   <Container>
     <ContactLottie />
-    <Title>¡Contacta con nosotros!</Title>
+    <Title>¡Contacta con nosotros! :)</Title>
     <Text> Si tienes alguna duda, sugerencia o quieres saber algo mas sobre nosotros no dudes en contactar con nosotros mediante el siguiente correo:</Text>
     <Strong> help.user.gametrail@gmail.com </Strong>
   </Container>

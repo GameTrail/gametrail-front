@@ -1,6 +1,8 @@
 const globals = {
   login: 'Login',
   register: 'Register',
+  month: 'month',
+  start: 'Start',
 };
 
 const landing = {
@@ -36,6 +38,21 @@ const landing = {
     welcome_to_premium: 'Welcome to Premium!',
     go_to_gametrail: 'Go to GameTrail',
   },
+  PricingSection: {
+    unlimited_lists: '✅ Unlimited games for your Trails',
+    limit_trail_people: '❌ Up to 4 members per Trail',
+    limit_trail_simultaneously: '❌ Just 1 created Trail at a time',
+    limit_trail_games: '❌ Up to 3 games per created Trail',
+    limit_trail_join: '❌ You can only join 4 Trails per month',
+    chat_with_trail_members: '✅ Chat with Trail members',
+
+    everything_in_standard: '✅ Everything in Standard',
+    find_new_friends: '👑 Find people with similar tastes',
+    filter_trail_members: '👑 Control who can join your Trails',
+    trail_recommendations: '👑 Trails recommended for you',
+    connect_steam: '👑 Connect your Steam account',
+    connect_xbox: '👑 Connect your Xbox Live account',
+  },
 };
 
 const Dictionary = {
@@ -43,6 +60,7 @@ const Dictionary = {
   ...landing.FaqSection,
   ...landing.AboutSection,
   ...landing.MainSection,
+  ...landing.PricingSection,
 };
 
 export default Dictionary;

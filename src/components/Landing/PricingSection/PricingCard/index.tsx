@@ -1,6 +1,7 @@
 import type { FC } from 'react';
 import React, { useMemo } from 'react';
 import { useRouter } from 'next/router';
+import useLanguage from '@/i18n/hooks';
 import { PricingType } from '../types';
 import { Benefits as PricingBenefits } from './constants';
 import {
@@ -10,15 +11,16 @@ import type { Props } from './types';
 
 const PricingCard: FC<Props> = ({ price, title }) => {
   const router = useRouter();
+  const { t } = useLanguage();
 
   const handleRenderBenefits = useMemo(() => {
     const benefits = PricingBenefits[title];
     return benefits.map((benefit: string) => (
       <ListItem key={benefit}>
-        {benefit}
+        {t(benefit)}
       </ListItem>
     ));
-  }, [title]);
+  }, [t, title]);
 
   const navigateTo = () => {
     if (title === PricingType.Standard) router.push('/auth/login');
@@ -32,7 +34,7 @@ const PricingCard: FC<Props> = ({ price, title }) => {
         <Title>{title}</Title>
         <Price>
           {price}
-          <PriceSpan>{title === PricingType.Standard ? '' : '/mes'}</PriceSpan>
+          <PriceSpan>{title === PricingType.Standard ? '' : `/${t('month')}`}</PriceSpan>
         </Price>
       </Top>
       <Bottom>
@@ -40,7 +42,7 @@ const PricingCard: FC<Props> = ({ price, title }) => {
           {handleRenderBenefits}
         </List>
         <Button onClick={navigateTo}>
-          Comenzar
+          {t('start')}
         </Button>
       </Bottom>
     </Container>

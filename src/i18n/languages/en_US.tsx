@@ -1,3 +1,8 @@
+const globals = {
+  login: 'Login',
+  register: 'Register',
+};
+
 const landing = {
   // Landing Page
   FaqSection: {
@@ -26,11 +31,18 @@ const landing = {
     feel_at_home: 'Feel at home',
     feel_at_home_description: 'Choose your favorite language and enjoy the experience. Click on any flag to try it out!',
   },
+  MainSection: {
+    about_gametrail: 'Explore new ways to play your favorite games with new people and keep a record of your gaming experience.',
+    welcome_to_premium: 'Welcome to Premium!',
+    go_to_gametrail: 'Go to GameTrail',
+  },
 };
 
 const Dictionary = {
+  ...globals,
   ...landing.FaqSection,
   ...landing.AboutSection,
+  ...landing.MainSection,
 };
 
 export default Dictionary;

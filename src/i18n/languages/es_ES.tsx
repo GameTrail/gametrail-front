@@ -1,3 +1,8 @@
+const globals = {
+  login: 'Iniciar sesión',
+  register: 'Registrarse',
+};
+
 const landing = {
   // Landing Page
   FaqSection: {
@@ -28,11 +33,18 @@ const landing = {
     feel_at_home: 'Siéntete como en casa',
     feel_at_home_description: 'Gametrail está disponible en 2 idiomas: Español e Inglés, y se está trabajando en más idiomas para que puedas disfrutar de la experiencia en tu idioma. ¡Pulsa en cualquier bandera para cambiar el idioma!',
   },
+  MainSection: {
+    about_gametrail: 'Descubre una nueva manera de jugar en comunidad y guardar el progreso de tus juegos.',
+    welcome_to_premium: '¡Bienvenido a GameTrail Premium! 🎉',
+    go_to_gametrail: 'Ir a Gametrail',
+  },
 };
 
 const Dictionary = {
+  ...globals,
   ...landing.FaqSection,
   ...landing.AboutSection,
+  ...landing.MainSection,
 };
 
 export default Dictionary;

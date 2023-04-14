@@ -6,9 +6,11 @@ export const Flag = styled.img`
     margin: 0.5rem;
     cursor: pointer;
     border-radius: 0.5rem;
-    border: 0.1rem solid ${({ theme }) => theme.nord.gray3};
-    transition: all 0.2s ease-in-out;
-    &:hover {
-        border: 0.1rem solid ${({ theme }) => theme.nord.green};
-    }
+`;
+
+export const FlagNavbar = styled.img`
+  width: 4.4rem;
+  margin: 0.5rem;
+  cursor: pointer;
+  border-radius: 0.5rem;
 `;

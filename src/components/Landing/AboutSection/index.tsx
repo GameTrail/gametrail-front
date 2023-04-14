@@ -1,5 +1,5 @@
 import React from 'react';
-import LanguagesSelector from '@/components/Landing/AboutSection/LanguagesSelector';
+import LanguagesSelector from '@/components/LanguagesSelector';
 import { PlayersLottie, SteamLottie, TodoListLottie } from '@/components/Lotties';
 import useLanguage from '@/i18n/hooks';
 import {
@@ -44,7 +44,7 @@ const AboutSection = () => {
             {t('feel_at_home_description')}
           </Description>
         </div>
-        <LanguagesSelector />
+        <LanguagesSelector isNavbar={false} />
       </About>
     </Container>
   );

@@ -5,6 +5,14 @@ const globals = {
   start: 'Comenzar',
 };
 
+const navbar = {
+  home: 'Inicio',
+  games: 'Juegos',
+  trails: 'Trails',
+  create_trail: 'Crear Trail',
+  become_premium: 'Hazte Premium',
+};
+
 const landing = {
   // Landing Page
   FaqSection: {
@@ -63,6 +71,7 @@ const Dictionary = {
   ...landing.AboutSection,
   ...landing.MainSection,
   ...landing.PricingSection,
+  ...navbar,
 };
 
 export default Dictionary;

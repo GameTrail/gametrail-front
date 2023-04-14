@@ -1,9 +1,14 @@
+import type { FC } from 'react';
 import { useCallback, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Flag } from '@/components/Landing/AboutSection/LanguagesSelector/styles';
+import { Flag, FlagNavbar } from '@/components/LanguagesSelector/styles';
 import useLanguage from '@/i18n/hooks';
 
-const LanguagesSelector = () => {
+export type Props = {
+  isNavbar: boolean,
+};
+
+const LanguagesSelector:FC<Props> = ({ isNavbar = false }) => {
   // Get i18n from context
   const { i18n } = useLanguage();
   const { language } = i18n;
@@ -16,16 +21,26 @@ const LanguagesSelector = () => {
     setIsOpen(false);
   }, [i18n]);
 
+  const renderFlag = (inNavbar : boolean, lng : string) => {
+    if (inNavbar) return <FlagNavbar src={`/images/flags/${lng}.png`} />;
+    return <Flag src={`/images/flags/${lng}.png`} />;
+  };
+
   const renderLanguagesButtons = () => {
     const otherLanguages = languages.filter((lng: string) => lng !== language);
+    const yAnimation = isNavbar ? [-10, 0] : [100, 0];
+
     return otherLanguages.map((lng: string) => (
       <motion.button
-        initial={{ opacity: 0, scale: 0 }}
+        initial={{
+          opacity: isNavbar ? 1 : 0,
+          scale: isNavbar ? 1 : 0,
+        }}
         whileInView={{ opacity: 1 }}
         animate={{
           opacity: isOpen ? [1, 0] : 0,
           scale: isOpen ? 1 : 0,
-          y: isOpen ? [100, 0] : 0,
+          y: isOpen ? yAnimation : 0,
         }}
         transition={{
           duration: 10,
@@ -39,13 +54,14 @@ const LanguagesSelector = () => {
           border: 'none',
           position: 'absolute',
           zIndex: 1,
-          bottom: '100%',
+          bottom: isNavbar ? '0%' : '100%',
+          top: isNavbar ? '100%' : '',
           right: 0,
         }}
         onClick={() => handleChangeLanguage(lng)}
         onMouseLeave={() => setIsOpen(false)}
       >
-        <Flag src={`/images/flags/${lng}.png`} />
+        {renderFlag(isNavbar, lng)}
       </motion.button>
     ));
   };
@@ -54,7 +70,10 @@ const LanguagesSelector = () => {
   // Selector for languages
 
     <motion.div
-      initial={{ opacity: 0, scale: 0 }}
+      initial={{
+        opacity: isNavbar ? 1 : 0,
+        scale: isNavbar ? 1 : 0,
+      }}
       whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
       transition={{
         duration: 0.5,
@@ -76,7 +95,7 @@ const LanguagesSelector = () => {
           scale: 0.9,
         }}
       >
-        <Flag src={`/images/flags/${language}.png`} />
+        {renderFlag(isNavbar, language)}
       </motion.button>
       {renderLanguagesButtons()}
 

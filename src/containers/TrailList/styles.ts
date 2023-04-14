@@ -93,3 +93,24 @@ export const Players = styled.p`
     font-size: 16px;
     color: ${({ theme }) => theme.nord.green};
 `;
+
+export const Input = styled.input`
+display: flex;
+flex-direction: column;
+width: 30%;
+height: 40px;
+border-radius: 10px;
+text-align: center;
+border: 3px solid ${({ theme }) => theme.nord.gray0};
+margin-bottom: 20px;
+font-size: 20px;
+@media (max-width: 1068px) {
+    width: 290px;
+}
+@media (max-width: 767px) {
+    width: 220px;
+}
+@media (max-width: 567px) {
+    width: 220px;
+}
+`;

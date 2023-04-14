@@ -28,42 +28,44 @@ const LanguagesSelector:FC<Props> = ({ isNavbar = false }) => {
 
   const renderLanguagesButtons = () => {
     const otherLanguages = languages.filter((lng: string) => lng !== language);
-    const yAnimation = isNavbar ? [-10, 0] : [100, 0];
 
-    return otherLanguages.map((lng: string) => (
-      <motion.button
-        initial={{
-          opacity: isNavbar ? 1 : 0,
-          scale: isNavbar ? 1 : 0,
-        }}
-        whileInView={{ opacity: 1 }}
-        animate={{
-          opacity: isOpen ? [1, 0] : 0,
-          scale: isOpen ? 1 : 0,
-          y: isOpen ? yAnimation : 0,
-        }}
-        transition={{
-          duration: 10,
-          scale: { type: 'spring', stiffness: 200, damping: 30 },
-          y: { type: 'spring', stiffness: 200, damping: 30 },
-          opacity: { type: 'spring', stiffness: 200, damping: 30 },
-          ease: [0.43, 0.13, 0.23, 0.96],
-        }}
-        style={{
-          backgroundColor: 'transparent',
-          border: 'none',
-          position: 'absolute',
-          zIndex: 1,
-          bottom: isNavbar ? '0%' : '100%',
-          top: isNavbar ? '100%' : '',
-          right: 0,
-        }}
-        onClick={() => handleChangeLanguage(lng)}
-        onMouseLeave={() => setIsOpen(false)}
-      >
-        {renderFlag(isNavbar, lng)}
-      </motion.button>
-    ));
+    return otherLanguages.map((lng: string) => {
+      const count = otherLanguages.indexOf(lng);
+      const yAnimation = isNavbar ? [-10, count * 50] : [100, count * -120];
+      return (
+        <motion.button
+          initial={{
+            opacity: isNavbar ? 1 : 0,
+            scale: isNavbar ? 1 : 0,
+          }}
+          whileInView={{ opacity: 1 }}
+          animate={{
+            opacity: isOpen ? [1, 0] : 0,
+            scale: isOpen ? 1 : 0,
+            y: isOpen ? yAnimation : 0,
+          }}
+          transition={{
+            duration: 10,
+            scale: { type: 'spring', stiffness: 200, damping: 30 },
+            y: { type: 'spring', stiffness: 200, damping: 30 },
+            opacity: { type: 'spring', stiffness: 200, damping: 30 },
+            ease: [0.43, 0.13, 0.23, 0.96],
+            delay: count * 0.1,
+          }}
+          style={{
+            backgroundColor: 'transparent',
+            border: 'none',
+            position: 'absolute',
+            zIndex: 0,
+            bottom: isNavbar ? '0' : '100%',
+            right: isNavbar ? '100%' : '0',
+          }}
+          onClick={() => handleChangeLanguage(lng)}
+        >
+          {renderFlag(isNavbar, lng)}
+        </motion.button>
+      );
+    });
   };
 
   return (

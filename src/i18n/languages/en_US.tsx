@@ -176,6 +176,23 @@ const Disclaimer = {
   'disclaimer-41': 'By email:',
 };
 
+const Error = {
+  unexpected_error: 'Oops! Something went wrong.',
+};
+
+const GameData = {
+  // GameData
+  in_your_list: 'In your game list',
+  add_to_list: 'Add',
+
+  // GameListsButtons
+  game_trails: 'Trails',
+  game_comments: 'Comments',
+
+  // GameTrailList
+  game_no_trails: 'No trails created yet',
+};
+
 const Dictionary = {
   ...globals,
   ...landing.FaqSection,
@@ -188,6 +205,8 @@ const Dictionary = {
   ...Contact,
   ...CookiesPolicy,
   ...Disclaimer,
+  ...Error,
+  ...GameData,
 };
 
 export default Dictionary;

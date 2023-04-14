@@ -173,6 +173,23 @@ const Disclaimer = {
   'disclaimer-41': 'Via e-post: ',
 };
 
+const Error = {
+  unexpected_error: 'Ett oväntat fel inträffade',
+};
+
+const GameData = {
+  // GameData
+  in_your_list: 'I din spelista',
+  add_to_list: 'Lägg till',
+
+  // GameListsButtons
+  game_trails: 'Spår',
+  game_comments: 'Kommentarer',
+
+  // GameTrailList
+  game_no_trails: 'Inga spår skapade ännu',
+};
+
 const Dictionary = {
   ...globals,
   ...landing.FaqSection,
@@ -185,6 +202,8 @@ const Dictionary = {
   ...Contact,
   ...CookiesPolicy,
   ...Disclaimer,
+  ...Error,
+  ...GameData,
 };
 
 export default Dictionary;

@@ -177,6 +177,23 @@ const Disclaimer = {
   'disclaimer-41': 'Por correo electrónico: ',
 };
 
+const Error = {
+  unexpected_error: 'Ups! Lo sentimos, ha ocurrido un error inesperado.',
+};
+
+const GameData = {
+  // GameData
+  in_your_list: 'En tu lista de juegos',
+  add_to_list: 'Añadir',
+
+  // GameListsButtons
+  game_trails: 'Trails',
+  game_comments: 'Comentarios',
+
+  // GameTrailList
+  game_no_trails: 'Aún no hay trails creados',
+};
+
 const Dictionary = {
   ...globals,
   ...landing.FaqSection,
@@ -189,6 +206,8 @@ const Dictionary = {
   ...Contact,
   ...CookiesPolicy,
   ...Disclaimer,
+  ...Error,
+  ...GameData,
 };
 
 export default Dictionary;

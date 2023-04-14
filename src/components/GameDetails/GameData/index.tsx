@@ -1,5 +1,6 @@
 import type { FC } from 'react';
 import React, { useEffect, useState } from 'react';
+import useLanguage from '@/i18n/hooks';
 import type { Game } from '@/models/Game/types';
 import type { GameInList, UserInDetails } from '@/models/GameInUserList/types';
 import { GameListState } from '@/models/GameList/types';
@@ -18,6 +19,7 @@ const GameData: FC<Props> = ({ gameDetails }) => {
   const user = getUserCookie();
   const token = user?.token;
   const [userGames, setUserGames] = useState<GameInList[]>([]);
+  const { t } = useLanguage();
 
   const handleRenderPlatform = () => {
     if (gameDetails !== null && gameDetails !== undefined) {
@@ -60,13 +62,13 @@ const GameData: FC<Props> = ({ gameDetails }) => {
     if (checkGameInUserList() && userGames.length !== 0) {
       return (
         <GameInListButton>
-          En tu lista de juegos
+          {t('in_your_list')}
         </GameInListButton>
       );
     }
     return (
       <AddButton onClick={handleOnClick}>
-        Añadir
+        {t('add_to_list')}
       </AddButton>
     );
   };

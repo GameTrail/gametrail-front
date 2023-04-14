@@ -16,10 +16,21 @@ const landing = {
     answer_can_I_leave_a_trail: 'Yes, you can leave a trail at any time, but you will not be able to join another trail for that game until the trail you are currently in is completed.',
 
   },
+  AboutSection: {
+    steam_and_xbox_live: 'Steam and Xbox Live',
+    steam_and_xbox_live_description: 'Connect your Steam and Xbox Live accounts to update the progress of your games and add them to your lists',
+    custom_trails: 'Custom Trails',
+    custom_trails_description: 'Create your own trails and share them with the community, or join the ones that other users have created',
+    save_your_progress: 'Save your progress',
+    save_your_progress_description: 'Keep a record of your games and trails, and see where you are in each one of them',
+    feel_at_home: 'Feel at home',
+    feel_at_home_description: 'Choose your favorite language and enjoy the experience. Click on any flag to try it out!',
+  },
 };
 
 const Dictionary = {
   ...landing.FaqSection,
+  ...landing.AboutSection,
 };
 
 export default Dictionary;

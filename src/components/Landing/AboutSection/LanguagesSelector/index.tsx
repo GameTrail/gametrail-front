@@ -21,9 +21,17 @@ const LanguagesSelector = () => {
     return otherLanguages.map((lng: string) => (
       <motion.button
         initial={{ opacity: 0, scale: 0 }}
-        animate={{ opacity: isOpen ? 1 : 0, scale: isOpen ? 1 : 0 }}
+        whileInView={{ opacity: 1 }}
+        animate={{
+          opacity: isOpen ? [1, 0] : 0,
+          scale: isOpen ? 1 : 0,
+          y: isOpen ? [100, 0] : 0,
+        }}
         transition={{
-          duration: 0.5,
+          duration: 10,
+          scale: { type: 'spring', stiffness: 200, damping: 30 },
+          y: { type: 'spring', stiffness: 200, damping: 30 },
+          opacity: { type: 'spring', stiffness: 200, damping: 30 },
           ease: [0.43, 0.13, 0.23, 0.96],
         }}
         style={{
@@ -35,6 +43,7 @@ const LanguagesSelector = () => {
           right: 0,
         }}
         onClick={() => handleChangeLanguage(lng)}
+        onMouseLeave={() => setIsOpen(false)}
       >
         <Flag src={`/images/flags/${lng}.png`} />
       </motion.button>
@@ -56,6 +65,7 @@ const LanguagesSelector = () => {
         scale: 1.1,
       }}
       onMouseLeave={() => setIsOpen(false)}
+      onTap={() => setIsOpen(!isOpen)}
     >
       <motion.button
         style={{
@@ -65,7 +75,6 @@ const LanguagesSelector = () => {
         whileTap={{
           scale: 0.9,
         }}
-        onClick={() => setIsOpen(!isOpen)}
       >
         <Flag src={`/images/flags/${language}.png`} />
       </motion.button>

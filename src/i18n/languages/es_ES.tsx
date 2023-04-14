@@ -18,10 +18,21 @@ const landing = {
     answer_can_I_leave_a_trail: 'Sí, puedes abandonar un trail en cualquier momento, dejando tu hueco libre para cualquier otra persona'
         + 'que quiera unirse.',
   },
+  AboutSection: {
+    steam_and_xbox_live: 'Steam y Xbox Live',
+    steam_and_xbox_live_description: 'Conecta tu cuenta de Steam y Xbox Live para actualizar el progreso de tus juegos y añadirlos a tus listas',
+    custom_trails: 'Trails personalizados',
+    custom_trails_description: 'Crea Trails personalizados para tus juegos y comparte la aventura con tus amigos o nuevas personas de la comunidad dispuestas a jugar contigo',
+    save_your_progress: 'Guarda tu progreso',
+    save_your_progress_description: 'Gestiona el progreso de todos tus juegos y compartelos con la comunidad mediante tus propias listas personalizadas',
+    feel_at_home: 'Siéntete como en casa',
+    feel_at_home_description: 'Gametrail está disponible en 2 idiomas: Español e Inglés, y se está trabajando en más idiomas para que puedas disfrutar de la experiencia en tu idioma. ¡Pulsa en cualquier bandera para cambiar el idioma!',
+  },
 };
 
 const Dictionary = {
   ...landing.FaqSection,
+  ...landing.AboutSection,
 };
 
 export default Dictionary;

@@ -446,6 +446,23 @@ const TrailList = {
   list_trails: 'Lista över Trails',
 };
 
+const UserDetails = {
+  // UserData
+  rate_user: 'Bedöma användare',
+  'rate_user_error-1': 'Du har redan betygsatt den här användaren.',
+
+  // UserGameList
+  user_game_list_empty: 'Den här användaren har inga spel i sin lista.',
+  added: 'Tillagt',
+  last_modified: 'Senast ändrad',
+  comments: 'Kommentarer',
+  no_stats_available: 'Inga statistik tillgängliga...',
+
+  // UserTrailList
+  trail_in_progress: 'Pågående',
+  trail_finished: 'Slutfört',
+};
+
 const Dictionary = {
   ...globals,
   ...landing.FaqSection,
@@ -470,6 +487,7 @@ const Dictionary = {
   ...Trail.TrailCreation,
   ...Trail.TrailDetails,
   ...TrailList,
+  ...UserDetails,
 };
 
 export default Dictionary;

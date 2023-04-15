@@ -449,6 +449,23 @@ const TrailList = {
   list_trails: 'List of Trails',
 };
 
+const UserDetails = {
+  // UserData
+  rate_user: 'Rate User',
+  'rate_user_error-1': 'You have already rated this user.',
+
+  // UserGameList
+  user_game_list_empty: 'This user has no games in their list.',
+  added: 'Added',
+  last_modified: 'Last Modified',
+  comments: 'Comments',
+  no_stats_available: 'No statistics available...',
+
+  // UserTrailList
+  trail_in_progress: 'In Progress',
+  trail_finished: 'Finished',
+};
+
 const Dictionary = {
   ...globals,
   ...landing.FaqSection,
@@ -473,6 +490,7 @@ const Dictionary = {
   ...Trail.TrailCreation,
   ...Trail.TrailDetails,
   ...TrailList,
+  ...UserDetails,
 };
 
 export default Dictionary;

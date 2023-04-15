@@ -1,5 +1,6 @@
 import type { FC } from 'react';
 import React from 'react';
+import useLanguage from '@/i18n/hooks';
 import type { GameList } from '@/models/GameList/types';
 import { parseGameListDate } from '@/utils/parseGameListDate';
 import {
@@ -11,6 +12,7 @@ interface Props {
   onUpdateGameStatus: (gameListItem: GameList) => void;
 }
 const UserGameCard: FC<Props> = ({ gameListItem, onUpdateGameStatus }) => {
+  const { t } = useLanguage();
   const onClick = (e: React.MouseEvent) => {
     e.preventDefault();
     onUpdateGameStatus(gameListItem);
@@ -27,11 +29,11 @@ const UserGameCard: FC<Props> = ({ gameListItem, onUpdateGameStatus }) => {
         </Name>
         <GameInfo>
           <Added>
-            <h4>Añadido</h4>
+            <h4>{t('added')}</h4>
             {parseGameListDate(gameListItem.creationMoment)}
           </Added>
           <LastModified>
-            <h4>Última vez modificado</h4>
+            <h4>{t('last_modified')}</h4>
             {parseGameListDate(gameListItem.lastModified)}
           </LastModified>
           <State onClick={onClick} state={gameListItem.status}>{gameListItem.status}</State>

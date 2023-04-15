@@ -146,7 +146,7 @@ const TrailCreationForm = () => {
       }
     };
     fetchGames();
-  }, [searchQuery]);
+  }, [searchQuery, t]);
 
   return (
     <>

@@ -6,6 +6,7 @@ export const Flag = styled.img`
     margin: 0.5rem;
     cursor: pointer;
     border-radius: 0.5rem;
+  box-shadow: 0 0 0.5rem 0.05rem #100200;
 `;
 
 export const FlagNavbar = styled.img`
@@ -13,4 +14,5 @@ export const FlagNavbar = styled.img`
   margin: 0.5rem;
   cursor: pointer;
   border-radius: 0.5rem;
+  box-shadow: 0 0 0.5rem 0.05rem rgba(16, 2, 0, 0.64);
 `;

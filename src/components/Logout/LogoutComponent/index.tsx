@@ -3,6 +3,7 @@ import Cookies from 'js-cookie';
 import { useRouter } from 'next/router';
 import { Button } from '@/components/Landing/MainSection/styles';
 import { LogoutLottie } from '@/components/Lotties';
+import useLanguage from '@/i18n/hooks';
 import { getUserCookie } from '@/utils/login';
 import {
   Container,
@@ -12,6 +13,7 @@ import {
 const LOGOUT_URL = 'https://gametrail-backend-production-8fc0.up.railway.app/api/auth/logout';
 
 const Logout = () => {
+  const { t } = useLanguage();
   const router = useRouter();
   const userCookie = getUserCookie();
   const token = userCookie?.auth_token;
@@ -40,9 +42,9 @@ const Logout = () => {
     <LogoutContainer>
       <LogoutLottie />
       <Container>
-        <Title>¿Seguro que quieres irte?</Title>
+        <Title>{t('you_sure_about_leaving')}</Title>
         <Button onClick={onPressLogout}>
-          Salir
+          {t('exit')}
         </Button>
       </Container>
     </LogoutContainer>

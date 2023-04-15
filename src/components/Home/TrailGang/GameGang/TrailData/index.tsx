@@ -1,6 +1,7 @@
 import React from 'react';
 import type { FC } from 'react';
 import { ControllerLottie, TimeLottie } from '@/components/Lotties';
+import useLanguage from '@/i18n/hooks';
 import type { Trail as TrailGangProps } from '@/models/Trail/types';
 import {
   Container, Data,
@@ -11,6 +12,7 @@ export type Props = {
 };
 
 const TrailData:FC<Props> = ({ trailGang }) => {
+  const { t } = useLanguage();
   const startDate = new Date(trailGang?.startDate);
   const finishDate = new Date(trailGang?.finishDate);
 
@@ -27,7 +29,7 @@ const TrailData:FC<Props> = ({ trailGang }) => {
         <Data>
           {trailGang.games.length}
           {' '}
-          Juegos
+          {t('games')}
         </Data>
       </Container>
       <Container>
@@ -35,7 +37,7 @@ const TrailData:FC<Props> = ({ trailGang }) => {
         <Data>
           {durationInDays.toFixed()}
           {' '}
-          Días
+          {t('days')}
         </Data>
       </Container>
     </>

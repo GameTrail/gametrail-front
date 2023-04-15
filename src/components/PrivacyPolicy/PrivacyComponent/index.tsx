@@ -258,7 +258,7 @@ const Privacy = () => (
     <Subtitle>Contacto</Subtitle>
     <Text>Si tienes alguna pregunta sobre esta Política de Privacidad, puedes contactarnos:</Text>
     <Ul>
-      <Li>Por correo electrónico: help.gametrail@gmail.com</Li>
+      <Li>Por correo electrónico: help.user.gametrail@gmail.com</Li>
     </Ul>
   </Container>
 );

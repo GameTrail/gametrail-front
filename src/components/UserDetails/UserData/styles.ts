@@ -65,6 +65,7 @@ export const Container = styled.div`
         padding-top: 10px;
         h1{
             margin-top: 1rem;
+            margin-bottom: 3rem;
             font-size: larger;
             margin-left: 0em;
         }
@@ -72,8 +73,8 @@ export const Container = styled.div`
             cursor: pointer;
             color: ${({ theme }) => theme.nord.gray3};
             animation: rotateGear 5s linear infinite;
-            width: 30%;
-            height: 30%;
+            width: 13%;
+            height: 13%;
             margin-left: 0em;
         }
     };

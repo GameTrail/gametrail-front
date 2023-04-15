@@ -15,7 +15,10 @@ export type Props = {
   trailData: Trail;
 };
 
-const socket = io('https://chat-gametrail-production.up.railway.app');
+let socket: any;
+const socketInit = () => {
+  socket = io('https://chat-gametrail-production.up.railway.app');
+};
 
 const ChatComponent: FC<Props> = ({ trailData }) => {
   const userCookie = getUserCookie();
@@ -25,12 +28,11 @@ const ChatComponent: FC<Props> = ({ trailData }) => {
 
   // eslint-disable-next-line consistent-return
   useEffect(() => {
-    socket.emit('join', trailData.id);
-    setIsFirstRender(false);
-    if (isFirstRender === false) {
+    if (isFirstRender === true) {
+      socket.emit('join', trailData.id);
+      setIsFirstRender(false);
+    } else {
       return () => {
-        // eslint-disable-next-line no-console
-        console.log('Se ha desconectado del server de Socket.io');
         socket.disconnect();
       };
     }
@@ -81,4 +83,4 @@ const ChatComponent: FC<Props> = ({ trailData }) => {
     </>
   );
 };
-export default ChatComponent;
+export { ChatComponent, socketInit };

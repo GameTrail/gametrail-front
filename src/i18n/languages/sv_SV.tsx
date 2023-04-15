@@ -357,6 +357,91 @@ const PrivacyPolicy = {
   'privacy-policy-124': 'Via e-post: help.user.gametrail@gmail.com',
 };
 
+const ProfileConfig = {
+  // Container
+  account_config: 'Kontokonfiguration',
+  data: 'Data',
+  actions: 'Åtgärder',
+
+  // ProfileData
+  edit_data: 'Redigera data',
+  update_data: 'Uppdatera data',
+
+  // ProfileDelete
+  profile_delete: 'Radera konto',
+  profile_delete_ask: 'Är du säker på att du vill radera ditt konto?',
+  profile_delete_confirm: 'Ja, radera konto',
+  profile_delete_cancel: 'Nej, avbryt',
+
+  // ProfileExternalConnect
+  connected_to_steam: 'Ansluten till Steam!',
+  connect: 'Anslut',
+};
+
+const Register = {
+  register_title: 'Registrera dig på GameTrail',
+  register_username: 'Användarnamn',
+  register_email: 'E-post',
+  register_password_confirmation: 'Bekräfta lösenord',
+  'register_accept-1': 'Jag accepterar',
+  'register_accept-2': 'användarvillkoren',
+  'register_accept-3': 'och',
+  'register_accept-4': 'integritetspolicyn',
+  'register_accept-5': 'samt',
+  'register_accept-6': 'cookiepolicyn',
+  'register_accept-7': 'för GameTrail.',
+};
+
+const Trail = {
+  TrailCreation: {
+    // TrailCreation
+    // -> Form
+    'trail_create_error-1': 'Skillnaden mellan datumen får inte vara längre än 7 dagar.',
+    'trail_create_error-2': 'Om du är en standardanvändare kan dina spår endast ha högst 4 spelare.',
+    'trail_create_error-3': 'Det finns minst ett fel i formuläret, kontrollera fälten.',
+    'trail_create_error-4': 'Ett fel uppstod när spelen lades till, försök igen senare.',
+    'trail_create_error-5': 'Ett fel uppstod när spelen lästes in, försök igen senare.',
+    trail_create_title: 'Skapa nytt spår',
+    trail_create_name: 'Spårets namn',
+    trail_create_placeholder: 'Ge ditt spår ett namn',
+    description: 'Beskrivning',
+    description_placeholder: 'Skriv en beskrivning för detta spår. Max 140 tecken.',
+    'trail_create_plan_info-1': 'Om du är en standardanvändare kan dina spår endast vara max 7 dagar långa.',
+    start_date: 'Startdatum',
+    finish_date: 'Slutdatum',
+    'trail_create_plan_info-2': 'Om du är en standardanvändare kan dina spår endast ha högst 4 spelare.',
+    max_players: 'Max antal spelare',
+    trail_create_games: 'Spel som kommer att spelas',
+    create: 'Skapa',
+
+    // -> Premium Filters
+    premium_filters: 'Premiumfilter',
+    premium_filters_info: 'Ställ in minimibetyg för att begränsa anslutning av användare.',
+    premium_filters_kindness: 'Vänlighet',
+    premium_filters_fun: 'Nöje',
+    premium_filters_cooperation: 'Samarbete',
+    premium_filters_skill: 'Färdighet',
+    premium_filters_availability: 'Tillgänglighet',
+  },
+  TrailDetails: {
+    // InfoRow
+    joined: 'Anslöt',
+    join: 'Gå med',
+    // -> DateInfo
+    date_start: 'Startdatum',
+    date_end: 'Slutdatum',
+
+    // Sections
+    // -> PlayersList
+    players: 'Spelare',
+    rating: 'Betyg',
+
+    // TrailButtons
+    chat: 'Chatt',
+  },
+
+};
+
 const Dictionary = {
   ...globals,
   ...landing.FaqSection,
@@ -376,6 +461,10 @@ const Dictionary = {
   ...Login,
   ...Logout,
   ...PrivacyPolicy,
+  ...ProfileConfig,
+  ...Register,
+  ...Trail.TrailCreation,
+  ...Trail.TrailDetails,
 };
 
 export default Dictionary;

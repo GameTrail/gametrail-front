@@ -362,6 +362,93 @@ const PrivacyPolicy = {
   'privacy-policy-124': 'Por correo electrónico: help.user.gametrail@gmail.com',
 };
 
+const ProfileConfig = {
+  // Container
+  account_config: 'Configuración de cuenta',
+  data: 'Datos',
+  actions: 'Acciones',
+
+  // ProfileData
+  edit_data: 'Editar datos',
+  update_data: 'Actualizar datos',
+
+  // ProfileDelete
+  profile_delete: 'Eliminar cuenta',
+  profile_delete_ask: '¿Estás seguro de que quieres borrar tu cuenta?',
+  profile_delete_confirm: 'Sí, borrar cuenta',
+  profile_delete_cancel: 'No, quiero cancelar',
+
+  // ProfileExternalConnect
+  connected_to_steam: 'Conectado a Steam!',
+  connect: 'Conectar',
+};
+
+const Register = {
+  register_title: 'Regístrate en GameTrail',
+  register_username: 'Nombre de usuario',
+  register_email: 'Correo electrónico',
+  register_password_confirmation: 'Repetir contraseña',
+  'register_accept-1': 'Acepto los',
+  'register_accept-2': 'Términos y condiciones de uso',
+  'register_accept-3': ', además de la',
+  'register_accept-4': 'política de privacidad',
+  'register_accept-5': 'y',
+  'register_accept-6': 'política de cookies',
+  'register_accept-7': 'de GameTrail.',
+};
+
+const Trail = {
+  TrailCreation: {
+    // TrailCreation
+    // -> Form
+    'trail_create_error-1': 'La diferencia entre las fechas no puede ser mayor a 7 días.',
+    'trail_create_error-2': 'Si eres un usuario estandar, tus trails solo pueden tener 4 jugadores como máximo.',
+    'trail_create_error-3': 'Existe al menos un error en el formulario, comprueba los campos.',
+    'trail_create_error-4': 'Ha ocurrido un error al añadir los juegos, pruebe de nuevo más tarde.',
+    'trail_create_error-5': 'Ha ocurrido un error al cargar los juegos, pruebe de nuevo más tarde.',
+
+    trail_create_title: 'Crear nuevo trail',
+    trail_create_name: 'Nombre del Trail',
+    trail_create_placeholder: 'Ponle nombre a tu trail',
+    description: 'Descripción',
+    description_placeholder: 'Escribe una descripción para este Trail. 140 Carácteres de máximo',
+    'trail_create_plan_info-1': 'Si eres un usuario estandar, tus trails solo pondrán durar 7 días como máximo.',
+    start_date: 'Fecha de inicio',
+    finish_date: 'Fecha de Fin',
+    'trail_create_plan_info-2': 'Si eres un usuario estandar, tus trails solo podrán tener 4 jugadores como máximo.',
+    max_players: 'Número máximo de jugadores',
+    trail_create_games: 'Juegos que se van a Jugar',
+    create: 'Crear',
+
+    // -> Premium Filters
+    premium_filters: 'Filtros Premium',
+    premium_filters_info: 'Establece valoraciones mínimas para limitar la unión de usuarios.',
+    premium_filters_kindness: 'Amabilidad',
+    premium_filters_fun: 'Diversión',
+    premium_filters_cooperation: 'Cooperación',
+    premium_filters_skill: 'Habilidad',
+    premium_filters_availability: 'Disponibilidad',
+  },
+
+  TrailDetails: {
+    // InfoRow
+    joined: 'UNIDO',
+    join: 'UNIRSE',
+    // -> DateInfo
+    date_start: 'Inicio',
+    date_end: 'Fin',
+
+    // Sections
+    // -> PlayersList
+    players: 'Jugadores',
+    rating: 'Valoración',
+
+    // TrailButtons
+    chat: 'Chat',
+  },
+
+};
+
 const Dictionary = {
   ...globals,
   ...landing.FaqSection,
@@ -381,6 +468,10 @@ const Dictionary = {
   ...Login,
   ...Logout,
   ...PrivacyPolicy,
+  ...ProfileConfig,
+  ...Register,
+  ...Trail.TrailCreation,
+  ...Trail.TrailDetails,
 };
 
 export default Dictionary;

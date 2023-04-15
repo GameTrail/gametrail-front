@@ -2,6 +2,7 @@ import type { FC } from 'react';
 import React from 'react';
 import { faCrown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import useLanguage from '@/i18n/hooks';
 import {
   Input, Label, PremiumFilterFirst, PremiumFilterSecond,
 } from './styles';
@@ -30,88 +31,94 @@ const PremiumFilters: FC<Props> = ({
   setUserTeamwork,
   setUserAbility,
   setUserAvailhabilidad,
-}) => (
-  <>
-    <FontAwesomeIcon icon={faCrown} size="xs" />
-    <h3>Filtros premium</h3>
-    <h5> Establece valoraciones mínimas para limitar la unión de usuarios.</h5>
-    <PremiumFilterFirst>
+}) => {
+  const { t } = useLanguage();
+  return (
+    <>
+      <FontAwesomeIcon icon={faCrown} size="xs" />
+      <h3>{t('premium_filters')}</h3>
+      <h5>
+        {' '}
+        {t('premium_filters_info')}
+      </h5>
+      <PremiumFilterFirst>
 
-      <Label>
-        Amabilidad
-        <Input
-          type="number"
-          name="amabilidad"
-          id="amabilidad"
-          max={5}
-          min={1}
-          defaultValue={1}
-          value={useramabilidad}
-          onChange={(e) => setUseramabilidad(e.target.value)}
-        />
-      </Label>
+        <Label>
+          {t('premium_filters_kindness')}
+          <Input
+            type="number"
+            name="amabilidad"
+            id="amabilidad"
+            max={5}
+            min={1}
+            defaultValue={1}
+            value={useramabilidad}
+            onChange={(e) => setUseramabilidad(e.target.value)}
+          />
+        </Label>
 
-      <Label>
-        Diversión
-        <Input
-          type="number"
-          name="diversion"
-          id="diversion"
-          max={5}
-          min={1}
-          defaultValue={1}
-          value={userFunny}
-          onChange={(e) => setUserFunny(e.target.value)}
-        />
-      </Label>
+        <Label>
+          {t('premium_filters_fun')}
+          <Input
+            type="number"
+            name="diversion"
+            id="diversion"
+            max={5}
+            min={1}
+            defaultValue={1}
+            value={userFunny}
+            onChange={(e) => setUserFunny(e.target.value)}
+          />
+        </Label>
 
-      <Label>
-        Cooperación
-        <Input
-          type="number"
-          name="teamwork"
-          id="teamwork"
-          max={5}
-          min={1}
-          value={userTeamwork}
-          onChange={(e) => setUserTeamwork(e.target.value)}
-        />
-      </Label>
+        <Label>
+          {t('premium_filters_cooperation')}
+          <Input
+            type="number"
+            name="teamwork"
+            id="teamwork"
+            max={5}
+            min={1}
+            value={userTeamwork}
+            onChange={(e) => setUserTeamwork(e.target.value)}
+          />
+        </Label>
 
-    </PremiumFilterFirst>
+      </PremiumFilterFirst>
 
-    <PremiumFilterSecond>
+      <PremiumFilterSecond>
 
-      <Label>
-        Habilidad
-        <Input
-          type="number"
-          name="habilidad"
-          id="habilidad"
-          max={5}
-          min={1}
-          defaultValue={1}
-          value={userAbility}
-          onChange={(e) => setUserAbility(e.target.value)}
-        />
-      </Label>
+        <Label>
+          {t('premium_filters_skill')}
+          <Input
+            type="number"
+            name="habilidad"
+            id="habilidad"
+            max={5}
+            min={1}
+            defaultValue={1}
+            value={userAbility}
+            onChange={(e) => setUserAbility(e.target.value)}
+          />
+        </Label>
 
-      <Label>
-        Disponibilidad
-        <Input
-          type="number"
-          name="availhabilidad"
-          id="availhabilidad"
-          max={5}
-          min={1}
-          defaultValue={1}
-          value={userAvailhabilidad}
-          onChange={(e) => setUserAvailhabilidad(e.target.value)}
-        />
-      </Label>
+        <Label>
+          {t('premium_filters_availability')}
+          <Input
+            type="number"
+            name="availhabilidad"
+            id="availhabilidad"
+            max={5}
+            min={1}
+            defaultValue={1}
+            value={userAvailhabilidad}
+            onChange={(e) => setUserAvailhabilidad(e.target.value)}
+          />
+        </Label>
 
-    </PremiumFilterSecond>
-  </>
-);
+      </PremiumFilterSecond>
+    </>
+  );
+};
 
 export default PremiumFilters;

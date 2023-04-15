@@ -17,6 +17,7 @@ import {
   Title,
   ErrorContainer,
 } from '@/components/Trail/TrailCreation/Form/styles';
+import useLanguage from '@/i18n/hooks';
 import type { Game } from '@/models/Game/types';
 import { getUserCookie } from '@/utils/login';
 import { handlePremiumFilters } from '@/utils/Trail/handlePremiumFilters';
@@ -25,6 +26,7 @@ import PremiumFilters from '../PremiumFilters';
 const GAMES_URL = 'https://gametrail-backend-production-8fc0.up.railway.app/api/game/';
 
 const TrailCreationForm = () => {
+  const { t } = useLanguage();
   const [games, setGames] = useState<Game[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [searchQuery, setSearchQuery] = useState<string>('');
@@ -49,7 +51,7 @@ const TrailCreationForm = () => {
     const endDate = new Date(trailEndDate);
 
     if (user?.plan !== 'PREMIUM' && (endDate.getTime() - startDate.getTime() > 7 * 86400000)) {
-      setFormError((prevState) => [...prevState, 'La diferencia entre las fechas no puede ser mayor a 7 días']);
+      setFormError((prevState) => [...prevState, t('trail_create_error-1')]);
     }
 
     if (e.target.name === 'start-date') {
@@ -69,7 +71,7 @@ const TrailCreationForm = () => {
       owner: user?.id.toString(),
     };
     if (user?.plan !== 'PREMIUM' && trailMaxNumber > 4) {
-      setFormError((prevState) => [...prevState, 'Si eres un usuario estandar, tus trails solo pueden tener 4 jugadores como máximo.']);
+      setFormError((prevState) => [...prevState, t('trail_create_error-2')]);
     }
     const res = await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/trail/', {
       method: 'POST',
@@ -77,7 +79,7 @@ const TrailCreationForm = () => {
       headers: { Authorization: `Token ${token}`, 'Content-Type': 'application/json' },
     });
     if (!res.ok) {
-      setFormError(['Existe al menos un error en el formulario, comprueba los campos.']);
+      setFormError([t('trail_create_error-3')]);
     }
     const data = await res.json();
     return data.id;
@@ -107,7 +109,7 @@ const TrailCreationForm = () => {
         setFormError(errorMessages);
       }
     } catch (error) {
-      setFormError(['Ha ocurrido un error al añadir los juegos, pruebe de nuevo más tarde.']);
+      setFormError([t('trail_create_error-4')]);
     }
   };
 
@@ -138,7 +140,7 @@ const TrailCreationForm = () => {
         const data = await response.json();
         setGames(data.results);
       } catch (err) {
-        setFormError(['Ha ocurrido un error al cargar los juegos, pruebe de nuevo más tarde.']);
+        setFormError([t('trail_create_error-5')]);
       } finally {
         setLoading(false);
       }
@@ -151,39 +153,39 @@ const TrailCreationForm = () => {
       <CreateLottie />
       <Form onSubmit={handleSubmit}>
         <Title>
-          Crea un nuevo Trail
+          {t('trail_create_title')}
         </Title>
         {formError.map((message) => (<ErrorContainer key={formError.indexOf(message)}>{message}</ErrorContainer>))}
         <Label>
-          Nombre del Trail
+          {t('trail_create_name')}
           <Input
             required
             type="text"
             name="name"
             id="name"
-            placeholder="Ponle nombre a tu trail"
+            placeholder={t('trail_create_placeholder').toString()}
             value={trailName}
             onChange={(e) => setTrailName(e.target.value)}
           />
         </Label>
         <Label>
-          Descripción
+          {t('description')}
           <InputTextArea
             required
             name="description"
             id="description"
-            placeholder="Escribe una descripción para este Trail. 140 Carácteres de máximo"
+            placeholder={t('description_placeholder').toString()}
             value={trailDescription}
             maxLength={140}
             onChange={(e) => setTrailDescription(e.target.value)}
           />
         </Label>
         <PlanInfoToast>
-          Si eres un usuario estandar, tus trails solo pondrán durar 7 días como máximo.
+          {t('trail_create_plan_info-1')}
         </PlanInfoToast>
         <DateFieldContainer>
           <Label>
-            Fecha de Inicio
+            {t('start_date')}
             <InputDate
               required
               type="date"
@@ -195,7 +197,7 @@ const TrailCreationForm = () => {
             />
           </Label>
           <Label>
-            Fecha de Fin
+            {t('finish_date')}
             <InputDate
               required
               type="date"
@@ -208,10 +210,10 @@ const TrailCreationForm = () => {
           </Label>
         </DateFieldContainer>
         <PlanInfoToast>
-          Si eres un usuario estandar, solo puedes tener 4 jugadores por Trail.
+          {t('trail_create_plan_info-2')}
         </PlanInfoToast>
         <Label>
-          Número Máximo de Jugadores
+          {t('max_players')}
           <Input
             required
             type="number"
@@ -241,7 +243,7 @@ const TrailCreationForm = () => {
         }
 
         <Label htmlFor="games">
-          Juegos que se van a Jugar
+          {t('trail_create_games')}
           <AsyncSelect
             required
             isMulti
@@ -256,7 +258,7 @@ const TrailCreationForm = () => {
             loadOptions={async () => games}
           />
         </Label>
-        <Button type="submit">Crear</Button>
+        <Button type="submit">{t('create')}</Button>
       </Form>
     </>
   );

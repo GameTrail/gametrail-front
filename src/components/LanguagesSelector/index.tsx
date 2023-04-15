@@ -56,9 +56,9 @@ const LanguagesSelector:FC<Props> = ({ isNavbar = false }) => {
             backgroundColor: 'transparent',
             border: 'none',
             position: 'absolute',
-            zIndex: 0,
             bottom: isNavbar ? '0' : '100%',
-            right: isNavbar ? '100%' : '0',
+            right: 0,
+            top: isNavbar ? '100%' : '0',
           }}
           onClick={() => handleChangeLanguage(lng)}
         >
@@ -87,6 +87,10 @@ const LanguagesSelector:FC<Props> = ({ isNavbar = false }) => {
       }}
       onMouseLeave={() => setIsOpen(false)}
       onTap={() => setIsOpen(!isOpen)}
+      style={{
+        position: 'relative',
+        zIndex: 100,
+      }}
     >
       <motion.button
         style={{

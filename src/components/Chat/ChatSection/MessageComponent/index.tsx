@@ -17,7 +17,7 @@ export type Props = {
 const MessageComponent: FC<Props> = ({ message }) => (
   <CommentContainer>
     <AvatarContainer>
-      <Image src={message.user.avatar} alt="imagen" width={60} height={60} />
+      <Image src={message.user.avatar ?? ''} alt="imagen" width={60} height={60} />
     </AvatarContainer>
     <CommentContentContainer>
       <CommentUsernameContainer>

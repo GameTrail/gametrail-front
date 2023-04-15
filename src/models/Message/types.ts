@@ -1,7 +1,10 @@
 import type { Trail } from '../Trail/types';
-import type { User } from '../User/types';
 
-export type MessageUser = Pick<User, 'id' | 'username' | 'avatar'>;
+type MessageUser = {
+  id: number | undefined,
+  username: string | undefined,
+  avatar: string | undefined
+};
 
 export type Message = {
   id: number,

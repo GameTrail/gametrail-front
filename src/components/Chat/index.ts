@@ -1,1 +1,2 @@
-export { default as ChatSection } from './ChatSection';
+export { ChatComponent } from './ChatComponent';
+export { socketInit } from './ChatComponent';

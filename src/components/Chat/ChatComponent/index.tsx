@@ -1,36 +1,42 @@
 import type { FC } from 'react';
 import React, { useState, useEffect } from 'react';
 import { io } from 'socket.io-client';
-import { ChatSection } from '@/components/Chat';
+
 import type { Message } from '@/models/Message/types';
 import type { Trail } from '@/models/Trail/types';
 
 import { getUserCookie } from '@/utils/login';
+import ChatSection from '../ChatSection';
 import {
   Button, Container, DivContainer, InputField, MessagesContainer,
 } from './styles';
-
-export type MessageToPost = {
-  userId: number;
-  username: string;
-  trailId: number;
-  text: string;
-};
 
 export type Props = {
   trailData: Trail;
 };
 
-const socket = io('');
+let socket: any;
+const socketInit = () => {
+  socket = io('https://chat-gametrail-production.up.railway.app');
+};
 
-const ChatContainer: FC<Props> = ({ trailData }) => {
+const ChatComponent: FC<Props> = ({ trailData }) => {
   const userCookie = getUserCookie();
   const [messages, setMessages] = useState<Message[]>([]);
   const [message, setMessage] = useState<string>();
+  const [isFirstRender, setIsFirstRender] = useState<boolean>(true);
 
+  // eslint-disable-next-line consistent-return
   useEffect(() => {
-    socket.emit('join', trailData.id);
-  }, [trailData.id]);
+    if (isFirstRender === true) {
+      socket.emit('join', trailData.id);
+      setIsFirstRender(false);
+    } else {
+      return () => {
+        socket.disconnect();
+      };
+    }
+  }, [isFirstRender, trailData.id]);
 
   useEffect(() => {
     const handleReceiveMessage = (msg: Message) => {
@@ -39,10 +45,6 @@ const ChatContainer: FC<Props> = ({ trailData }) => {
     socket.on('receive_message', (msg: Message) => {
       handleReceiveMessage(msg);
     });
-
-    return () => {
-      socket.off('receive_message');
-    };
   }, [messages]);
 
   const handleSendMessage = (e: React.FormEvent<HTMLFormElement>) => {
@@ -61,7 +63,7 @@ const ChatContainer: FC<Props> = ({ trailData }) => {
       trail: trailData,
     };
     socket.emit('send_message', newMessage);
-    // setMessages([...messages, newMessage]);
+    setMessages([...messages, newMessage]);
     setMessage('');
   };
 
@@ -81,4 +83,4 @@ const ChatContainer: FC<Props> = ({ trailData }) => {
     </>
   );
 };
-export default ChatContainer;
+export { ChatComponent, socketInit };

@@ -10,10 +10,11 @@ export type Props = {
   userRating: Rating;
 };
 const UserAverageRating:FC<Props> = ({ userRating }) => {
-  const avergareRating = calculateAverageRating(userRating);
+  const averageRating = calculateAverageRating(userRating);
+  const averageRatingFixed = Number.isInteger(averageRating) ? averageRating : averageRating.toFixed(1);
   return (
     <Container>
-      {avergareRating}
+      {averageRatingFixed}
       <FontAwesomeIcon icon={faMeteor} color="#31A4F1" size="lg" />
     </Container>
   );

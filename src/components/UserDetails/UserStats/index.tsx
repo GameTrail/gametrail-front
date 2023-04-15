@@ -18,12 +18,15 @@ const UserStats:FC<Props> = ({ userRating }) => {
     if (!userRating) return <h1>{t('no_stats_available')}</h1>;
     return Object.keys(userRating).map((type) => {
       const rating = userRating[type as RatingType];
+      const ratingFixed = Number.isInteger(rating) ? rating : rating.toFixed(1);
       return (
         <div key={type}>
           <h3>
-            <FontAwesomeIcon icon={faCircle as IconProp} color={COLOR_MAP[type as RatingType]} />
+            <span>
+              <FontAwesomeIcon icon={faCircle as IconProp} color={COLOR_MAP[type as RatingType]} />
+            </span>
             {' '}
-            {rating}
+            {ratingFixed}
             {' '}
             -
             {' '}

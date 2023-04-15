@@ -30,7 +30,7 @@ const KarmaToast = () => (
       </li>
     </ol>
     <p>
-      El karma corresponde a la valoración media de estas 5 métricas.
+      El karma corresponde a la valoración media de estas 5 métricas, cada una de ellas con un valor entre 1 y 5.
     </p>
   </KarmaInfoToast>
 );

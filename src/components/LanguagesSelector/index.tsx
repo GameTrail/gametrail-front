@@ -58,7 +58,7 @@ const LanguagesSelector:FC<Props> = ({ isNavbar = false }) => {
             position: 'absolute',
             bottom: isNavbar ? '0' : '100%',
             right: 0,
-            top: isNavbar ? '100%' : '0',
+            top: isNavbar ? '100%' : '-100%',
           }}
           onClick={() => handleChangeLanguage(lng)}
         >

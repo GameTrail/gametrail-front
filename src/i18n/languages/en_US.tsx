@@ -445,6 +445,10 @@ const Trail = {
 
 };
 
+const TrailList = {
+  list_trails: 'List of Trails',
+};
+
 const Dictionary = {
   ...globals,
   ...landing.FaqSection,
@@ -468,6 +472,7 @@ const Dictionary = {
   ...Register,
   ...Trail.TrailCreation,
   ...Trail.TrailDetails,
+  ...TrailList,
 };
 
 export default Dictionary;

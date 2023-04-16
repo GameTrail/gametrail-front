@@ -34,7 +34,7 @@ const PlusInfoRow: FC<Props> = ({ trailData }) => {
         },
       });
       if (res.status !== 200) {
-        console.error('error');
+        console.error(res);
       }
     } catch (error) {
       console.error(error);
@@ -42,8 +42,15 @@ const PlusInfoRow: FC<Props> = ({ trailData }) => {
   };
 
   const handleRenderJoinButton = () => {
-    if (user && trailData.users?.length < trailData?.maxPlayers) {
-      return !userInTrail && (
+    if (user && trailData.users.length < trailData.maxPlayers) {
+      if (userInTrail) {
+        return (
+          <JoinButton>
+            <p>{t('joined')}</p>
+          </JoinButton>
+        );
+      }
+      return (
         <JoinButton onClick={handleJoin}>
           <p>{t('join')}</p>
         </JoinButton>
@@ -64,7 +71,7 @@ const PlusInfoRow: FC<Props> = ({ trailData }) => {
     <InfoRow>
       <DateInfo dateStart={trailData.startDate} dateEnd={trailData.finishDate} />
       <JoinContainer>
-        {userInTrail && handleRenderJoinButton()}
+        {handleRenderJoinButton()}
         <JoinPlayersCount>
           <p>
             ‍🙍

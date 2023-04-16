@@ -163,6 +163,7 @@ const TrailCreationForm = () => {
             type="text"
             name="name"
             id="name"
+            maxLength={40}
             placeholder={t('trail_create_placeholder').toString()}
             value={trailName}
             onChange={(e) => setTrailName(e.target.value)}

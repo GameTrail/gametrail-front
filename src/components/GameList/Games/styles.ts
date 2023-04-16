@@ -20,11 +20,10 @@ export const TitlesContainer = styled.div`
     flex-direction: row;
     align-items: baseline;
     justify-content: space-evenly;
-    @media (max-width: 750px) {
-    justify-content: space-evenly;
-    flex-direction:column;
-    width: 0;
-  }
+    @media (max-width: 300px) {
+        width: 0;
+        height: 0;
+    }
 `;
 
 export const Buscador = styled.div` 
@@ -125,7 +124,7 @@ text-align: right;
 color: ${({ theme }) => theme.nord.gray1};
 font-size: 32px;
 @media (max-width: 588px) {
-    font-size: 21px;
+    font-size: 0px;
 }
 `;
 
@@ -260,9 +259,10 @@ padding: 9px;
     
 }
 @media (max-width: 768px) {
-    font-size: 1em;
-    width: 110px;
-    height: 40px;
+    font-size: 0em;
+    width: 0px;
+    height: 0px;
+    display: none;
 }
 `;
 

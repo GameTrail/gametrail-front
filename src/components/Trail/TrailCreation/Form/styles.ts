@@ -8,6 +8,7 @@ export const Title = styled.h2`
   text-align: center;
   font-size: 2rem;
   padding-bottom: 0.5em;
+  padding-top: 2em;
   @media (max-width: 768px) {
     display: flex;
     font-size: 1.5rem;

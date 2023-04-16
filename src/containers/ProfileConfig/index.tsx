@@ -1,6 +1,6 @@
 import React from 'react';
+import { ProfileData, ProfileDelete } from '@/components/ProfileConfig';
 import useLanguage from '@/i18n/hooks';
-import { ProfileData, ProfileDelete, ProfileExternalConnect } from '@/components/ProfileConfig';
 import { getUserCookie } from '@/utils/login';
 import {
   MainContainer, Header, Separator, MainHeader,

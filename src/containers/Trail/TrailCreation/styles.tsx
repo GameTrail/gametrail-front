@@ -15,7 +15,8 @@ export const Container = styled.div`
   color: ${({ theme }) => theme.nord.gray0};
   @media (max-width: 768px) {
     flex-direction: column;         
-    width: 100vw;         
+    width: 100vw;      
+    height: 120vh;
     justify-content: center;
     svg{
       max-width: 0;

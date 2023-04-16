@@ -178,6 +178,5 @@ export const GameInListButton = styled.p`
   background-color: ${({ theme }) => (theme.nord.purple)};
   color: ${({ theme }) => (theme.nord.white2)};
   margin-bottom: 5%;
-  border-width: 0%;
 
 `;

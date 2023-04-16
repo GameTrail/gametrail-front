@@ -1,6 +1,7 @@
 import type { FC } from 'react';
 import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
+import useLanguage from '@/i18n/hooks';
 import type { Game } from '@/models/Game/types';
 import { normalizeImage } from '@/utils/normalizeImage';
 import {
@@ -12,6 +13,7 @@ export type Props = {
 };
 
 const RecentGames:FC<Props> = ({ recentGames }) => {
+  const { t } = useLanguage();
   const handleRenderGames = () => recentGames?.map((game) => (
     <CarouselImage
       src={normalizeImage(game.image)}
@@ -22,15 +24,14 @@ const RecentGames:FC<Props> = ({ recentGames }) => {
   ));
   return (
     <Container>
-      <Title>Juegos Recientes</Title>
+      <Title>{t('recent_games')}</Title>
       <CarouselContainer>
         <Carousel axis="horizontal" showThumbs={false} autoPlay swipeable centerMode infiniteLoop showStatus={false} showIndicators={false} showArrows={false}>
           {handleRenderGames()}
         </Carousel>
       </CarouselContainer>
       <Description>
-        Estos son los ultimos juegos añadidos a GameTrail.
-        Si quieres acceder a todos ellos y añadirlos a tus Trails o listas usa nuestro buscador!!
+        {t('recent_games_description')}
       </Description>
     </Container>
   );

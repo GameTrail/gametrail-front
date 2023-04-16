@@ -99,13 +99,12 @@ export const DeleteConfirmButton = styled.button`
         margin-top: 1rem;
         justify-content: center;
         width: 200px;
-        border-radius: 9px;
         transition: all 0.2s ease-in-out;
-        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        box-shadow: rgba(0, 0, 0, 0.24) 0 3px 8px;
         font-weight: 600;
         font-style: normal;
         font-size: 16px;
-        letter-spacing: 0px;
+        letter-spacing: 0;
         line-height: 1.2;
         text-align: center;
          &:hover {
@@ -126,13 +125,12 @@ export const DeleteCancelButton = styled.button`
         color: ${({ theme }) => theme.nord.gray3};
         margin-top: 1rem;
         justify-content: center;
-        border-radius: 9px;
-        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        box-shadow: rgba(0, 0, 0, 0.24) 0 3px 8px;
         transition: all 0.2s ease-in-out;
         font-style: bold;
         font-weight: 600;
         font-size: 16px;
-        letter-spacing: 0px;
+        letter-spacing: 0;
         line-height: 1.2;
         text-align: center;
          &:hover {

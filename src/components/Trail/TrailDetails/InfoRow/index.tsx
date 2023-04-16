@@ -1,6 +1,7 @@
 import type { FC } from 'react';
 import React, { useState } from 'react';
 import DateInfo from '@/components/Trail/TrailDetails/InfoRow/DateInfo';
+import useLanguage from '@/i18n/hooks';
 import type { Trail as TrailData } from '@/models/Trail/types';
 import { getUserCookie } from '@/utils/login';
 import {
@@ -12,6 +13,7 @@ export type Props = {
 };
 
 const PlusInfoRow: FC<Props> = ({ trailData }) => {
+  const { t } = useLanguage();
   const user = getUserCookie();
   const token = user?.token || '';
 
@@ -55,19 +57,19 @@ const PlusInfoRow: FC<Props> = ({ trailData }) => {
       if (isJoined) {
         return (
           <JoinButton>
-            <p>UNIDO</p>
+            <p>{t('joined')}</p>
           </JoinButton>
         );
       }
       return (
         <JoinButton onClick={handleJoin}>
-          <p>UNIRSE</p>
+          <p>{t('join')}</p>
         </JoinButton>
       );
     }
     return (
       <JoinButton style={{ visibility: 'hidden' }}>
-        <p>UNIRSE</p>
+        <p>{t('joined')}</p>
       </JoinButton>
     );
   };

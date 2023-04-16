@@ -2,6 +2,7 @@ import React from 'react';
 import type { FC } from 'react';
 import { useRouter } from 'next/router';
 import NotFoundList from '@/components/Lotties/User/NotFoundList';
+import useLanguage from '@/i18n/hooks';
 import type { Trail } from '@/models/Trail/types';
 import theme from '@/theme';
 import { Item, Container, TrailListEmpty } from './styles';
@@ -11,12 +12,13 @@ export type Props = {
 };
 
 const UserTrailList:FC<Props> = ({ trailList }) => {
+  const { t } = useLanguage();
   const router = useRouter();
   const handleRenderStatus = (trail: Trail) => {
     const status = Date.parse(trail.finishDate) > new Date().getTime();
     return status
-      ? <span style={{ backgroundColor: theme.nord.blue2 }}>In progress</span>
-      : <span style={{ backgroundColor: theme.nord.green }}>Completed</span>;
+      ? <span style={{ backgroundColor: theme.nord.blue2 }}>{t('trail_in_progress')}</span>
+      : <span style={{ backgroundColor: theme.nord.green }}>{t('trail_finished')}</span>;
   };
 
   const handleClick = (trail:number) => {

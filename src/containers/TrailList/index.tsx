@@ -2,12 +2,14 @@ import React, { useEffect, useState, memo } from 'react';
 import Error from '@/components/Error';
 import LoadingSpinner from '@/components/LoadingSpinner';
 import PaginationCard from '@/components/PaginationCard';
+import useLanguage from '@/i18n/hooks';
 import type { Trail } from '@/models/Trail/types';
 import { Container, Title, TrailListContainer } from './styles';
 import TrailCard from './TrailCard';
 
 const API_URL = 'https://gametrail-backend-production-8fc0.up.railway.app/api/getTrail/';
 const TrailList = () => {
+  const { t } = useLanguage();
   const [trails, setTrails] = useState<Trail[] | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -70,7 +72,7 @@ const TrailList = () => {
 
   return (
     <Container>
-      <Title>Listado de Trails</Title>
+      <Title>{t('list_trails')}</Title>
       <TrailListContainer>
         {handleRenderTrails()}
       </TrailListContainer>

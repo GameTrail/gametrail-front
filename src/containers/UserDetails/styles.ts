@@ -81,6 +81,8 @@ export const KarmaInfo = styled.div`
     }
     svg {
         margin-left: 0.25rem;
+        width: 20px;
+        height: 20px;
         cursor: pointer;
     }
 `;

@@ -18,8 +18,8 @@ export const Container = styled.div`
     width: 100vw;         
     justify-content: center;
     svg{
-      max-width: 0px;
-      max-height: 0px;
+      max-width: 0;
+      max-height: 0;
     }
   };
 `;

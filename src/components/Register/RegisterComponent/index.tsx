@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/Landing/MainSection/styles';
 import { LoginLottie } from '@/components/Lotties';
 import {
@@ -20,6 +21,7 @@ export type RegisterErrors = {
 };
 
 const Register = () => {
+  const { t } = useTranslation();
   const router = useRouter();
 
   const [username, setUsername] = useState('');
@@ -66,23 +68,27 @@ const Register = () => {
     authenticate();
   };
 
+  const placeholderUsername = t('register_username');
+  const placeholderEmail = t('register_email');
+  const placeholderPassword = t('password');
+  const placeholderPasswordConfirmation = t('register_password_confirmation');
   return (
     <RegisterContainer>
       <LoginLottie />
       <RegisterForm onSubmit={handleRegister}>
         <Title>
-          Registrate en GameTrail
+          {t('register_title')}
         </Title>
         {registerErrors.map((message) => (
           <ErrorContainer key={registerErrors.indexOf(message)}>{message}</ErrorContainer>
         ))}
         <Container>
           <Label>
-            Nombre de usuario
+            {t('register_username')}
             <Input
               type="text"
               name="Nombre de usuario"
-              placeholder="Nombre de usuario"
+              placeholder={placeholderUsername}
               value={username}
               onChange={(e) => setUsername(e.target.value)}
             />
@@ -90,11 +96,11 @@ const Register = () => {
         </Container>
         <Container>
           <Label>
-            Correo electrónico
+            {t('register_email')}
             <Input
               type="email"
               name="Correo electrónico"
-              placeholder="Correo electrónico"
+              placeholder={placeholderEmail}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
@@ -102,11 +108,11 @@ const Register = () => {
         </Container>
         <Container>
           <Label>
-            Contraseña
+            {t('password')}
             <Input
               type="password"
               name="Contraseña"
-              placeholder="Contraseña"
+              placeholder={placeholderPassword}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
@@ -114,11 +120,11 @@ const Register = () => {
         </Container>
         <Container>
           <Label>
-            Repetir contraseña
+            {t('register_password_confirmation')}
             <Input
               type="password"
               name="Repetir Contraseña"
-              placeholder="Repetir Contraseña"
+              placeholder={placeholderPasswordConfirmation}
               value={passwordConfirmation}
               onChange={(e) => setPasswordConfirmation(e.target.value)}
             />
@@ -130,26 +136,38 @@ const Register = () => {
             <Input
               type="text"
               name="Avatar"
-              placeholder="URL del avatar"
+              placeholder="URL"
               value={avatarURL}
               onChange={(e) => setAvatar(e.target.value)}
             />
           </Label>
         </Container>
         <LabelCheck>
-          Acepto los
-          <Link href="/terms"> términos y condiciones de uso </Link>
-          , además de la
-          <Link href="/privacy"> política de privacidad </Link>
-          y
-          <Link href="/cookiespolicy"> política de cookies </Link>
-          de GameTrail.
+          {t('register_accept-1')}
+          <Link href="/terms">
+            {' '}
+            {t('register_accept-2')}
+            {' '}
+          </Link>
+          {t('register_accept-3')}
+          <Link href="/privacy">
+            {' '}
+            {t('register_accept-4')}
+            {' '}
+          </Link>
+          {t('register_accept-5')}
+          <Link href="/cookiespolicy">
+            {' '}
+            {t('register_accept-6')}
+            {' '}
+          </Link>
+          {t('register_accept-7')}
           <InputCheck
             type="checkbox"
             required
           />
         </LabelCheck>
-        <Button primary type="submit">Registro</Button>
+        <Button primary type="submit">{t('register')}</Button>
       </RegisterForm>
     </RegisterContainer>
   );

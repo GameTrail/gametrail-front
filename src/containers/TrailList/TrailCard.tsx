@@ -1,6 +1,7 @@
 import type { FC } from 'react';
 import React, { memo } from 'react';
 import { useRouter } from 'next/router';
+import useLanguage from '@/i18n/hooks';
 import type { Trail } from '@/models/Trail/types';
 import {
   CardContent, CardImage, CardWrapper, Description, Name, Players, TrailDate,
@@ -11,6 +12,7 @@ type Props = {
 };
 
 const TrailCard: FC<Props> = ({ trail }) => {
+  const { t } = useLanguage();
   const router = useRouter();
   const handleClickTrail = () => {
     router.push(`/trail/${trail.id}`);
@@ -30,7 +32,7 @@ const TrailCard: FC<Props> = ({ trail }) => {
         <TrailDate>{trail.startDate}</TrailDate>
         <Description>{sliceText(trail.description)}</Description>
         <Players>
-          Jugadores
+          {t('players')}
           {' '}
           {trail.users?.length}
           /

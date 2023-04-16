@@ -2,6 +2,7 @@ import type { FC } from 'react';
 import React, { useCallback, useState } from 'react';
 import { useRouter } from 'next/router';
 import type { UserCookie } from '@/components/Login/LoginComponent/types';
+import useLanguage from '@/i18n/hooks';
 import { minimizeUserCookie, normalizeUserCookie } from '@/models/User/types';
 import { getUserCookie, setMinCookie } from '@/utils/login';
 import {
@@ -13,6 +14,7 @@ type Props = {
 };
 
 const ProfileData:FC<Props> = () => {
+  const { t } = useLanguage();
   const router = useRouter();
   const user = getUserCookie();
   const token = user?.token === undefined ? '' : user?.token;
@@ -60,7 +62,11 @@ const ProfileData:FC<Props> = () => {
   return (
     <MainContainer>
       <ProfileForm onSubmit={handleSubmit}>
-        <ProfileFormTitle> Editar datos </ProfileFormTitle>
+        <ProfileFormTitle>
+          {' '}
+          {t('edit_data')}
+          {' '}
+        </ProfileFormTitle>
         {registerErrors.map((message) => (
           <ErrorContainer key={registerErrors.indexOf(message)}>{message}</ErrorContainer>
         ))}
@@ -74,7 +80,7 @@ const ProfileData:FC<Props> = () => {
           <Input type="url" name="avatar" id="avatar" placeholder={`${user?.avatar}`} />
         </FieldContainer>
 
-        <Button type="submit">Actualizar datos</Button>
+        <Button type="submit">{t('update_data')}</Button>
 
       </ProfileForm>
     </MainContainer>

@@ -8,6 +8,7 @@ export const Container = styled.div`
     justify-content: center;
     overflow-x: hidden;
     background-color: ${({ theme }) => theme.nord.gray3};
+    padding-bottom: 2rem;
 `;
 
 export const About = styled.div`

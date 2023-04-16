@@ -177,7 +177,7 @@ export const GameData = styled.div`
         align-items: center;
         flex-direction: column;
         justify-content: center;
-        margin-left: 0%;
+        margin-left: 0;
         gap: 1.2em;
     }
 `;

@@ -17,15 +17,15 @@ export const Container = styled.div`
   font-style: normal;
   font-family: "Outfit", sans-serif;
   svg {
-    width: 50%;
-    height: 50%;
+    width: 70px;
+    height: 70px;
   }
   @media (max-width: 768px) {
     width: 100%;
     font-size: 1.8rem;
     svg {
-      width: 30%;
-      height: 30%;
+      width: 40%;
+      height: 40%;
    @keyframes change {
   0% {
     color: ${({ theme }) => theme.nord.blue0};

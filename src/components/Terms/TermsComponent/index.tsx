@@ -38,7 +38,7 @@ const Terms = () => (
     <Subtitle>Contacto</Subtitle>
     <Text>Si tienes alguna pregunta sobre esta Política de Privacidad, puedes contactarnos:</Text>
     <Ul>
-      <Strong>help.gametrail@gmail.com</Strong>
+      <Strong>help.user.gametrail@gmail.com</Strong>
     </Ul>
   </Container>
 );

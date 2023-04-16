@@ -2,18 +2,18 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    margin-top: 3em;
-    margin-bottom: -3em;
-    text-align: center;
-    justify-content:space-evenly;
-    h1{
-        font-size: 1.5em;
-        margin-left: 0em;
-    }
+    justify-content: center;
+    width: 50%;
+    gap: 2rem;
+    padding: 10px 30px;   
+    white-space: pre;
+    font-weight: 600;
     .crown{
         color: ${({ theme }) => theme.nord.yellow};
+        width: 25px;
+        height: 25px;
         @keyframes changeColor {
             0% {
                 color: #ee7752
@@ -39,42 +39,33 @@ export const Container = styled.div`
     }
     .gear {
         cursor: pointer;
+        width: 25px;
+        height: 25px;
         color: ${({ theme }) => theme.nord.gray3};
         animation: rotateGear 5s linear infinite;
-        width: 20%;
-        height: 20%;
-        margin-left: -1.5em;
     }
     @keyframes rotateGear {
         from {
-            transform: rotate(0deg);
+                transform: rotate(0deg);
         }
         to {
-            transform: rotate(360deg);
+                transform: rotate(360deg);
         }
     }
     img{
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
-        border-radius: 100%;
+        border-radius: 20px;
         box-shadow: 0 0 10px 0 ${({ theme }) => theme.nord.gray3};
     }
     @media (max-width: 768px) {
         flex-direction: column;
+        width: 100%;
+        height: 100%;
         padding-top: 10px;
         h1{
             margin-top: 1rem;
-            font-size: larger;
-            margin-left: 0em;
-        }
-        .gear {
-            cursor: pointer;
-            color: ${({ theme }) => theme.nord.gray3};
-            animation: rotateGear 5s linear infinite;
-            width: 30%;
-            height: 30%;
-            margin-left: 0em;
         }
     };
 `;
@@ -83,9 +74,7 @@ export const RateButton = styled.button`
     font-size: 1.2rem;
     font-weight: 400;
     cursor: pointer;
-    margin-top: 1em;
-    margin-bottom: 3em;
-    padding: 0.8em;
+    padding: 10px 20px;
     border-radius: 8px;
     width: 100px;
     border: none;
@@ -100,8 +89,8 @@ export const RateButton = styled.button`
         width: 105px;
         font-size: 0.8rem;
         font-weight: 400;
+        padding: 10px 20px;
         border-radius: 8px;
-        margin-bottom: 6em;
     }
 `;
 
@@ -134,8 +123,9 @@ export const RateContainer = styled.form`
       align-items: center;
       position:fixed;
       gap:0.5rem;
-      width: 83%;
-      margin-right: 2em;
+      z-index: 1;
+      margin-right: 5rem;
+      justify-content: center;
   };
 `;
 
@@ -205,7 +195,6 @@ export const CloseRateContainer = styled.button`
     border:none;
     width: 50px;
     padding: 2px 5px;
-
     cursor: pointer;
 `;
 

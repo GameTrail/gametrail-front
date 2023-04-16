@@ -2,6 +2,7 @@ import type { FC } from 'react';
 import React from 'react';
 import Link from 'next/link';
 import { GamerLottie } from '@/components/Lotties';
+import useLanguage from '@/i18n/hooks';
 import { getUserCookie } from '@/utils/login';
 import BrandSection from '../BrandSection';
 import {
@@ -13,28 +14,29 @@ type Props = {
 };
 const MainSection: FC<Props> = ({ subscriptionSuccess }) => {
   const userCookie = getUserCookie();
+  const { t } = useLanguage();
   return (
     <Container>
       <Left>
         <Title>GameTrail</Title>
         <Subtitle>
-          Descubre una nueva manera de jugar en comunidad y guardar el progreso de tus juegos.
+          {t('about_gametrail')}
         </Subtitle>
         <AuthButtons>
-          {subscriptionSuccess && <h2 className="alert-heading" style={{ color: 'orange' }}>¡Bienvenido a GameTrail Premium! 🎉</h2>}
+          {subscriptionSuccess && <h2 className="alert-heading" style={{ color: 'orange' }}>{t('welcome_to_premium')}</h2>}
           {userCookie === null
             ? (
               <>
                 <Link href="/auth/login">
-                  <Button primary>Iniciar sesión</Button>
+                  <Button primary>{t('login')}</Button>
                 </Link>
                 <Link href="/auth/register">
-                  <Button animated>Registrarse</Button>
+                  <Button animated>{t('register')}</Button>
                 </Link>
               </>
             ) : (
               <Link href="/home">
-                <Button>Ir a Gametrail</Button>
+                <Button>{t('go_to_gametrail')}</Button>
               </Link>
             )}
         </AuthButtons>

@@ -2,6 +2,7 @@ import type { FC, ChangeEvent } from 'react';
 import React, { useEffect, useState } from 'react';
 
 import { useRouter } from 'next/router';
+import useLanguage from '@/i18n/hooks';
 import type { Game } from '@/models/Game/types';
 import type { GameInList, UserInDetails } from '@/models/GameInUserList/types';
 import { GameListState } from '@/models/GameList/types';
@@ -24,8 +25,10 @@ export type Props = {
 const GameList: FC<Props> = ({
   games, pages, currentPage, searchQuery, handleUpdateSearchQuery, handlePagination,
 }) => {
+  const { t } = useLanguage();
+
   const [showDiv2, setShowDiv2] = useState(true);
-  const [buttonText, setButtonText] = useState('Desactivado');
+  const [buttonText, setButtonText] = useState(t('list_mode_off'));
   const router = useRouter();
   const user = getUserCookie();
   const [userGames, setUserGames] = useState<GameInList[]>([]);
@@ -33,9 +36,9 @@ const GameList: FC<Props> = ({
   const toggleDiv = () => {
     setShowDiv2(!showDiv2);
     if (showDiv2) {
-      setButtonText('Activado');
+      setButtonText(t('list_mode_on'));
     } else {
-      setButtonText('Desactivado');
+      setButtonText(t('list_mode_off'));
     }
   };
 
@@ -79,13 +82,14 @@ const GameList: FC<Props> = ({
     if (user) getUserGames(user.id);
   }, [user]);
 
+  const searchbarPlaceholder = t('search');
   return (
     <Container>
       <Buscador>
-        <Titulo>Lista de juegos</Titulo>
-        <Input type="text" value={searchQuery} onChange={handleUpdateSearchQuery} placeholder="Buscar..." />
+        <Titulo>{t('game_list')}</Titulo>
+        <Input type="text" value={searchQuery} onChange={handleUpdateSearchQuery} placeholder={searchbarPlaceholder} />
         <TitlesContainer>
-          <Titulo2>Modo Lista</Titulo2>
+          <Titulo2>{t('toggle_list_mode')}</Titulo2>
           <Boton onClick={toggleDiv}>{buttonText}</Boton>
         </TitlesContainer>
       </Buscador>
@@ -99,12 +103,12 @@ const GameList: FC<Props> = ({
               <GameName>{game?.name}</GameName>
               {user && (checkGameInUserList(game.id) ? (
                 <ButtonGameInList>
-                  En tu lista
+                  {t('gamelist_in_your_list')}
                 </ButtonGameInList>
               ) : (
 
                 <Button onClick={(event) => { event.stopPropagation(); handleOnClick(game.id); }}>
-                  Añadir
+                  {t('add_to_list')}
                 </Button>
               ))}
             </Cajas>
@@ -115,10 +119,10 @@ const GameList: FC<Props> = ({
           <Tabla>
             <CabezaTabla>
               <tr>
-                <th>Portada</th>
-                <th>Nombre</th>
-                <th>Fecha</th>
-                <th>Estado</th>
+                <th>{t('cover')}</th>
+                <th>{t('name')}</th>
+                <th>{t('date')}</th>
+                <th>{t('state')}</th>
               </tr>
             </CabezaTabla>
             <tbody>
@@ -130,13 +134,13 @@ const GameList: FC<Props> = ({
                   {user && (checkGameInUserList(game.id) ? (
                     <Fila>
                       <ButtonGameInList>
-                        En tu lista
+                        {t('gamelist_in_your_list')}
                       </ButtonGameInList>
                     </Fila>
                   ) : (
                     <Fila>
                       <Button onClick={(event) => { event.stopPropagation(); handleOnClick(game.id); }}>
-                        Añadir
+                        {t('add_to_list')}
                       </Button>
                     </Fila>
                   ))}

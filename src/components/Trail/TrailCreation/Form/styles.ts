@@ -46,8 +46,8 @@ export const Form = styled.form`
     display: flex;
     flex-direction: column;
     height: 100vh;
-    padding-top: 0em;
-    padding-bottom: 0em;
+    padding-top: 0;
+    padding-bottom: 0;
     margin-top: 2em;
     margin-bottom: 2em;
   }
@@ -85,7 +85,7 @@ export const Input = styled.input`
   border: 0.1rem solid ${({ theme }) => theme.nord.white0};
   border-radius: 0.5rem;
   font-size: 1rem;
-  font-family: Unbounded;
+  font-family: Unbounded,serif;
   @media (max-width: 768px) {
       font-size: 0.5rem;
       width: 100%;
@@ -100,7 +100,7 @@ export const InputTextArea = styled.textarea`
   border: 0.1rem solid ${({ theme }) => theme.nord.white0};
   border-radius: 0.5rem;
   font-size: 1rem;
-  font-family: Unbounded;
+  font-family: Unbounded,serif;
   @media (max-width: 768px) {
       font-size: 0.5rem;
       text-align: center;
@@ -128,7 +128,7 @@ export const InputDate = styled.input`
   border: 0.1rem solid ${({ theme }) => theme.nord.white0};
   border-radius: 0.5rem;
   font-size: 1rem;
-  font-family: Unbounded;
+  font-family: Unbounded,serif;
   @media (max-width: 768px) {
     display: flex;
     flex-direction: column;

@@ -4,6 +4,7 @@ import { useCallback, useMemo, useState } from 'react';
 import { faCrown, faGear } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useRouter } from 'next/router';
+import useLanguage from '@/i18n/hooks';
 import type { User } from '@/models/User/types';
 import { getUserCookie } from '@/utils/login';
 import {
@@ -15,6 +16,7 @@ export type Props = {
   user: User;
 };
 const UserData: FC<Props> = ({ user }) => {
+  const { t } = useLanguage();
   const [rate, setRenderRate] = useState<boolean>(false);
   const [ratingError, setRatingError] = useState<boolean>(false);
   const userWhoRates = getUserCookie();
@@ -63,35 +65,35 @@ const UserData: FC<Props> = ({ user }) => {
   const handleAlreadyVotedError = useMemo(() => {
     if (ratingError) {
       return (
-        <ErrorContainer>Ya has valorado a este usuario</ErrorContainer>
+        <ErrorContainer>{t('rate_user_error-1')}</ErrorContainer>
       );
     }
 
     return null;
-  }, [ratingError]);
+  }, [ratingError, t]);
   const handleRenderRate = useMemo(() => {
     if (rate) {
       return (
         <RateContainer onSubmit={handleSubmit}>
           <CloseRateContainer onClick={handleRateContainer}>X</CloseRateContainer>
           {handleAlreadyVotedError}
-          <h2>Valorar usuario</h2>
-          <RateLabel htmlFor="KINDNESS">Amabilidad</RateLabel>
+          <h2>{t('rate_user')}</h2>
+          <RateLabel htmlFor="KINDNESS">{t('premium_filters_kindness')}</RateLabel>
           <RateInput type="number" id="kindness" name="kindness" min="1" max="5" defaultValue={5} />
-          <RateLabel htmlFor="ABILITY">Habilidad</RateLabel>
+          <RateLabel htmlFor="ABILITY">{t('premium_filters_skill')}</RateLabel>
           <RateInput type="number" id="ability" name="ability" min="1" max="5" defaultValue={5} />
-          <RateLabel htmlFor="AVAILABILITY">Disponibilidad</RateLabel>
+          <RateLabel htmlFor="AVAILABILITY">{t('premium_filters_availability')}</RateLabel>
           <RateInput type="number" id="availability" name="availability" min="0" max="5" defaultValue={5} />
-          <RateLabel htmlFor="FUNNY">Diversión</RateLabel>
+          <RateLabel htmlFor="FUNNY">{t('premium_filters_fun')}</RateLabel>
           <RateInput type="number" id="funny" name="funny" min="1" max="5" defaultValue={5} />
-          <RateLabel htmlFor="TEAMWORK">Cooperación</RateLabel>
+          <RateLabel htmlFor="TEAMWORK">{t('premium_filters_cooperation')}</RateLabel>
           <RateInput type="number" id="teamwork" name="teamwork" min="1" max="5" defaultValue={5} />
-          <RateButtonSubmit type="submit">Enviar</RateButtonSubmit>
+          <RateButtonSubmit type="submit">{t('send')}</RateButtonSubmit>
         </RateContainer>
       );
     }
     return null;
-  }, [handleAlreadyVotedError, handleRateContainer, handleSubmit, rate]);
+  }, [handleAlreadyVotedError, handleRateContainer, handleSubmit, rate, t]);
 
   const handleConfigProfile = useCallback(() => {
     router.push('/user/configuration');

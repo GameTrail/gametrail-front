@@ -23,7 +23,7 @@ export const TitlesContainer = styled.div`
     @media (max-width: 750px) {
     justify-content: space-evenly;
     flex-direction:column;
-    width: 0%;
+    width: 0;
   }
 `;
 
@@ -267,7 +267,6 @@ padding: 9px;
 `;
 
 export const GameName = styled.p`
-margin-top: 0%;
-margin: 5%;
-font-size: 25px;
+  margin: 0, 5, 0, 0;
+  font-size: 25px;
 `;

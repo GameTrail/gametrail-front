@@ -3,6 +3,7 @@ import type { FC } from 'react';
 import Error from '@/components/Error';
 import LoadingSpinner from '@/components/LoadingSpinner';
 import NotFoundList from '@/components/Lotties/User/NotFoundList';
+import useLanguage from '@/i18n/hooks';
 import { GameListState } from '@/models/GameList/types';
 import type { GameList } from '@/models/GameList/types';
 import { getUserCookie } from '@/utils/login';
@@ -18,6 +19,7 @@ export type Props = {
 };
 
 const UserGameList: FC<Props> = ({ userId }) => {
+  const { t } = useLanguage();
   const [gameList, setGameList] = useState<GameList[] | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
@@ -86,7 +88,7 @@ const UserGameList: FC<Props> = ({ userId }) => {
     if (!gameList || gameList?.length === 0) {
       return (
         <GameListEmpty>
-          <p>Aún no hay listas de juegos creadas</p>
+          <p>{t('user_game_list_empty')}</p>
           <NotFoundList />
         </GameListEmpty>
       );

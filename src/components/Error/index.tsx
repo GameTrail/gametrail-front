@@ -1,12 +1,18 @@
 import React from 'react';
+import useLanguage from '@/i18n/hooks';
 import { Container, Text } from './styles';
 
-const Error = () => (
-  <Container>
-    <Text>
-      ❌ Ops! Lo sentimos, ha ocurrido un error inesperado.
-    </Text>
-  </Container>
-);
+const Error = () => {
+  const { t } = useLanguage();
+  return (
+    <Container>
+      <Text>
+        ❌
+        {' '}
+        {t('unexpected_error')}
+      </Text>
+    </Container>
+  );
+};
 
 export default Error;

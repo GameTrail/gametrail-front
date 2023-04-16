@@ -3,6 +3,7 @@ import type { FC } from 'react';
 import type { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { faCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import useLanguage from '@/i18n/hooks';
 import type { Rating, RatingType } from '@/models/Rating/types';
 import { COLOR_MAP } from './constants';
 import { Container } from './styles';
@@ -12,8 +13,9 @@ export type Props = {
 };
 
 const UserStats:FC<Props> = ({ userRating }) => {
+  const { t } = useLanguage();
   const handleRenderStats = () => {
-    if (!userRating) return <h1>No hay estadísticas disponibles...</h1>;
+    if (!userRating) return <h1>{t('no_stats_available')}</h1>;
     return Object.keys(userRating).map((type) => {
       const rating = userRating[type as RatingType];
       const ratingFixed = Number.isInteger(rating) ? rating : rating.toFixed(1);

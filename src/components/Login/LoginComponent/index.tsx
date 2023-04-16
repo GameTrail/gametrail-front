@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import { Button } from '@/components/Landing/MainSection/styles';
 import { LoginLottie } from '@/components/Lotties';
+import useLanguage from '@/i18n/hooks';
 import { minimizeUserCookie, normalizeUserCookie } from '@/models/User/types';
 import { setMinCookie } from '@/utils/login';
 import {
@@ -20,6 +21,7 @@ const URL_USER = 'https://gametrail-backend-production-8fc0.up.railway.app/api/u
 const LOGIN_ERROR = 'Error al inicial sesión, comprueba tus credenciales.';
 
 const Login = () => {
+  const { t } = useLanguage();
   const router = useRouter();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -89,12 +91,12 @@ const Login = () => {
       <LoginLottie />
       <LoginForm onSubmit={handleSubmit}>
         <Title>
-          Inicia sesión en GameTrail
+          {t('login_to_gametrail')}
         </Title>
         {!!loginError && <ErrorContainer>{loginError}</ErrorContainer>}
         <Container>
           <Label>
-            Nombre de usuario
+            {t('username')}
             <Input
               type="text"
               name="Nombre de usuario"
@@ -106,7 +108,7 @@ const Login = () => {
         </Container>
         <Container>
           <Label>
-            Contraseña
+            {t('password')}
             <Input
               type="password"
               name="Contraseña"
@@ -116,7 +118,7 @@ const Login = () => {
             />
           </Label>
         </Container>
-        <Button primary type="submit">Iniciar sesión</Button>
+        <Button primary type="submit">{t('login')}</Button>
       </LoginForm>
     </LoginContainer>
   );

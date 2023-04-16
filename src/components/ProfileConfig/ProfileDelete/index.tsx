@@ -3,12 +3,14 @@ import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/router';
+import useLanguage from '@/i18n/hooks';
 import { getUserCookie } from '@/utils/login';
 import {
   DeleteButton, DeletePopup, DeleteHeader, DeleteConfirmButton, DeleteCancelButton, DeleteContainer,
 } from './styles';
 
 const ProfileDelete = () => {
+  const { t } = useLanguage();
   const [deletePopup, setDeletePopup] = useState(false);
   const router = useRouter();
   const user = getUserCookie();
@@ -43,13 +45,13 @@ const ProfileDelete = () => {
     <DeletePopup>
       <DeleteHeader>
         <FontAwesomeIcon icon={faExclamationTriangle} size="2xl" />
-        ¿Estás seguro de que quieres borrar tu cuenta?
+        {t('profile_delete_ask')}
       </DeleteHeader>
       <DeleteConfirmButton onClick={handleDelete}>
-        Sí, borrar cuenta
+        {t('profile_delete_confirm')}
       </DeleteConfirmButton>
       <DeleteCancelButton onClick={() => setDeletePopup(false)}>
-        No, quiero cancelar
+        {t('profile_delete_cancel')}
       </DeleteCancelButton>
 
     </DeletePopup>
@@ -60,7 +62,7 @@ const ProfileDelete = () => {
     <>
       <DeleteContainer>
         <DeleteButton onClick={handleDeleteSecondChance}>
-          Eliminar cuenta
+          {t('profile_delete')}
         </DeleteButton>
       </DeleteContainer>
 

@@ -1,8 +1,9 @@
 import type { FC } from 'react';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import DateInfo from '@/components/Trail/TrailDetails/InfoRow/DateInfo';
 import useLanguage from '@/i18n/hooks';
 import type { Trail as TrailData } from '@/models/Trail/types';
+import { checkUserInTrail } from '@/utils/checkUserInTrail';
 import { getUserCookie } from '@/utils/login';
 import {
   InfoRow, JoinButton, JoinContainer, JoinPlayersCount,
@@ -16,52 +17,33 @@ const PlusInfoRow: FC<Props> = ({ trailData }) => {
   const { t } = useLanguage();
   const user = getUserCookie();
   const token = user?.token || '';
+  const [userInTrail, setUserInTrail] = useState(false);
 
-  const [isJoined, setIsJoined] = useState(false);
-
-  if (user) {
-    for (let i = 0; i < trailData.users.length; i += 1) {
-      if (isJoined) {
-        break;
-      }
-      if (trailData.users[i].id === user.id) {
-        setIsJoined(true);
-        break;
-      }
-    }
-  }
-
-  const handleJoin = () => {
+  const handleJoin = async () => {
     const requestData = {
       trail: trailData.id,
       user: user?.id.toString(),
     };
     try {
-      fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/addUserInTrail', {
+      const res = await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/addUserInTrail', {
         method: 'POST',
         body: JSON.stringify(requestData),
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Token ${token}`,
         },
-      }).then((r) => r);
+      });
+      if (res.status !== 200) {
+        console.error('error');
+      }
     } catch (error) {
-      throw new Error();
-    } finally {
-      setIsJoined(true);
+      console.error(error);
     }
   };
 
-  const joinButton = () => {
-    if (user && trailData.users.length < trailData.maxPlayers) {
-      if (isJoined) {
-        return (
-          <JoinButton>
-            <p>{t('joined')}</p>
-          </JoinButton>
-        );
-      }
-      return (
+  const handleRenderJoinButton = () => {
+    if (user && trailData.users?.length < trailData?.maxPlayers) {
+      return !userInTrail && (
         <JoinButton onClick={handleJoin}>
           <p>{t('join')}</p>
         </JoinButton>
@@ -74,18 +56,21 @@ const PlusInfoRow: FC<Props> = ({ trailData }) => {
     );
   };
 
+  useEffect(() => {
+    setUserInTrail(checkUserInTrail(user, trailData));
+  }, [user, trailData]);
+
   return (
     <InfoRow>
       <DateInfo dateStart={trailData.startDate} dateEnd={trailData.finishDate} />
       <JoinContainer>
-        {joinButton()}
-
+        {userInTrail && handleRenderJoinButton()}
         <JoinPlayersCount>
           <p>
             ‍🙍
           </p>
           <p>
-            {trailData.users.length}
+            {trailData.users?.length}
             /
             {trailData.maxPlayers}
           </p>

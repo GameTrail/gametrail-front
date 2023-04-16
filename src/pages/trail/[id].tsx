@@ -14,6 +14,7 @@ const Trail = () => {
   const { id } = router.query;
 
   useEffect(() => {
+    if (!id) return;
     const fetchTrail = async () => {
       setLoading(true);
       try {

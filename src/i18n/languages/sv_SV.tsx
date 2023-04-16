@@ -465,6 +465,19 @@ const UserDetails = {
   trail_finished: 'Slutfört',
 };
 
+const Terms = {
+  'terms-1': 'Användarvillkor',
+  'terms-2': 'Senast uppdaterad: 7 april 2023',
+  'terms-3': 'Genom att använda GameTrail godkänner du följande villkor:',
+  'terms-4': 'All information och innehåll på GameTrails plattform är exklusiv egendom av GameTrail och skyddas av immateriella rättigheter. Kopiering, distribution eller användning av något innehåll är förbjudet utan föregående skriftligt godkännande från GameTrail.',
+  'terms-5': 'GameTrail förbehåller sig rätten att när som helst och utan förvarning ändra eller avbryta plattformen.',
+  'terms-6': 'GameTrail ansvarar inte för användargenererat innehåll och förbehåller sig rätten att ta bort innehåll som vi anser vara olämpligt eller som bryter mot våra villkor.',
+  'terms-7': 'Användarna ansvarar för det innehåll de publicerar på plattformen, inklusive bedömningar av andra användare, och accepterar att de inte får publicera innehåll som är olagligt, förtalande, kränkande, obscen, hotfullt eller som bryter mot tredje parts immateriella rättigheter.',
+  'terms-8': 'GameTrail förbehåller sig rätten att suspendera eller ta bort användarkonton som bryter mot villkoren.',
+  'terms-9': 'Kontakt',
+  'terms-10': 'Om du har några frågor om denna integritetspolicy kan du kontakta oss:',
+};
+
 const Dictionary = {
   ...globals,
   ...landing.FaqSection,
@@ -490,6 +503,7 @@ const Dictionary = {
   ...Trail.TrailDetails,
   ...TrailList,
   ...UserDetails,
+  ...Terms,
 };
 
 export default Dictionary;

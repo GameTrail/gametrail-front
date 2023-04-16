@@ -450,6 +450,8 @@ const UserDetails = {
   // UserData
   rate_user: 'Bedöma användare',
   'rate_user_error-1': 'Du har redan betygsatt den här användaren.',
+  premium_filters_funny: 'Roligt',
+  premium_filters_teamwork: 'Samarbete',
 
   // UserGameList
   user_game_list_empty: 'Den här användaren har inga spel i sin lista.',

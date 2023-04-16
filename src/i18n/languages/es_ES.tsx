@@ -426,8 +426,10 @@ const Trail = {
     premium_filters_kindness: 'Amabilidad',
     premium_filters_fun: 'Diversión',
     premium_filters_cooperation: 'Cooperación',
+
     premium_filters_skill: 'Habilidad',
     premium_filters_availability: 'Disponibilidad',
+
   },
 
   TrailDetails: {
@@ -457,6 +459,8 @@ const UserDetails = {
   // UserData
   rate_user: 'Valorar usuario',
   'rate_user_error-1': 'Ya has valorado a este usuario.',
+  premium_filters_funny: 'Diversión',
+  premium_filters_teamwork: 'Cooperación',
 
   // UserGameList
   user_game_list_empty: 'Este usuario no tiene juegos en su lista.',
@@ -468,6 +472,7 @@ const UserDetails = {
   // UserTrailList
   trail_in_progress: 'En progreso',
   trail_finished: 'Finalizado',
+
 };
 
 const Dictionary = {

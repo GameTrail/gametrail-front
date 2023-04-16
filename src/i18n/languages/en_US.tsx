@@ -453,6 +453,8 @@ const UserDetails = {
   // UserData
   rate_user: 'Rate User',
   'rate_user_error-1': 'You have already rated this user.',
+  premium_filters_funny: 'Funny',
+  premium_filters_teamwork: 'Teamwork',
 
   // UserGameList
   user_game_list_empty: 'This user has no games in their list.',

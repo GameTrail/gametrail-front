@@ -3,6 +3,7 @@ import { render, screen, waitFor } from '@testing-library/react';
 import React from 'react';
 import TrailList from '@/containers/TrailList';
 import theme from '@/theme';
+import '@/i18n';
 
 describe('TrailList component', () => {
   it('should render error message if fetch fails', async () => {
@@ -16,7 +17,7 @@ describe('TrailList component', () => {
       </ThemeProvider>,
     );
     await waitFor(() => {
-      const errorMsg = screen.getByText(/ha ocurrido un error/i);
+      const errorMsg = screen.getByText(/Ups! Lo sentimos, ha ocurrido un error inesperado./i);
       expect(errorMsg).toBeInTheDocument();
     });
   });

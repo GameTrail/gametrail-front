@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  height: 180vh;
+  height: 100vh;
   width: 80vw;
   display: flex;
   flex-direction: row;
@@ -44,7 +44,7 @@ export const Container = styled.div`
   @media (max-width: 768px) {
     flex-direction: column;         
     width: 100vw;      
-    height: 180vh;
+    height: 120vh;
     justify-content: center;
     svg{
       max-width: 0;

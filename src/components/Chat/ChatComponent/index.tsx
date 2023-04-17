@@ -49,6 +49,7 @@ const ChatComponent: FC<Props> = ({ trailData }) => {
 
   const handleSendMessage = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (message === '' || message === undefined) return;
     const currentDate = new Date();
 
     const newMessage = {

@@ -35,7 +35,7 @@ const PremiumFilters: FC<Props> = ({
   const { t } = useLanguage();
   return (
     <>
-      <FontAwesomeIcon icon={faCrown} size="xs" />
+      <FontAwesomeIcon className="crown" icon={faCrown} size="xs" />
       <h3>{t('premium_filters')}</h3>
       <h5>
         {' '}

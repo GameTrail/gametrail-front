@@ -30,7 +30,7 @@ const UserStats:FC<Props> = ({ userRating }) => {
             {' '}
             -
             {' '}
-            {type.toUpperCase()}
+            {t(`premium_filters_${type}`).toUpperCase()}
           </h3>
         </div>
       );

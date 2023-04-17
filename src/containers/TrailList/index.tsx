@@ -1,10 +1,14 @@
+import type { ChangeEvent } from 'react';
 import React, { useEffect, useState, memo } from 'react';
+import { useDebouncedCallback } from 'use-debounce';
 import Error from '@/components/Error';
 import LoadingSpinner from '@/components/LoadingSpinner';
 import PaginationCard from '@/components/PaginationCard';
 import useLanguage from '@/i18n/hooks';
 import type { Trail } from '@/models/Trail/types';
-import { Container, Title, TrailListContainer } from './styles';
+import {
+  Container, Title, TrailListContainer, Input,
+} from './styles';
 import TrailCard from './TrailCard';
 
 const API_URL = 'https://gametrail-backend-production-8fc0.up.railway.app/api/getTrail/';
@@ -14,6 +18,7 @@ const TrailList = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [pages, setPages] = useState(1);
+  const [searchQuery, setSearchQuery] = useState<string>('');
   const [currentPage, setCurrentPage] = useState(1);
 
   const handleRenderTrails = () => {
@@ -25,6 +30,10 @@ const TrailList = () => {
 
   const handleSetPages = (trailsCount: number) => {
     setPages(Math.ceil(trailsCount / 16));
+  };
+
+  const handleUpdateSearchQuery = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(e.target.value);
   };
 
   const handlePagination = async (page: number) => {
@@ -43,6 +52,26 @@ const TrailList = () => {
       setLoading(false);
     }
   };
+
+  const debounceSearch = useDebouncedCallback(async (searchTerm: string) => {
+    setLoading(true);
+    try {
+      const searchUrl = searchTerm.length > 2 ? `${API_URL}?search=${searchTerm}` : API_URL;
+      const response = await fetch(searchUrl);
+      const data = await response.json();
+      setTrails(data.results);
+      handleSetPages(data.count);
+      setError(false);
+    } catch (err) {
+      setError(true);
+    } finally {
+      setLoading(false);
+    }
+  }, 750);
+
+  useEffect(() => {
+    debounceSearch(searchQuery);
+  }, [debounceSearch, searchQuery]);
 
   useEffect(() => {
     const fetchTrails = async () => {
@@ -73,6 +102,7 @@ const TrailList = () => {
   return (
     <Container>
       <Title>{t('list_trails')}</Title>
+      <Input type="text" value={searchQuery} onChange={handleUpdateSearchQuery} placeholder="Buscar..." />
       <TrailListContainer>
         {handleRenderTrails()}
       </TrailListContainer>

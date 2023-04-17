@@ -1,6 +1,7 @@
 import type { UserCookie } from '@/components/Login/LoginComponent/types';
 
 export const handlePremiumFilters = async (formData: any, size: number, user: UserCookie, token: string | undefined) => {
+  // eslint-disable-next-line no-console
   console.log(formData.get('kindness'));
   if (formData.get('kindness') !== '1') {
     const kindnessData = {

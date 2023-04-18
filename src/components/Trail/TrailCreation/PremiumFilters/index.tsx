@@ -47,7 +47,7 @@ const PremiumFilters: FC<Props> = ({
           {t('premium_filters_kindness')}
           <Input
             type="number"
-            name="amabilidad"
+            name="kindness"
             id="amabilidad"
             max={5}
             min={1}
@@ -61,7 +61,7 @@ const PremiumFilters: FC<Props> = ({
           {t('premium_filters_fun')}
           <Input
             type="number"
-            name="diversion"
+            name="funny"
             id="diversion"
             max={5}
             min={1}
@@ -92,7 +92,7 @@ const PremiumFilters: FC<Props> = ({
           {t('premium_filters_skill')}
           <Input
             type="number"
-            name="habilidad"
+            name="ability"
             id="habilidad"
             max={5}
             min={1}
@@ -106,7 +106,7 @@ const PremiumFilters: FC<Props> = ({
           {t('premium_filters_availability')}
           <Input
             type="number"
-            name="availhabilidad"
+            name="availability"
             id="availhabilidad"
             max={5}
             min={1}

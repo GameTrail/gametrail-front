@@ -421,6 +421,7 @@ const Trail = {
     premium_filters_fun: 'Nöje',
     premium_filters_cooperation: 'Samarbete',
     premium_filters_skill: 'Färdighet',
+    premium_filters_ability: 'Färdighet',
     premium_filters_availability: 'Tillgänglighet',
   },
   TrailDetails: {

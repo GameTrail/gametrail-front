@@ -424,6 +424,7 @@ const Trail = {
     premium_filters_fun: 'Fun',
     premium_filters_cooperation: 'Cooperation',
     premium_filters_skill: 'Skill',
+    premium_filters_ability: 'Skill',
     premium_filters_availability: 'Availability',
   },
   TrailDetails: {

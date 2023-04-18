@@ -1,12 +1,12 @@
 import type { UserCookie } from '@/components/Login/LoginComponent/types';
 
 export const handlePremiumFilters = async (formData: any, size: number, user: UserCookie, token: string | undefined) => {
-  if (formData.get('kindness') > 1) {
+  if (formData.get('kindness') !== '1') {
     const kindnessData = {
       trail: size.toString(),
       user: user?.id.toString(),
       minRating: formData.get('kindness'),
-      type: 'KINDNESS',
+      ratingType: 'KINDNESS',
     };
     const resRatingKindness = await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/createMinRating', {
       method: 'POST',
@@ -20,12 +20,12 @@ export const handlePremiumFilters = async (formData: any, size: number, user: Us
       throw new Error(resRatingKindness.statusText);
     }
   }
-  if (formData.get('funny') > 1) {
+  if (formData.get('funny') !== '1') {
     const funnyData = {
       trail: size.toString(),
       user: user?.id.toString(),
       minRating: formData.get('funny'),
-      type: 'FUNNY',
+      ratingType: 'FUNNY',
     };
     const resRatingFunny = await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/createMinRating', {
       method: 'POST',
@@ -39,12 +39,12 @@ export const handlePremiumFilters = async (formData: any, size: number, user: Us
       throw new Error(resRatingFunny.statusText);
     }
   }
-  if (formData.get('teamwork') > 1) {
+  if (formData.get('teamwork') !== '1') {
     const teamworkData = {
       trail: size.toString(),
       user: user?.id.toString(),
       minRating: formData.get('teamwork'),
-      type: 'TEAMWORK',
+      ratingType: 'TEAMWORK',
     };
     const resRatingTeamwork = await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/createMinRating', {
       method: 'POST',
@@ -58,12 +58,12 @@ export const handlePremiumFilters = async (formData: any, size: number, user: Us
       throw new Error(resRatingTeamwork.statusText);
     }
   }
-  if (formData.get('ability') > 1) {
+  if (formData.get('ability') !== '1') {
     const abilityData = {
       trail: size.toString(),
       user: user?.id.toString(),
       minRating: formData.get('ability'),
-      type: 'ABILITY',
+      ratingType: 'ABILITY',
     };
     const resRatingAbility = await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/createMinRating', {
       method: 'POST',
@@ -78,12 +78,12 @@ export const handlePremiumFilters = async (formData: any, size: number, user: Us
     }
   }
 
-  if (formData.get('availability') > 1) {
+  if (formData.get('availability') !== '1') {
     const availabilityData = {
       trail: size.toString(),
       user: user?.id.toString(),
       minRating: formData.get('availability'),
-      type: 'AVAILABILITY',
+      ratingType: 'AVAILABILITY',
     };
     const resRatingAvailability = await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/createMinRating', {
       method: 'POST',

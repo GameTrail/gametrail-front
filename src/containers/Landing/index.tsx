@@ -3,7 +3,8 @@ import { useRouter } from 'next/router';
 import {
   AboutSection, MainSection, PricingSection, FAQ,
 } from '@/components/Landing';
-import { getUserCookie } from '@/utils/login';
+import { minimizeUserCookie, normalizeUserCookie } from '@/models/User/types';
+import { getUserCookie, setMinCookie } from '@/utils/login';
 
 const Landing = () => {
   const CONFIRMATION = 'JXs5kgEmZKSDWllXQ40Oga80r0RJSP8CUA35HKyL5cIKP8rHTC';
@@ -35,7 +36,13 @@ const Landing = () => {
           setSubscriptionSuccess(false);
           throw new Error(res.statusText);
         }
-
+        const updatedUser = {
+          ...userCookie,
+          plan: 'Premium',
+        };
+        const user = normalizeUserCookie(updatedUser, userCookie.token);
+        const MinUser = minimizeUserCookie(userCookie, user.auth_token);
+        setMinCookie('user', MinUser, 7);
         setSubscriptionSuccess(true);
       } catch (err) {
         setSubscriptionSuccess(false);

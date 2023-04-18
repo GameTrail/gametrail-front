@@ -426,9 +426,11 @@ const Trail = {
     premium_filters_kindness: 'Amabilidad',
     premium_filters_fun: 'Diversión',
     premium_filters_cooperation: 'Cooperación',
+
     premium_filters_skill: 'Habilidad',
     premium_filters_ability: 'Habilidad',
     premium_filters_availability: 'Disponibilidad',
+
   },
 
   TrailDetails: {
@@ -458,6 +460,8 @@ const UserDetails = {
   // UserData
   rate_user: 'Valorar usuario',
   'rate_user_error-1': 'Ya has valorado a este usuario.',
+  premium_filters_funny: 'Diversión',
+  premium_filters_teamwork: 'Cooperación',
 
   // UserGameList
   user_game_list_empty: 'Este usuario no tiene juegos en su lista.',
@@ -469,6 +473,20 @@ const UserDetails = {
   // UserTrailList
   trail_in_progress: 'En progreso',
   trail_finished: 'Finalizado',
+
+};
+
+const Terms = {
+  'terms-1': 'Términos y condiciones de uso',
+  'terms-2': 'Última actualización: 7 de abril de 2023',
+  'terms-3': 'Al acceder y utilizar GameTrail, aceptas los siguientes términos y condiciones:',
+  'terms-4': 'Toda la información y contenido en la plataforma de GameTrail es propiedad exclusiva de GameTrail y está protegido por las leyes de propiedad intelectual. Está prohibido copiar, distribuir o utilizar cualquier contenido sin la autorización previa por escrito de GameTrail.',
+  'terms-5': 'GameTrail se reserva el derecho de modificar o interrumpir la plataforma en cualquier momento y sin previo aviso.',
+  'terms-6': 'GameTrail no se hace responsable del contenido generado por los usuarios y se reserva el derecho de eliminar cualquier contenido que consideremos inapropiado o que viole nuestros términos y condiciones.',
+  'terms-7': 'Los usuarios son responsables del contenido que publiquen en la plataforma, incluyendo las valoraciones de otros usuarios, y aceptan que no deben publicar ningún contenido que sea ilegal, difamatorio, abusivo, obsceno, amenazante o que infrinja los derechos de propiedad intelectual de terceros.',
+  'terms-8': 'GameTrail se reserva el derecho de suspender o eliminar la cuenta de cualquier usuario que incumpla los términos y condiciones.',
+  'terms-9': 'Contacto',
+  'terms-10': 'Si tienes alguna pregunta sobre esta Política de Privacidad, puedes contactarnos:',
 };
 
 const Dictionary = {
@@ -496,6 +514,7 @@ const Dictionary = {
   ...Trail.TrailDetails,
   ...TrailList,
   ...UserDetails,
+  ...Terms,
 };
 
 export default Dictionary;

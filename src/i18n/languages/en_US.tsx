@@ -454,6 +454,8 @@ const UserDetails = {
   // UserData
   rate_user: 'Rate User',
   'rate_user_error-1': 'You have already rated this user.',
+  premium_filters_funny: 'Funny',
+  premium_filters_teamwork: 'Teamwork',
 
   // UserGameList
   user_game_list_empty: 'This user has no games in their list.',
@@ -465,6 +467,19 @@ const UserDetails = {
   // UserTrailList
   trail_in_progress: 'In Progress',
   trail_finished: 'Finished',
+};
+
+const Terms = {
+  'terms-1': 'Terms and Conditions of Use',
+  'terms-2': 'Last Updated: April 7, 2023',
+  'terms-3': 'By accessing and using GameTrail, you agree to the following terms and conditions:',
+  'terms-4': "All information and content on GameTrail's platform is the exclusive property of GameTrail and is protected by intellectual property laws. Copying, distributing, or using any content without prior written authorization from GameTrail is prohibited.",
+  'terms-5': 'GameTrail reserves the right to modify or discontinue the platform at any time and without prior notice.',
+  'terms-6': 'GameTrail is not responsible for user-generated content and reserves the right to remove any content that we deem inappropriate or that violates our terms and conditions.',
+  'terms-7': 'Users are responsible for the content they post on the platform, including reviews of other users, and agree not to post any content that is illegal, defamatory, abusive, obscene, threatening, or that infringes on the intellectual property rights of third parties.',
+  'terms-8': 'GameTrail reserves the right to suspend or terminate the account of any user who violates the terms and conditions.',
+  'terms-9': 'Contact',
+  'terms-10': 'If you have any questions about this Privacy Policy, you can contact us:',
 };
 
 const Dictionary = {
@@ -492,6 +507,7 @@ const Dictionary = {
   ...Trail.TrailDetails,
   ...TrailList,
   ...UserDetails,
+  ...Terms,
 };
 
 export default Dictionary;

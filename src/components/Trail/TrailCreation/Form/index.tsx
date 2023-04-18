@@ -45,7 +45,6 @@ const TrailCreationForm = () => {
   const user = getUserCookie();
   const token = user?.token;
   const [formError, setFormError] = useState<string[]>([]);
-
   const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const startDate = new Date(trailStartDate);
     const endDate = new Date(trailEndDate);
@@ -82,6 +81,7 @@ const TrailCreationForm = () => {
       setFormError([t('trail_create_error-3')]);
     }
     const data = await res.json();
+
     return data.id;
   };
 
@@ -163,6 +163,7 @@ const TrailCreationForm = () => {
             type="text"
             name="name"
             id="name"
+            maxLength={40}
             placeholder={t('trail_create_placeholder').toString()}
             value={trailName}
             onChange={(e) => setTrailName(e.target.value)}

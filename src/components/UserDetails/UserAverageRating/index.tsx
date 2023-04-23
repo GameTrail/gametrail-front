@@ -15,7 +15,7 @@ const UserAverageRating:FC<Props> = ({ userRating }) => {
   return (
     <Container>
       {averageRatingFixed}
-      <FontAwesomeIcon icon={faMeteor} color="#31A4F1" size="lg" />
+      <FontAwesomeIcon icon={faMeteor} data-testid="rating-icon" color="#31A4F1" size="lg" />
     </Container>
   );
 };

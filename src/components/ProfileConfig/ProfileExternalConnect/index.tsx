@@ -18,12 +18,12 @@ const ProfileExternalConnect = () => {
   return (
     <MainContainer>
       <ExternalConnectContainer>
-        <ExternalConnectImage src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Steam_icon_logo.svg/768px-Steam_icon_logo.svg.png" />
+        <ExternalConnectImage src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Steam_icon_logo.svg/768px-Steam_icon_logo.svg.png" alt="Steam Logo" />
 
         {connected ? (
           <p>{t('connected_to_steam')}</p>
         ) : (
-          <ExternalConnectButton onClick={handleSteamConnect}>
+          <ExternalConnectButton data-testid="SteamButton" onClick={handleSteamConnect}>
             {t('connect')}
           </ExternalConnectButton>
         )}
@@ -31,9 +31,9 @@ const ProfileExternalConnect = () => {
       </ExternalConnectContainer>
 
       <ExternalConnectContainer>
-        <ExternalConnectImage src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Xbox_one_logo.svg/1200px-Xbox_one_logo.svg.png" />
+        <ExternalConnectImage src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Xbox_one_logo.svg/1200px-Xbox_one_logo.svg.png" alt="Xbox Logo" />
 
-        <ExternalConnectButton onClick={handleXboxConnect}>
+        <ExternalConnectButton data-testid="XboxButton" onClick={handleXboxConnect}>
           {t('connect')}
         </ExternalConnectButton>
 

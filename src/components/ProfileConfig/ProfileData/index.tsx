@@ -71,7 +71,7 @@ const ProfileData:FC<Props> = () => {
           <ErrorContainer key={registerErrors.indexOf(message)}>{message}</ErrorContainer>
         ))}
         <FieldContainer>
-          <Label htmlFor="name">Email</Label>
+          <Label htmlFor="email">Email</Label>
           <Input type="email" name="email" id="email" placeholder={`${user?.email}`} />
         </FieldContainer>
 

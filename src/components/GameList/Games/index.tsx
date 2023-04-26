@@ -32,6 +32,7 @@ const GameList: FC<Props> = ({
   const router = useRouter();
   const user = getUserCookie();
   const [userGames, setUserGames] = useState<GameInList[]>([]);
+  const [mobileView, setMobileView] = useState(false);
 
   const toggleDiv = () => {
     setShowDiv2(!showDiv2);
@@ -82,18 +83,29 @@ const GameList: FC<Props> = ({
     if (user) getUserGames(user.id);
   }, [user]);
 
+  useEffect(() => {
+    const checkMobileView = () => {
+      setMobileView(window.innerWidth < 768);
+    };
+    checkMobileView();
+    window.addEventListener('resize', checkMobileView);
+    return () => window.removeEventListener('resize', checkMobileView);
+  }, []);
+
   const searchbarPlaceholder = t('search');
   return (
     <Container>
       <Buscador>
         <Titulo>{t('game_list')}</Titulo>
         <Input type="text" value={searchQuery} onChange={handleUpdateSearchQuery} placeholder={searchbarPlaceholder} />
-        <TitlesContainer>
-          <Titulo2>{t('toggle_list_mode')}</Titulo2>
-          <Boton onClick={toggleDiv}>{buttonText}</Boton>
-        </TitlesContainer>
+        {mobileView ? (null) : (
+          <TitlesContainer>
+            <Titulo2>{t('toggle_list_mode')}</Titulo2>
+            <Boton onClick={toggleDiv}>{buttonText}</Boton>
+          </TitlesContainer>
+        )}
       </Buscador>
-      {showDiv2 ? (
+      {showDiv2 || mobileView ? (
         <Cuerpo>
           {games?.map((game) => (
             <Cajas key={game?.id} onClick={() => handleClickGameDetails(game?.id)}>
@@ -122,7 +134,9 @@ const GameList: FC<Props> = ({
                 <th>{t('cover')}</th>
                 <th>{t('name')}</th>
                 <th>{t('date')}</th>
-                <th>{t('state')}</th>
+                {user ? (
+                  <th>{t('state')}</th>
+                ) : null}
               </tr>
             </CabezaTabla>
             <tbody>

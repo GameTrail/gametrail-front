@@ -29,7 +29,7 @@ const Sections: FC<Props> = ({ trailData }) => {
 
   return (
     <>
-      <TrailButtons onClickButton={onClickButton} selectedButton={selectedButton} />
+      <TrailButtons onClickButton={onClickButton} selectedButton={selectedButton} trailData={trailData} />
       <SectionContainer>
         {handleRenderList}
       </SectionContainer>

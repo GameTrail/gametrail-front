@@ -108,10 +108,10 @@ const CommentsComponent: FC<Props> = ({ data, type }) => {
     }
   }, [post, type, data.id]);
 
-  if (loading) return <LoadingSpinner />;
-  if (error || !data) return <Error />;
+  if (loading) return <LoadingSpinner data-testid="loading-component" />;
+  if (error || !data) return <Error data-testid="error-component" />;
   return (
-    <Container>
+    <Container data-testid="comments-component">
       <InputFieldSection onClickNewComment={onClickNewComment} />
       <CommentsSection comments={commentsArray} />
     </Container>

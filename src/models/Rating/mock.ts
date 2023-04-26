@@ -1,5 +1,13 @@
-import type { RatingNull } from './types';
+import type { Rating, RatingNull } from './types';
 import { RatingType } from './types';
+
+export const MOCK_USER_RATING_TEST:Rating = {
+  kindness: 5,
+  funny: 4,
+  teamwork: 5,
+  availability: 4,
+  ability: 5,
+};
 
 export const MOCK_USER_RATING: RatingNull[] = [
   {

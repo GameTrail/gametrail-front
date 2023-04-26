@@ -1,5 +1,20 @@
+import type { UserCookie } from '@/components/Login/LoginComponent/types';
 import { MOCK_USER_GAME_LIST } from '../GameList/mock';
 import type { User } from './types';
+
+export const MOCK_USER_COOKIE: UserCookie = {
+  id: 1,
+  username: 'jvegax',
+  auth_token: 'UnLYDil4Pof7z?t9Yd2cUqCA9sfwXdEqkV5ag3c9ZjPJ0xDkCR!q0RS9LQzCB79f',
+  avatar: '',
+  average_ratings: [],
+  games: MOCK_USER_GAME_LIST,
+  email: '',
+  plan: '',
+  comments_recieved: [],
+  trails: [],
+  token: 'UnLYDil4Pof7z?t9Yd2cUqCA9sfwXdEqkV5ag3c9ZjPJ0xDkCR!q0RS9LQzCB79f',
+};
 
 export const MOCK_USER: User = {
   id: 1,

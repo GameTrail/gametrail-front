@@ -16,7 +16,7 @@ export const MOCK_USER_GAME_LIST: GameList[] = [
     status: GameListState.FINISHED,
     creationMoment: '2021-08-01',
     lastModified: '2021-08-01',
-    game: MOCK_GAMES[1],
+    game: MOCK_GAMES[2],
     gameList: 1,
   },
   {
@@ -24,7 +24,7 @@ export const MOCK_USER_GAME_LIST: GameList[] = [
     status: GameListState.FINISHED,
     creationMoment: '2021-08-01',
     lastModified: '2021-08-01',
-    game: MOCK_GAMES[1],
+    game: MOCK_GAMES[3],
     gameList: 1,
   },
 ];

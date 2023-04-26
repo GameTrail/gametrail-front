@@ -78,15 +78,15 @@ const UserData: FC<Props> = ({ user }) => {
           <CloseRateContainer onClick={handleRateContainer}>X</CloseRateContainer>
           {handleAlreadyVotedError}
           <h2>{t('rate_user')}</h2>
-          <RateLabel htmlFor="KINDNESS">{t('premium_filters_kindness')}</RateLabel>
+          <RateLabel htmlFor="kindness">{t('premium_filters_kindness')}</RateLabel>
           <RateInput type="number" id="kindness" name="kindness" min="1" max="5" defaultValue={5} />
-          <RateLabel htmlFor="ABILITY">{t('premium_filters_skill')}</RateLabel>
+          <RateLabel htmlFor="ability">{t('premium_filters_skill')}</RateLabel>
           <RateInput type="number" id="ability" name="ability" min="1" max="5" defaultValue={5} />
-          <RateLabel htmlFor="AVAILABILITY">{t('premium_filters_availability')}</RateLabel>
+          <RateLabel htmlFor="availability">{t('premium_filters_availability')}</RateLabel>
           <RateInput type="number" id="availability" name="availability" min="0" max="5" defaultValue={5} />
-          <RateLabel htmlFor="FUNNY">{t('premium_filters_fun')}</RateLabel>
+          <RateLabel htmlFor="funny">{t('premium_filters_fun')}</RateLabel>
           <RateInput type="number" id="funny" name="funny" min="1" max="5" defaultValue={5} />
-          <RateLabel htmlFor="TEAMWORK">{t('premium_filters_cooperation')}</RateLabel>
+          <RateLabel htmlFor="teamwork">{t('premium_filters_cooperation')}</RateLabel>
           <RateInput type="number" id="teamwork" name="teamwork" min="1" max="5" defaultValue={5} />
           <RateButtonSubmit type="submit">{t('send')}</RateButtonSubmit>
         </RateContainer>
@@ -106,11 +106,11 @@ const UserData: FC<Props> = ({ user }) => {
         {user.username}
         {' '}
         {user.plan === 'Premium' && (
-        <FontAwesomeIcon icon={faCrown} className="crown" size="xs" />
+        <FontAwesomeIcon icon={faCrown} data-testid="premium-icon" className="crown" size="xs" />
         )}
 
         {user.id === userWhoRates?.id && (
-        <FontAwesomeIcon icon={faGear} className="gear" onClick={handleConfigProfile} size="xs" />
+        <FontAwesomeIcon icon={faGear} data-testid="gear-icon" className="gear" onClick={handleConfigProfile} size="xs" />
         )}
       </h1>
       {user.id !== userWhoRates?.id && (

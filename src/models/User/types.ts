@@ -14,7 +14,7 @@ export type User = {
   games: GameList[] | [];
   trails: Trail[] | [];
   average_ratings: Rating;
-  comments_recieved: CommentsUser[] | [];
+  comments_received: CommentsUser[] | [];
 };
 
 export const normalizeUserCookie = (user: any, token: string): UserCookie => ({

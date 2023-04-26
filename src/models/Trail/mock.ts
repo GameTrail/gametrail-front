@@ -320,7 +320,7 @@ export const MOCK_TRAIL: Trail = {
   owner: {
     id: 48,
     auth_token: 'asdkjlafsdjklasdfjasdf',
-    comments_recieved: [],
+    comments_received: [],
     games: [],
     plan: 'STANDARD',
     average_ratings: {

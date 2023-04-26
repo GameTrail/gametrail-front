@@ -31,7 +31,7 @@ export const MOCK_USER: User = {
   games: MOCK_USER_GAME_LIST,
   email: '',
   plan: '',
-  comments_recieved: [],
+  comments_received: [],
   trails: [],
 };
 
@@ -52,7 +52,7 @@ export const MOCK_USERS: User[] = [
     },
     games: MOCK_USER_GAME_LIST,
     trails: [],
-    comments_recieved: [],
+    comments_received: [],
   },
   {
     id: 2,
@@ -70,7 +70,7 @@ export const MOCK_USERS: User[] = [
     },
     games: MOCK_USER_GAME_LIST,
     trails: [],
-    comments_recieved: [],
+    comments_received: [],
   },
   {
     id: 3,
@@ -88,6 +88,6 @@ export const MOCK_USERS: User[] = [
     },
     games: MOCK_USER_GAME_LIST,
     trails: [],
-    comments_recieved: [],
+    comments_received: [],
   },
 ];

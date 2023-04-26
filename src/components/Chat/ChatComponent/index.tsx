@@ -28,23 +28,27 @@ const ChatComponent: FC<Props> = ({ trailData }) => {
 
   // eslint-disable-next-line consistent-return
   useEffect(() => {
-    if (isFirstRender === true) {
-      socket.emit('join', trailData.id);
-      setIsFirstRender(false);
-    } else {
-      return () => {
-        socket.disconnect();
-      };
+    if (socket !== undefined) {
+      if (isFirstRender === true && socket !== undefined) {
+        socket.emit('join', trailData.id);
+        setIsFirstRender(false);
+      } else {
+        return () => {
+          socket.disconnect();
+        };
+      }
     }
   }, [isFirstRender, trailData.id]);
 
   useEffect(() => {
-    const handleReceiveMessage = (msg: Message) => {
-      setMessages([...messages, msg]);
-    };
-    socket.on('receive_message', (msg: Message) => {
-      handleReceiveMessage(msg);
-    });
+    if (socket !== undefined) {
+      const handleReceiveMessage = (msg: Message) => {
+        setMessages([...messages, msg]);
+      };
+      socket.on('receive_message', (msg: Message) => {
+        handleReceiveMessage(msg);
+      });
+    }
   }, [messages]);
 
   const handleSendMessage = (e: React.FormEvent<HTMLFormElement>) => {
@@ -74,7 +78,7 @@ const ChatComponent: FC<Props> = ({ trailData }) => {
         <ChatSection messages={messages} />
       </MessagesContainer>
       <Container>
-        <DivContainer>
+        <DivContainer data-testid="input-container">
           <form onSubmit={(e) => handleSendMessage(e)}>
             <InputField type="text" placeholder="Escribe un comentario" value={message} onChange={(e) => { setMessage(e.target.value); }} />
             <Button>Enviar</Button>

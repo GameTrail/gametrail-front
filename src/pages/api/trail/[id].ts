@@ -28,7 +28,7 @@ export default function handler(
         kindness: 0,
         teamwork: 0,
       },
-      comments_recieved: [],
+      comments_received: [],
     },
     games: [],
     users: [],

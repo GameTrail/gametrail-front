@@ -13,13 +13,13 @@ const ChatSection: FC<Props> = ({ messages }) => {
   const handleRenderComments = () => messages.map((message) => <MessageComponent key={message.id} message={message} />);
 
   useEffect(() => {
-    if (lastElement.current) {
+    if (lastElement.current?.scrollIntoView) {
       lastElement.current.scrollIntoView({ behavior: 'smooth' });
     }
   }, [messages]);
 
   return (
-    <ChatContainer>
+    <ChatContainer data-testid="messages-container">
       {handleRenderComments()}
       <div ref={lastElement} />
     </ChatContainer>

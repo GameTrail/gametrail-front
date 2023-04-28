@@ -24,7 +24,7 @@ const TrailData:FC<Props> = ({ trailGang }) => {
 
   return (
     <>
-      <Container>
+      <Container href={`/trail/${trailGang?.id}`}>
         <ControllerLottie />
         <Data>
           {trailGang.games.length}
@@ -32,7 +32,7 @@ const TrailData:FC<Props> = ({ trailGang }) => {
           {t('games')}
         </Data>
       </Container>
-      <Container>
+      <Container href={`/trail/${trailGang?.id}`}>
         <TimeLottie />
         <Data>
           {durationInDays.toFixed()}

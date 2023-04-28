@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import Link from 'next/link';
 
-export const Container = styled.div`
+export const Container = styled(Link)`
     display: flex;
     flex-direction: column;
     align-items: center;

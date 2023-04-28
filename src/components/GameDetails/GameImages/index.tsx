@@ -13,7 +13,7 @@ export type Props = {
 const GameImages: FC<Props> = ({ gameDetails }) => {
   const photos = convertToArray(gameDetails.photos);
   const handleRenderImage = () => photos.map((gameImage: string) => (
-    <Photo>
+    <Photo key={photos.indexOf(gameImage)}>
       <img src={normalizeImage(gameImage)} alt="No hay imagen" />
     </Photo>
   ));

@@ -56,7 +56,7 @@ export const Container = styled.div`
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
-        border-radius: 20px;
+        border-radius: 100%;
         box-shadow: 0 0 10px 0 ${({ theme }) => theme.nord.gray3};
     }
     @media (max-width: 768px) {

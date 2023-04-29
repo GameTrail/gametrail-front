@@ -9,7 +9,7 @@ import type { Trail, GameInTrail } from '@/models/Trail/types';
 import { getUserCookie } from '@/utils/login';
 import { normalizeImage } from '@/utils/normalizeImage';
 import {
-  Container, Game, GameImage, LastModified, Name, State,
+  Container, Game, GameImage, GameInfo, LastModified, Name, State,
 } from './styles';
 
 export type Props = {
@@ -86,14 +86,12 @@ const TrailGameList:FC<Props> = ({ trailData }) => {
 
   const handleRenderGames = () => gameList?.map((game: GameInTrail) => (
     <Game href={`/game/${game.games.id}`}>
-      <div>
-        <GameImage src={normalizeImage(game.games.image)} alt="image" width={160} height={160} />
-      </div>
-      <div>
+      <GameImage src={normalizeImage(game.games.image)} alt="image" width={160} height={160} />
+      <GameInfo>
         <Name>{game.games.name}</Name>
         <LastModified>{game.games.releaseDate}</LastModified>
         {handleRenderStateButton(game)}
-      </div>
+      </GameInfo>
     </Game>
   ));
 

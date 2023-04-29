@@ -6,7 +6,7 @@ export const Container = styled(Link)`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 80%;
+    width: 100%;
     height: 30%;
     margin-bottom: 5em;
     margin-left: 1em;
@@ -24,7 +24,8 @@ export const Container = styled(Link)`
     }
     @media (max-width: 768px) {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
+        justify-content: space-evenly;
         width: 90%;
         margin: 1em;
     }
@@ -34,4 +35,5 @@ export const Data = styled.p`
     font-size: 1em;
     font-weight: 600;
     color: ${({ theme }) => theme.nord.white2};
+    
 `;

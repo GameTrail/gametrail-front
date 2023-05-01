@@ -19,7 +19,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: ${({ theme }) => theme.nord.white0};
+  background-color: ${({ theme }) => theme.nord.white2};
   ul{
       list-style: none;
     }   
@@ -33,7 +33,6 @@ export const Buscador = styled.div`
   align-items: center;
 `;
 export const Cuerpo = styled.div` 
-  background-color: ${({ theme }) => theme.nord.white0};
   padding: 20px;
   display: flex;
   flex-direction: row;
@@ -69,7 +68,7 @@ margin: 5px;
 flex-grow: 0.5;
 flex-basis: 20%;
 cursor: pointer;
-border-radius: 20px;
+border-radius: 15px;
 &:hover {
     transform: scale(1.1);
     transition: all 300ms;
@@ -230,7 +229,7 @@ width: 220px;
 height: 60px;
 cursor: pointer;
 margin-bottom: 20px;
-background-color: ${({ theme }) => theme.nord.white2};
+background-color: ${({ theme }) => theme.nord.white0};
 font-size: 25px;
 padding: 9px;
 &:hover {
@@ -245,4 +244,8 @@ export const GameName = styled.p`
 margin-top: 0%;
 margin: 5%;
 font-size: 25px;
+@media (max-width: 567px) {
+    font-size: 20px;
+  
+}
 `;

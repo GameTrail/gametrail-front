@@ -4,7 +4,9 @@ import { useRouter } from 'next/router';
 import NotFoundList from '@/components/Lotties/User/NotFoundList';
 import useLanguage from '@/i18n/hooks';
 import type { Trail } from '@/models/Trail/types';
-import { Item, Container, TrailListEmpty } from './styles';
+import {
+  Item, Container, TrailListEmpty, TrailName, NumPlayers,
+} from './styles';
 
 export type Props = {
   trailList : Trail[]
@@ -35,11 +37,11 @@ const GameTrailList:FC<Props> = ({ trailList }) => {
               height={30}
               width={30}
             />
-            <p>{trail.name}</p>
-            <p>
+            <TrailName>{trail.name}</TrailName>
+            <NumPlayers>
               2/
               {trail.maxPlayers}
-            </p>
+            </NumPlayers>
             <p>
               {handleRenderStatus(trail)}
             </p>

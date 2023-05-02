@@ -4,7 +4,9 @@ import { faCrown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import useLanguage from '@/i18n/hooks';
 import {
-  Input, Label, PremiumFilterFirst, PremiumFilterSecond,
+  CrownContainer,
+  DescriptionContainer,
+  Input, Label, PremiumContainer, PremiumFilterFirst, PremiumInfo, TitlePremium,
 } from './styles';
 
 interface Props {
@@ -34,13 +36,17 @@ const PremiumFilters: FC<Props> = ({
 }) => {
   const { t } = useLanguage();
   return (
-    <>
-      <FontAwesomeIcon className="crown" icon={faCrown} size="xs" />
-      <h3>{t('premium_filters')}</h3>
-      <h5>
+    <PremiumContainer>
+      <PremiumInfo>
+        <TitlePremium>{t('premium_filters')}</TitlePremium>
+        <CrownContainer>
+          <FontAwesomeIcon className="crown" icon={faCrown} />
+        </CrownContainer>
+      </PremiumInfo>
+      <DescriptionContainer>
         {' '}
         {t('premium_filters_info')}
-      </h5>
+      </DescriptionContainer>
       <PremiumFilterFirst>
 
         <Label>
@@ -84,10 +90,6 @@ const PremiumFilters: FC<Props> = ({
           />
         </Label>
 
-      </PremiumFilterFirst>
-
-      <PremiumFilterSecond>
-
         <Label>
           {t('premium_filters_skill')}
           <Input
@@ -115,9 +117,8 @@ const PremiumFilters: FC<Props> = ({
             onChange={(e) => setUserAvailhabilidad(e.target.value)}
           />
         </Label>
-
-      </PremiumFilterSecond>
-    </>
+      </PremiumFilterFirst>
+    </PremiumContainer>
   );
 };
 

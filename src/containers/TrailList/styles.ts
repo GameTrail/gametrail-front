@@ -6,6 +6,7 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: ${({ theme }) => theme.nord.white2};
     justify-content: center;
     width: 100%;
     height: auto;
@@ -41,7 +42,7 @@ export const TrailListContainer = styled.div`
     justify-content: center;
     align-items: center;
 
-    width: 100%;
+    width: 80%;
     height: auto;
 
     gap: 1rem;
@@ -49,15 +50,18 @@ export const TrailListContainer = styled.div`
     @media (max-width: 768px) {
         flex-direction: column;
         align-items: center;
-
+        width: 100%;
         margin-top: 1.2rem;
     }
 `;
 export const Title = styled.h1`
-    font-size: 2rem;
+    font-size: 55px;
     font-weight: 600;
-    color: ${({ theme }) => theme.nord.gray0};
+    color: ${({ theme }) => theme.nord.gray1};
     margin-bottom: 1rem;
+    @media (max-width: 588px) {
+    font-size: 25px;
+}
 `;
 
 export const CardWrapper = styled.div`
@@ -65,6 +69,7 @@ export const CardWrapper = styled.div`
   flex-direction: column;
   height: 350px;
   width: 250px;
+  background-color: ${({ theme }) => theme.nord.gray3};
   border: 1px solid ${({ theme }) => theme.nord.gray0};
   cursor: pointer;
   transition: transform 0.35s ease-in-out;
@@ -97,6 +102,7 @@ export const CardContent = styled.div`
 export const Name = styled.h2`
   font-size: 1.2em;
   margin: 0;
+  color: ${({ theme }) => theme.nord.white2};
 `;
 
 export const TrailDate = styled.p`
@@ -108,6 +114,7 @@ export const TrailDate = styled.p`
 export const Description = styled.p`
   font-size: 16px;
   margin: 4px 0;
+  color: ${({ theme }) => theme.nord.white2};
 `;
 
 export const Players = styled.p`

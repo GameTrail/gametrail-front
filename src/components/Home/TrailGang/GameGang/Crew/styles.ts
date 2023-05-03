@@ -10,7 +10,7 @@ export const Container = styled.div`
     gap: 1em;
     width: 100%;
     @media (max-width: 768px) {
-        width: 94vw;
+        width: 90%;
         flex-wrap: nowrap;
     }
 `;

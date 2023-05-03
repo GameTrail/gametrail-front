@@ -430,6 +430,7 @@ const Trail = {
     premium_filters_cooperation: 'Cooperación',
 
     premium_filters_skill: 'Habilidad',
+    premium_filters_ability: 'Habilidad',
     premium_filters_availability: 'Disponibilidad',
 
     // Editar Trail

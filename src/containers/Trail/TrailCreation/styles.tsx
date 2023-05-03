@@ -1,17 +1,14 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  height: 180vh;
-  width: 80vw;
   display: flex;
-  flex-direction: row;
+  align-items: center;
+  flex-direction: column;
+  width: 100vw;
+  height: auto;
+  min-height: 100vh;
   flex-wrap: nowrap;
-  padding: 5em;
-  margin-top: 3em;
-  margin-bottom: 3em;
-  box-shadow: 0 0 0.5em 0.1em ${({ theme }) => theme.nord.gray0};
-  border-radius: 0.5em;
-  background: ${({ theme }) => theme.nord.gray3};
+  background-color: ${({ theme }) => theme.nord.white1};
   color: ${({ theme }) => theme.nord.gray0};
   .crown{
         margin: 0 auto;
@@ -41,14 +38,4 @@ export const Container = styled.div`
      }
         animation: changeColor 2s linear infinite;
   }
-  @media (max-width: 768px) {
-    flex-direction: column;         
-    width: 100vw;      
-    height: 180vh;
-    justify-content: center;
-    svg{
-      max-width: 0;
-      max-height: 0;
-    }
-  };
 `;

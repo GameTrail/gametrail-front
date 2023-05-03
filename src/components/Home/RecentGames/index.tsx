@@ -5,7 +5,7 @@ import useLanguage from '@/i18n/hooks';
 import type { Game } from '@/models/Game/types';
 import { normalizeImage } from '@/utils/normalizeImage';
 import {
-  CarouselContainer, Container, Title, CarouselImage, Description,
+  CarouselContainer, Container, Title, Description, CarouselImage,
 } from './styles';
 
 export type Props = {
@@ -15,12 +15,9 @@ export type Props = {
 const RecentGames:FC<Props> = ({ recentGames }) => {
   const { t } = useLanguage();
   const handleRenderGames = () => recentGames?.map((game) => (
-    <CarouselImage
-      src={normalizeImage(game.image)}
-      alt={game.name}
-      width={200}
-      height={300}
-    />
+    <CarouselImage>
+      <img src={normalizeImage(game.image)} alt={game.name} />
+    </CarouselImage>
   ));
   return (
     <Container>

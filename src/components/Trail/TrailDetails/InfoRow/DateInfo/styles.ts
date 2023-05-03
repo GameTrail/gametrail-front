@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const DateDiv = styled.div`
-  width: 100%;
+  width: 60%;
   height: 45px;
   display: flex;
   align-content: center;
@@ -10,6 +10,9 @@ export const DateDiv = styled.div`
   background-color: ${({ theme }) => theme.nord.blue3};
   color: ${({ theme }) => theme.nord.white0};
   border-radius: 9px;
+  @media (max-width: 767px) {
+    width: 100%;
+  }
   `;
 
 export const DateContainer = styled.div`
@@ -31,4 +34,10 @@ export const DateBlock = styled.div`
     justify-content: flex-start;
     align-content: center;
     gap: 10px;
+`;
+
+export const DateText = styled.p`
+  font-size: 15px;
+
+
 `;

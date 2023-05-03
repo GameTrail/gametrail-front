@@ -4,7 +4,9 @@ import { faCrown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import useLanguage from '@/i18n/hooks';
 import {
-  Input, Label, PremiumFilterFirst, PremiumFilterSecond,
+  CrownContainer,
+  DescriptionContainer,
+  Input, Label, PremiumContainer, PremiumFilterFirst, PremiumInfo, TitlePremium,
 } from './styles';
 
 interface Props {
@@ -34,20 +36,24 @@ const PremiumFilters: FC<Props> = ({
 }) => {
   const { t } = useLanguage();
   return (
-    <>
-      <FontAwesomeIcon className="crown" icon={faCrown} size="xs" />
-      <h3>{t('premium_filters')}</h3>
-      <h5>
+    <PremiumContainer>
+      <PremiumInfo>
+        <TitlePremium>{t('premium_filters')}</TitlePremium>
+        <CrownContainer>
+          <FontAwesomeIcon className="crown" icon={faCrown} />
+        </CrownContainer>
+      </PremiumInfo>
+      <DescriptionContainer>
         {' '}
         {t('premium_filters_info')}
-      </h5>
+      </DescriptionContainer>
       <PremiumFilterFirst>
 
         <Label>
           {t('premium_filters_kindness')}
           <Input
             type="number"
-            name="amabilidad"
+            name="kindness"
             id="amabilidad"
             max={5}
             min={1}
@@ -61,7 +67,7 @@ const PremiumFilters: FC<Props> = ({
           {t('premium_filters_fun')}
           <Input
             type="number"
-            name="diversion"
+            name="funny"
             id="diversion"
             max={5}
             min={1}
@@ -84,15 +90,11 @@ const PremiumFilters: FC<Props> = ({
           />
         </Label>
 
-      </PremiumFilterFirst>
-
-      <PremiumFilterSecond>
-
         <Label>
           {t('premium_filters_skill')}
           <Input
             type="number"
-            name="habilidad"
+            name="ability"
             id="habilidad"
             max={5}
             min={1}
@@ -106,7 +108,7 @@ const PremiumFilters: FC<Props> = ({
           {t('premium_filters_availability')}
           <Input
             type="number"
-            name="availhabilidad"
+            name="availability"
             id="availhabilidad"
             max={5}
             min={1}
@@ -115,9 +117,8 @@ const PremiumFilters: FC<Props> = ({
             onChange={(e) => setUserAvailhabilidad(e.target.value)}
           />
         </Label>
-
-      </PremiumFilterSecond>
-    </>
+      </PremiumFilterFirst>
+    </PremiumContainer>
   );
 };
 

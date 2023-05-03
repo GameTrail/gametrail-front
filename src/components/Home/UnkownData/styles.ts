@@ -11,17 +11,15 @@ export const Title = styled.h1`
 `;
 
 export const Container = styled.div` 
-  box-sizing: border-box;
   width: 100vw;
   height: auto;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   padding-top: 6%;
   padding-bottom: 6%;
   overflow: visible;
-  position: relative;
   align-content: center;
   flex-wrap: nowrap;
   gap: 40px;
@@ -30,34 +28,28 @@ export const Container = styled.div`
     flex-direction: column;
     width: 100vw;
     align-items: center;
-    padding-left: 50%;
   };
 `;
 
 export const CuriosityContainer = styled.div` 
-  box-sizing: border-box;
   width: 100vw;
   height: auto;
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
-  padding-top: 6%;
-  padding-bottom: 6%;
   overflow: visible;
-  position: relative;
   align-content: center;
   flex-wrap: nowrap;
   gap: 40px;
   svg {
-      min-width: 40vw;
-    }
+    min-width: 40vw;
+  }
   @media (max-width: 768px) {
     display: flex;
     flex-direction: column;
     width: 100vw;
     align-items: center;
-    padding-left: 50%;
     padding-bottom: 0;
     svg {
       min-width: 100vw;

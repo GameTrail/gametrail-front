@@ -42,6 +42,7 @@ export const Item = styled.div`
     border-radius: 10px;
     margin-bottom:10px;
     color: ${({ theme }) => theme.nord.white0};
+    max-width: 712px;
     width: 90vw;
     height: 60px;
     padding: 10px 10px;
@@ -58,8 +59,13 @@ export const Item = styled.div`
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
-        border-radius: 20px;
+        border-radius: 100%;
         box-shadow: 0 0 10px 0 ${({ theme }) => theme.nord.gray3}; 
+        @media (min-width: 768px) {
+            width: 45px;
+            height: 45px;
+            border-radius: 100%;
+        }
     }
     p{
         margin:0.5rem;
@@ -87,4 +93,23 @@ export const Item = styled.div`
         };
      };
     }
+`;
+
+export const TrailName = styled.p`
+font-size: 12px;
+width: 250px;
+white-space: nowrap; 
+overflow: hidden;
+text-overflow: ellipsis; 
+
+ @media (max-width: 767px) {
+  width: 100px; 
+ }
+`;
+
+export const NumPlayers = styled.p`
+ @media (max-width: 768px) {
+    font-size: 12px;
+ }
+
 `;

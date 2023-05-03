@@ -4,14 +4,13 @@ export const Container = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     
-    width: 55%;
+    width: 100%;
     border-radius: 8px;
-    
-    gap: 0.5rem;
-    margin-top: 1em;
+    margin-top: 2em;
     margin-bottom: 1em;
+    gap:0.5em;
     
     color: ${({ theme }) => theme.nord.white0};
     @media (max-width: 768px) {
@@ -33,6 +32,7 @@ export const Button = styled.button<ButtonProps>`
     border-radius: 8px;
     border: ${({ theme, active }) => (active ? `1px solid ${theme.nord.gray3};` : 'none;')};
     width: 220px;
+    text-align: center;
 
     background-color: ${({ theme, active }) => (active ? theme.nord.white0 : theme.nord.gray3)};
     color: ${({ theme, active }) => (active ? theme.nord.gray3 : theme.nord.white0)};
@@ -43,7 +43,7 @@ export const Button = styled.button<ButtonProps>`
         background-color: ${({ theme, active }) => (active ? theme.nord.white0 : theme.nord.gray3)};
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 767px) {
         width: 105px;
         font-size: 1rem;
         font-weight: 400;

@@ -1,7 +1,9 @@
 import type { FC } from 'react';
 import React from 'react';
 import useLanguage from '@/i18n/hooks';
-import { DateBlock, DateContainer, DateDiv } from './styles';
+import {
+  DateBlock, DateContainer, DateDiv, DateText,
+} from './styles';
 
 export type Props = {
   dateStart: string;
@@ -15,17 +17,17 @@ const DateInfo: FC<Props> = ({ dateStart, dateEnd }) => {
       <DateContainer>
         <p>{t('date_start')}</p>
         <DateDiv>
-          <p>
+          <DateText>
             {dateStart}
-          </p>
+          </DateText>
         </DateDiv>
       </DateContainer>
       <DateContainer>
         <p>{t('date_end')}</p>
         <DateDiv>
-          <p>
+          <DateText>
             {dateEnd}
-          </p>
+          </DateText>
         </DateDiv>
       </DateContainer>
     </DateBlock>

@@ -14,27 +14,26 @@ const User = () => {
   const { id } = router.query;
 
   useEffect(() => {
-    if (id) {
-      const fetchUser = async () => {
-        setLoading(true);
-        try {
-          const response = await fetch(`https://gametrail-backend-production-8fc0.up.railway.app/api/user/${id}/`);
-          const data = await response.json();
+    if (!id) return;
+    const fetchUser = async () => {
+      setLoading(true);
+      try {
+        const response = await fetch(`https://gametrail-backend-production-8fc0.up.railway.app/api/user/${id}/`);
+        const data = await response.json();
 
-          const normalizedUserData: UserProps = {
-            ...data,
-            average_ratings: normalizeUserRating(data.average_ratings),
-          };
-          setUserData(normalizedUserData);
-          setError(false);
-        } catch (err) {
-          setError(true);
-        } finally {
-          setLoading(false);
-        }
-      };
-      fetchUser();
-    }
+        const normalizedUserData: UserProps = {
+          ...data,
+          average_ratings: normalizeUserRating(data.average_ratings),
+        };
+        setUserData(normalizedUserData);
+        setError(false);
+      } catch (err) {
+        setError(true);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchUser();
   }, [id]);
 
   if (loading) return <LoadingSpinner />;

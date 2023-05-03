@@ -22,11 +22,10 @@ export const Container = styled.div<ContainerProps>`
     `;
 
 export const TrailTitle = styled.h1`
-  display: flex;
-  font-size: 7rem;    
+  font-size: 3rem;    
   color: ${({ theme }) => theme.nord.purple};
   @media (max-width: 768px) {
-font-size: 3rem;
+  font-size: 2rem;
   }
 `;
 
@@ -43,13 +42,16 @@ font-size: 3rem;
 
 export const TrailDescription = styled.p`
     padding-top:1rem;
-  font-size: 2rem;
+  font-size: 1.8rem;
   @media (max-width: 768px) {
 font-size: 1.5rem;
   }
 `;
 
 export const AdjustedContainer = styled.div`
-    width: 90%;
+    width: 75%;
     height: 100%;
+    @media (max-width: 768px) {
+      width: 90%;
+    }
     `;

@@ -15,6 +15,7 @@ const Game = () => {
   const { id } = router.query;
 
   useEffect(() => {
+    if (!id) return;
     const fetchGameDetails = async () => {
       setLoading(true);
       try {

@@ -7,14 +7,16 @@ export const Container = styled.div`
     align-items: center;
     justify-content: space-evenly;
     width: 100vw;
-    height: 90vh;
+    height: auto;
+    padding-top: 5%;
+    padding-bottom: 2.5%;
     background-color: ${({ theme }) => theme.nord.gray2};
     svg {
       min-width: 25vw;
     }
     @media (max-width: 768px) {
     flex-direction: column;         
-    width: 100vh;         
+    width: 100%;         
     height: 100%;
     justify-content: center;
     padding-top: 10px; 
@@ -29,27 +31,26 @@ export const About = styled.div`
     flex-direction: column;
     justify-items: center;
     text-align: center;
-    padding-bottom: 10vh;
+    padding-bottom: 5%;
     background-color: ${({ theme }) => theme.nord.gray2};
     @media (max-width: 768px) {
         display: flex;
         flex-direction: column;
+        justify-content: space-evenly;
     }
 `;
 
 export const Description = styled.h3`
-    display: flex;
-    flex-direction: column;
     font-size: 1.6rem;
     padding: 3%;
     color: ${({ theme }) => theme.nord.white2};
     @media (max-width: 768px) {
-        padding-left: 33.33%;
         font-size: 0.9rem;
         display: flex;
         flex-direction: column;
         text-align: center;
-        width: 70%;
+        width: 100%;
+        margin-bottom: 5%;
     }
 `;
 
@@ -59,10 +60,10 @@ type ButtonProps = {
 };
 
 export const Button = styled.button<ButtonProps>`
-    height: 60px;
+    height: auto;
     width: 20%;
     border-radius: 9px;
-    padding: 0 10px;
+    padding: 20px 10px;
     font-size: 1.4rem;
     border: none;
     cursor: pointer;

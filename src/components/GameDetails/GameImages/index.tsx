@@ -20,7 +20,7 @@ const GameImages: FC<Props> = ({ gameDetails }) => {
   return (
     <Container>
       <CarouselContainer>
-        <Carousel axis="horizontal" infiniteLoop centerMode showThumbs={false} swipeable showArrows width="100%" dynamicHeight>
+        <Carousel axis="horizontal" infiniteLoop showThumbs={false} swipeable showArrows width="100%" showStatus={false}>
           {handleRenderImage()}
         </Carousel>
       </CarouselContainer>

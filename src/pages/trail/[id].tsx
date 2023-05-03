@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-
 import { useRouter } from 'next/router';
 import Error from '@/components/Error';
 import LoadingSpinner from '@/components/LoadingSpinner';

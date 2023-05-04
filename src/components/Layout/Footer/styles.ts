@@ -1,14 +1,13 @@
 import styled from 'styled-components';
 import Link from 'next/link';
 
-export const Foot = styled.footer`
+export const FooterContainer = styled.footer`
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    height: 140px;
-    padding: 0 135px;
+    height: auto;
 
     background-color: ${({ theme }) => theme.nord.gray1};
     color: ${({ theme }) => theme.nord.white0};
@@ -38,3 +37,24 @@ export const Menu = styled.div`
 `;
 
 export const MenuItem = styled(Link)``;
+
+export const Sponsor = styled(Link)`
+color: ${({ theme }) => theme.nord.white0};
+font-size: medium;
+margin-bottom: 2em;
+
+`;
+
+export const Foot = styled.footer`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: auto;
+    margin: 2em;
+    @media (max-width: 768px) {
+        padding: 20px;
+        height: auto;
+        flex-direction: column;
+    }
+`;

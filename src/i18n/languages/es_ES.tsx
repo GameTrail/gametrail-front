@@ -456,6 +456,7 @@ const Trail = {
     rating: 'Valoración',
 
     // TrailButtons
+    toast_alert_chat: 'No puedes acceder al chat si no estás logueado o no no estás unido al Trail.',
     chat: 'Chat',
   },
 };

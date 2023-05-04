@@ -448,6 +448,7 @@ const Trail = {
     rating: 'Betyg',
 
     // TrailButtons
+    toast_alert_chat: 'Du kan inte komma åt chatten om du inte är inloggad eller ansluten till Trail',
     chat: 'Chatt',
   },
 

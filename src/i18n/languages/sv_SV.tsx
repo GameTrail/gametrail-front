@@ -39,8 +39,6 @@ const landing = {
 
   },
   AboutSection: {
-    steam_and_xbox_live: 'Steam och Xbox Live',
-    steam_and_xbox_live_description: 'Anslut dina Steam- och Xbox Live-konton för att uppdatera framstegen i dina spel och lägga till dem i dina listor',
     custom_trails: 'Anpassade Trails',
     custom_trails_description: 'Skapa dina egna trails och dela dem med andra användare för att hitta nya vänner',
     save_your_progress: 'Spara dina framsteg',
@@ -65,8 +63,6 @@ const landing = {
     find_new_friends: '👑 Hitta personer med liknande intressen',
     filter_trail_members: '👑 Kontrollera vilka som kan gå med i dina spår',
     trail_recommendations: '👑 Rekommenderade spår för dig',
-    connect_steam: '👑 Koppla ditt Steam-konto',
-    connect_xbox: '👑 Koppla ditt Xbox Live-konto',
 
   },
 };

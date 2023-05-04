@@ -44,8 +44,6 @@ const landing = {
         + 'que quiera unirse.',
   },
   AboutSection: {
-    steam_and_xbox_live: 'Steam y Xbox Live',
-    steam_and_xbox_live_description: 'Conecta tu cuenta de Steam y Xbox Live para actualizar el progreso de tus juegos y añadirlos a tus listas',
     custom_trails: 'Trails personalizados',
     custom_trails_description: 'Crea Trails personalizados para tus juegos y comparte la aventura con tus amigos o nuevas personas de la comunidad dispuestas a jugar contigo',
     save_your_progress: 'Guarda tu progreso',
@@ -70,8 +68,6 @@ const landing = {
     find_new_friends: '👑 Encuentra personas afines a ti',
     filter_trail_members: '👑 Controla quién puede unirse a ti',
     trail_recommendations: '👑 Recomendaciones de Trails',
-    connect_steam: '👑 Conecta tu cuenta de Steam',
-    connect_xbox: '👑 Conecta tu cuenta de Xbox Live',
   },
 };
 

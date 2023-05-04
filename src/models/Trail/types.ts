@@ -1,5 +1,6 @@
 import type { Platform } from '@/models/Platform/types';
 import type { TrailMember } from '@/models/TrailUser/types';
+import type { CommentsGame } from '../Comment/types';
 import type { Game } from '../Game/types';
 import type { User } from '../User/types';
 
@@ -31,17 +32,17 @@ export type TrailGang = {
 };
 
 export type TrailGame = {
-  comments_games: CommentsGame[] | [];
+  id: number;
+  name: string;
+  releaseDate: string;
+  image: string;
+  photos: string;
   description: string;
   genres: string[] | [];
-  id: number;
-  image: string;
-  message: null | string;
-  name: string;
-  photos: string;
   platform: string[] | [];
+  comments_games: CommentsGame[] | [];
+  message: null | string;
   priority: number | null;
-  releaseDate: string;
   status: TrailGameStatus;
 };
 
@@ -62,12 +63,12 @@ export type GameInTrail = {
   status: TrailGameStatus;
 };
 
-export interface CommentsGame {
-  commentText: string;
-  game: number;
-  id: number;
-  userWhoComments: Owner;
-}
+// export interface CommentsGame {
+//   id: number;
+//   commentText: string;
+//   userWhoComments: Owner;
+//   game: number | null;
+// }
 
 export interface Owner {
   avatar: string;

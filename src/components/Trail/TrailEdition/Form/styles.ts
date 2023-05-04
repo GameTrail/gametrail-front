@@ -2,18 +2,48 @@ import styled from 'styled-components';
 import type { StylesConfig } from 'react-select';
 import type { TrailGame } from '@/models/Trail/types';
 
+export const CreateContainer = styled.div`
+  max-width: 1200px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background-color: ${({ theme }) => theme.nord.gray3};
+  border-radius: 22px;
+`;
+
+export const FormContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+`;
+export const StandarContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const LottieContainer = styled.div`
+  width: 30%;
+`;
+
 export const Title = styled.h2`
   color: ${({ theme }) => theme.nord.white1};
   line-height: 1.2;
   text-align: center;
-  font-size: 2rem;
+  font-size: 25px;
   padding-bottom: 0.5em;
-  padding-top: 2em;
   @media (max-width: 768px) {
     display: flex;
-    font-size: 1.5rem;
+    font-size: 20px;
     text-align: center;
-    margin-top: -4em;
   };
 `;
 
@@ -22,7 +52,7 @@ export const ErrorContainer = styled.div`
   border-radius: 20px;
   background-color: ${({ theme }) => theme.nord.red};
   color: ${({ theme }) => theme.nord.white2};
-  width: 100%;
+  width: 80%;
   height: auto;
   margin: 0.15em;
   padding: 0.5rem;
@@ -38,24 +68,11 @@ export const Form = styled.form`
   flex-direction: column;
   justify-content: center;
   flex-wrap: nowrap;
-  margin-top: 10em;
-  margin-bottom: 10em;
-  padding-top: 5em;
-  padding-bottom: 5em;
-  width: 100%;
+  margin: 10%;
   @media (max-width: 768px) {
-    display: flex;
     flex-direction: column;
-    height: 100vh;
-    padding-top: 0;
-    padding-bottom: 0;
-    margin-top: 2em;
-    margin-bottom: 2em;
   }
   .crown{
-        margin: 0 auto;
-        transform: scale(2);
-        margin-bottom: 1rem;
         color: ${({ theme }) => theme.nord.yellow};
         @keyframes changeColor {
             0% {
@@ -97,10 +114,13 @@ export const Form = styled.form`
 `;
 
 export const Label = styled.label`
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+  width: 70%;
   margin-bottom: 1em;
   color: ${({ theme }) => theme.nord.white2};
   max-width: 60vw;
+  font-size: 15px;
   @media (max-width: 768px) {
       font-size: 0.8rem;
     }
@@ -113,7 +133,7 @@ export const Input = styled.input`
   background-color: ${({ theme }) => theme.nord.white2};
   border: 0.1rem solid ${({ theme }) => theme.nord.white0};
   border-radius: 0.5rem;
-  font-size: 1rem;
+  font-size: 12px;
   font-family: Unbounded,serif;
   @media (max-width: 768px) {
       font-size: 0.5rem;
@@ -122,13 +142,11 @@ export const Input = styled.input`
 `;
 
 export const InputTextArea = styled.textarea`
-  width: 100%;
-  height: 5rem;
   padding: 1em;
   background-color: ${({ theme }) => theme.nord.white2};
   border: 0.1rem solid ${({ theme }) => theme.nord.white0};
   border-radius: 0.5rem;
-  font-size: 1rem;
+  font-size: 12px;
   font-family: Unbounded,serif;
   @media (max-width: 768px) {
       font-size: 0.5rem;
@@ -138,9 +156,11 @@ export const InputTextArea = styled.textarea`
 `;
 
 export const DateFieldContainer = styled.div`
+  width: 70%;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: center;
   flex-wrap: nowrap;
   @media (max-width: 768px) {
     display: flex;
@@ -150,13 +170,30 @@ export const DateFieldContainer = styled.div`
   }
 `;
 
+export const DateLabel = styled.div`
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1em;
+  color: ${({ theme }) => theme.nord.white2};
+  max-width: 60vw;
+  font-size: 15px;
+  @media (max-width: 768px) {
+      font-size: 0.8rem;
+    }
+
+`;
+
 export const InputDate = styled.input`
-  width: 90%;
-  height: 2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 8px;
+  justify-content: center;
   background-color: ${({ theme }) => theme.nord.white2};
   border: 0.1rem solid ${({ theme }) => theme.nord.white0};
   border-radius: 0.5rem;
-  font-size: 1rem;
+  font-size: 10px;
   font-family: Unbounded,serif;
   @media (max-width: 768px) {
     display: flex;
@@ -167,8 +204,8 @@ export const InputDate = styled.input`
     }
 `;
 
-export const Button = styled.button`
-  width: 100%;
+export const ButtonEdition = styled.button`
+  width: 50%;
   padding: 0.5em;
   border-radius: 0.5em;
   background-color: ${({ theme }) => theme.nord.white0};
@@ -177,13 +214,30 @@ export const Button = styled.button`
     background-color: ${({ theme }) => theme.nord.green};
   }
   transition: background-color 0.2s;
-  font-size: 1.7rem;
+  font-size: 20px;
   @media (max-width: 768px) {
-    display: flex;
-    flex-direction: column;
     font-size: 1rem;
     text-align: center;
-    width: 100%;
+    width: 50%;
+  }
+`;
+
+export const ButtonDelete = styled.button`
+  width: 50%;
+  margin-top: 0.5em;
+  padding: 0.5em;
+  border-radius: 0.5em;
+  background-color: ${({ theme }) => theme.nord.white0};
+  cursor: pointer;
+  &:hover {
+    background-color: ${({ theme }) => theme.nord.red};
+  }
+  transition: background-color 0.2s;
+  font-size: 20px;
+  @media (max-width: 768px) {
+    font-size: 1rem;
+    text-align: center;
+    width: 50%;
   }
 `;
 
@@ -205,12 +259,12 @@ export const PlanInfoToast = styled.div`
   background-color: ${({ theme }) => theme.nord.blue2};
   color: ${({ theme }) => theme.nord.gray0};;
   border-radius: 10px;
-  width: 100%;
-  height: 100%;
+  width: 70%;
   padding: 1em;
   margin-bottom: 1em;
   text-align: justify;
   transition: all 0.7s ease-in-out;
+  font-size: 12px;
   @keyframes pulse {
     0% {
       box-shadow: 0 0 0 0 ${({ theme }) => theme.nord.red};;
@@ -225,9 +279,6 @@ export const PlanInfoToast = styled.div`
   animation : pulse 1.5s ease-in-out infinite;
   @media (max-width: 768px) {
     flex-direction: column;
-    font-size: 0.5rem;
     text-align: center;
-    width: 100%;
-    height: 100%;
   }
 `;

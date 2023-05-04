@@ -7,9 +7,7 @@ import router from 'next/router';
 import AsyncSelect from 'react-select/async';
 import Error from '@/components/Error';
 import LoadingSpinner from '@/components/LoadingSpinner';
-import CreateLottie from '@/components/Lotties/Landing/CreateLottie';
 import {
-  Button,
   DateFieldContainer,
   Form,
   Input,
@@ -19,6 +17,12 @@ import {
   GamesSelectorStyles,
   Title,
   ErrorContainer,
+  CreateContainer,
+  FormContainer,
+  StandarContainer,
+  DateLabel,
+  ButtonEdition,
+  ButtonDelete,
 } from '@/components/Trail/TrailEdition/Form/styles';
 import useLanguage from '@/i18n/hooks';
 import type { Game } from '@/models/Game/types';
@@ -245,123 +249,126 @@ const TrailEditionForm: FC<Props> = ({ trailId }) => {
   if (loadingTrail) return <LoadingSpinner />;
   if (error) return <Error />;
   return (
-    <>
-      <CreateLottie />
-      <Form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit}>
+      <CreateContainer>
         <Title>
           {t('trail_edit_title')}
         </Title>
-        {isTrailEnded === true
+        <FormContainer>
+          <StandarContainer>
+            {isTrailEnded === true
           && (
           <ErrorContainer>
             {t('trail_edit_error_ended')}
           </ErrorContainer>
           )}
-        {formError.map((message) => (<ErrorContainer key={formError.indexOf(message)}>{message}</ErrorContainer>))}
-        <Label>
-          {t('trail_create_name')}
-          <Input
-            required
-            type="text"
-            name="name"
-            id="name"
-            maxLength={40}
-            placeholder={t('trail_create_placeholder').toString()}
-            value={trailName}
-            onChange={(e) => setTrailName(e.target.value)}
-            disabled={isTrailEnded}
-          />
-        </Label>
-        <Label>
-          {t('description')}
-          <InputTextArea
-            required
-            name="description"
-            id="description"
-            placeholder={t('description_placeholder').toString()}
-            value={trailDescription}
-            maxLength={140}
-            onChange={(e) => setTrailDescription(e.target.value)}
-            disabled={isTrailEnded}
-          />
-        </Label>
-        <DateFieldContainer>
-          <Label>
-            {t('start_date')}
-            <InputDate
-              required
-              type="date"
-              name="start-date"
-              id="start-date"
-              min={new Date().toISOString().split('T')[0]}
-              value={trailStartDate}
-              disabled
-              style={{ backgroundColor: '#f1f1f1', color: '#808080' }}
-            />
-          </Label>
-          <Label>
-            {t('finish_date')}
-            <InputDate
-              required
-              type="date"
-              name="end-date"
-              id="end-date"
-              min={trailStartDate ? new Date(trailStartDate).toISOString().split('T')[0] : ''}
-              value={trailEndDate}
-              disabled
-              style={{ backgroundColor: '#f1f1f1', color: '#808080' }}
-            />
-          </Label>
-        </DateFieldContainer>
-        <Label>
-          {t('max_players')}
-          <Input
-            required
-            type="number"
-            name="max-players"
-            id="max-players"
-            min={1}
-            value={trailMaxNumber}
-            disabled
-            style={{ backgroundColor: '#f1f1f1', color: '#808080' }}
-          />
-        </Label>
-        <Label htmlFor="games">
-          {t('trail_create_games')}
-          {errorGames
+            {formError.map((message) => (<ErrorContainer key={formError.indexOf(message)}>{message}</ErrorContainer>))}
+            <Label>
+              {t('trail_create_name')}
+              <Input
+                required
+                type="text"
+                name="name"
+                id="name"
+                maxLength={40}
+                placeholder={t('trail_create_placeholder').toString()}
+                value={trailName}
+                onChange={(e) => setTrailName(e.target.value)}
+                disabled={isTrailEnded}
+              />
+            </Label>
+            <Label>
+              {t('description')}
+              <InputTextArea
+                required
+                name="description"
+                id="description"
+                placeholder={t('description_placeholder').toString()}
+                value={trailDescription}
+                maxLength={140}
+                onChange={(e) => setTrailDescription(e.target.value)}
+                disabled={isTrailEnded}
+              />
+            </Label>
+            <DateFieldContainer>
+              <DateLabel>
+                {t('start_date')}
+                <InputDate
+                  required
+                  type="date"
+                  name="start-date"
+                  id="start-date"
+                  min={new Date().toISOString().split('T')[0]}
+                  value={trailStartDate}
+                  disabled
+                  style={{ backgroundColor: '#f1f1f1', color: '#808080' }}
+                />
+              </DateLabel>
+              <DateLabel>
+                {t('finish_date')}
+                <InputDate
+                  required
+                  type="date"
+                  name="end-date"
+                  id="end-date"
+                  min={trailStartDate ? new Date(trailStartDate).toISOString().split('T')[0] : ''}
+                  value={trailEndDate}
+                  disabled
+                  style={{ backgroundColor: '#f1f1f1', color: '#808080' }}
+                />
+              </DateLabel>
+            </DateFieldContainer>
+            <Label>
+              {t('max_players')}
+              <Input
+                required
+                type="number"
+                name="max-players"
+                id="max-players"
+                min={1}
+                value={trailMaxNumber}
+                disabled
+                style={{ backgroundColor: '#f1f1f1', color: '#808080' }}
+              />
+            </Label>
+            <Label htmlFor="games">
+              {t('trail_create_games')}
+              {errorGames
             && (
             <ErrorContainer key="errorFormEditTrail">
               {t('trail_edit_error-games')}
             </ErrorContainer>
             )}
-          <AsyncSelect
-            required
-            isMulti
-            isSearchable
-            name="games"
-            styles={GamesSelectorStyles}
-            getOptionLabel={(option: TrailGame) => option.name}
-            getOptionValue={(option: TrailGame) => option.id.toString()}
-            isLoading={loadingGames}
-            onInputChange={(value) => setSearchQuery(value)}
-            defaultValue={games}
-            loadOptions={async () => gamesSearch}
-            onChange={(selectedOptions) => {
-              if ((gamesStarted.length + selectedOptions.length) > 3) {
-                setStyleGuardar({ backgroundColor: '#f1f1f1', color: '#808080', cursor: 'not-allowed' });
-                setErrorGames(true);
-              } else {
-                setStyleGuardar({});
-                setErrorGames(false);
-              }
-            }}
-            isDisabled={isTrailEnded}
-          />
-        </Label>
-        <Button disabled={errorGames || isTrailEnded} style={styleGuardar}>{t('save_trail')}</Button>
-        <Button style={{ backgroundColor: 'red' }} onClick={() => handleDeleteTrail()}>{t('delete_trail')}</Button>
-      </Form>
-    </>
+              <AsyncSelect
+                required
+                isMulti
+                isSearchable
+                name="games"
+                styles={GamesSelectorStyles}
+                getOptionLabel={(option: TrailGame) => option.name}
+                getOptionValue={(option: TrailGame) => option.id.toString()}
+                isLoading={loadingGames}
+                onInputChange={(value) => setSearchQuery(value)}
+                defaultValue={games}
+                loadOptions={async () => gamesSearch}
+                onChange={(selectedOptions) => {
+                  if ((gamesStarted.length + selectedOptions.length) > 3) {
+                    setStyleGuardar({ backgroundColor: '#f1f1f1', color: '#808080', cursor: 'not-allowed' });
+                    setErrorGames(true);
+                  } else {
+                    setStyleGuardar({});
+                    setErrorGames(false);
+                  }
+                }}
+                isDisabled={isTrailEnded}
+              />
+            </Label>
+          </StandarContainer>
+        </FormContainer>
+        <ButtonEdition disabled={errorGames || isTrailEnded} style={styleGuardar}>{t('save_trail')}</ButtonEdition>
+        <ButtonDelete style={{ backgroundColor: '#FA4A24' }} onClick={() => handleDeleteTrail()}>{t('delete_trail')}</ButtonDelete>
+      </CreateContainer>
+    </Form>
   );
 };
 

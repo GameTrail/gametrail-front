@@ -22,6 +22,7 @@ export const Container = styled.div<ContainerProps>`
     `;
 
 export const TrailTitle = styled.h1`
+  display: flex;
   font-size: 3rem;    
   color: ${({ theme }) => theme.nord.purple};
   @media (max-width: 768px) {
@@ -30,6 +31,7 @@ export const TrailTitle = styled.h1`
 `;
 
 export const TrailEdit = styled.div`
+  display: flex;
   width: 4rem;
   padding-left: 1rem;
   font-size: 7rem;    

@@ -215,7 +215,7 @@ const Home = {
   // TrailGang
   trailgang_ad: 'Om du vill synas på startsidan varje vecka, skapa din första trail!!',
   // -> GameGang
-  trailgang_of_the_week: 'Veckans TrailGang',
+  trailgang_of_the_week: 'Trail sponsrad av ',
   // -> -> TrailData
   days: 'Dagar',
 

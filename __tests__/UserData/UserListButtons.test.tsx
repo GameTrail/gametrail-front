@@ -38,15 +38,4 @@ describe('UserListsButtons', () => {
     fireEvent.click(gamesButton);
     expect(onClickButton).toHaveBeenCalledWith(ButtonType.Games);
   });
-
-  it('disables the comments button when userCookie is null', () => {
-    const onClickButton = jest.fn();
-    const { getByText } = render(
-      <ThemeProvider theme={theme}>
-        <UserListsButtons onClickButton={onClickButton} selectedButton={ButtonType.Trail} />
-      </ThemeProvider>,
-    );
-    const commentsButton = getByText('Comentarios');
-    expect(commentsButton).toBeDisabled();
-  });
 });

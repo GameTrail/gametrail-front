@@ -404,6 +404,9 @@ const Trail = {
     'trail_create_error-3': 'There is at least one error in the form, please check the fields.',
     'trail_create_error-4': 'An error occurred while adding games, please try again later.',
     'trail_create_error-5': 'An error occurred while loading games, please try again later.',
+    // Trail Edition
+    'trail_edit_error-games': 'As a STANDARD user, you cannot have more than 3 games on your trail.',
+
     trail_create_title: 'Create New Trail',
     trail_create_name: 'Trail Name',
     trail_create_placeholder: 'Give your trail a name',
@@ -426,6 +429,12 @@ const Trail = {
     premium_filters_skill: 'Skill',
     premium_filters_ability: 'Skill',
     premium_filters_availability: 'Availability',
+
+    // Edit Trail
+    trail_edit_title: 'Edit Trail',
+    trail_edit_error_ended: 'You cannot edit a trail that has already ended, you can only delete it.',
+    save_trail: 'Save',
+    delete_trail: 'Delete Trail',
   },
   TrailDetails: {
     // InfoRow

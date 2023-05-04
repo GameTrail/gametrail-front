@@ -401,6 +401,9 @@ const Trail = {
     'trail_create_error-3': 'Det finns minst ett fel i formuläret, kontrollera fälten.',
     'trail_create_error-4': 'Ett fel uppstod när spelen lades till, försök igen senare.',
     'trail_create_error-5': 'Ett fel uppstod när spelen lästes in, försök igen senare.',
+    // Trail Edition
+    'trail_edit_error-games': 'Som STANDARD-användare kan du inte ha mer än 3 spel på din bana.',
+
     trail_create_title: 'Skapa nytt spår',
     trail_create_name: 'Spårets namn',
     trail_create_placeholder: 'Ge ditt spår ett namn',
@@ -423,6 +426,12 @@ const Trail = {
     premium_filters_skill: 'Färdighet',
     premium_filters_ability: 'Färdighet',
     premium_filters_availability: 'Tillgänglighet',
+
+    // Edit Trail
+    trail_edit_title: 'Redigera Trail',
+    trail_edit_error_ended: 'Du kan inte redigera ett spår som redan har avslutats, du kan bara radera det.',
+    save_trail: 'Ha kvar',
+    delete_trail: 'Radera Trail',
   },
   TrailDetails: {
     // InfoRow

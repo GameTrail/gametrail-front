@@ -34,9 +34,11 @@ const PlusInfoRow: FC<Props> = ({ trailData }) => {
         },
       });
       if (res.status !== 200) {
+        // eslint-disable-next-line no-console
         console.error(res);
       }
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error(error);
     }
   };

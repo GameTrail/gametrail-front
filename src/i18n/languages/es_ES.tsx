@@ -406,6 +406,8 @@ const Trail = {
     'trail_create_error-3': 'Existe al menos un error en el formulario, comprueba los campos.',
     'trail_create_error-4': 'Ha ocurrido un error al añadir los juegos, pruebe de nuevo más tarde.',
     'trail_create_error-5': 'Ha ocurrido un error al cargar los juegos, pruebe de nuevo más tarde.',
+    // Trail Edition
+    'trail_edit_error-games': 'Al ser un usuario con un plan STANDARD, no puedes tener más de 3 juegos a tu trail.',
 
     trail_create_title: 'Crear nuevo trail',
     trail_create_name: 'Nombre del Trail',
@@ -431,6 +433,12 @@ const Trail = {
     premium_filters_ability: 'Habilidad',
     premium_filters_availability: 'Disponibilidad',
 
+    // Editar Trail
+    trail_edit_title: 'Editar Trail',
+    trail_edit_error_ended: 'No puedes editar un trail que ya ha terminado, solamente puedes borrarlo.',
+    save_trail: 'Guardar',
+    delete_trail: 'Eliminar Trail',
+
   },
 
   TrailDetails: {
@@ -449,7 +457,6 @@ const Trail = {
     // TrailButtons
     chat: 'Chat',
   },
-
 };
 
 const TrailList = {

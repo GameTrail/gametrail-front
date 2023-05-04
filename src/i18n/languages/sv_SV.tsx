@@ -65,8 +65,6 @@ const landing = {
     find_new_friends: '👑 Hitta personer med liknande intressen',
     filter_trail_members: '👑 Kontrollera vilka som kan gå med i dina spår',
     trail_recommendations: '👑 Rekommenderade spår för dig',
-    connect_steam: '👑 Koppla ditt Steam-konto',
-    connect_xbox: '👑 Koppla ditt Xbox Live-konto',
 
   },
 };

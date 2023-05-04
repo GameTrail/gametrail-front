@@ -70,8 +70,6 @@ const landing = {
     find_new_friends: '👑 Encuentra personas afines a ti',
     filter_trail_members: '👑 Controla quién puede unirse a ti',
     trail_recommendations: '👑 Recomendaciones de Trails',
-    connect_steam: '👑 Conecta tu cuenta de Steam',
-    connect_xbox: '👑 Conecta tu cuenta de Xbox Live',
   },
 };
 

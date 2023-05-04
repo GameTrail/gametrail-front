@@ -9,3 +9,6 @@ export { default as SteamLottie } from './Landing/SteamLottie';
 export { default as LoginLottie } from './Landing/LoginLottie';
 export { default as LogoutLottie } from './Landing/LogoutLottie';
 export { default as ContactLottie } from './Landing/ContactLottie';
+export { default as InstaLottie } from './Landing/InstaLottie';
+export { default as TwitterLottie } from './Landing/TwitterLottie';
+export { default as TiktokLottie } from './Landing/TiktokLottie';

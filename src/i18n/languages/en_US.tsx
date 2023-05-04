@@ -68,8 +68,6 @@ const landing = {
     find_new_friends: '👑 Find people with similar tastes',
     filter_trail_members: '👑 Control who can join your Trails',
     trail_recommendations: '👑 Trails recommended for you',
-    connect_steam: '👑 Connect your Steam account',
-    connect_xbox: '👑 Connect your Xbox Live account',
   },
 };
 

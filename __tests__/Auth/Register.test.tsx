@@ -5,6 +5,7 @@ import type { NextRouter } from 'next/router';
 import { useRouter } from 'next/router';
 import Register from '@/components/Register/RegisterComponent';
 import theme from '@/theme';
+import 'jest-canvas-mock';
 
 jest.mock('next/router', () => ({
   useRouter: jest.fn(),

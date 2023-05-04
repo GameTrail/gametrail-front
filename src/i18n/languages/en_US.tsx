@@ -218,7 +218,7 @@ const Home = {
   // TrailGang
   trailgang_ad: 'If you want to be featured on the homepage every week, create your first trail!!',
   // -> GameGang
-  trailgang_of_the_week: 'TrailGang of the Week',
+  trailgang_of_the_week: 'Trail sponsored by ',
   // -> -> TrailData
   days: 'Days',
 

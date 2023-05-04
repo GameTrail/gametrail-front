@@ -42,5 +42,5 @@ export const UserName = styled.p`
 
 export const ProfilePicture = styled(Image)`
     border-radius: 9px;
-    height: auto;
+    height: width;
 `;

@@ -9,6 +9,7 @@ import {
   Title,
   CrewContainer,
   GameGangContainer,
+  Sponsor,
 } from './styles';
 import TrailData from './TrailData';
 
@@ -20,7 +21,12 @@ const GameGang:FC<Props> = ({ trailGang }) => {
   const { t } = useLanguage();
   return (
     <Container>
-      <Title>{t('trailgang_of_the_week')}</Title>
+      <Sponsor href="https://foodcheck3.pythonanywhere.com/">
+        <Title>
+          {t('trailgang_of_the_week')}
+        </Title>
+        <img src="/images/Foodcheck.jpg" alt="FoodCheck" id="foodcheck" />
+      </Sponsor>
       <GameGangContainer>
         <CrewContainer>
           <Crew trailGang={trailGang} />

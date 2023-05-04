@@ -78,6 +78,7 @@ const landing = {
 const Comments = {
   send: 'Enviar',
   write_a_comment: 'Escribe un comentario',
+  toast_alert_comments: 'Tienes que estar logueado para poder comentar, inicia sesión',
 };
 
 const Contact = {

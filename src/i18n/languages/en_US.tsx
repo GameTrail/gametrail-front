@@ -76,6 +76,7 @@ const landing = {
 const Comments = {
   send: 'Send',
   write_a_comment: 'Write a comment',
+  toast_alert_comments: 'You must be logged in to comment, please log in.',
 };
 
 const Contact = {

@@ -74,6 +74,7 @@ const landing = {
 const Comments = {
   send: 'Skicka',
   write_a_comment: 'Skriv en kommentar',
+  toast_alert_comments: 'Du måste vara inloggad för att kommentera, vänligen logga in.',
 };
 
 const Contact = {

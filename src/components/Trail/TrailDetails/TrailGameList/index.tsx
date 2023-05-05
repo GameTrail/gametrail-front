@@ -9,7 +9,7 @@ import type { Trail, GameInTrail } from '@/models/Trail/types';
 import { getUserCookie } from '@/utils/login';
 import { normalizeImage } from '@/utils/normalizeImage';
 import {
-  Container, Game, GameImage, GameInfo, LastModified, Name, State,
+  Container, GameImage, GameInfo, LastModified, MotionGame, MotionGameVariants, Name, State,
 } from './styles';
 
 export type Props = {
@@ -85,14 +85,24 @@ const TrailGameList:FC<Props> = ({ trailData }) => {
     : <State state={game.status}>{game.status}</State>);
 
   const handleRenderGames = () => gameList?.map((game: GameInTrail) => (
-    <Game href={`/game/${game.games.id}`}>
+    <MotionGame
+      href={`/game/${game.games.id}`}
+      variants={MotionGameVariants}
+      initial="hidden"
+      animate="visible"
+      transition={{
+        duration: 0.1,
+        delay: 0.1 * game.priority,
+        opacity: { duration: 0.6, delay: 0.1 * game.priority },
+      }}
+    >
       <GameImage src={normalizeImage(game.games.image)} alt="image" width={160} height={160} />
       <GameInfo>
         <Name>{game.games.name}</Name>
         <LastModified>{game.games.releaseDate}</LastModified>
         {handleRenderStateButton(game)}
       </GameInfo>
-    </Game>
+    </MotionGame>
   ));
 
   if (loading) return <LoadingSpinner />;

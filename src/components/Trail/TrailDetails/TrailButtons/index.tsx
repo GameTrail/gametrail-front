@@ -1,5 +1,6 @@
 import type { FC } from 'react';
 import React from 'react';
+import { motion } from 'framer-motion';
 import { ButtonType } from '@/containers/UserDetails/types';
 import useLanguage from '@/i18n/hooks';
 import type { Trail } from '@/models/Trail/types';
@@ -26,11 +27,13 @@ const TrailButtons: FC<Props> = ({ onClickButton, selectedButton, trailData }) =
   };
   const isActive = (button: ButtonType): boolean => selectedButton === button;
   return (
-    <Container>
-      <Button disabled={disableChatButton()} type="button" active={isActive(ButtonType.Chat)} onClick={() => onClickButton(ButtonType.Chat)}>{t('chat')}</Button>
-      <Button type="button" active={isActive(ButtonType.Games)} onClick={() => onClickButton(ButtonType.Games)}>{t('games')}</Button>
-      <Button type="button" active={isActive(ButtonType.Players)} onClick={() => onClickButton(ButtonType.Players)}>{t('players')}</Button>
-    </Container>
+    <motion.div layout>
+      <Container>
+        <Button disabled={disableChatButton()} type="button" active={isActive(ButtonType.Chat)} onClick={() => onClickButton(ButtonType.Chat)}>{t('chat')}</Button>
+        <Button type="button" active={isActive(ButtonType.Games)} onClick={() => onClickButton(ButtonType.Games)}>{t('games')}</Button>
+        <Button type="button" active={isActive(ButtonType.Players)} onClick={() => onClickButton(ButtonType.Players)}>{t('players')}</Button>
+      </Container>
+    </motion.div>
   );
 };
 

@@ -18,7 +18,7 @@ const PlayersList: FC<Props> = ({ trailData }) => {
   const { t } = useLanguage();
   return (
     <Container>
-      <motion.div animate={{ opacity: 1, y: 0 }} initial={{ opacity: 0, y: 20 }} transition={{ type: 'spring' }}>
+      <motion.div layout animate={{ opacity: 1, y: 0, x: 0 }} initial={{ opacity: 0, y: 20, x: 0 }} transition={{ type: 'spring' }}>
         <PlayerListHeader>
           <h2>{t('players')}</h2>
           <h2>{t('rating')}</h2>
@@ -36,6 +36,7 @@ const PlayersList: FC<Props> = ({ trailData }) => {
                 @
                 {trailMember.username}
               </PlayerName>
+
               <PlayerValue>
                 <PlayerRating trailMember={trailMember} />
               </PlayerValue>

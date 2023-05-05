@@ -1,5 +1,6 @@
 import type { FC } from 'react';
 import { useMemo, useState } from 'react';
+import { motion } from 'framer-motion';
 import { socketInit, ChatComponent } from '@/components/Chat/ChatComponent';
 import PlayersList from '@/components/Trail/TrailDetails/Sections/PlayersList';
 import { ButtonType } from '@/containers/GameDetails/types';
@@ -28,12 +29,15 @@ const Sections: FC<Props> = ({ trailData }) => {
   }, [selectedButton, trailData]);
 
   return (
-    <>
+    <motion.div
+      layout
+      transition={{ type: 'spring', bounce: 0, duration: 0.5 }}
+    >
       <TrailButtons onClickButton={onClickButton} selectedButton={selectedButton} trailData={trailData} />
       <SectionContainer>
         {handleRenderList}
       </SectionContainer>
-    </>
+    </motion.div>
   );
 };
 

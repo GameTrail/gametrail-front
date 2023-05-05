@@ -467,6 +467,7 @@ const UserDetails = {
   // UserTrailList
   trail_in_progress: 'In Progress',
   trail_finished: 'Finished',
+  rate: 'Rate',
 };
 
 const Terms = {

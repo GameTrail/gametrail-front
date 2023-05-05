@@ -464,6 +464,7 @@ const UserDetails = {
   // UserTrailList
   trail_in_progress: 'Pågående',
   trail_finished: 'Slutfört',
+  rate: 'Betygsätt',
 };
 
 const Terms = {

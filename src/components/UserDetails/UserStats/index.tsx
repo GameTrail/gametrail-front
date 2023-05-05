@@ -17,15 +17,15 @@ const UserStats:FC<Props> = ({ userRating }) => {
 
     const radarData = {
       labels: [
-        `${t('premium_filters_kindness')} (${userRating.kindness})`,
-        `${t('premium_filters_fun')} (${userRating.funny})`,
-        `${t('premium_filters_cooperation')} (${userRating.teamwork})`,
-        `${t('premium_filters_ability')} (${userRating.ability})`,
-        `${t('premium_filters_availability')} (${userRating.availability})`,
+        `${t('premium_filters_kindness')} (${userRating.kindness.toFixed(1)})`,
+        `${t('premium_filters_fun')} (${userRating.funny.toFixed(1)})`,
+        `${t('premium_filters_cooperation')} (${userRating.teamwork.toFixed(1)})`,
+        `${t('premium_filters_ability')} (${userRating.ability.toFixed(1)})`,
+        `${t('premium_filters_availability')} (${userRating.availability.toFixed(1)})`,
       ],
       datasets: [
         {
-          data: [userRating.ability, userRating.funny, userRating.teamwork, userRating.ability, userRating.availability],
+          data: [userRating.kindness, userRating.funny, userRating.teamwork, userRating.ability, userRating.availability],
           fill: true,
           backgroundColor: 'rgba(143, 188, 187, 0.5)',
           borderColor: '#88c0d0',

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 
 export const PremiumContainer = styled.div`
 display: flex;
@@ -11,6 +12,8 @@ border-left: 1px solid ${({ theme }) => theme.nord.white1};
   border-left: 0;
 }
 `;
+
+export const MotionPremiumContainer = motion(PremiumContainer);
 
 export const PremiumInfo = styled.div`
 width: 70%;

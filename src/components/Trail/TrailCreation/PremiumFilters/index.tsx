@@ -7,7 +7,7 @@ import useLanguage from '@/i18n/hooks';
 import {
   CrownContainer,
   DescriptionContainer,
-  Input, Label, PremiumContainer, PremiumFilterFirst, PremiumInfo, PremiumRadar, TitlePremium,
+  Input, Label, MotionPremiumContainer, PremiumFilterFirst, PremiumInfo, PremiumRadar, TitlePremium,
 } from './styles';
 
 interface Props {
@@ -93,7 +93,11 @@ const PremiumFilters: FC<Props> = ({
   };
 
   return (
-    <PremiumContainer>
+    <MotionPremiumContainer
+      initial={{ opacity: 0, y: 100 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1.5, type: 'spring', bounce: 0.25 }}
+    >
       <PremiumInfo>
         <TitlePremium>{t('premium_filters')}</TitlePremium>
         <CrownContainer>
@@ -181,7 +185,7 @@ const PremiumFilters: FC<Props> = ({
         </Label>
       </PremiumFilterFirst>
 
-    </PremiumContainer>
+    </MotionPremiumContainer>
   );
 };
 

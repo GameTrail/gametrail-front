@@ -1,5 +1,6 @@
 import type { FC } from 'react';
 import React, { useState, useEffect } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
 import DateInfo from '@/components/Trail/TrailDetails/InfoRow/DateInfo';
 import useLanguage from '@/i18n/hooks';
 import type { Trail as TrailData } from '@/models/Trail/types';
@@ -8,6 +9,7 @@ import { getUserCookie } from '@/utils/login';
 import {
   InfoRow, JoinButton, JoinContainer, JoinPlayersCount,
 } from './styles';
+import 'react-toastify/dist/ReactToastify.css';
 
 export type Props = {
   trailData: TrailData;
@@ -18,6 +20,10 @@ const PlusInfoRow: FC<Props> = ({ trailData }) => {
   const user = getUserCookie();
   const token = user?.token || '';
   const [userInTrail, setUserInTrail] = useState(false);
+
+  const handleToastLaunch = (message: string) => {
+    toast.error(message);
+  };
 
   const handleJoin = async () => {
     const requestData = {
@@ -33,9 +39,20 @@ const PlusInfoRow: FC<Props> = ({ trailData }) => {
           Authorization: `Token ${token}`,
         },
       });
-      if (res.status !== 200) {
-        // eslint-disable-next-line no-console
-        console.error(res);
+
+      const data = await res.json();
+      if (!res.ok) {
+        handleToastLaunch(data);
+      } else {
+        const newUserInTrail = {
+          id: user?.id,
+          username: user?.username,
+          email: user?.email,
+          avatar: user?.avatar,
+          plan: user?.plan,
+        };
+        trailData.users.push(newUserInTrail);
+        setUserInTrail(true);
       }
     } catch (error) {
       // eslint-disable-next-line no-console
@@ -67,12 +84,13 @@ const PlusInfoRow: FC<Props> = ({ trailData }) => {
 
   useEffect(() => {
     setUserInTrail(checkUserInTrail(user, trailData));
-  }, [user, trailData]);
+  }, [user, trailData, userInTrail]);
 
   return (
     <InfoRow>
       <DateInfo dateStart={trailData.startDate} dateEnd={trailData.finishDate} />
       <JoinContainer>
+        <ToastContainer position="top-center" theme="colored" hideProgressBar />
         {handleRenderJoinButton()}
         <JoinPlayersCount>
           <p>

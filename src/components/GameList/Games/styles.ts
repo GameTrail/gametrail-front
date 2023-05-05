@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 
 export const TitlesContainer = styled.div`
     width: 100%;
@@ -39,7 +40,6 @@ export const Cuerpo = styled.div`
   width: 80%;
   margin: 0 auto;
   flex-flow: row wrap;
-  justify-content: space-between;
   justify-content: center;
 h3{
     color: ${({ theme }) => theme.nord.gray0};
@@ -53,6 +53,8 @@ h3{
     width: 100%;
 }
 `;
+
+export const MotionCuerpo = motion(Cuerpo);
 
 export const Cajas = styled.section` 
 max-width: 380px;
@@ -84,6 +86,13 @@ border-radius: 15px;
     
 }
 `;
+
+export const MotionCajas = motion(Cajas);
+export const MotionCajasVariants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1 },
+};
+
 export const Mascara = styled.div`
 width: 100%;
 height: 500px;
@@ -241,7 +250,6 @@ padding: 9px;
 `;
 
 export const GameName = styled.p`
-margin-top: 0%;
 margin: 5%;
 font-size: 25px;
 @media (max-width: 567px) {

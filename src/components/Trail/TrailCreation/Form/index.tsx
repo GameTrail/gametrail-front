@@ -40,11 +40,11 @@ const TrailCreationForm = () => {
   const [trailEndDate, setTrailEndDate] = useState('');
   const [trailMaxNumber, setTrailMaxNumber] = useState(2);
 
-  const [useramabilidad, setUseramabilidad] = useState('1');
-  const [userFunny, setUserFunny] = useState('1');
-  const [userTeamwork, setUserTeamwork] = useState('1');
-  const [userAbility, setUserAbility] = useState('1');
-  const [userAvailhabilidad, setUserAvailhabilidad] = useState('1');
+  const [useramabilidad, setUseramabilidad] = useState('3');
+  const [userFunny, setUserFunny] = useState('3');
+  const [userTeamwork, setUserTeamwork] = useState('3');
+  const [userAbility, setUserAbility] = useState('3');
+  const [userAvailhabilidad, setUserAvailhabilidad] = useState('3');
   const user = getUserCookie();
   const token = user?.token;
   const [formError, setFormError] = useState<string[]>([]);

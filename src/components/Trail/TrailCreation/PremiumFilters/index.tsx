@@ -2,11 +2,12 @@ import type { FC } from 'react';
 import React from 'react';
 import { faCrown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import DraggableRadar from '@/components/Trail/TrailCreation/PremiumFilters/DraggableRadar';
 import useLanguage from '@/i18n/hooks';
 import {
   CrownContainer,
   DescriptionContainer,
-  Input, Label, PremiumContainer, PremiumFilterFirst, PremiumInfo, TitlePremium,
+  Input, Label, PremiumContainer, PremiumFilterFirst, PremiumInfo, PremiumRadar, TitlePremium,
 } from './styles';
 
 interface Props {
@@ -35,6 +36,62 @@ const PremiumFilters: FC<Props> = ({
   setUserAvailhabilidad,
 }) => {
   const { t } = useLanguage();
+
+  // Used so Draggable Radar can change the values of the Premium Filters
+  const handleInputChange = (index:any, value:any) => {
+    let newValue = value;
+    if (value < 1) {
+      newValue = 1;
+    }
+    if (value > 5) {
+      newValue = 5;
+    }
+    switch (index) {
+      case 0:
+        setUseramabilidad(newValue);
+        break;
+      case 1:
+        setUserFunny(newValue);
+        break;
+      case 2:
+        setUserTeamwork(newValue);
+        break;
+      case 3:
+        setUserAbility(newValue);
+        break;
+      case 4:
+        setUserAvailhabilidad(newValue);
+        break;
+      default:
+        break;
+    }
+  };
+
+  // Data used for the Draggable Radar
+  const radarData = {
+    labels: [
+      t('premium_filters_kindness'),
+      t('premium_filters_fun'),
+      t('premium_filters_cooperation'),
+      t('premium_filters_ability'),
+      t('premium_filters_availability'),
+    ],
+    datasets: [
+      {
+        data: [useramabilidad, userFunny, userTeamwork, userAbility, userAvailhabilidad],
+        fill: true,
+        backgroundColor: '#8fbcbb',
+        borderColor: '#88c0d0',
+        pointBackgroundColor: '#b48ead',
+        pointBorderColor: '#eceff4',
+        pointHoverBackgroundColor: '#eceff4',
+        pointHoverBorderColor: '#b48ead',
+        pointHoverRadius: 15,
+        pointRadius: 5,
+      },
+    ],
+  };
+
   return (
     <PremiumContainer>
       <PremiumInfo>
@@ -47,6 +104,11 @@ const PremiumFilters: FC<Props> = ({
         {' '}
         {t('premium_filters_info')}
       </DescriptionContainer>
+
+      <PremiumRadar>
+        <DraggableRadar data={radarData} endDragFunction={handleInputChange} />
+      </PremiumRadar>
+
       <PremiumFilterFirst>
 
         <Label>
@@ -118,6 +180,7 @@ const PremiumFilters: FC<Props> = ({
           />
         </Label>
       </PremiumFilterFirst>
+
     </PremiumContainer>
   );
 };

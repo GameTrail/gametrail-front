@@ -1,13 +1,11 @@
 import {
   useEffect, useState,
 } from 'react';
-import { motion } from 'framer-motion';
 import router from 'next/router';
 import AsyncSelect from 'react-select/async';
 import {
   Button,
   DateFieldContainer,
-  Form,
   Input,
   InputDate,
   InputTextArea,
@@ -18,7 +16,7 @@ import {
   ErrorContainer,
   FormContainer,
   CreateContainer,
-  DateLabel, MotionStandarContainer,
+  DateLabel, MotionForm, StandarContainer,
 } from '@/components/Trail/TrailCreation/Form/styles';
 import useLanguage from '@/i18n/hooks';
 import type { Game } from '@/models/Game/types';
@@ -153,111 +151,106 @@ const TrailCreationForm = () => {
 
   return (
 
-    <motion.div
+    <MotionForm
+      onSubmit={handleSubmit}
       initial={{ opacity: 0, y: 300 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 1.5, type: 'spring', bounce: 0.25 }}
-      exit={{ opacity: 0 }}
     >
-      <Form onSubmit={handleSubmit}>
-        <CreateContainer>
-          <Title>
-            {t('trail_create_title')}
-          </Title>
-          <FormContainer>
-            <MotionStandarContainer
-              initial={{ opacity: 0, y: 100 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.5, type: 'spring', bounce: 0.25 }}
-            >
-              {formError.map((message) => (<ErrorContainer key={formError.indexOf(message)}>{message}</ErrorContainer>))}
-              <Label>
-                {t('trail_create_name')}
-                <Input
+      <CreateContainer>
+        <Title>
+          {t('trail_create_title')}
+        </Title>
+        <FormContainer>
+          <StandarContainer>
+            {formError.map((message) => (<ErrorContainer key={formError.indexOf(message)}>{message}</ErrorContainer>))}
+            <Label>
+              {t('trail_create_name')}
+              <Input
+                required
+                type="text"
+                name="name"
+                id="name"
+                maxLength={40}
+                placeholder={t('trail_create_placeholder').toString()}
+                value={trailName}
+                onChange={(e) => setTrailName(e.target.value)}
+              />
+            </Label>
+            <Label>
+              {t('description')}
+              <InputTextArea
+                required
+                name="description"
+                id="description"
+                placeholder={t('description_placeholder').toString()}
+                value={trailDescription}
+                maxLength={140}
+                onChange={(e) => setTrailDescription(e.target.value)}
+              />
+            </Label>
+            <PlanInfoToast>
+              {t('trail_create_plan_info-1')}
+            </PlanInfoToast>
+            <DateFieldContainer>
+              <DateLabel>
+                {t('start_date')}
+                <InputDate
                   required
-                  type="text"
-                  name="name"
-                  id="name"
-                  maxLength={40}
-                  placeholder={t('trail_create_placeholder').toString()}
-                  value={trailName}
-                  onChange={(e) => setTrailName(e.target.value)}
+                  type="date"
+                  name="start-date"
+                  id="start-date"
+                  min={new Date().toISOString().split('T')[0]}
+                  value={trailStartDate}
+                  onChange={handleDateChange}
                 />
-              </Label>
-              <Label>
-                {t('description')}
-                <InputTextArea
+              </DateLabel>
+              <DateLabel>
+                {t('finish_date')}
+                <InputDate
                   required
-                  name="description"
-                  id="description"
-                  placeholder={t('description_placeholder').toString()}
-                  value={trailDescription}
-                  maxLength={140}
-                  onChange={(e) => setTrailDescription(e.target.value)}
+                  type="date"
+                  name="end-date"
+                  id="end-date"
+                  min={trailStartDate ? new Date(trailStartDate).toISOString().split('T')[0] : ''}
+                  value={trailEndDate}
+                  onChange={handleDateChange}
                 />
-              </Label>
-              <PlanInfoToast>
-                {t('trail_create_plan_info-1')}
-              </PlanInfoToast>
-              <DateFieldContainer>
-                <DateLabel>
-                  {t('start_date')}
-                  <InputDate
-                    required
-                    type="date"
-                    name="start-date"
-                    id="start-date"
-                    min={new Date().toISOString().split('T')[0]}
-                    value={trailStartDate}
-                    onChange={handleDateChange}
-                  />
-                </DateLabel>
-                <DateLabel>
-                  {t('finish_date')}
-                  <InputDate
-                    required
-                    type="date"
-                    name="end-date"
-                    id="end-date"
-                    min={trailStartDate ? new Date(trailStartDate).toISOString().split('T')[0] : ''}
-                    value={trailEndDate}
-                    onChange={handleDateChange}
-                  />
-                </DateLabel>
-              </DateFieldContainer>
-              <PlanInfoToast>
-                {t('trail_create_plan_info-2')}
-              </PlanInfoToast>
-              <Label>
-                {t('max_players')}
-                <Input
-                  required
-                  type="number"
-                  name="max-players"
-                  id="max-players"
-                  min={1}
-                  value={trailMaxNumber}
-                  onChange={(e) => setTrailMaxNumber(e.target.valueAsNumber)}
-                />
-              </Label>
-              <Label htmlFor="games">
-                {t('trail_create_games')}
-                <AsyncSelect
-                  required
-                  isMulti
-                  isSearchable
-                  name="games"
-                  styles={GamesSelectorStyles}
-                  getOptionLabel={(option: Game) => option.name}
-                  getOptionValue={(option: Game) => option.id.toString()}
-                  isLoading={loading}
-                  onInputChange={(value) => setSearchQuery(value)}
-                  defaultOptions={games}
-                  loadOptions={async () => games}
-                />
-              </Label>
-            </MotionStandarContainer>
-            {
+              </DateLabel>
+            </DateFieldContainer>
+            <PlanInfoToast>
+              {t('trail_create_plan_info-2')}
+            </PlanInfoToast>
+            <Label>
+              {t('max_players')}
+              <Input
+                required
+                type="number"
+                name="max-players"
+                id="max-players"
+                min={1}
+                value={trailMaxNumber}
+                onChange={(e) => setTrailMaxNumber(e.target.valueAsNumber)}
+              />
+            </Label>
+            <Label htmlFor="games">
+              {t('trail_create_games')}
+              <AsyncSelect
+                required
+                isMulti
+                isSearchable
+                name="games"
+                styles={GamesSelectorStyles}
+                getOptionLabel={(option: Game) => option.name}
+                getOptionValue={(option: Game) => option.id.toString()}
+                isLoading={loading}
+                onInputChange={(value) => setSearchQuery(value)}
+                defaultOptions={games}
+                loadOptions={async () => games}
+              />
+            </Label>
+          </StandarContainer>
+          {
           user?.plan === 'Premium' && (
             <PremiumFilters
               userTeamwork={userTeamwork}
@@ -274,11 +267,10 @@ const TrailCreationForm = () => {
           )
         }
 
-          </FormContainer>
-          <Button type="submit">{t('create')}</Button>
-        </CreateContainer>
-      </Form>
-    </motion.div>
+        </FormContainer>
+        <Button type="submit">{t('create')}</Button>
+      </CreateContainer>
+    </MotionForm>
 
   );
 };

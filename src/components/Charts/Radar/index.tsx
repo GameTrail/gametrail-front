@@ -10,13 +10,14 @@ import {
   Legend,
 } from 'chart.js';
 
+import AutoColors from 'chartjs-plugin-autocolors';
 // @ts-expect-error
 import * as DragDataPlugin from 'chartjs-plugin-dragdata';
+import Gradient from 'chartjs-plugin-gradient';
 import { Radar } from 'react-chartjs-2';
 
-const radarOptions = (endDragFunction: (index: any, value: any) => void) => ({
+const radarOptions = () => ({
   responsive: true,
-  resizeDelay: 200,
   aspectRatio: 2,
   scales: {
     r: {
@@ -48,6 +49,18 @@ const radarOptions = (endDragFunction: (index: any, value: any) => void) => ({
     legend: {
       display: false,
     },
+    autoColors: {
+      enabled: true,
+      mode: 'data',
+    },
+  },
+  tooltip: {
+    enabled: false,
+  },
+});
+
+const draggableOptions = (endDragFunction: (index: any, value: any) => void) => {
+  const dragPluginOptions = {
     dragData: {
       round: 0,
       showTooltip: true,
@@ -62,18 +75,23 @@ const radarOptions = (endDragFunction: (index: any, value: any) => void) => ({
         endDragFunction(index, value);
       },
     },
-  },
-  tooltip: {
-    enabled: false,
-  },
-});
+  };
+
+  const options = radarOptions();
+  options.plugins = {
+    ...options.plugins,
+    ...dragPluginOptions,
+  };
+
+  return options;
+};
 
 interface Props {
   data: any;
   endDragFunction: (index: any, value: any) => void;
 }
 
-const DraggableRadar: FC<Props> = ({ data, endDragFunction }) => {
+export const DraggableRadar: FC<Props> = ({ data, endDragFunction }) => {
   ChartJS.register(
     RadialLinearScale,
     PointElement,
@@ -82,10 +100,31 @@ const DraggableRadar: FC<Props> = ({ data, endDragFunction }) => {
     Tooltip,
     Legend,
     DragDataPlugin,
+    AutoColors,
+    Gradient,
   );
   return (
-    <Radar data={data} options={radarOptions(endDragFunction)} />
+    <Radar data={data} options={draggableOptions(endDragFunction)} />
   );
 };
 
-export default DraggableRadar;
+interface DefaultProps {
+  data: any;
+}
+
+export const DefaultRadar: FC<DefaultProps> = ({ data }) => {
+  ChartJS.register(
+    RadialLinearScale,
+    PointElement,
+    LineElement,
+    Filler,
+    Tooltip,
+    Legend,
+    AutoColors,
+    Gradient,
+  );
+  const options = radarOptions();
+  return (
+    <Radar data={data} options={options} />
+  );
+};

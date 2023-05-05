@@ -56,9 +56,11 @@ const User: FC<Props> = ({ userData }) => {
       </StatsDetails>
 
       <UserListsButtons onClickButton={onClickButton} selectedButton={selectedButton} />
+
       <ListsDetails>
         {handleRenderList}
       </ListsDetails>
+
     </Container>
   );
 };

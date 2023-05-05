@@ -2,7 +2,7 @@ import type { FC } from 'react';
 import React from 'react';
 import { faCrown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import DraggableRadar from '@/components/Trail/TrailCreation/PremiumFilters/DraggableRadar';
+import { DraggableRadar } from '@/components/Charts/Radar';
 import useLanguage from '@/i18n/hooks';
 import {
   CrownContainer,
@@ -70,17 +70,17 @@ const PremiumFilters: FC<Props> = ({
   // Data used for the Draggable Radar
   const radarData = {
     labels: [
-      t('premium_filters_kindness'),
-      t('premium_filters_fun'),
-      t('premium_filters_cooperation'),
-      t('premium_filters_ability'),
-      t('premium_filters_availability'),
+      `${t('premium_filters_kindness')} (${useramabilidad})`,
+      `${t('premium_filters_fun')} (${userFunny})`,
+      `${t('premium_filters_cooperation')} (${userTeamwork})`,
+      `${t('premium_filters_ability')} (${userAbility})`,
+      `${t('premium_filters_availability')} (${userAvailhabilidad})`,
     ],
     datasets: [
       {
         data: [useramabilidad, userFunny, userTeamwork, userAbility, userAvailhabilidad],
         fill: true,
-        backgroundColor: '#8fbcbb',
+        backgroundColor: 'rgba(143, 188, 187, 0.5)',
         borderColor: '#88c0d0',
         pointBackgroundColor: '#b48ead',
         pointBorderColor: '#eceff4',

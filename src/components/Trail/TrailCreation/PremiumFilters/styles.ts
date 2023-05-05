@@ -95,12 +95,13 @@ export const PremiumRadar = styled.div`
   align-items: center;
   text-align: center; 
     width: 102%;
-    height: 100%;
+    height: 17em;
   @media (max-width: 768px) {
     width: 100%;
     height: 80vw;
     overflow: visible;
     margin-top: -2.5rem;
+    min-height: 0;
   }
     `;
 

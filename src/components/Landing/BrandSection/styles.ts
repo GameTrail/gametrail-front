@@ -14,11 +14,25 @@ height: width;
     }
 `;
 
+export const SocialTwitter = styled(Link)`
+margin-left: 2em;
+margin-right: 2em;
+width: 110px;
+height: width;
+@media (max-width: 768px) {
+        margin-left: 1em;
+        margin-right: 1em;
+        width: 50px;
+        height: width;
+    }
+`;
+
 export const Container = styled.div`
 color: ${({ theme }) => theme.nord.white0};
 font-size: medium;
 display: flex;
 flex-direction: row;
+align-items: center;
     @media (max-width: 768px) {
         display: flex;
         flex-direction: row;

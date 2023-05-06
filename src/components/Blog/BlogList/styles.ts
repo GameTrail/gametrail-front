@@ -76,7 +76,7 @@ export const Author = styled.p`
     color: ${({ theme }) => theme.nord.white2};
 `;
 
-export const Date = styled.p`
+export const BlogDate = styled.p`
   font-size: 0.8em;
   color: ${({ theme }) => theme.nord.orange};
 `;

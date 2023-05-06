@@ -19,7 +19,7 @@ export const Author = styled.p`
   margin-bottom: 5px;
 `;
 
-export const Date = styled.p`
+export const BlogDate = styled.p`
   font-size: 14px;
   margin-bottom: 20px;
 `;

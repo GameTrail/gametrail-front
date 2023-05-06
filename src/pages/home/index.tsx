@@ -40,7 +40,7 @@ const Home = () => {
       }
     };
 
-    fetchData();
+    fetchData().catch(() => setError(true));
   }, []);
 
   if (loading) return <LoadingSpinner />;

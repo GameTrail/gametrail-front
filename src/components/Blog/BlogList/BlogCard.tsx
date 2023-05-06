@@ -3,7 +3,7 @@ import { CardContent } from '@/containers/TrailList/styles';
 import type { BlogItem } from '@/models/Blog/mock';
 import {
   Author,
-  CardImage, CardWrapper, Date, Title,
+  CardImage, CardWrapper, BlogDate, Title,
 } from './styles';
 
 type Props = {
@@ -14,7 +14,7 @@ const BlogCard: FC<Props> = ({ blog, onPressNavigate }) => (
   <CardWrapper onClick={() => onPressNavigate(blog.id)}>
     <CardImage src={blog.image} alt={blog.title} />
     <CardContent>
-      <Date>{blog.date}</Date>
+      <BlogDate>{blog.date}</BlogDate>
       <Title>{blog.shortTitle}</Title>
       <Author>{blog.author}</Author>
     </CardContent>

@@ -23,7 +23,7 @@ const useBlog = ({ id }: Props) => {
         setLoading(false);
       }
     };
-    fetchBlog();
+    fetchBlog().catch(() => setError(true));
   }, [id]);
 
   return { blog, loading, error };

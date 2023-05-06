@@ -20,7 +20,7 @@ const useBlogList = () => {
         setLoading(false);
       }
     };
-    fetchBlogList();
+    fetchBlogList().catch(() => setError(true));
   }, []);
 
   return { blogList, loading, error };

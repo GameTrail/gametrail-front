@@ -12,7 +12,5 @@ export const Benefits = {
     'find_new_friends',
     'filter_trail_members',
     'trail_recommendations',
-    'connect_steam',
-    'connect_xbox',
   ],
 };

@@ -10,9 +10,9 @@ export type TrailUser = {
 };
 
 export type TrailMember = {
-  id: number;
-  username: string;
-  email: string;
-  avatar: string;
-  plan: string;
+  id: number | undefined;
+  username: string | undefined;
+  email: string | undefined;
+  avatar: string | undefined;
+  plan: string | undefined;
 };

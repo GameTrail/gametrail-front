@@ -42,8 +42,6 @@ const landing = {
 
   },
   AboutSection: {
-    steam_and_xbox_live: 'Steam and Xbox Live',
-    steam_and_xbox_live_description: 'Connect your Steam and Xbox Live accounts to update the progress of your games and add them to your lists',
     custom_trails: 'Custom Trails',
     custom_trails_description: 'Create your own trails and share them with the community, or join the ones that other users have created',
     save_your_progress: 'Save your progress',
@@ -68,14 +66,13 @@ const landing = {
     find_new_friends: '👑 Find people with similar tastes',
     filter_trail_members: '👑 Control who can join your Trails',
     trail_recommendations: '👑 Trails recommended for you',
-    connect_steam: '👑 Connect your Steam account',
-    connect_xbox: '👑 Connect your Xbox Live account',
   },
 };
 
 const Comments = {
   send: 'Send',
   write_a_comment: 'Write a comment',
+  toast_alert_comments: 'You must be logged in to comment, please log in.',
 };
 
 const Contact = {
@@ -404,6 +401,9 @@ const Trail = {
     'trail_create_error-3': 'There is at least one error in the form, please check the fields.',
     'trail_create_error-4': 'An error occurred while adding games, please try again later.',
     'trail_create_error-5': 'An error occurred while loading games, please try again later.',
+    // Trail Edition
+    'trail_edit_error-games': 'As a STANDARD user, you cannot have more than 3 games on your trail.',
+
     trail_create_title: 'Create New Trail',
     trail_create_name: 'Trail Name',
     trail_create_placeholder: 'Give your trail a name',
@@ -426,6 +426,12 @@ const Trail = {
     premium_filters_skill: 'Skill',
     premium_filters_ability: 'Skill',
     premium_filters_availability: 'Availability',
+
+    // Edit Trail
+    trail_edit_title: 'Edit Trail',
+    trail_edit_error_ended: 'You cannot edit a trail that has already ended, you can only delete it.',
+    save_trail: 'Save',
+    delete_trail: 'Delete Trail',
   },
   TrailDetails: {
     // InfoRow
@@ -441,6 +447,7 @@ const Trail = {
     rating: 'Rating',
 
     // TrailButtons
+    toast_alert_chat: 'No puedes acceder al chat si no estás logueado o no no estás unido al Trail.',
     chat: 'Chat',
   },
 

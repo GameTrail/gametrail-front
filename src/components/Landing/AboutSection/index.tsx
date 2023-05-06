@@ -1,6 +1,6 @@
 import React from 'react';
 import LanguagesSelector from '@/components/LanguagesSelector';
-import { PlayersLottie, SteamLottie, TodoListLottie } from '@/components/Lotties';
+import { PlayersLottie, TodoListLottie } from '@/components/Lotties';
 import useLanguage from '@/i18n/hooks';
 import {
   Container, Description, About, Title,
@@ -10,15 +10,6 @@ const AboutSection = () => {
   const { t } = useLanguage();
   return (
     <Container>
-      <About>
-        <div>
-          <Title>{t('steam_and_xbox_live')}</Title>
-          <Description>
-            {t('steam_and_xbox_live_description')}
-          </Description>
-        </div>
-        <SteamLottie />
-      </About>
       <About>
         <div>
           <Title>{t('custom_trails')}</Title>

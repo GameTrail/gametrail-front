@@ -1,33 +1,19 @@
 import React from 'react';
-import Image from 'next/image';
+import { InstaLottie, TwitterLottie, TiktokLottie } from '@/components/Lotties';
+import { Container, Social } from './styles';
 
 const BrandSection = () => (
-  <>
-    <Image
-      src="/logos/steam-logo.png"
-      alt="GameTrail"
-      width={48}
-      height={48}
-    />
-    <Image
-      src="/logos/nintendo-switch-logo.png"
-      alt="GameTrail"
-      width={48}
-      height={48}
-    />
-    <Image
-      src="/logos/xbox-logo.png"
-      alt="GameTrail"
-      width={48}
-      height={48}
-    />
-    <Image
-      src="/logos/play-station-logo.png"
-      alt="GameTrail"
-      width={48}
-      height={48}
-    />
-  </>
+  <Container>
+    <Social href="https://www.instagram.com/gametrail.app/">
+      <InstaLottie />
+    </Social>
+    <Social href="https://twitter.com/GameTrail_Esp">
+      <TwitterLottie />
+    </Social>
+    <Social href="https://www.tiktok.com/@gametrail01">
+      <TiktokLottie />
+    </Social>
+  </Container>
 );
 
 export default BrandSection;

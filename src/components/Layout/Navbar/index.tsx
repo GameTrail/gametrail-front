@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Head from 'next/head';
 import Link from 'next/link';
 import { getUserCookie } from '@/utils/login';
 import BigMenu from './BigMenu';
@@ -54,12 +53,6 @@ const Navbar = () => {
 
   return (
     <Nav>
-      <Head>
-        <title>GameTrail - Limitless gaming</title>
-        <meta name="description" content="GameTrail is a game platform that unite gamers into one community. We provide a platform for gamers to share their gaming experience and to find new friends." />
-        <link rel="icon" href="/brand/favicon.ico" />
-        <link rel="manifest" href="/manifest.json" />
-      </Head>
       <ResponsiveNavbar>
         <Link href="/"><h1>GAMETRAIL</h1></Link>
         {width <= 768 && (

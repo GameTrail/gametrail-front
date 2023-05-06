@@ -34,7 +34,7 @@ const Game = () => {
         setLoading(false);
       }
     };
-    fetchGameDetails();
+    fetchGameDetails().catch(() => setError(true));
   }, [id]);
 
   if (loading) return <LoadingSpinner />;

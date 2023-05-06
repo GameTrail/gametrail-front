@@ -27,6 +27,9 @@ const SmallMenu: FC<Props> = ({ userCookie, handleStripeCheckout }) => {
       <MenuItem href="/trails">
         <p>{t('trails')}</p>
       </MenuItem>
+      <MenuItem href="/blog">
+        <p>Blog</p>
+      </MenuItem>
       {userCookie && (
         <>
           <MenuItem href="/trail/create">

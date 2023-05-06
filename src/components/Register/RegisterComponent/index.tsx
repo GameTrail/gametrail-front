@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/Landing/MainSection/styles';
 import { LoginLottie } from '@/components/Lotties';
+import RegisterAvatar from '@/components/Register/RegisterAvatar';
 import {
   RegisterContainer, Container, Title, RegisterForm, Label, Input, ErrorContainer, LabelCheck, InputCheck,
 } from './styles';
@@ -133,12 +134,9 @@ const Register = () => {
         <Container>
           <Label>
             Avatar
-            <Input
-              type="text"
-              name="Avatar"
-              placeholder="URL"
-              value={avatarURL}
-              onChange={(e) => setAvatar(e.target.value)}
+            <RegisterAvatar
+              setAvatar={setAvatar}
+              selectedAvatar={avatarURL}
             />
           </Label>
         </Container>

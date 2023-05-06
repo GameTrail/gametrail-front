@@ -363,6 +363,7 @@ const ProfileConfig = {
   // ProfileData
   edit_data: 'Redigera data',
   update_data: 'Uppdatera data',
+  custom_avatar: 'Anpassad avatar',
 
   // ProfileDelete
   profile_delete: 'Radera konto',

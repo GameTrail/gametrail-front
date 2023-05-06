@@ -13,6 +13,7 @@ export const Container = styled.div`
     .crown{
         color: ${({ theme }) => theme.nord.yellow};
         width: 25px;
+        margin-right: 5px;
         height: 25px;
         @keyframes changeColor {
             0% {

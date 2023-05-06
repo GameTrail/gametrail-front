@@ -366,6 +366,7 @@ const ProfileConfig = {
   // ProfileData
   edit_data: 'Edit data',
   update_data: 'Update data',
+  custom_avatar: 'Custom avatar',
 
   // ProfileDelete
   profile_delete: 'Delete account',

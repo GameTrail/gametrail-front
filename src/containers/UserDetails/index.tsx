@@ -8,7 +8,7 @@ import {
 } from '@/components/UserDetails';
 import KarmaToast from './KarmaToast';
 import {
-  Container, InfoDetails, StatsDetails, ListsDetails, KarmaInfo,
+  Container, InfoDetails, StatsDetails, KarmaInfo, MotionListDetails,
 } from './styles';
 import type { Props } from './types';
 import { ButtonType } from './types';
@@ -57,9 +57,9 @@ const User: FC<Props> = ({ userData }) => {
 
       <UserListsButtons onClickButton={onClickButton} selectedButton={selectedButton} />
 
-      <ListsDetails>
+      <MotionListDetails layout>
         {handleRenderList}
-      </ListsDetails>
+      </MotionListDetails>
 
     </Container>
   );

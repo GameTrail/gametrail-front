@@ -1,7 +1,9 @@
 import type { FC } from 'react';
 import { useState } from 'react';
 import useLanguage from '@/i18n/hooks';
-import { Button, DivContainer, InputField } from './styles';
+import {
+  Button, InputField, MotionDivContainer, MotionDivContainerVariants,
+} from './styles';
 
 export type Props = {
   onClickNewComment: (input: string) => void;
@@ -24,10 +26,14 @@ const ImputFieldSection : FC<Props> = ({ onClickNewComment }) => {
   const writeAComment = t('write_a_comment');
 
   return (
-    <DivContainer>
+    <MotionDivContainer
+      variants={MotionDivContainerVariants}
+      initial="hidden"
+      animate="visible"
+    >
       <InputField type="text" placeholder={writeAComment} value={input} onChange={handleOnChange} />
       <Button type="submit" onClick={sendCommentToParent}>{t('send')}</Button>
-    </DivContainer>
+    </MotionDivContainer>
   );
 };
 export default ImputFieldSection;

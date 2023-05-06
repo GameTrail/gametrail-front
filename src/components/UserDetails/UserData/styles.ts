@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 
 export const Container = styled.div`
     display: flex;
@@ -130,6 +131,20 @@ export const RateContainer = styled.form`
       justify-content: center;
   };
 `;
+
+export const MotionRateContainer = motion(RateContainer);
+export const MotionRateContainerVariants = {
+  closed: {
+    opacity: 0,
+    scale: 0,
+    y: '-30vh',
+  },
+  open: {
+    opacity: 1,
+    scale: 1,
+    y: 0,
+  },
+};
 
 export const RateInput = styled.input`
     display: none;

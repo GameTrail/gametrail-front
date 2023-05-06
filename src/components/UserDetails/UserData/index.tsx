@@ -9,8 +9,14 @@ import useLanguage from '@/i18n/hooks';
 import type { User } from '@/models/User/types';
 import { getUserCookie } from '@/utils/login';
 import {
-
-  Container, RateButton, RateContainer, RateLabel, RateButtonSubmit, RateInput, CloseRateContainer, ErrorContainer,
+  Container,
+  RateButton,
+  RateLabel,
+  RateButtonSubmit,
+  RateInput,
+  CloseRateContainer,
+  ErrorContainer,
+  MotionRateContainer, MotionRateContainerVariants,
 } from './styles';
 
 export type Props = {
@@ -116,14 +122,11 @@ const UserData: FC<Props> = ({ user }) => {
       if (!res.ok) {
         throw new Error(res.statusText);
       }
+      router.reload();
     } catch (error) {
       setRatingError(true);
-      // TODO: This should be handled somehow
-      throw new Error();
     }
-    handleRateContainer();
-    window.location.reload();
-  }, [handleRateContainer, token, user.id, userWhoRates?.id]);
+  }, [router, token, user.id, userWhoRates?.id]);
 
   const handleAlreadyVotedError = useMemo(() => {
     if (ratingError) {
@@ -137,7 +140,13 @@ const UserData: FC<Props> = ({ user }) => {
   const handleRenderRate = useMemo(() => {
     if (rate) {
       return (
-        <RateContainer onSubmit={handleSubmit}>
+        <MotionRateContainer
+          onSubmit={handleSubmit}
+          variants={MotionRateContainerVariants}
+          initial="closed"
+          animate={rate ? 'open' : 'closed'}
+          transition={{ duration: 0.3 }}
+        >
           <CloseRateContainer onClick={handleRateContainer}>X</CloseRateContainer>
           {handleAlreadyVotedError}
           <h2>{t('rate_user')}</h2>
@@ -202,7 +211,7 @@ const UserData: FC<Props> = ({ user }) => {
             onChange={(e) => setUserTeamwork(e.target.value)}
           />
           <RateButtonSubmit type="submit">{t('send')}</RateButtonSubmit>
-        </RateContainer>
+        </MotionRateContainer>
       );
     }
     return null;

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 
 // css for the comments section
 export const DivContainer = styled.div`
@@ -7,6 +8,21 @@ export const DivContainer = styled.div`
     display: flex;
     margin-bottom: 0.2rem;
 `;
+
+export const MotionDivContainer = motion(DivContainer);
+export const MotionDivContainerVariants = {
+  hidden: {
+    opacity: 0,
+    scale: 0.5,
+    y: 5,
+
+  },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    y: 0,
+  },
+};
 
 export const InputField = styled.input`
     padding: 0.7rem;

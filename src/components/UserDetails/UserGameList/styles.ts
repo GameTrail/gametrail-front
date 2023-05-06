@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { handleStateColor } from './logic';
 import type { StateProps } from './types';
@@ -67,6 +68,20 @@ export const Game = styled(Link)`
         flex-direction: column;
     }
 `;
+
+export const MotionGame = motion(Game);
+export const MotionGameVariants = {
+  hidden: {
+    opacity: 0,
+    y: 50,
+    scale: 0.8,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+  },
+};
 
 export const Name = styled.p`
     font-size: 1em;

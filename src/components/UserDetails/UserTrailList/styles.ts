@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 
 export const Container = styled.div`
     display: flex;
@@ -94,6 +95,20 @@ export const Item = styled.div`
      };
     }
 `;
+
+export const MotionItem = motion(Item);
+export const MotionItemVariants = {
+  hidden: {
+    opacity: 0,
+    y: 50,
+    scale: 0.8,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+  },
+};
 
 export const TrailName = styled.p`
 font-size: 12px;

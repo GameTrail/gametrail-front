@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 
 export type ContainerProps = {
   darkMode: boolean;
@@ -72,6 +73,8 @@ export const ListsDetails = styled.div`
     padding: 0 20px;
     
 `;
+
+export const MotionListDetails = motion(ListsDetails);
 
 export const KarmaInfo = styled.div`
     display: flex;

@@ -95,7 +95,7 @@ const TrailEditionForm: FC<Props> = ({ trailId }) => {
         setLoadingTrail(false);
       }
     };
-    if (isFirstRender === true) fetchTrail();
+    if (isFirstRender) fetchTrail();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [trailId]);
 
@@ -242,7 +242,7 @@ const TrailEditionForm: FC<Props> = ({ trailId }) => {
         setLoadingGames(false);
       }
     };
-    if (isFirstRender === false) fetchGames();
+    if (!isFirstRender) fetchGames();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchQuery, t]);
 
@@ -256,7 +256,7 @@ const TrailEditionForm: FC<Props> = ({ trailId }) => {
         </Title>
         <FormContainer>
           <StandarContainer>
-            {isTrailEnded === true
+            {isTrailEnded
           && (
           <ErrorContainer>
             {t('trail_edit_error_ended')}

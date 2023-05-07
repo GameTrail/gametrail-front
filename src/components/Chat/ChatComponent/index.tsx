@@ -1,5 +1,6 @@
 import type { FC } from 'react';
 import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import { io } from 'socket.io-client';
 
 import type { Message } from '@/models/Message/types';
@@ -75,7 +76,9 @@ const ChatComponent: FC<Props> = ({ trailData }) => {
   return (
     <>
       <MessagesContainer>
-        <ChatSection messages={messages} />
+        <motion.div layout>
+          <ChatSection messages={messages} />
+        </motion.div>
       </MessagesContainer>
       <Container>
         <DivContainer data-testid="input-container">

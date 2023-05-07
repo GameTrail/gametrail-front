@@ -13,6 +13,11 @@ const mockFetchResponse = (url: String, response: User) => {
   } as Response);
 };
 
+const intersectionObserverMock = () => ({
+  observe: () => null,
+});
+window.IntersectionObserver = jest.fn().mockImplementation(intersectionObserverMock);
+
 describe('CommentsComponent', () => {
   it('should render without error', async () => {
     const user = {

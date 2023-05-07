@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 
 export const PremiumContainer = styled.div`
 display: flex;
@@ -11,6 +12,8 @@ border-left: 1px solid ${({ theme }) => theme.nord.white1};
   border-left: 0;
 }
 `;
+
+export const MotionPremiumContainer = motion(PremiumContainer);
 
 export const PremiumInfo = styled.div`
 width: 70%;
@@ -26,7 +29,6 @@ gap: 1em;
 export const DescriptionContainer = styled.div`
 width: 80%;
 margin-top: 7.5%;
-margin-bottom: 5%;
 font-size: 15px;
 text-align: justify;
 color: ${({ theme }) => theme.nord.white0};
@@ -52,6 +54,7 @@ text-align: center;
 `;
 
 export const Label = styled.label`
+  display: none;
   width: 80%;
   margin-bottom: 1em;
   color: ${({ theme }) => theme.nord.white2};
@@ -85,6 +88,23 @@ export const PremiumFilterFirst = styled.div`
   }
 `;
 
+export const PremiumRadar = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center; 
+    width: 102%;
+    height: 17em;
+  @media (max-width: 768px) {
+    width: 100%;
+    height: 80vw;
+    overflow: visible;
+    margin-top: -2.5rem;
+    min-height: 0;
+  }
+    `;
+
 export const PremiumFilterSecond = styled.div`
   width: 100%;
   height: 100%;
@@ -93,7 +113,6 @@ export const PremiumFilterSecond = styled.div`
   justify-content: center;
   align-items: end;
   align-content: end;
-  gap: 0rem;
   @media (max-width: 768px) {
     align-items: center;
     flex-direction: column;
@@ -120,6 +139,7 @@ export const PremiumFilterSecond = styled.div`
 `;
 
 export const Input = styled.input`
+ display: none;
   width: 100%;
   height: 2rem;
   padding: 0.5em;
@@ -128,5 +148,4 @@ export const Input = styled.input`
   border: 0.1rem solid ${({ theme }) => theme.nord.white0};
   border-radius: 0.5rem;
   font-size: 1rem;
-  font-family: Unbounded;
 `;

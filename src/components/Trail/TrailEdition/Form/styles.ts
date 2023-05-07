@@ -187,7 +187,6 @@ export const DateLabel = styled.div`
 export const InputDate = styled.input`
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   padding: 8px;
   justify-content: center;
   background-color: ${({ theme }) => theme.nord.white2};

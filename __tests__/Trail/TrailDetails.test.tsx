@@ -7,6 +7,24 @@ import { MOCK_TRAIL } from '@/models/Trail/mock';
 import theme from '@/theme';
 import '@/i18n';
 
+jest.mock('next/router', () => ({
+  useRouter() {
+    return ({
+      route: '/',
+      pathname: '',
+      query: '',
+      asPath: '',
+      push: jest.fn(),
+      events: {
+        on: jest.fn(),
+        off: jest.fn(),
+      },
+      beforePopState: jest.fn(() => null),
+      prefetch: jest.fn(() => null),
+    });
+  },
+}));
+
 describe('GameData component', () => {
   it('renders trail details correctly', () => {
     render(

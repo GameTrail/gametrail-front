@@ -9,6 +9,11 @@ jest.mock('next/router', () => ({
   useRouter: jest.fn().mockReturnValue({ push: jest.fn() }),
 }));
 
+const intersectionObserverMock = () => ({
+  observe: () => null,
+});
+window.IntersectionObserver = jest.fn().mockImplementation(intersectionObserverMock);
+
 describe('GameList', () => {
   it('renders without errors', () => {
     render(

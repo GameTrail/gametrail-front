@@ -6,7 +6,6 @@ import AsyncSelect from 'react-select/async';
 import {
   Button,
   DateFieldContainer,
-  Form,
   Input,
   InputDate,
   InputTextArea,
@@ -16,9 +15,8 @@ import {
   Title,
   ErrorContainer,
   FormContainer,
-  StandarContainer,
   CreateContainer,
-  DateLabel,
+  DateLabel, MotionForm, StandarContainer,
 } from '@/components/Trail/TrailCreation/Form/styles';
 import useLanguage from '@/i18n/hooks';
 import type { Game } from '@/models/Game/types';
@@ -153,7 +151,12 @@ const TrailCreationForm = () => {
 
   return (
 
-    <Form onSubmit={handleSubmit}>
+    <MotionForm
+      onSubmit={handleSubmit}
+      initial={{ opacity: 0, y: 300 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1.5, type: 'spring', bounce: 0.25 }}
+    >
       <CreateContainer>
         <Title>
           {t('trail_create_title')}
@@ -267,7 +270,7 @@ const TrailCreationForm = () => {
         </FormContainer>
         <Button type="submit">{t('create')}</Button>
       </CreateContainer>
-    </Form>
+    </MotionForm>
 
   );
 };

@@ -93,7 +93,7 @@ const UserGameList: FC<Props> = ({ userId }) => {
         </GameListEmpty>
       );
     }
-    return (gameList.map((gameListItem) => <UserGameCard gameListItem={gameListItem} onUpdateGameStatus={onUpdateGameStatus} />));
+    return (gameList.map((gameListItem) => <UserGameCard gameListItem={gameListItem} onUpdateGameStatus={onUpdateGameStatus} index={gameList.indexOf(gameListItem)} />));
   };
 
   useEffect(() => {

@@ -47,6 +47,10 @@ const ProfileData:FC<Props> = () => {
         headers: { Authorization: `Token ${token}`, 'Content-Type': 'application/json' },
       });
 
+      if (avatarURL === '') {
+        setAvatar(user?.avatar);
+      }
+
       if (res.ok) {
         const updatedUser = {
           ...user,

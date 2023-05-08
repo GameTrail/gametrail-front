@@ -2,27 +2,19 @@ import type { FC } from 'react';
 import { RegisterAvatarContainer, RegisterAvatarImage } from './styles';
 
 const avatars = [
-  'https://cdnb.artstation.com/p/assets/images/images/035/213/423/large/mcashe-titanzekeef-dev.jpg?1614374087',
-  'https://cdnb.artstation.com/p/assets/images/images/035/213/423/large/mcashe-titanzekeef-dev.jpg?1614374087',
-  'https://cdnb.artstation.com/p/assets/images/images/035/213/423/large/mcashe-titanzekeef-dev.jpg?1614374087',
-  'https://cdnb.artstation.com/p/assets/images/images/035/213/423/large/mcashe-titanzekeef-dev.jpg?1614374087',
-  'https://cdnb.artstation.com/p/assets/images/images/035/213/423/large/mcashe-titanzekeef-dev.jpg?1614374087',
-  'https://cdnb.artstation.com/p/assets/images/images/035/213/423/large/mcashe-titanzekeef-dev.jpg?1614374087',
-  'https://cdnb.artstation.com/p/assets/images/images/035/213/423/large/mcashe-titanzekeef-dev.jpg?1614374087',
-  'https://cdnb.artstation.com/p/assets/images/images/035/213/423/large/mcashe-titanzekeef-dev.jpg?1614374087',
-  'https://cdnb.artstation.com/p/assets/images/images/035/213/423/large/mcashe-titanzekeef-dev.jpg?1614374087',
-  'https://cdnb.artstation.com/p/assets/images/images/035/213/423/large/mcashe-titanzekeef-dev.jpg?1614374087',
-  'https://cdnb.artstation.com/p/assets/images/images/035/213/423/large/mcashe-titanzekeef-dev.jpg?1614374087',
-  'https://cdnb.artstation.com/p/assets/images/images/035/213/423/large/mcashe-titanzekeef-dev.jpg?1614374087',
-  'https://cdnb.artstation.com/p/assets/images/images/035/213/423/large/mcashe-titanzekeef-dev.jpg?1614374087',
-  'https://cdnb.artstation.com/p/assets/images/images/035/213/423/large/mcashe-titanzekeef-dev.jpg?1614374087',
-  'https://cdnb.artstation.com/p/assets/images/images/035/213/423/large/mcashe-titanzekeef-dev.jpg?1614374087',
-  'https://cdnb.artstation.com/p/assets/images/images/035/213/423/large/mcashe-titanzekeef-dev.jpg?1614374087',
-  'https://cdnb.artstation.com/p/assets/images/images/035/213/423/large/mcashe-titanzekeef-dev.jpg?1614374087',
-  'https://cdnb.artstation.com/p/assets/images/images/035/213/423/large/mcashe-titanzekeef-dev.jpg?1614374087',
-  'https://cdnb.artstation.com/p/assets/images/images/035/213/423/large/mcashe-titanzekeef-dev.jpg?1614374087',
-  'https://cdnb.artstation.com/p/assets/images/images/035/213/423/large/mcashe-titanzekeef-dev.jpg?1614374087',
+  'avatar1',
+  'avatar2',
+  'avatar3',
+  'avatar4',
+  'avatar5',
+  'avatar6',
+  'avatar7',
+  'avatar8',
+  'avatar9',
+  'avatar10',
 ];
+
+const CLOUD_URL = 'https://res.cloudinary.com/dmydiwmnh/image/upload/';
 
 interface Props {
   setAvatar: (avatar: string) => void;
@@ -34,7 +26,7 @@ const RegisterAvatar: FC<Props> = ({
   selectedAvatar,
 }) => {
   const handleAvatarSelect = (avatar: string) => {
-    setAvatar(avatar);
+    setAvatar(`${CLOUD_URL}${avatar}.jpg`);
   };
 
   return (
@@ -42,10 +34,10 @@ const RegisterAvatar: FC<Props> = ({
       {avatars.map((avatar) => (
         <RegisterAvatarImage
           key={avatar}
-          src={avatar}
+          src={`${CLOUD_URL}${avatar}.jpg`}
           alt={`Avatar ${avatar}`}
           onClick={() => handleAvatarSelect(avatar)}
-          isSelected={selectedAvatar === avatar}
+          isSelected={selectedAvatar === `${CLOUD_URL}${avatar}.jpg`}
         />
       ))}
     </RegisterAvatarContainer>

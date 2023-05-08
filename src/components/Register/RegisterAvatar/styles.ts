@@ -34,20 +34,10 @@ export const RegisterAvatarContainer = styled.div`
     border-radius: 8px; 
   }
 
-  h2 {
-    color: ${({ theme }) => theme.nord.white0};
-    margin-bottom: 1rem;
-  }
-
-  label {
-    color: ${({ theme }) => theme.nord.white0};
-  }
-
-  @media (max-width: 768px) {
+  @media (max-width: 820px) {
     gap: 0.5rem;
     width: 100%;
-    max-width: 400px;
-    margin: auto;
+    justify-content: center;
   }
 `;
 

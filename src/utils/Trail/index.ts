@@ -8,7 +8,7 @@ export async function putGame(game: FormDataEntryValue, trailId: number, selecte
   };
 
   try {
-    return await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/gameInTrail', {
+    return await fetch('gametrail-backend-s4-production.up.railway.app/api/gameInTrail', {
       method: 'POST',
       body: JSON.stringify(gameData),
       headers: {

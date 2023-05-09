@@ -24,7 +24,7 @@ const ProfileDelete = () => {
       userId: user?.id,
     };
     try {
-      const res = await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/user/', {
+      const res = await fetch('gametrail-backend-s4-production.up.railway.app/api/delete-user/', {
         method: 'DELETE',
         body: JSON.stringify(requestData),
         headers: { Authorization: `Token ${token}`, 'Content-Type': 'application/json' },

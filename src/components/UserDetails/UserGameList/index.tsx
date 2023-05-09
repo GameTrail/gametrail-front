@@ -12,7 +12,7 @@ import {
 } from './styles';
 import UserGameCard from './UserGameCard';
 
-const API_URL = 'https://gametrail-backend-production-8fc0.up.railway.app/api';
+const API_URL = 'gametrail-backend-s4-production.up.railway.app/api';
 
 export type Props = {
   userId: number;

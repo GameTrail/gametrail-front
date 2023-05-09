@@ -9,7 +9,7 @@ import {
   Nav, MobileMenuIcon, ResponsiveNavbar, Menu,
 } from './styles';
 
-const STRIPE_PRODUCT_URL = 'https://buy.stripe.com/test_6oE5ksaHO1Xr6Zy9AB';
+const STRIPE_PRODUCT_URL = 'https://buy.stripe.com/test_aEUfZ6aHOcC5fw48wy';
 
 const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);

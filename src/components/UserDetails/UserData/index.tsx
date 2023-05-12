@@ -113,7 +113,7 @@ const UserData: FC<Props> = ({ user }) => {
       },
     };
     try {
-      const res = await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/rating', {
+      const res = await fetch('gametrail-backend-s4-production.up.railway.app/api/rating', {
         method: 'POST',
         body: JSON.stringify(requestData),
         headers: { Authorization: `Token ${token}`, 'Content-Type': 'application/json' },

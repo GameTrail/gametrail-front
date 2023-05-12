@@ -19,7 +19,7 @@ const Home = () => {
       setLoading(true);
       setError(false);
 
-      const urls = ['https://gametrail-backend-production-8fc0.up.railway.app/api/getTrail/17', 'https://gametrail-backend-production-8fc0.up.railway.app/api/recentGames/', 'https://gametrail-backend-production-8fc0.up.railway.app/api/sabiasque/'];
+      const urls = ['gametrail-backend-s4-production.up.railway.app/api/getTrail/17', 'gametrail-backend-s4-production.up.railway.app/api/recentGames/', 'gametrail-backend-s4-production.up.railway.app/api/sabiasque/'];
 
       try {
         const responses = await Promise.all(

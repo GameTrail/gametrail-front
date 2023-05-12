@@ -72,7 +72,7 @@ const GameList: FC<Props> = ({
         status: GameListState.PENDING.toString(),
       };
       try {
-        const res = await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/gameList/game', {
+        const res = await fetch('gametrail-backend-s4-production.up.railway.app/api/gameList/game', {
           method: 'POST',
           body: JSON.stringify(requestData),
           headers: {
@@ -93,7 +93,7 @@ const GameList: FC<Props> = ({
 
   useEffect(() => {
     const getUserGames = async (userId: number) => {
-      const res = await fetch(`https://gametrail-backend-production-8fc0.up.railway.app/api/user/${userId}`);
+      const res = await fetch(`gametrail-backend-s4-production.up.railway.app/api/user/${userId}`);
       const data: UserInDetails = await res.json();
       setUserGames(data.games);
     };

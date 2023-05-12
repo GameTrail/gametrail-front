@@ -62,7 +62,7 @@ describe('CommentsComponent', () => {
       ],
     };
 
-    mockFetchResponse(`https://gametrail-backend-production-8fc0.up.railway.app/api/user/${user.id}/`, user);
+    mockFetchResponse(`gametrail-backend-s4-production.up.railway.app/api/user/${user.id}/`, user);
     render(
       <ThemeProvider theme={theme}>
         <CommentsComponent type="user" data={user} />

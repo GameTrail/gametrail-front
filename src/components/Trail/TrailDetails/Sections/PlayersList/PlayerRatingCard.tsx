@@ -5,7 +5,7 @@ import type { TrailMember } from '@/models/TrailUser/types';
 import { calculateAverageRating } from '@/utils/calculateAverageRating';
 import { normalizeUserRating } from '@/utils/normalizeUserRating';
 
-const API_URL = 'https://gametrail-backend-production-8fc0.up.railway.app/api';
+const API_URL = 'gametrail-backend-s4-production.up.railway.app/api';
 
 interface Props {
   trailMember: TrailMember;

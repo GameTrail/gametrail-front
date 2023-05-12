@@ -32,7 +32,7 @@ const ProfileData:FC<Props> = () => {
       avatar: formData.get('avatar') === '' ? user?.avatar : formData.get('avatar'),
     };
     try {
-      const res = await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/user/', {
+      const res = await fetch('gametrail-backend-s4-production.up.railway.app/api/edit-user/', {
         method: 'PUT',
         body: JSON.stringify(requestData),
         headers: { Authorization: `Token ${token}`, 'Content-Type': 'application/json' },

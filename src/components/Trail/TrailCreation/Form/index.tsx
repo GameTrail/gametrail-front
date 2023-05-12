@@ -24,7 +24,7 @@ import { getUserCookie } from '@/utils/login';
 import { handlePremiumFilters } from '@/utils/Trail/handlePremiumFilters';
 import PremiumFilters from '../PremiumFilters';
 
-const GAMES_URL = 'https://gametrail-backend-production-8fc0.up.railway.app/api/game/';
+const GAMES_URL = 'gametrail-backend-s4-production.up.railway.app/api/game/';
 
 const TrailCreationForm = () => {
   const { t } = useLanguage();
@@ -73,7 +73,7 @@ const TrailCreationForm = () => {
     if (user?.plan !== 'PREMIUM' && trailMaxNumber > 4) {
       setFormError((prevState) => [...prevState, t('trail_create_error-2')]);
     }
-    const res = await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/trail/', {
+    const res = await fetch('gametrail-backend-s4-production.up.railway.app/api/trail/', {
       method: 'POST',
       body: JSON.stringify(requestData),
       headers: { Authorization: `Token ${token}`, 'Content-Type': 'application/json' },
@@ -96,7 +96,7 @@ const TrailCreationForm = () => {
     };
 
     try {
-      const res = await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/gameInTrail', {
+      const res = await fetch('gametrail-backend-s4-production.up.railway.app/api/gameInTrail', {
         method: 'POST',
         body: JSON.stringify(gameData),
         headers: {

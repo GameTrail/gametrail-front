@@ -31,7 +31,7 @@ const PlusInfoRow: FC<Props> = ({ trailData }) => {
       user: user?.id.toString(),
     };
     try {
-      const res = await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/addUserInTrail', {
+      const res = await fetch('gametrail-backend-s4-production.up.railway.app/api/addUserInTrail', {
         method: 'POST',
         body: JSON.stringify(requestData),
         headers: {

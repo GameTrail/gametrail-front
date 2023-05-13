@@ -16,8 +16,8 @@ import {
 } from './styles';
 import type { UserCredentials } from './types';
 
-const URL_LOGIN = 'gametrail-backend-s4-production.up.railway.app/api/auth/login';
-const URL_USER = 'gametrail-backend-s4-production.up.railway.app/api/user/';
+const URL_LOGIN = 'https://gametrail-backend-s4-production.up.railway.app/api/auth/login';
+const URL_USER = 'https://gametrail-backend-s4-production.up.railway.app/api/user/';
 const LOGIN_ERROR = 'Error al inicial sesión, comprueba tus credenciales.';
 
 const Login = () => {

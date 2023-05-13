@@ -12,7 +12,7 @@ import {
 } from './styles';
 import TrailCard from './TrailCard';
 
-const API_URL = 'gametrail-backend-s4-production.up.railway.app/api/getTrail/';
+const API_URL = 'https://gametrail-backend-s4-production.up.railway.app/api/getTrail/';
 const TrailList = () => {
   const { t } = useLanguage();
   const [trails, setTrails] = useState<Trail[] | null>(null);

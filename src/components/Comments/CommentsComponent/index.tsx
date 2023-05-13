@@ -35,7 +35,7 @@ const CommentsComponent: FC<Props> = ({ data, type }) => {
   const [post, setPost] = useState(false);
 
   const postComment = async (commentToPost: CommentToPostUser | CommentToPostGame) => {
-    const url = 'gametrail-backend-s4-production.up.railway.app/api/comment';
+    const url = 'https://gametrail-backend-s4-production.up.railway.app/api/comment';
 
     try {
       const res = await fetch(url, {
@@ -77,7 +77,7 @@ const CommentsComponent: FC<Props> = ({ data, type }) => {
     const fetchUser = async (id: number) => {
       setLoading(true);
       try {
-        const response = await fetch(`gametrail-backend-s4-production.up.railway.app/api/user/${id}/`);
+        const response = await fetch(`https://gametrail-backend-s4-production.up.railway.app/api/user/${id}/`);
         const userData = await response.json();
         setCommentsArray(userData.comments_received);
         setError(false);
@@ -91,7 +91,7 @@ const CommentsComponent: FC<Props> = ({ data, type }) => {
     const fetchGameDetails = async (id: number) => {
       setLoading(true);
       try {
-        const gameDetailsResponse = await fetch(`gametrail-backend-s4-production.up.railway.app/api/game/${id}/`);
+        const gameDetailsResponse = await fetch(`https://gametrail-backend-s4-production.up.railway.app/api/game/${id}/`);
         const gameDetailsData = await gameDetailsResponse.json();
         setCommentsArray(gameDetailsData.comments_games);
         setError(false);

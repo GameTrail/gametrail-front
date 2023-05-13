@@ -42,7 +42,7 @@ describe('CommentsComponent', () => {
         },
       ],
     };
-    mockFetchResponse(`gametrail-backend-s4-production.up.railway.app/api/game/${game.id}/`, game);
+    mockFetchResponse(`https://gametrail-backend-s4-production.up.railway.app/api/game/${game.id}/`, game);
     render(
       <ThemeProvider theme={theme}>
         <CommentsComponent type="game" data={game} />

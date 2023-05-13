@@ -24,7 +24,7 @@ const Landing = () => {
           userId: userCookie?.id.toString(),
           action: 'SUBSCRIBE',
         };
-        const res = await fetch('gametrail-backend-s4-production.up.railway.app/api/sub/', {
+        const res = await fetch('https://gametrail-backend-s4-production.up.railway.app/api/sub/', {
           method: 'PUT',
           body: JSON.stringify(data),
           headers: {

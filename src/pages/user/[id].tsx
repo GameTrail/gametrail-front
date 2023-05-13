@@ -18,7 +18,7 @@ const User = () => {
     const fetchUser = async () => {
       setLoading(true);
       try {
-        const response = await fetch(`gametrail-backend-s4-production.up.railway.app/api/user/${id}/`);
+        const response = await fetch(`https://gametrail-backend-s4-production.up.railway.app/api/user/${id}/`);
         const data = await response.json();
 
         const normalizedUserData: UserProps = {

@@ -20,8 +20,8 @@ const Game = () => {
       setLoading(true);
       try {
         const [gameDetailsResponse, trailDataResponse] = await Promise.all([
-          fetch(`gametrail-backend-s4-production.up.railway.app/api/game/${id}/`),
-          fetch(`gametrail-backend-s4-production.up.railway.app/api/getTrail/?games__game=${id}`),
+          fetch(`https://gametrail-backend-s4-production.up.railway.app/api/game/${id}/`),
+          fetch(`https://gametrail-backend-s4-production.up.railway.app/api/getTrail/?games__game=${id}`),
         ]);
         const gameDetailsData = await gameDetailsResponse.json();
         const trailApiData = await trailDataResponse.json();

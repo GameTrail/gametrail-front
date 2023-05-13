@@ -36,9 +36,10 @@ const ChatComponent: FC<Props> = ({ trailData }) => {
     const fetchChatMessages = async (id: number) => {
       setLoading(true);
       try {
-        const response = await fetch(`https://gametrail-backend-production-8fc0.up.railway.app/api/chatByTrailId/${id}`);
+        const response = await fetch(`https://gametrail-backend-s4-production.up.railway.app/api/chatByTrailId/?trailId=${id}`);
         const userData = await response.json();
-        setMessages([...userData]);
+        const reverseMessages = userData.reverse();
+        setMessages([...reverseMessages]);
         setError(false);
       } catch (err) {
         setError(true);
@@ -75,10 +76,9 @@ const ChatComponent: FC<Props> = ({ trailData }) => {
     const request = {
       trailId: trailData.id,
       text: newMessage.text,
-      creationDate: newMessage.creationDate,
       userId: userCookie?.id,
     };
-    const url = 'https://gametrail-backend-production-8fc0.up.railway.app/api/chat';
+    const url = 'https://gametrail-backend-s4-production.up.railway.app/api/chat';
 
     try {
       const res = await fetch(url, {

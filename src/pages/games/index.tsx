@@ -6,7 +6,7 @@ import LoadingSpinner from '@/components/LoadingSpinner';
 import { GameList } from '@/containers';
 import type { Game } from '@/models/Game/types';
 
-const GAMES_URL = 'https://gametrail-backend-production-8fc0.up.railway.app/api/game/';
+const GAMES_URL = 'https://gametrail-backend-s4-production.up.railway.app/api/game/';
 
 const Games = () => {
   const [games, setGames] = useState<Game[]>([]);

@@ -25,11 +25,11 @@ const TrailGameList:FC<Props> = ({ trailData }) => {
   const [putGame, setPutGame] = useState<boolean | null>(null);
 
   useEffect(() => {
-    // https://gametrail-backend-production-8fc0.up.railway.app/api/allGamesInTrail/?trail=59
+    // https://gametrail-backend-s4-production.up.railway.app/api/allGamesInTrail/?trail=59
     const fetchTrailGames = async (id: number) => {
       setLoading(true);
       try {
-        const response = await fetch(`https://gametrail-backend-production-8fc0.up.railway.app/api/allGamesInTrail/?trail=${id}`);
+        const response = await fetch(`https://gametrail-backend-s4-production.up.railway.app/api/allGamesInTrail/?trail=${id}`);
         const data = await response.json();
         setGameList(data);
         setError(false);
@@ -62,7 +62,7 @@ const TrailGameList:FC<Props> = ({ trailData }) => {
         status: newState.toString(),
       };
       try {
-        const res = await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/gameInTrail', {
+        const res = await fetch('https://gametrail-backend-s4-production.up.railway.app/api/gameInTrail', {
           method: 'PUT',
           body: JSON.stringify(requestData),
           headers: {

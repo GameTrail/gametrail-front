@@ -42,8 +42,9 @@ export const TrailListContainer = styled.div`
     justify-content: center;
     align-items: center;
 
-    width: 80%;
+    width: 70%;
     height: auto;
+    min-height: 100vh;
 
     gap: 1rem;
 
@@ -120,4 +121,19 @@ export const Description = styled.p`
 export const Players = styled.p`
     font-size: 16px;
     color: ${({ theme }) => theme.nord.green};
+`;
+
+export const Content = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    
+    width: 100%;
+
+    // mobile
+    @media (max-width: 768px) {
+        flex-direction: column;
+        align-items: center;
+    }
 `;

@@ -14,8 +14,8 @@ export const DeletePopup = styled.div`
   border-radius: 8px;
   margin-top: 3em;
   z-index: 1;
-  width: 50%;
-  height: 90%;
+  width: 30%;
+  height: 20%;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.25);
   @keyframes pulse {
     0% {
@@ -35,8 +35,8 @@ export const DeletePopup = styled.div`
     align-items: center;
     position: fixed;
     margin-top: 2rem;
-    width: 90%;
-    height: 70%;
+    width: 80%;
+    height: 30%;
     z-index: 1;
     font-size: 0.8rem;
     justify-content: center;

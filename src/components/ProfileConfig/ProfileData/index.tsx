@@ -17,7 +17,7 @@ import {
 type Props = {
   userData: UserCookie | null;
 };
-const CLOUD_URL = process.env.NEXT_CLOUDINARY_URL as string;
+const CLOUD_URL = process.env.NEXT_PUBLIC_CLOUDINARY_URL as string;
 
 const ProfileData:FC<Props> = () => {
   const { t } = useTranslation();
@@ -40,40 +40,50 @@ const ProfileData:FC<Props> = () => {
     const form = event.currentTarget;
     const formData = new FormData(form);
 
+    setAvatar(formData.get('avatar') as string);
+    setAvatarPremium(formData.get('avatarPremium') as any);
+
     const requestData = {
       userId: user?.id,
       email: formData.get('email') === '' ? user?.email : formData.get('email'),
+      avatar: avatarURL,
     };
 
-    if (formData.get('avatarPremium') !== '') {
-      const file = formData.get('avatarPremium') as File;
-      const formDataPremium = new FormData();
-      formDataPremium.append('file', file);
-      formDataPremium.append('upload_preset', 'gametrail');
-      await fetch(CLOUD_URL, {
-        method: 'POST',
-        body: formDataPremium,
-      })
-        .then((res) => res.json())
-        .then((data) => setAvatarPremium(data.secure_url))
-        .catch(() => toast.error(t('toast_alert_avatar')));
+    if (avatarPremium) {
+      try {
+        const formDataPremium = new FormData();
+        formDataPremium.append('file', avatarPremium);
+        formDataPremium.append('upload_preset', 'gametrail');
+        const result = await fetch(`${CLOUD_URL}`, {
+          method: 'POST',
+          body: formDataPremium,
+        });
+
+        const response = await result.json();
+        if (result.ok) {
+          requestData.avatar = response.secure_url;
+        }
+      } catch (error) {
+        toast.error(t('toast_alert_avatar'));
+      }
     }
+
     try {
-      const res = await fetch('https://gametrail-backend-s4-production.up.railway.app/api/edit-user/', {
+      const res = await fetch('https://gametrail-backend-s4-production.up.railway.app/api/edit-user', {
         method: 'PUT',
         body: JSON.stringify(requestData),
         headers: { Authorization: `Token ${token}`, 'Content-Type': 'application/json' },
       });
 
-      if (avatarURL === '') {
-        setAvatar(user?.avatar);
+      if (avatarURL === '' && user?.avatar) {
+        requestData.avatar = user.avatar;
       }
 
       if (res.ok) {
         const updatedUser = {
           ...user,
           email: requestData.email,
-          avatar: formData.get('avatarPremium') === '' ? avatarURL : avatarPremium,
+          avatar: requestData.avatar,
         };
         const userCookie = normalizeUserCookie(updatedUser, token);
         const MinUser = minimizeUserCookie(userCookie, userCookie.auth_token);
@@ -97,6 +107,7 @@ const ProfileData:FC<Props> = () => {
       reader.onloadend = () => {
         setImagePreview(reader.result);
       };
+      setAvatarPremium(file);
       reader.readAsDataURL(file);
     } else {
       setImagePreview(null);

@@ -12,6 +12,11 @@ const avatars = [
   'avatar8',
   'avatar9',
   'avatar10',
+  'avatar11',
+  'avatar12',
+  'avatar13',
+  'avatar14',
+  'avatar15',
 ];
 
 const CLOUD_URL = 'https://res.cloudinary.com/dmydiwmnh/image/upload/';

@@ -8,6 +8,7 @@ import LoadingSpinner from '@/components/LoadingSpinner';
 import PaginationCard from '@/components/PaginationCard';
 import useTrail from '@/hooks/useTrail';
 import type { Trail } from '@/models/Trail/types';
+import { getUserCookie } from '@/utils/login';
 import TrailSearchForm from '../../components/Trail/TrailSearchForm/TrailSearchForm';
 import {
   Container, TrailListContainer, Content, Title,
@@ -21,6 +22,7 @@ const TrailList = () => {
     result,
     handleUpdateSearchForm,
     handleSearch,
+    handleReset,
     searchFormQuery,
   } = useTrail();
 
@@ -29,6 +31,7 @@ const TrailList = () => {
   const [error, setError] = useState(false);
   const [pages, setPages] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
+  const user = getUserCookie();
 
   const handleRenderTrails = () => {
     if (result.length > 0) {
@@ -100,11 +103,16 @@ const TrailList = () => {
       <Container>
         <Title>{t('list_trails')}</Title>
         <Content>
-          <TrailSearchForm
-            handleSearch={handleSearch}
-            handleUpdateSearchForm={handleUpdateSearchForm}
-            searchFormQuery={searchFormQuery}
-          />
+          {
+            user?.plan === 'Premium' && (
+            <TrailSearchForm
+              handleSearch={handleSearch}
+              handleUpdateSearchForm={handleUpdateSearchForm}
+              searchFormQuery={searchFormQuery}
+              handleReset={handleReset}
+            />
+            )
+          }
           <TrailListContainer>
             {handleRenderTrails()}
           </TrailListContainer>

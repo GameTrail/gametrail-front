@@ -36,6 +36,22 @@ const useTrail = () => {
     }
   };
 
+  const handleReset = async () => {
+    setLoading(true);
+    setError(false);
+
+    const query = `${TRAIL_SEARCH_QUERY}`;
+    try {
+      const response = await fetch(query);
+      const data = await response.json();
+      setResult(data.results);
+    } catch (err) {
+      setError(true);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
     console.log(result);
   }, [result]);
@@ -44,6 +60,7 @@ const useTrail = () => {
     loading,
     error,
     handleSearch,
+    handleReset,
     handleUpdateSearchForm,
     searchFormQuery,
   };

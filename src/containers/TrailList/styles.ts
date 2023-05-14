@@ -42,7 +42,7 @@ export const TrailListContainer = styled.div`
     justify-content: center;
     align-items: center;
 
-    width: 70%;
+    width: 100%;
     height: auto;
     min-height: 100vh;
 

@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import { useTranslation } from 'react-i18next';
 import { Button } from '@/components/Landing/MainSection/styles';
 import { LoginLottie } from '@/components/Lotties';
+import RegisterAvatar from '@/components/Register/RegisterAvatar';
 import {
   RegisterContainer, Container, Title, RegisterForm, Label, Input, ErrorContainer, LabelCheck, InputCheck,
 } from './styles';
@@ -34,7 +35,7 @@ const Register = () => {
   const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const defaultAvatar = 'https://cdnb.artstation.com/p/assets/images/images/035/213/423/large/mcashe-titanzekeef-dev.jpg?1614374087';
+    const defaultAvatar = 'https://res.cloudinary.com/dmydiwmnh/image/upload/v1683569851/avatar4.jpg';
     const avatar = avatarURL || defaultAvatar;
 
     const credentials = {
@@ -133,12 +134,9 @@ const Register = () => {
         <Container>
           <Label>
             Avatar
-            <Input
-              type="text"
-              name="Avatar"
-              placeholder="URL"
-              value={avatarURL}
-              onChange={(e) => setAvatar(e.target.value)}
+            <RegisterAvatar
+              setAvatar={setAvatar}
+              selectedAvatar={avatarURL}
             />
           </Label>
         </Container>

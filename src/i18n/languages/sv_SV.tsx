@@ -364,6 +364,7 @@ const ProfileConfig = {
   edit_data: 'Redigera data',
   update_data: 'Uppdatera data',
   custom_avatar: 'Anpassad avatar',
+  toast_alert_avatar: 'Fel vid uppdatering av avatar',
 
   // ProfileDelete
   profile_delete: 'Radera konto',

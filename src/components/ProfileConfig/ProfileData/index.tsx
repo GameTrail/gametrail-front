@@ -4,6 +4,8 @@ import { faCrown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'react-i18next';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import type { UserCookie } from '@/components/Login/LoginComponent/types';
 import RegisterAvatar from '@/components/Register/RegisterAvatar';
 import { minimizeUserCookie, normalizeUserCookie } from '@/models/User/types';
@@ -15,6 +17,7 @@ import {
 type Props = {
   userData: UserCookie | null;
 };
+const CLOUD_URL = process.env.NEXT_CLOUDINARY_URL as string;
 
 const ProfileData:FC<Props> = () => {
   const { t } = useTranslation();
@@ -23,6 +26,7 @@ const ProfileData:FC<Props> = () => {
   const token = user?.token === undefined ? '' : user?.token;
   const [registerErrors, setRegisterErrors] = useState<string[]>([]);
   const [avatarURL, setAvatar] = useState<string | undefined>(user?.avatar);
+  const [avatarPremium, setAvatarPremium] = useState<string | undefined>('');
   const [imagePreview, setImagePreview] = useState<string | ArrayBuffer | null>(null);
   const [shouldRender, setShouldRender] = useState(false);
 
@@ -40,6 +44,20 @@ const ProfileData:FC<Props> = () => {
       userId: user?.id,
       email: formData.get('email') === '' ? user?.email : formData.get('email'),
     };
+
+    if (formData.get('avatarPremium') !== '') {
+      const file = formData.get('avatarPremium') as File;
+      const formDataPremium = new FormData();
+      formDataPremium.append('file', file);
+      formDataPremium.append('upload_preset', 'gametrail');
+      await fetch(CLOUD_URL, {
+        method: 'POST',
+        body: formDataPremium,
+      })
+        .then((res) => res.json())
+        .then((data) => setAvatarPremium(data.secure_url))
+        .catch(() => toast.error(t('toast_alert_avatar')));
+    }
     try {
       const res = await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/user/', {
         method: 'PUT',
@@ -55,7 +73,7 @@ const ProfileData:FC<Props> = () => {
         const updatedUser = {
           ...user,
           email: requestData.email,
-          avatar: formData.get('avatarPremium') === '' ? avatarURL : formData.get('avatarPremium'),
+          avatar: formData.get('avatarPremium') === '' ? avatarURL : avatarPremium,
         };
         const userCookie = normalizeUserCookie(updatedUser, token);
         const MinUser = minimizeUserCookie(userCookie, userCookie.auth_token);
@@ -70,7 +88,7 @@ const ProfileData:FC<Props> = () => {
     } catch (error) {
       setRegisterErrors(['Ha ocurrido un error']);
     }
-  }, [avatarURL, router, token, user]);
+  }, [avatarPremium, avatarURL, router, t, token, user]);
 
   const handleImageChange = (e: any) => {
     const file = e.target.files[0];
@@ -93,6 +111,7 @@ const ProfileData:FC<Props> = () => {
   };
   return (
     <MainContainer>
+      <ToastContainer position="top-center" theme="colored" hideProgressBar />
       <ProfileForm onSubmit={handleSubmit}>
         <ProfileFormTitle>
           {' '}

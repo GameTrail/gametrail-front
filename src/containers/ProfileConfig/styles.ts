@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const MainContainer = styled.div`
+  background-color: ${({ theme }) => theme.nord.white1};
 `;
 
 export const Header = styled.h1`

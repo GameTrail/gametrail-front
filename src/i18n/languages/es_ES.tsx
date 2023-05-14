@@ -363,11 +363,16 @@ const ProfileConfig = {
   // Container
   account_config: 'Configuración de cuenta',
   data: 'Datos',
+  add_games: 'Añadir  Juegos',
   actions: 'Acciones',
 
   // ProfileData
   edit_data: 'Editar datos',
   update_data: 'Actualizar datos',
+
+  // ProfileAddGames
+  add_information: 'Para añadir los juegos, clica',
+  add_here: 'aquí',
 
   // ProfileDelete
   profile_delete: 'Eliminar cuenta',

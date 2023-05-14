@@ -1,5 +1,6 @@
 import React from 'react';
 import { ProfileData, ProfileDelete } from '@/components/ProfileConfig';
+import ProfileAddGames from '@/components/ProfileConfig/ProfileAddGames';
 import useLanguage from '@/i18n/hooks';
 import { getUserCookie } from '@/utils/login';
 import {
@@ -16,6 +17,9 @@ const ProfileUser = () => {
       <Header>{t('data')}</Header>
       <Separator />
       <ProfileData userData={user} />
+      <Header>{t('add_games')}</Header>
+      <Separator />
+      <ProfileAddGames />
       <Header>{t('actions')}</Header>
       <Separator />
       <ProfileDelete />

@@ -29,7 +29,7 @@ import type { Game } from '@/models/Game/types';
 import type { TrailGame } from '@/models/Trail/types';
 import { getUserCookie } from '@/utils/login';
 
-const GAMES_URL = 'https://gametrail-backend-production-8fc0.up.railway.app/api/game/';
+const GAMES_URL = 'https://gametrail-backend-s4-production.up.railway.app/api/game/';
 
 export type Props = {
   trailId: number;
@@ -70,7 +70,7 @@ const TrailEditionForm: FC<Props> = ({ trailId }) => {
     const fetchTrail = async () => {
       setLoadingTrail(true);
       try {
-        const response = await fetch(`https://gametrail-backend-production-8fc0.up.railway.app/api/getTrail/${trailId}`);
+        const response = await fetch(`https://gametrail-backend-s4-production.up.railway.app/api/getTrail/${trailId}`);
         const data = await response.json();
         const pendingGames = selectPendingGames(data.games);
         const startedGames = selectStartedGames(data.games);
@@ -95,7 +95,7 @@ const TrailEditionForm: FC<Props> = ({ trailId }) => {
         setLoadingTrail(false);
       }
     };
-    if (isFirstRender === true) fetchTrail();
+    if (isFirstRender) fetchTrail();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [trailId]);
 
@@ -113,7 +113,7 @@ const TrailEditionForm: FC<Props> = ({ trailId }) => {
     if (user?.plan !== 'PREMIUM' && trailMaxNumber > 4) {
       setFormError((prevState) => [...prevState, t('trail_create_error-2')]);
     }
-    const res = await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/trail/', {
+    const res = await fetch('https://gametrail-backend-s4-production.up.railway.app/api/trail/', {
       method: 'PUT',
       body: JSON.stringify(requestData),
       headers: { Authorization: `Token ${token}`, 'Content-Type': 'application/json' },
@@ -133,7 +133,7 @@ const TrailEditionForm: FC<Props> = ({ trailId }) => {
     };
 
     try {
-      const res = await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/gameInTrail', {
+      const res = await fetch('https://gametrail-backend-s4-production.up.railway.app/api/gameInTrail', {
         method: 'DELETE',
         body: JSON.stringify(gameData),
         headers: {
@@ -161,7 +161,7 @@ const TrailEditionForm: FC<Props> = ({ trailId }) => {
     };
 
     try {
-      const res = await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/gameInTrail', {
+      const res = await fetch('https://gametrail-backend-s4-production.up.railway.app/api/gameInTrail', {
         method: 'POST',
         body: JSON.stringify(gameData),
         headers: {
@@ -206,7 +206,7 @@ const TrailEditionForm: FC<Props> = ({ trailId }) => {
 
   const handleDeleteTrail = async () => {
     try {
-      const res = await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/trail/', {
+      const res = await fetch('https://gametrail-backend-s4-production.up.railway.app/api/trail/', {
         method: 'DELETE',
         body: JSON.stringify({ trailId }),
         headers: {
@@ -242,7 +242,7 @@ const TrailEditionForm: FC<Props> = ({ trailId }) => {
         setLoadingGames(false);
       }
     };
-    if (isFirstRender === false) fetchGames();
+    if (!isFirstRender) fetchGames();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchQuery, t]);
 
@@ -256,7 +256,7 @@ const TrailEditionForm: FC<Props> = ({ trailId }) => {
         </Title>
         <FormContainer>
           <StandarContainer>
-            {isTrailEnded === true
+            {isTrailEnded
           && (
           <ErrorContainer>
             {t('trail_edit_error_ended')}

@@ -13,6 +13,11 @@ const mockFetchResponse = (url: String, response: Game) => {
   } as Response);
 };
 
+const intersectionObserverMock = () => ({
+  observe: () => null,
+});
+window.IntersectionObserver = jest.fn().mockImplementation(intersectionObserverMock);
+
 describe('CommentsComponent', () => {
   it('should render without error', async () => {
     const game = {
@@ -37,7 +42,7 @@ describe('CommentsComponent', () => {
         },
       ],
     };
-    mockFetchResponse(`https://gametrail-backend-production-8fc0.up.railway.app/api/game/${game.id}/`, game);
+    mockFetchResponse(`https://gametrail-backend-s4-production.up.railway.app/api/game/${game.id}/`, game);
     render(
       <ThemeProvider theme={theme}>
         <CommentsComponent type="game" data={game} />

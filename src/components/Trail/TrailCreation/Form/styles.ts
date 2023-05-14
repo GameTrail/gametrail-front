@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 import type { StylesConfig } from 'react-select';
 import type { Game } from '@/models/Game/types';
 
@@ -23,12 +24,15 @@ align-items: center;
   flex-direction: column;
 }
 `;
+
 export const StandarContainer = styled.div`
 display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
 `;
+
+export const MotionStandarContainer = motion(StandarContainer);
 
 export const LottieContainer = styled.div`
   width: 30%;
@@ -113,6 +117,8 @@ export const Form = styled.form`
   }
 `;
 
+export const MotionForm = motion(Form);
+
 export const Label = styled.label`
   display: flex;
   flex-direction: column;
@@ -187,7 +193,6 @@ export const DateLabel = styled.div`
 export const InputDate = styled.input`
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   padding: 8px;
   justify-content: center;
   background-color: ${({ theme }) => theme.nord.white2};

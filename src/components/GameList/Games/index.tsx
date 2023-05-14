@@ -1,6 +1,7 @@
 import type { FC, ChangeEvent } from 'react';
 import React, { useEffect, useState } from 'react';
 
+import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
 import useLanguage from '@/i18n/hooks';
 import type { Game } from '@/models/Game/types';
@@ -10,7 +11,23 @@ import { getUserCookie } from '@/utils/login';
 import { normalizeImage } from '@/utils/normalizeImage';
 import PaginationCard from '../../PaginationCard';
 import {
-  Container, Input, Row, Titulo, Titulo2, Cajas, Cuerpo, Cuerpo2, Fila, Mascara, Button, Buscador, CabezaTabla, Tabla, Boton, TitlesContainer, GameName, ButtonGameInList,
+  Container,
+  Input,
+  Row,
+  Titulo,
+  Titulo2,
+  Cuerpo2,
+  Fila,
+  Mascara,
+  Button,
+  Buscador,
+  CabezaTabla,
+  Tabla,
+  Boton,
+  TitlesContainer,
+  GameName,
+  ButtonGameInList,
+  MotionCajas, MotionCajasVariants, Cuerpo,
 } from './styles';
 
 export type Props = {
@@ -55,7 +72,7 @@ const GameList: FC<Props> = ({
         status: GameListState.PENDING.toString(),
       };
       try {
-        const res = await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/gameList/game', {
+        const res = await fetch('https://gametrail-backend-s4-production.up.railway.app/api/gameList/game', {
           method: 'POST',
           body: JSON.stringify(requestData),
           headers: {
@@ -76,7 +93,7 @@ const GameList: FC<Props> = ({
 
   useEffect(() => {
     const getUserGames = async (userId: number) => {
-      const res = await fetch(`https://gametrail-backend-production-8fc0.up.railway.app/api/user/${userId}`);
+      const res = await fetch(`https://gametrail-backend-s4-production.up.railway.app/api/user/${userId}`);
       const data: UserInDetails = await res.json();
       setUserGames(data.games);
     };
@@ -98,72 +115,87 @@ const GameList: FC<Props> = ({
       <Buscador>
         <Titulo>{t('game_list')}</Titulo>
         <Input type="text" value={searchQuery} onChange={handleUpdateSearchQuery} placeholder={searchbarPlaceholder} />
-        {mobileView ? (null) : (
+        {mobileView ? null : (
           <TitlesContainer>
             <Titulo2>{t('toggle_list_mode')}</Titulo2>
             <Boton onClick={toggleDiv}>{buttonText}</Boton>
           </TitlesContainer>
         )}
       </Buscador>
-      {showDiv2 || mobileView ? (
-        <Cuerpo>
-          {games?.map((game) => (
-            <Cajas key={game?.id} onClick={() => handleClickGameDetails(game?.id)}>
-              <Mascara>
-                <img src={normalizeImage(game?.image)} width={450} height={600} alt="nu" />
-              </Mascara>
-              <GameName>{game?.name}</GameName>
-              {user && (checkGameInUserList(game.id) ? (
-                <ButtonGameInList>
-                  {t('gamelist_in_your_list')}
-                </ButtonGameInList>
-              ) : (
+      <motion.div
+        layout
+      >
 
-                <Button onClick={(event) => { event.stopPropagation(); handleOnClick(game.id); }}>
-                  {t('add_to_list')}
-                </Button>
-              ))}
-            </Cajas>
-          ))}
-        </Cuerpo>
-      ) : (
-        <Cuerpo2>
-          <Tabla>
-            <CabezaTabla>
-              <tr>
-                <th>{t('cover')}</th>
-                <th>{t('name')}</th>
-                <th>{t('date')}</th>
-                {user ? (
-                  <th>{t('state')}</th>
-                ) : null}
-              </tr>
-            </CabezaTabla>
-            <tbody>
-              {games?.map((game) => (
-                <Row key={game?.id} onClick={() => handleClickGameDetails(game?.id)}>
-                  <Fila><img src={normalizeImage(game?.image)} width={80} height={100} alt="nu" /></Fila>
-                  <Fila><h2>{game?.name}</h2></Fila>
-                  <Fila><h2>{game?.releaseDate}</h2></Fila>
-                  {user && (checkGameInUserList(game.id) ? (
-                    <Fila>
-                      <ButtonGameInList>
-                        {t('gamelist_in_your_list')}
-                      </ButtonGameInList>
-                    </Fila>
-                  ) : (
-                    <Fila>
-                      <Button onClick={(event) => { event.stopPropagation(); handleOnClick(game.id); }}>
-                        {t('add_to_list')}
-                      </Button>
-                    </Fila>
+        {showDiv2 || mobileView ? (
+          <Cuerpo>
+            {games?.map((game) => (
+              <MotionCajas
+                key={game?.id}
+                onClick={() => handleClickGameDetails(game?.id)}
+                variants={MotionCajasVariants}
+                initial="hidden"
+                whileInView="visible"
+              >
+                <Mascara>
+                  <img src={normalizeImage(game?.image)} width={450} height={600} alt="nu" />
+                </Mascara>
+                <GameName>{game?.name}</GameName>
+                {user && (checkGameInUserList(game.id) ? (
+                  <ButtonGameInList>
+                    {t('gamelist_in_your_list')}
+                  </ButtonGameInList>
+                ) : (
+
+                  <Button onClick={(event) => { event.stopPropagation(); handleOnClick(game.id); }}>
+                    {t('add_to_list')}
+                  </Button>
+                ))}
+              </MotionCajas>
+            ))}
+          </Cuerpo>
+        ) : (
+          <motion.div
+            layout
+          >
+            <Cuerpo2>
+              <Tabla>
+                <CabezaTabla>
+                  <tr>
+                    <th>{t('cover')}</th>
+                    <th>{t('name')}</th>
+                    <th>{t('date')}</th>
+                    {user ? (
+                      <th>{t('state')}</th>
+                    ) : null}
+                  </tr>
+                </CabezaTabla>
+                <tbody>
+                  {games?.map((game) => (
+                    <Row key={game?.id} onClick={() => handleClickGameDetails(game?.id)}>
+                      <Fila><img src={normalizeImage(game?.image)} width={80} height={100} alt="nu" /></Fila>
+                      <Fila><h2>{game?.name}</h2></Fila>
+                      <Fila><h2>{game?.releaseDate}</h2></Fila>
+                      {user && (checkGameInUserList(game.id) ? (
+                        <Fila>
+                          <ButtonGameInList>
+                            {t('gamelist_in_your_list')}
+                          </ButtonGameInList>
+                        </Fila>
+                      ) : (
+                        <Fila>
+                          <Button onClick={(event) => { event.stopPropagation(); handleOnClick(game.id); }}>
+                            {t('add_to_list')}
+                          </Button>
+                        </Fila>
+                      ))}
+                    </Row>
                   ))}
-                </Row>
-              ))}
-            </tbody>
-          </Tabla>
-        </Cuerpo2>
-      )}
+                </tbody>
+              </Tabla>
+            </Cuerpo2>
+          </motion.div>
+        )}
+      </motion.div>
       <PaginationCard pages={pages} currentPage={currentPage} handlePagination={handlePagination} />
     </Container>
   );

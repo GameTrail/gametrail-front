@@ -6,7 +6,7 @@ import useLanguage from '@/i18n/hooks';
 import type { Trail } from '@/models/Trail/types';
 import theme from '@/theme';
 import {
-  Item, Container, TrailListEmpty, TrailName, NumPlayers,
+  Container, TrailListEmpty, TrailName, NumPlayers, MotionItem, MotionItemVariants,
 } from './styles';
 
 export type Props = {
@@ -31,7 +31,19 @@ const UserTrailList:FC<Props> = ({ trailList }) => {
     if (trailList?.length !== 0) {
       return (
         trailList?.map((trail) => (
-          <Item key={trail.id} onClick={() => handleClick(trail.id)}>
+          <MotionItem
+            key={trail.id}
+            onClick={() => handleClick(trail.id)}
+            variants={MotionItemVariants}
+            animate="visible"
+            initial="hidden"
+            transition={{
+              duration: 0.1,
+              delay: 0.1 * trailList.indexOf(trail),
+              opacity: { duration: 0.6, delay: 0.01 * trailList.indexOf(trail) },
+            }}
+
+          >
             <img
               alt="owner avatar"
               src={trail.owner.avatar}
@@ -47,7 +59,7 @@ const UserTrailList:FC<Props> = ({ trailList }) => {
             <p>
               {handleRenderStatus(trail)}
             </p>
-          </Item>
+          </MotionItem>
         ))
       );
     }

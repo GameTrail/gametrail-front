@@ -1,11 +1,8 @@
 import React from 'react';
 import type { FC } from 'react';
-import type { IconProp } from '@fortawesome/fontawesome-svg-core';
-import { faCircle } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { DefaultRadar } from '@/components/Charts/Radar';
 import useLanguage from '@/i18n/hooks';
-import type { Rating, RatingType } from '@/models/Rating/types';
-import { COLOR_MAP } from './constants';
+import type { Rating } from '@/models/Rating/types';
 import { Container } from './styles';
 
 export type Props = {
@@ -14,27 +11,37 @@ export type Props = {
 
 const UserStats:FC<Props> = ({ userRating }) => {
   const { t } = useLanguage();
+
   const handleRenderStats = () => {
     if (!userRating) return <h1>{t('no_stats_available')}</h1>;
-    return Object.keys(userRating).map((type) => {
-      const rating = userRating[type as RatingType];
-      const ratingFixed = Number.isInteger(rating) ? rating : rating.toFixed(1);
-      return (
-        <div key={type}>
-          <h3>
-            <span>
-              <FontAwesomeIcon icon={faCircle as IconProp} color={COLOR_MAP[type as RatingType]} />
-            </span>
-            {' '}
-            {ratingFixed}
-            {' '}
-            -
-            {' '}
-            {t(`premium_filters_${type}`).toUpperCase()}
-          </h3>
-        </div>
-      );
-    });
+
+    const radarData = {
+      labels: [
+        `${t('premium_filters_kindness')} (${userRating.kindness.toFixed(1)})`,
+        `${t('premium_filters_fun')} (${userRating.funny.toFixed(1)})`,
+        `${t('premium_filters_cooperation')} (${userRating.teamwork.toFixed(1)})`,
+        `${t('premium_filters_ability')} (${userRating.ability.toFixed(1)})`,
+        `${t('premium_filters_availability')} (${userRating.availability.toFixed(1)})`,
+      ],
+      datasets: [
+        {
+          data: [userRating.kindness, userRating.funny, userRating.teamwork, userRating.ability, userRating.availability],
+          fill: true,
+          backgroundColor: 'rgba(143, 188, 187, 0.5)',
+          borderColor: '#88c0d0',
+          pointBackgroundColor: '#b48ead',
+          pointBorderColor: '#eceff4',
+          pointHoverBackgroundColor: '#eceff4',
+          pointHoverBorderColor: '#b48ead',
+          pointHoverRadius: 15,
+          pointRadius: 5,
+
+        },
+      ],
+    };
+    return (
+      <DefaultRadar data={radarData} />
+    );
   };
 
   return (

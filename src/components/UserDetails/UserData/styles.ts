@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 
 export const Container = styled.div`
     display: flex;
@@ -105,7 +106,8 @@ export const RateContainer = styled.form`
   justify-content: center;
   background-color: ${({ theme }) => theme.nord.gray2};
   margin-top: 8rem;
-  height: auto;
+  height: 30em;
+  width: 30em;
   border-radius: 8px;
   margin-right: 8rem;
   z-index: 1;
@@ -116,21 +118,37 @@ export const RateContainer = styled.form`
   label{
       color: ${({ theme }) => theme.nord.white0};
   }
-  width: auto;
   padding: 1rem;
   box-shadow: 0 0 10px 0 ${({ theme }) => theme.nord.gray3};
   @media (max-width: 768px) {
+        height: 20em;
+        width: 20em;
       flex-direction: column;
       align-items: center;
       position:fixed;
       gap:0.5rem;
       z-index: 1;
-      margin-right: 5rem;
+    margin-right: 0;
       justify-content: center;
   };
 `;
 
+export const MotionRateContainer = motion(RateContainer);
+export const MotionRateContainerVariants = {
+  closed: {
+    opacity: 0,
+    scale: 0,
+    y: '-30vh',
+  },
+  open: {
+    opacity: 1,
+    scale: 1,
+    y: 0,
+  },
+};
+
 export const RateInput = styled.input`
+    display: none;
     width: 100px;
     height: 30px;
     border-radius: 8px;
@@ -153,6 +171,7 @@ export const RateInput = styled.input`
 `;
 
 export const RateLabel = styled.label`
+    display: none;
     font-size: 1.2rem;
     font-weight: 400;
     color: ${({ theme }) => theme.nord.gray3};
@@ -196,7 +215,12 @@ export const CloseRateContainer = styled.button`
     border:none;
     width: 50px;
     padding: 2px 5px;
+  
+  margin-bottom: 2rem;
     cursor: pointer;
+  @media (max-width: 768px) {
+    margin-bottom: 1rem;
+  }
 `;
 
 export const ErrorContainer = styled.div`

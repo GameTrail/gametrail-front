@@ -1,5 +1,6 @@
 import type { ChangeEvent } from 'react';
 import React, { useEffect, useState, memo } from 'react';
+import { motion } from 'framer-motion';
 import { useDebouncedCallback } from 'use-debounce';
 import Error from '@/components/Error';
 import LoadingSpinner from '@/components/LoadingSpinner';
@@ -11,7 +12,7 @@ import {
 } from './styles';
 import TrailCard from './TrailCard';
 
-const API_URL = 'https://gametrail-backend-production-8fc0.up.railway.app/api/getTrail/';
+const API_URL = 'https://gametrail-backend-s4-production.up.railway.app/api/getTrail/';
 const TrailList = () => {
   const { t } = useLanguage();
   const [trails, setTrails] = useState<Trail[] | null>(null);
@@ -24,7 +25,13 @@ const TrailList = () => {
   const handleRenderTrails = () => {
     if (!trails) return null;
     return trails.map((trail) => (
-      <TrailCard key={trail.id} trail={trail} />
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+      >
+        <TrailCard key={trail.id} trail={trail} />
+      </motion.div>
     ));
   };
 
@@ -100,18 +107,20 @@ const TrailList = () => {
   if (error) return <Error />;
 
   return (
-    <Container>
-      <Title>{t('list_trails')}</Title>
-      <Input type="text" value={searchQuery} onChange={handleUpdateSearchQuery} placeholder="Buscar..." />
-      <TrailListContainer>
-        {handleRenderTrails()}
-      </TrailListContainer>
-      <PaginationCard
-        pages={pages}
-        currentPage={currentPage}
-        handlePagination={handlePagination}
-      />
-    </Container>
+    <motion.div layout>
+      <Container>
+        <Title>{t('list_trails')}</Title>
+        <Input type="text" value={searchQuery} onChange={handleUpdateSearchQuery} placeholder="Buscar..." />
+        <TrailListContainer>
+          {handleRenderTrails()}
+        </TrailListContainer>
+        <PaginationCard
+          pages={pages}
+          currentPage={currentPage}
+          handlePagination={handlePagination}
+        />
+      </Container>
+    </motion.div>
   );
 };
 

@@ -465,7 +465,7 @@ const TrailList = {
 
 const UserDetails = {
   // UserData
-  rate_user: 'Valorar usuario',
+  rate_user: 'Valorar Usuario',
   'rate_user_error-1': 'Ya has valorado a este usuario.',
   premium_filters_funny: 'Diversión',
   premium_filters_teamwork: 'Cooperación',
@@ -480,6 +480,7 @@ const UserDetails = {
   // UserTrailList
   trail_in_progress: 'En progreso',
   trail_finished: 'Finalizado',
+  rate: 'Valorar',
 
 };
 

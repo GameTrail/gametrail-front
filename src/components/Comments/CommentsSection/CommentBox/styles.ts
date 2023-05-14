@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 
 export const CommentContainer = styled.div` 
     display: flex;
@@ -7,6 +8,18 @@ export const CommentContainer = styled.div`
     margin-top: 2rem;
     margin-bottom: 2rem;
 `;
+
+export const MotionCommentContainer = motion(CommentContainer);
+export const MotionCommentContainerVariants = {
+  hidden: {
+    opacity: 0,
+    scale: 1,
+  },
+  visible: {
+    opacity: 1,
+    scale: 1,
+  },
+};
 
 export const AvatarContainer = styled.div`
     flex-basis: 10%;

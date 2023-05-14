@@ -12,7 +12,7 @@ import {
 } from './styles';
 import UserGameCard from './UserGameCard';
 
-const API_URL = 'https://gametrail-backend-production-8fc0.up.railway.app/api';
+const API_URL = 'https://gametrail-backend-s4-production.up.railway.app/api';
 
 export type Props = {
   userId: number;
@@ -93,7 +93,7 @@ const UserGameList: FC<Props> = ({ userId }) => {
         </GameListEmpty>
       );
     }
-    return (gameList.map((gameListItem) => <UserGameCard gameListItem={gameListItem} onUpdateGameStatus={onUpdateGameStatus} />));
+    return (gameList.map((gameListItem) => <UserGameCard gameListItem={gameListItem} onUpdateGameStatus={onUpdateGameStatus} index={gameList.indexOf(gameListItem)} />));
   };
 
   useEffect(() => {

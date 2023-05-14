@@ -8,7 +8,7 @@ export const handlePremiumFilters = async (formData: any, size: number, user: Us
       minRating: formData.get('kindness'),
       ratingType: 'KINDNESS',
     };
-    const resRatingKindness = await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/createMinRating', {
+    const resRatingKindness = await fetch('https://gametrail-backend-s4-production.up.railway.app/api/createMinRating', {
       method: 'POST',
       body: JSON.stringify(kindnessData),
       headers: {
@@ -27,7 +27,7 @@ export const handlePremiumFilters = async (formData: any, size: number, user: Us
       minRating: formData.get('funny'),
       ratingType: 'FUNNY',
     };
-    const resRatingFunny = await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/createMinRating', {
+    const resRatingFunny = await fetch('https://gametrail-backend-s4-production.up.railway.app/api/createMinRating', {
       method: 'POST',
       body: JSON.stringify(funnyData),
       headers: {
@@ -46,7 +46,7 @@ export const handlePremiumFilters = async (formData: any, size: number, user: Us
       minRating: formData.get('teamwork'),
       ratingType: 'TEAMWORK',
     };
-    const resRatingTeamwork = await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/createMinRating', {
+    const resRatingTeamwork = await fetch('https://gametrail-backend-s4-production.up.railway.app/api/createMinRating', {
       method: 'POST',
       body: JSON.stringify(teamworkData),
       headers: {
@@ -65,7 +65,7 @@ export const handlePremiumFilters = async (formData: any, size: number, user: Us
       minRating: formData.get('ability'),
       ratingType: 'ABILITY',
     };
-    const resRatingAbility = await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/createMinRating', {
+    const resRatingAbility = await fetch('https://gametrail-backend-s4-production.up.railway.app/api/createMinRating', {
       method: 'POST',
       body: JSON.stringify(abilityData),
       headers: {
@@ -85,7 +85,7 @@ export const handlePremiumFilters = async (formData: any, size: number, user: Us
       minRating: formData.get('availability'),
       ratingType: 'AVAILABILITY',
     };
-    const resRatingAvailability = await fetch('https://gametrail-backend-production-8fc0.up.railway.app/api/createMinRating', {
+    const resRatingAvailability = await fetch('https://gametrail-backend-s4-production.up.railway.app/api/createMinRating', {
       method: 'POST',
       body: JSON.stringify(availabilityData),
       headers: {

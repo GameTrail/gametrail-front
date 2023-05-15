@@ -68,8 +68,8 @@ export const AddButton = styled.button`
 
     &:hover {
         box-shadow: 0 0 3px ${({ theme }) => theme.nord.gray2};
-        background-color: ${({ theme }) => (theme.nord.white2)};
-        color: ${({ theme }) => (theme.nord.blue3)};
+        background-color: ${({ theme }) => theme.nord.white2};
+        color: ${({ theme }) => theme.nord.blue3};
     }
 `;
 

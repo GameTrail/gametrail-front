@@ -361,12 +361,17 @@ const ProfileConfig = {
   // Container
   account_config: 'Account configuration',
   data: 'Data',
+  add_games: 'Add Games',
   actions: 'Actions',
 
   // ProfileData
   edit_data: 'Edit data',
   update_data: 'Update data',
   custom_avatar: 'Custom avatar',
+
+  // ProfileAddGames
+  add_information: 'To add the games, click',
+  add_here: 'here',
 
   // ProfileDelete
   profile_delete: 'Delete account',

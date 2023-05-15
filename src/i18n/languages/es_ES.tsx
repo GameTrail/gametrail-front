@@ -363,6 +363,7 @@ const ProfileConfig = {
   // Container
   account_config: 'Configuración de cuenta',
   data: 'Datos',
+  add_games: 'Añadir  Juegos',
   actions: 'Acciones',
 
   // ProfileData
@@ -370,6 +371,10 @@ const ProfileConfig = {
   update_data: 'Actualizar datos',
   custom_avatar: 'Avatar personalizado',
   toast_alert_avatar: 'Ha ocurrido un error al actualizar tu avatar',
+
+  // ProfileAddGames
+  add_information: 'Para añadir los juegos, clica',
+  add_here: 'aquí',
 
   // ProfileDelete
   profile_delete: 'Eliminar cuenta',

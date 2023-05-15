@@ -358,6 +358,7 @@ const ProfileConfig = {
   // Container
   account_config: 'Kontokonfiguration',
   data: 'Data',
+  add_games: 'Lägg till spel',
   actions: 'Åtgärder',
 
   // ProfileData
@@ -365,6 +366,10 @@ const ProfileConfig = {
   update_data: 'Uppdatera data',
   custom_avatar: 'Anpassad avatar',
   toast_alert_avatar: 'Fel vid uppdatering av avatar',
+
+  // ProfileAddGames
+  add_information: 'för att lägga till spelen, klicka',
+  add_here: 'här',
 
   // ProfileDelete
   profile_delete: 'Radera konto',

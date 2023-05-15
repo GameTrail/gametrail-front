@@ -369,6 +369,8 @@ const ProfileConfig = {
   // ProfileData
   edit_data: 'Editar datos',
   update_data: 'Actualizar datos',
+  custom_avatar: 'Avatar personalizado',
+  toast_alert_avatar: 'Ha ocurrido un error al actualizar tu avatar',
 
   // ProfileAddGames
   add_information: 'Para añadir los juegos, clica',

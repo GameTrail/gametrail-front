@@ -367,6 +367,7 @@ const ProfileConfig = {
   // ProfileData
   edit_data: 'Edit data',
   update_data: 'Update data',
+  custom_avatar: 'Custom avatar',
 
   // ProfileAddGames
   add_information: 'To add the games, click',
@@ -377,6 +378,7 @@ const ProfileConfig = {
   profile_delete_ask: 'Are you sure you want to delete your account?',
   profile_delete_confirm: 'Yes, delete account',
   profile_delete_cancel: 'No, cancel',
+  toast_alert_avatar: 'An error occurred while uploading the avatar.',
 
   // ProfileExternalConnect
   connected_to_steam: 'Connected to Steam!',

@@ -1,10 +1,12 @@
 import type { ChangeEvent } from 'react';
 import React, { useState } from 'react';
+import { toast } from 'react-toastify';
 import useLanguage from '@/i18n/hooks';
 import { getUserCookie } from '@/utils/login';
 import {
-  AddButton, AddContainer, Container, ImageInput, ImagePreview, ImageSelector, Information,
+  AddButton, AddContainer, Container, ImageInput, ImagePreview, ImageSelector, Information, StyledToastContainer,
 } from './styles';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ProfileAddGames = () => {
   const user = getUserCookie();
@@ -17,6 +19,10 @@ const ProfileAddGames = () => {
     if (file) {
       setSelectedImage(file);
     }
+  };
+
+  const handleToastLaunch = (message: string) => {
+    toast.error(message);
   };
 
   const handleAddGames = async () => {
@@ -33,8 +39,15 @@ const ProfileAddGames = () => {
             Authorization: `Token ${token}`,
           },
         });
-        if (!res.ok) {
-          throw new Error(res.statusText);
+        const data = await res.json();
+        if (res.status === 400) {
+          handleToastLaunch('La imagen proporcionada no contenía juegos.');
+        } else if (res.status === 201) {
+          handleToastLaunch('Todos los juegos se han añadido correctamente.');
+        } else if (res.status === 200) {
+          handleToastLaunch('Se han añadido algunos juegos.');
+        } else {
+          handleToastLaunch(data);
         }
       } catch (error) {
         throw new Error();
@@ -44,6 +57,7 @@ const ProfileAddGames = () => {
 
   return (
     <Container>
+      <StyledToastContainer position="top-center" hideProgressBar />
       <Information>
         <p>{t('add_information')}</p>
         <ImageInput>

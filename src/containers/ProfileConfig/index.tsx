@@ -17,9 +17,18 @@ const ProfileUser = () => {
       <Header>{t('data')}</Header>
       <Separator />
       <ProfileData userData={user} />
-      <Header>{t('add_games')}</Header>
-      <Separator />
-      <ProfileAddGames />
+      {(user?.plan === 'Premium') ? (
+        <div>
+          <Header>
+            {t('add_games')}
+            {' '}
+            (Beta)
+          </Header>
+          <Separator />
+          <ProfileAddGames />
+        </div>
+      ) : null}
+
       <Header>{t('actions')}</Header>
       <Separator />
       <ProfileDelete />

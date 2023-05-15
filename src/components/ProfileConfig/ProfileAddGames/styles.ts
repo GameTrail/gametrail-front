@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const Container = styled.div`
 display: flex;
@@ -69,4 +71,11 @@ export const AddButton = styled.button`
         background-color: ${({ theme }) => (theme.nord.white2)};
         color: ${({ theme }) => (theme.nord.blue3)};
     }
+`;
+
+export const StyledToastContainer = styled(ToastContainer)`
+  .Toastify__toast {
+    background-color: ${({ theme }) => (theme.nord.gray3)};
+    color: ${({ theme }) => (theme.nord.white1)};
+  }
 `;

@@ -66,6 +66,7 @@ const landing = {
     find_new_friends: '👑 Find people with similar tastes',
     filter_trail_members: '👑 Control who can join your Trails',
     trail_recommendations: '👑 Trails recommended for you',
+    trail_filters: '👑 Filter trails for you',
   },
 };
 
@@ -457,7 +458,16 @@ const Trail = {
     toast_alert_chat: 'No puedes acceder al chat si no estás logueado o no no estás unido al Trail.',
     chat: 'Chat',
   },
-
+  TrailFilters: {
+    trail_filters_title: 'Trail filters',
+    trail_filters_user: 'Username',
+    trail_filters_platform: 'Platform',
+    trail_filters_platform_placeholder: 'Select a platform',
+    trail_filters_game: 'Game',
+    trail_filters_date: 'Start date',
+    trail_filters_search: 'Search',
+    trail_filters_clean: 'Clean filters',
+  },
 };
 
 const TrailList = {

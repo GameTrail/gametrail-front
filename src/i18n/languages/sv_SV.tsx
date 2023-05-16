@@ -63,7 +63,7 @@ const landing = {
     find_new_friends: '👑 Hitta personer med liknande intressen',
     filter_trail_members: '👑 Kontrollera vilka som kan gå med i dina spår',
     trail_recommendations: '👑 Rekommenderade spår för dig',
-
+    trail_filters: '👑 Anpassade spårfilter',
   },
 };
 
@@ -453,6 +453,16 @@ const Trail = {
     // TrailButtons
     toast_alert_chat: 'Du kan inte komma åt chatten om du inte är inloggad eller ansluten till Trail',
     chat: 'Chatt',
+  },
+  TrailFilters: {
+    trail_filters_title: 'Sökfilter',
+    trail_filters_user: 'Användare',
+    trail_filters_platform: 'Plattform',
+    trail_filters_platform_placeholder: 'Välj en plattform',
+    trail_filters_game: 'Spel',
+    trail_filters_date: 'Start datum',
+    trail_filters_search: 'Leta efter',
+    trail_filters_clean: 'Rensa filter',
   },
 
 };

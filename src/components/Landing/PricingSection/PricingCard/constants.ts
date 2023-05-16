@@ -12,5 +12,6 @@ export const Benefits = {
     'find_new_friends',
     'filter_trail_members',
     'trail_recommendations',
+    'trail_filters',
   ],
 };

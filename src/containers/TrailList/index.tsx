@@ -9,7 +9,7 @@ import PaginationCard from '@/components/PaginationCard';
 import useTrail from '@/hooks/useTrail';
 import type { Trail } from '@/models/Trail/types';
 import { getUserCookie } from '@/utils/login';
-import TrailSearchForm from '../../components/Trail/TrailSearchForm/TrailSearchForm';
+import TrailSearchForm from '../../components/Trail/TrailSearchForm';
 import {
   Container, TrailListContainer, Content, Title,
 } from './styles';

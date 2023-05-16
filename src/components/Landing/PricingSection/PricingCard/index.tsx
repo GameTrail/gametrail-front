@@ -24,7 +24,7 @@ const PricingCard: FC<Props> = ({ price, title }) => {
 
   const navigateTo = () => {
     if (title === PricingType.Standard) router.push('/auth/login');
-    if (title === PricingType.Premium) window.location.href = 'https://buy.stripe.com/test_aEUfZ6aHOcC5fw48wy';
+    if (title === PricingType.Premium) window.location.href = 'https://buy.stripe.com/test_00g5ks6ry59DabK147';
     return null;
   };
 

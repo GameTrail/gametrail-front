@@ -1,34 +1,50 @@
-import type { ChangeEvent } from 'react';
-import React, { useEffect, useState, memo } from 'react';
+import React, {
+  useEffect, useState,
+} from 'react';
 import { motion } from 'framer-motion';
-import { useDebouncedCallback } from 'use-debounce';
+import { t } from 'i18next';
 import Error from '@/components/Error';
 import LoadingSpinner from '@/components/LoadingSpinner';
 import PaginationCard from '@/components/PaginationCard';
-import useLanguage from '@/i18n/hooks';
+import useTrail from '@/hooks/useTrail';
 import type { Trail } from '@/models/Trail/types';
+import { getUserCookie } from '@/utils/login';
+import TrailSearchForm from '../../components/Trail/TrailSearchForm/TrailSearchForm';
 import {
-  Container, Title, TrailListContainer, Input,
+  Container, TrailListContainer, Content, Title,
 } from './styles';
 import TrailCard from './TrailCard';
 
 const API_URL = 'https://gametrail-backend-s4-production.up.railway.app/api/getTrail/';
+
 const TrailList = () => {
-  const { t } = useLanguage();
+  const {
+    result,
+    handleUpdateSearchForm,
+    handleSearch,
+    handleReset,
+    searchFormQuery,
+  } = useTrail();
+
   const [trails, setTrails] = useState<Trail[] | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [pages, setPages] = useState(1);
-  const [searchQuery, setSearchQuery] = useState<string>('');
   const [currentPage, setCurrentPage] = useState(1);
+  const user = getUserCookie();
 
   const handleRenderTrails = () => {
+    if (result.length > 0) {
+      return result.map((trail) => <TrailCard key={trail.id} trail={trail} />);
+    }
     if (!trails) return null;
-    return trails.map((trail) => (
+
+    return trails?.map((trail) => (
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
+        key={trail.id}
       >
         <TrailCard key={trail.id} trail={trail} />
       </motion.div>
@@ -37,10 +53,6 @@ const TrailList = () => {
 
   const handleSetPages = (trailsCount: number) => {
     setPages(Math.ceil(trailsCount / 16));
-  };
-
-  const handleUpdateSearchQuery = (e: ChangeEvent<HTMLInputElement>) => {
-    setSearchQuery(e.target.value);
   };
 
   const handlePagination = async (page: number) => {
@@ -59,26 +71,6 @@ const TrailList = () => {
       setLoading(false);
     }
   };
-
-  const debounceSearch = useDebouncedCallback(async (searchTerm: string) => {
-    setLoading(true);
-    try {
-      const searchUrl = searchTerm.length > 2 ? `${API_URL}?search=${searchTerm}` : API_URL;
-      const response = await fetch(searchUrl);
-      const data = await response.json();
-      setTrails(data.results);
-      handleSetPages(data.count);
-      setError(false);
-    } catch (err) {
-      setError(true);
-    } finally {
-      setLoading(false);
-    }
-  }, 750);
-
-  useEffect(() => {
-    debounceSearch(searchQuery);
-  }, [debounceSearch, searchQuery]);
 
   useEffect(() => {
     const fetchTrails = async () => {
@@ -110,10 +102,21 @@ const TrailList = () => {
     <motion.div layout>
       <Container>
         <Title>{t('list_trails')}</Title>
-        <Input type="text" value={searchQuery} onChange={handleUpdateSearchQuery} placeholder="Buscar..." />
-        <TrailListContainer>
-          {handleRenderTrails()}
-        </TrailListContainer>
+        <Content>
+          {
+            user?.plan === 'Premium' && (
+            <TrailSearchForm
+              handleSearch={handleSearch}
+              handleUpdateSearchForm={handleUpdateSearchForm}
+              searchFormQuery={searchFormQuery}
+              handleReset={handleReset}
+            />
+            )
+          }
+          <TrailListContainer>
+            {handleRenderTrails()}
+          </TrailListContainer>
+        </Content>
         <PaginationCard
           pages={pages}
           currentPage={currentPage}
@@ -124,4 +127,4 @@ const TrailList = () => {
   );
 };
 
-export default memo(TrailList);
+export default TrailList;

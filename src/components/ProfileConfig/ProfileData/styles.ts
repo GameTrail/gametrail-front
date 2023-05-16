@@ -6,6 +6,33 @@ export const MainContainer = styled.div`
     align-items: center;
     justify-content: center;
     width: 100vw;
+    .crown{
+        color: ${({ theme }) => theme.nord.yellow};
+        width: 25px;
+        height: 25px;
+        @keyframes changeColor {
+            0% {
+                color: #ee7752
+            }
+           
+            20% {
+                color: #e73c7e
+            }
+            40% {
+                color: #23a6d5
+            }
+            60% {
+                color: #23d5ab
+            }
+            80% {
+                color: #e73c7e
+            }
+            100% {
+                color: #ee7752
+            }
+     }
+        animation: changeColor 2s linear infinite;
+    }
   
 `;
 
@@ -34,7 +61,38 @@ export const ProfileForm = styled.form`
   };
 `;
 
+export const PremiumDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+`;
+
+export const AvatarPreview = styled.img`
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 150px;
+  height: 150px;
+  border-radius: 100%;
+  margin-bottom: 1rem;
+  box-shadow: 0 0 10px 0 ${({ theme }) => theme.nord.gray3};
+`;
+
 export const FieldContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  margin-bottom:1rem;
+  @media (max-width: 768px) {
+
+  };
+
 `;
 export const ProfileFormTitle = styled.h1`
   color: ${({ theme }) => theme.nord.white1};

@@ -9,7 +9,6 @@ export type Props = {
 };
 
 const LanguagesSelector:FC<Props> = ({ isNavbar = false }) => {
-  // Get i18n from context
   const { i18n } = useLanguage();
   const { language } = i18n;
   const languages = Object.keys(i18n.services.resourceStore.data);
@@ -34,6 +33,7 @@ const LanguagesSelector:FC<Props> = ({ isNavbar = false }) => {
       const yAnimation = isNavbar ? [-10, count * 50] : [100, count * -120];
       return (
         <motion.button
+          key={lng}
           initial={{
             opacity: isNavbar ? 1 : 0,
             scale: isNavbar ? 1 : 0,

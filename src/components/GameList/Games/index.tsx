@@ -1,6 +1,5 @@
 import type { FC, ChangeEvent } from 'react';
 import React, { useEffect, useState } from 'react';
-
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
 import useLanguage from '@/i18n/hooks';

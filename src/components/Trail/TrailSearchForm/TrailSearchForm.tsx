@@ -2,12 +2,11 @@ import type { FC } from 'react';
 import { useEffect, useState } from 'react';
 import { faCrown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { t } from 'i18next';
-// import AsyncSelect from 'react-select/async';
+import useLanguage from '@/i18n/hooks';
 import type { Game } from '@/models/Game/types';
 import { SORTED_PLATFORMS } from './constants';
 import {
-  Container, Label, Input, PlatformSelect, PlatformOption, SearchButton, GamesSelectorStyles, ResetButton, Title, CrownContainer,
+  Container, Label, Input, PlatformSelect, PlatformOption, SearchButton, ResetButton, Title, CrownContainer,
 } from './styles';
 import type { SearchProps } from './types';
 
@@ -23,9 +22,10 @@ const GAMES_URL = 'https://gametrail-backend-s4-production.up.railway.app/api/ga
 const TrailSearchForm: FC<Props> = ({
   searchFormQuery, handleUpdateSearchForm, handleSearch, handleReset,
 }) => {
-  const [searchQuery, setSearchQuery] = useState<string>('');
-  const [games, setGames] = useState<Game[]>([]);
-  const [loading, setLoading] = useState<boolean>(false);
+  const { t } = useLanguage();
+  const [searchQuery] = useState<string>('');
+  const [, setGames] = useState<Game[]>([]);
+  const [, setLoading] = useState<boolean>(false);
   const [, setFormError] = useState<string[]>([]);
 
   useEffect(() => {
@@ -43,27 +43,29 @@ const TrailSearchForm: FC<Props> = ({
       }
     };
     fetchGames();
-  }, [searchQuery]);
+  }, [t, searchQuery]);
 
   return (
     <Container>
       <CrownContainer>
-        <Title>Filtros de búsqueda</Title>
+        <Title>
+          {t('trail_filters_title')}
+        </Title>
         <FontAwesomeIcon className="crown" icon={faCrown} />
       </CrownContainer>
-      <Label htmlFor="username">Usuario</Label>
+      <Label htmlFor="username">{t('trail_filters_user')}</Label>
       <Input
         type="text"
         id="username"
         name="username"
         value={searchFormQuery.username}
         onChange={(e) => handleUpdateSearchForm({ ...searchFormQuery, username: e.target.value })}
-        placeholder="Busca por usuario..."
+        placeholder="Busqueda por usuario..."
       />
-      <Label htmlFor="username">Plataforma</Label>
+      <Label htmlFor="username">{t('trail_filters_platform')}</Label>
       <PlatformSelect name="platform" id="platform" onChange={(e) => handleUpdateSearchForm({ ...searchFormQuery, platform: e.target.value })}>
         <PlatformOption value={searchFormQuery.platform ?? ''}>
-          Selecione una plataforma
+          {t('trail_filters_platform_placeholder')}
         </PlatformOption>
         {SORTED_PLATFORMS.map((option) => (
           <PlatformOption
@@ -74,23 +76,7 @@ const TrailSearchForm: FC<Props> = ({
           </PlatformOption>
         ))}
       </PlatformSelect>
-      {/* <Label htmlFor="game">Juegos</Label>
-      <AsyncSelect
-        required
-        isSearchable
-        isClearable
-        id="game"
-        name="game"
-        styles={GamesSelectorStyles}
-        isLoading={loading}
-        getOptionLabel={(option: Game) => option.name}
-        getOptionValue={(option: Game) => option.id.toString()}
-        onInputChange={(value) => setSearchQuery(value)}
-        defaultOptions={games}
-        loadOptions={async () => games}
-        placeholder="Seleccione los juegos a filtrar..."
-      /> */}
-      <Label htmlFor="game">Juego</Label>
+      <Label htmlFor="game">{t('trail_filters_game')}</Label>
       <Input
         type="text"
         id="game"
@@ -99,7 +85,7 @@ const TrailSearchForm: FC<Props> = ({
         onChange={(e) => handleUpdateSearchForm({ ...searchFormQuery, game: e.target.value })}
         placeholder="Busca por nombre del juego..."
       />
-      <Label htmlFor="startDate">Fecha de inicio</Label>
+      <Label htmlFor="startDate">{t('trail_filters_date')}</Label>
       <Input
         type="date"
         id="startDate"
@@ -109,10 +95,10 @@ const TrailSearchForm: FC<Props> = ({
         placeholder="Busca por fecha de inicio..."
       />
       <SearchButton onClick={() => handleSearch(searchFormQuery)}>
-        Buscar
+        {t('trail_filters_search')}
       </SearchButton>
       <ResetButton onClick={() => handleReset(searchFormQuery)}>
-        Limpiar filtros
+        {t('trail_filters_clean')}
       </ResetButton>
     </Container>
   );

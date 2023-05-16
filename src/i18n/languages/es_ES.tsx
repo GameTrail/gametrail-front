@@ -462,8 +462,7 @@ const Trail = {
     // TrailButtons
     toast_alert_chat: 'No puedes acceder al chat si no estás logueado o no no estás unido al Trail.',
     chat: 'Chat',
-  },
-  TrailFilters: {
+
     trail_filters_title: 'Filtros de búsqueda',
     trail_filters_user: 'Usuario',
     trail_filters_platform: 'Plataforma',
@@ -473,6 +472,7 @@ const Trail = {
     trail_filters_search: 'Buscar',
     trail_filters_clean: 'Limpiar filtros',
   },
+
 };
 
 const TrailList = {

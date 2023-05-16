@@ -453,8 +453,7 @@ const Trail = {
     // TrailButtons
     toast_alert_chat: 'Du kan inte komma åt chatten om du inte är inloggad eller ansluten till Trail',
     chat: 'Chatt',
-  },
-  TrailFilters: {
+
     trail_filters_title: 'Sökfilter',
     trail_filters_user: 'Användare',
     trail_filters_platform: 'Plattform',
@@ -464,7 +463,6 @@ const Trail = {
     trail_filters_search: 'Leta efter',
     trail_filters_clean: 'Rensa filter',
   },
-
 };
 
 const TrailList = {

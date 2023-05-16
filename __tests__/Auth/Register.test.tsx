@@ -28,7 +28,7 @@ describe('Register page', () => {
     expect(screen.getByLabelText('register_email')).toBeInTheDocument();
     expect(screen.getByLabelText('password')).toBeInTheDocument();
     expect(screen.getByLabelText('register_password_confirmation')).toBeInTheDocument();
-    expect(screen.getByLabelText('Avatar')).toBeInTheDocument();
+    expect(screen.getByText('Avatar')).toBeInTheDocument();
     expect(screen.getByText('register')).toBeInTheDocument();
   });
 });

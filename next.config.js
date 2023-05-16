@@ -15,6 +15,12 @@ const nextConfig = withPWA({
       'via.placeholder.com', 'store-images.s-microsoft.com', 'cdn.cloudflare.steamstatic.com',
       'img.lovepik.com', 'cdn.pixabay.com', 'images.igdb.com', 'randomuser.me',
       'imgs.search.brave.com', 'media.tenor.com', 'avatars.githubusercontent.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**',
+      },
+    ],
   },
 });
 

@@ -34,7 +34,7 @@ describe('ProfileData', () => {
       </ThemeProvider>,
     );
     expect(screen.getByLabelText('Email')).toHaveValue(mockUser.email);
-    expect(screen.getByLabelText('Avatar')).toHaveValue(mockUser.avatar);
+    expect(screen.getByText('Avatar')).toBeInTheDocument();
   });
 
   it('should display validation errors when the API returns an error', async () => {

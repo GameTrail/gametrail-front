@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import type { SearchProps } from '@/components/Trail/TrailSearchForm/types';
 import { DEFAULT_TRAIL_SEARCH_FORM } from '@/components/Trail/TrailSearchForm/types';
 import type { Trail } from '@/models/Trail/types';
@@ -52,9 +52,6 @@ const useTrail = () => {
     }
   };
 
-  useEffect(() => {
-    console.log(result);
-  }, [result]);
   return {
     result,
     loading,

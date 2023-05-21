@@ -1,21 +1,19 @@
 import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export const DeletePopup = styled.div`
   position: fixed;
-  top: 0; 
+  top: 25%; 
   left: 50%;
   transform: translateX(-50%);
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  align-content: center;
+  padding: 20px;
   color: ${({ theme }) => theme.nord.white0};
   background-color: ${({ theme }) => theme.nord.red};
   border-radius: 8px;
-  margin-top: 3em;
-  z-index: 1;
-  width: 30%;
-  height: 20%;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.25);
   @keyframes pulse {
     0% {
@@ -35,12 +33,20 @@ export const DeletePopup = styled.div`
     align-items: center;
     position: fixed;
     margin-top: 2rem;
-    width: 80%;
-    height: 30%;
     z-index: 1;
     font-size: 0.8rem;
     justify-content: center;
   };
+`;
+
+export const WarningIcon = styled(FontAwesomeIcon)`
+  width: 50%;
+  margin-bottom: 50px; 
+  
+  @media (max-width: 768px) {
+    width: 100px;
+    margin-bottom: 0;
+  }
 `;
 
 export const DeleteHeader = styled.h1`

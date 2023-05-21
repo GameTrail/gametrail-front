@@ -21,7 +21,7 @@ const GameGang:FC<Props> = ({ trailGang }) => {
   const { t } = useLanguage();
   return (
     <Container>
-      <Sponsor href="https://foodcheck3.pythonanywhere.com/">
+      <Sponsor href="https://foodcheckpwl.pythonanywhere.com/">
         <Title>
           {t('trailgang_of_the_week')}
         </Title>

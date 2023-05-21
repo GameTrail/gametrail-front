@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/router';
 import useLanguage from '@/i18n/hooks';
 import { getUserCookie } from '@/utils/login';
 import {
-  DeleteButton, DeletePopup, DeleteHeader, DeleteConfirmButton, DeleteCancelButton, DeleteContainer,
+  DeleteButton, DeletePopup, DeleteHeader, DeleteConfirmButton, DeleteCancelButton, DeleteContainer, WarningIcon,
 } from './styles';
 
 const ProfileDelete = () => {
@@ -43,8 +42,8 @@ const ProfileDelete = () => {
 
   const handleDeletePopupRender = deletePopup ? (
     <DeletePopup>
+      <WarningIcon icon={faExclamationTriangle} />
       <DeleteHeader>
-        <FontAwesomeIcon icon={faExclamationTriangle} size="2xl" />
         {t('profile_delete_ask')}
       </DeleteHeader>
       <DeleteConfirmButton onClick={handleDelete}>
